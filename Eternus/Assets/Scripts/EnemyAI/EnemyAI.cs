@@ -9,6 +9,8 @@ public class EnemyAI : MonoBehaviour
     [SerializeField] private Transform nodeParent;
     [SerializeField] private float deaggroTime = 5f;
     [SerializeField] private float aggroRange = 3f;
+    [SerializeField] private float attackRange = 3f;
+    [SerializeField] private float attackTime = 3f;
     private List<Transform> nodes = new List<Transform>();
 
     NavMeshAgent ai;
@@ -17,6 +19,7 @@ public class EnemyAI : MonoBehaviour
     bool playerInSight = false;
     bool idle = false;
     bool playerIsHidden = false;
+    bool isAttacking = false;
     Transform player;
 
     void Awake()
@@ -37,6 +40,7 @@ public class EnemyAI : MonoBehaviour
         }
         SightAggro();
         BeginDeaggro();
+        AttackPlayer();
     }
 
     void SetUpNodes()
@@ -64,6 +68,31 @@ public class EnemyAI : MonoBehaviour
         ai.destination = node.position;
 
         BeginDeaggro();
+    }
+
+    void AttackPlayer()
+    {
+        if(player != null)
+        {
+            if (playerInSight && Vector3.Distance(transform.position, player.position) <= attackRange && !isAttacking)
+            {
+                isAttacking = true;
+                StartCoroutine("Hit");
+            }
+            else if (!playerInSight || Vector3.Distance(transform.position, player.position) > attackRange)
+            {
+                isAttacking = false;
+            }
+        }        
+    }
+
+    IEnumerator Hit()
+    {
+        while(true)
+        {
+            yield return new WaitForSeconds(attackTime);
+            print("Hit the player");
+        }
     }
 
     void SightAggro()
