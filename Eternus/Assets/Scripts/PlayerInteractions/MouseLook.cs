@@ -9,6 +9,7 @@ public class MouseLook : MonoBehaviour
 {
     [SerializeField] float mouseSensitivity = 500f;
     [SerializeField] Transform playerBody;
+    [SerializeField] LayerMask interactableLayerMask;
 
     float xRotation = 0f;
 
@@ -21,7 +22,6 @@ public class MouseLook : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //something makes the mouse jump..but what?
         float mouseX = Input.GetAxisRaw("Mouse X") * mouseSensitivity * Time.deltaTime;
         float mouseY = Input.GetAxisRaw("Mouse Y") * mouseSensitivity * Time.deltaTime;
 
@@ -30,5 +30,12 @@ public class MouseLook : MonoBehaviour
 
         transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
         playerBody.Rotate(Vector3.up * mouseX);
+
+        RaycastHit hit;
+        if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, 2, interactableLayerMask))
+        {
+            Debug.Log(hit.collider.name);
+
+        }
     }
 }
