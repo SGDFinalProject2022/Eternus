@@ -35,9 +35,9 @@ public class EnemyAI : MonoBehaviour
     void Awake()
     {
         ai = GetComponent<NavMeshAgent>();
-        ai.speed = movementSpeed;
-        
+        ai.speed = movementSpeed;        
         SetUpNodes();
+        transform.position = nodes[0].position;
         MoveToNextNode();
     }
 
@@ -70,11 +70,11 @@ public class EnemyAI : MonoBehaviour
     void MoveToNextNode()
     {
         //Check for random path parameter
-        if(Vector3.Distance(transform.position, nodes[currentNode].position) < 3f && randomPath)
+        if(Vector3.Distance(transform.position, nodes[currentNode].position) < .5f && randomPath)
         {
             currentNode = Random.Range(0, nodes.Count);
         }        
-        else if (Vector3.Distance(transform.position, nodes[currentNode].position) < 3f)
+        else if (Vector3.Distance(transform.position, nodes[currentNode].position) < .5f)
         {
             //Check for reverse path parameter
             if(reversePath)
@@ -136,7 +136,7 @@ public class EnemyAI : MonoBehaviour
         if(isSoundAggrod)
         {
             isSoundAggrod = false;
-            if(Vector3.Distance(transform.position, ai.destination) < 3f )
+            if(Vector3.Distance(transform.position, ai.destination) < .5f )
             {
                 BeginDeaggro();
             }
@@ -211,7 +211,7 @@ public class EnemyAI : MonoBehaviour
     {
         if(!idle && isAggrod && !playerInSight)
         {
-            if (Vector3.Distance(transform.position, ai.destination) < 3f)
+            if (Vector3.Distance(transform.position, ai.destination) < .5f)
             {
                 idle = true;
                 StartCoroutine("LoseAggro");
