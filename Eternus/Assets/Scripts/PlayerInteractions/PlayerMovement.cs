@@ -47,7 +47,7 @@ public class PlayerMovement : MonoBehaviour
         }       
 
         //jump
-        if(Input.GetAxis("Jump") > 0 && isOnGround && !isCrouching)
+        if(Input.GetButtonDown("Jump") && isOnGround && !isCrouching)
         {
             velocity.y = Mathf.Sqrt(jumpHeight * -2 * gravity);           
         }
@@ -66,7 +66,7 @@ public class PlayerMovement : MonoBehaviour
             isCrouching = false;
         }
 
-        //movement + sprint
+        //movement + sprint + crouch
         float x = Input.GetAxis("Horizontal");
         float z = Input.GetAxis("Vertical");
         float sprint = Input.GetAxis("Sprint");
@@ -75,7 +75,8 @@ public class PlayerMovement : MonoBehaviour
         {
             finalSpeed = Mathf.Lerp(walkingSpeed, crouchSpeed, y);
         }
-        if (!isCrouching && sprint > 0)
+        //can only sprint forward
+        if (!isCrouching && sprint > 0 && z > 0 && x == 0)
         {
             finalSpeed = Mathf.Lerp(walkingSpeed, sprintSpeed, sprint);
         }
