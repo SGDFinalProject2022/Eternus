@@ -413,6 +413,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   ID: 0
+  interactText: interact
 --- !u!1 &629131520
 GameObject:
   m_ObjectHideFlags: 0
@@ -1197,6 +1198,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   ID: 0
+  interactText: pick up
 --- !u!1 &1933704734
 GameObject:
   m_ObjectHideFlags: 0
@@ -1323,3 +1325,4 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   ID: 0
+  interactText: pick up
