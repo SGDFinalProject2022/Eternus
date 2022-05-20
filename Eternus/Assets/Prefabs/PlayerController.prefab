@@ -652,9 +652,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d77110b985694d048afecd3c283a80d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  crosshair: {fileID: 834399713}
   interactText: {fileID: 2023248199}
   objectiveText: {fileID: 8055676839079374166}
+  objectiveShowDelay: 0
+  objectiveHideDelay: 3
 --- !u!1 &6420845348021856009
 GameObject:
   m_ObjectHideFlags: 0

@@ -7,14 +7,20 @@ using UnityEngine.UI;
 /// </summary>
 public class UI : MonoBehaviour
 {
-    public Text interactText;
-    public Text objectiveText;
+    [Header("Text")]
+    public Text interactText; //text below the crosshair
+    public Text objectiveText; //text on the top of the screen
+    [Header("Objectives")]
+    public float objectiveShowDelay = 0f;
+    public float objectiveHideDelay = 3f;
+    
+    bool isObjectiveRunning = false;
 
     // Start is called before the first frame update
     void Start()
     {
-        //AlphaSet(objectiveText.color, 0f);
-        //StartCoroutine(ShowObjective("Objective: Push all the buttons"));
+        //objectiveText.color = new Color(objectiveText.color.r, objectiveText.color.g, objectiveText.color.b, 1);
+        //ShowObjective("Objective: Push all the buttons");
     }
 
     // Update is called once per frame
@@ -23,16 +29,15 @@ public class UI : MonoBehaviour
         
     }
 
-    /// <summary>
-    /// Sets an color's alpha to a value over time (broken right now)
-    /// </summary>
-    /// <param name="input"></param>
-    /// <param name="value"></param>
-    /// <param name="time"></param>
-    /// <returns></returns>
-    public IEnumerator AlphaFade(Color input, float value, float time)
+    public void ShowObjective(string objective)
     {
-        float alpha = input.a;
+        StartCoroutine(ShowObjectiveCoroutine(objective));
+    }
+
+    //keeping just in case we need it later (broken)
+    public IEnumerator AlphaFade(Color input)
+    {
+        //float alpha = input.a;
         /*for (float t = 0.0f; t < 1.0f; t += Time.deltaTime / time)
         {
             input = new Color(input.r, input.g, input.b, Mathf.Lerp(alpha, value, t));
@@ -46,18 +51,28 @@ public class UI : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Sets an color's alpha to a value
-    /// </summary>
-    /// <param name="input"></param>
-    /// <param name="value"></param>
-    public void AlphaSet(Color input, float value) { input = new Color(input.r, input.g, input.b, value); }
 
-    public IEnumerator ShowObjective(string objective)
+    public IEnumerator ShowObjectiveCoroutine(string objective)
     {
+        if (isObjectiveRunning)
+        {
+            yield break;
+        }
+
+        isObjectiveRunning = true;
+        yield return new WaitForSeconds(0); //0 or 1
         objectiveText.text = objective;
-        StartCoroutine(AlphaFade(objectiveText.color, 1f, 1f));
-        yield return new WaitForSeconds(5);
-        StartCoroutine(AlphaFade(objectiveText.color, 0.5f, 1f));
+        for (float t = 0.0f; t < 1.0f; t += 0.01f)
+        {
+            objectiveText.color = new Color(objectiveText.color.r, objectiveText.color.g, objectiveText.color.b, t);
+            yield return null;
+        }
+        yield return new WaitForSeconds(5); //5
+        for (float t = 1.0f; t > 0.0f; t -= 0.01f)
+        {
+            objectiveText.color = new Color(objectiveText.color.r, objectiveText.color.g, objectiveText.color.b, t);
+            yield return null;
+        }
+        isObjectiveRunning = false;
     }
 }
