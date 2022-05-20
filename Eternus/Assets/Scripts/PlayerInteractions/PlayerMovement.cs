@@ -24,6 +24,9 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float groundDistance = 0.4f;
     [SerializeField] LayerMask groundMask;
 
+    [Header("Stealth")]
+    public bool isHidden = false;
+
     Vector3 velocity;
     bool isOnGround;
     bool isCrouching;
