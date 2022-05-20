@@ -19,8 +19,7 @@ public class UI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //objectiveText.color = new Color(objectiveText.color.r, objectiveText.color.g, objectiveText.color.b, 1);
-        //ShowObjective("Objective: Push all the buttons");
+        objectiveText.color = new Color(objectiveText.color.r, objectiveText.color.g, objectiveText.color.b, 0f);
     }
 
     // Update is called once per frame
