@@ -15,6 +15,8 @@ public class MouseLook : MonoBehaviour
     [SerializeField] LayerMask interactableLayerMask;
     [SerializeField] Image crosshair;
 
+    UI uiController;
+
     float xRotation = 0f;
     Interactable interactable;
 
@@ -23,6 +25,7 @@ public class MouseLook : MonoBehaviour
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
+        uiController = GetComponent<UI>();
     }
 
     // Update is called once per frame
@@ -46,13 +49,14 @@ public class MouseLook : MonoBehaviour
 
             //makes the crosshair visible
             crosshair.color = new Color(crosshair.color.r, crosshair.color.g, crosshair.color.b, 0.5f);
-            if(hit.collider.GetComponent<Interactable>()) //just in case
+            if (hit.collider.GetComponent<Interactable>()) //just in case
             {
                 //making sure it only calls the selected interactable's event
                 if(interactable == null || interactable.ID != hit.collider.GetComponent<Interactable>().ID)
                 {
                     interactable = hit.collider.GetComponent<Interactable>();
                 }
+                uiController.interactText.text = interactable.interactText;
                 if(Input.GetButtonDown("Interact"))
                 {
                     interactable.onInteract.Invoke();
@@ -63,6 +67,7 @@ public class MouseLook : MonoBehaviour
         {
             //makes the crosshair invisible
             crosshair.color = new Color(crosshair.color.r, crosshair.color.g, crosshair.color.b, 0f);
+            uiController.interactText.text = "";
         }
     }
 }
