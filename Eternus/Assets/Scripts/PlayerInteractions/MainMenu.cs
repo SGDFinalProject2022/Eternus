@@ -7,7 +7,9 @@ using UnityEngine.SceneManagement;
 public class MainMenu : MonoBehaviour
 {
     [SerializeField] GameObject settingsPanel;
+    [SerializeField] GameObject playPanel;
     bool isSettingsToggled = false;
+    //bool isPlayToggled = false;
     //things for saving and loading player progress
     //things for saving and loading player settings
 
@@ -22,8 +24,14 @@ public class MainMenu : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
+
+    public void PlayToggle()
+    { 
+
+    }
+
 
     public void LoadLevel(string levelName)
     {
@@ -35,6 +43,7 @@ public class MainMenu : MonoBehaviour
     public void OnQuitButtonClick()
     {
         Application.Quit();
+        print("Quit");
     }
 
     public void SettingsToggle()
