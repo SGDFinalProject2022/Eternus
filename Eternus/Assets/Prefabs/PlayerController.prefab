@@ -731,6 +731,7 @@ GameObject:
   - component: {fileID: 6420845348021856011}
   - component: {fileID: 6420845348021856010}
   - component: {fileID: 6420845348021856012}
+  - component: {fileID: 148124934055472133}
   m_Layer: 0
   m_Name: PlayerController
   m_TagString: Player
@@ -800,6 +801,21 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   isHidden: 0
+--- !u!114 &148124934055472133
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6420845348021856009}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 174b8d9df9bc17d4f81c2801b62d0157, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scene: 
+  position: {x: 0, y: 0, z: 0}
+  hasKey: 0
 --- !u!1 &8935804906496113882
 GameObject:
   m_ObjectHideFlags: 0
