@@ -27,6 +27,11 @@ public class PlayerMovement : MonoBehaviour
     [Header("Stealth")]
     public bool isHidden = false;
 
+    [Header("Headbob")]
+    [SerializeField] HeadBobController headBobController;
+    [SerializeField] float normalHeadBobAmplitude = 0.0005f;
+    [SerializeField] float sprintHeadBobAmplitude = 0.001f;
+
     Vector3 velocity;
     bool isOnGround;
     bool isCrouching;
@@ -74,14 +79,20 @@ public class PlayerMovement : MonoBehaviour
         float z = Input.GetAxis("Vertical");
         float sprint = Input.GetAxis("Sprint");
         float finalSpeed = walkingSpeed;
-        if (y > 0)
+        if (y > 0) //Crouching
         {
             finalSpeed = Mathf.Lerp(walkingSpeed, crouchSpeed, y);
         }
         //can only sprint forward
-        if (!isCrouching && sprint > 0 && z > 0 && x == 0)
+        if (!isCrouching && sprint > 0 && z > 0 && x == 0) //Sprinting
         {
             finalSpeed = Mathf.Lerp(walkingSpeed, sprintSpeed, sprint);
+            headBobController.amplitude = Mathf.Lerp(normalHeadBobAmplitude, sprintHeadBobAmplitude, sprint);
+        }
+        else
+        {
+            //headbobs in any direction
+            headBobController.amplitude = Mathf.Lerp(0, normalHeadBobAmplitude, (Mathf.Abs(x) + Mathf.Abs(z)));
         }
         Vector3 move = transform.right * x + transform.forward * z;
         controller.Move(move * finalSpeed * Time.deltaTime);
