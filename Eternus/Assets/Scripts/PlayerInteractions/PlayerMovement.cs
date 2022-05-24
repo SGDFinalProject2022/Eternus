@@ -13,11 +13,18 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float walkingSpeed = 8f;
     [SerializeField] float gravity = -9.81f;
     [SerializeField] float jumpHeight = 1f;
+    Vector3 velocity;
+    bool isOnGround;
+
     [Header("Crouching")]
     [SerializeField] float crouchHeight = 1f; //base is 3.8
     [SerializeField] float crouchSpeed = 3f;
+    bool isCrouching;
+    float originalHeight;
+
     [Header("Sprint")]
     [SerializeField] float sprintSpeed = 12f;
+    bool isSprinting;
 
     [Header("Ground Check")]
     [SerializeField] Transform groundCheck;
@@ -32,15 +39,21 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float normalHeadBobAmplitude = 0.0005f;
     [SerializeField] float sprintHeadBobAmplitude = 0.001f;
 
-    Vector3 velocity;
-    bool isOnGround;
-    bool isCrouching;
-    float originalHeight;
+    [Header("Audio")]
+    AudioManager audioMan;
+    [SerializeField] AudioClip[] footStepSFX; //make multiple arrays if there are more floor materials (probably for water)
+    float footstepTimer = 0f;
+    float baseStepSpeed = 0.6f;
+    float crouchStepMultiplier = 1.5f;
+    float sprintStepMultiplier = 0.6f;   
+    //no clue how tf this works but i found a tutorial :D
+    float getCurrentOffset => isCrouching ? baseStepSpeed * crouchStepMultiplier : isSprinting ? baseStepSpeed * sprintStepMultiplier : baseStepSpeed;
 
     // Start is called before the first frame update
     void Start()
     {
         originalHeight = controller.height;
+        audioMan = GetComponent<AudioManager>();
     }
 
     // Update is called once per frame
@@ -73,8 +86,20 @@ public class PlayerMovement : MonoBehaviour
         {
             isCrouching = false;
         }
+        if(Input.GetButtonDown("Crouch") && y < 0.5)
+        {
+            audioMan.Play("Crouch");
+            audioMan.Play("Crouch Walk");
+        }
+        if(Input.GetButtonUp("Crouch") && y > 0.5f)
+        {
+            audioMan.Play("Stand");
+            audioMan.Stop("Crouch Walk");
+        }
 
-        //movement + sprint + crouch
+        audioMan.ChangeVolume("Step", 0.25f);
+
+        //movement + sprint + crouch speed
         float x = Input.GetAxis("Horizontal");
         float z = Input.GetAxis("Vertical");
         float sprint = Input.GetAxis("Sprint");
@@ -82,24 +107,48 @@ public class PlayerMovement : MonoBehaviour
         if (y > 0) //Crouching
         {
             finalSpeed = Mathf.Lerp(walkingSpeed, crouchSpeed, y);
+            audioMan.ChangeVolume("Crouch Walk", Mathf.Lerp(0.0f, 0.1f, Mathf.Abs(x) + Mathf.Abs(z)));
+            audioMan.ChangeVolume("Step", 0.1f);
         }
         //can only sprint forward
         if (!isCrouching && sprint > 0 && z > 0 && x == 0) //Sprinting
         {
             finalSpeed = Mathf.Lerp(walkingSpeed, sprintSpeed, sprint);
             headBobController.amplitude = Mathf.Lerp(normalHeadBobAmplitude, sprintHeadBobAmplitude, sprint);
+            isSprinting = true;
+            audioMan.ChangeVolume("Step", 0.5f);
         }
         else
         {
             //headbobs in any direction
             headBobController.amplitude = Mathf.Lerp(0, normalHeadBobAmplitude, (Mathf.Abs(x) + Mathf.Abs(z)));
+            isSprinting = false;
         }
         Vector3 move = transform.right * x + transform.forward * z;
-        controller.Move(move * finalSpeed * Time.deltaTime);
+        controller.Move(finalSpeed * Time.deltaTime * move);
 
         //gravity
         velocity.y += gravity * Time.deltaTime;
         controller.Move(velocity * Time.deltaTime);
 
+        //footstep SFX
+        if(isOnGround && (x != 0 || z != 0))
+        {
+            footstepTimer -= Time.deltaTime;
+
+            if(footstepTimer <= 0)
+            {
+                //we don't need this right now but we will later
+                /*if(Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit, 3))
+                {
+
+                }*/
+
+                audioMan.ReplaceClip("Step", footStepSFX[Random.Range(0, footStepSFX.Length - 1)]);
+                audioMan.Play("Step");
+
+                footstepTimer = getCurrentOffset;
+            }
+        }
     }
 }

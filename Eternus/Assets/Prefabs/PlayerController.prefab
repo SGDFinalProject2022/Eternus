@@ -803,6 +803,7 @@ GameObject:
   - component: {fileID: 6420845348021856010}
   - component: {fileID: 6420845348021856012}
   - component: {fileID: 117197481222689525}
+  - component: {fileID: 708942461}
   m_Layer: 0
   m_Name: PlayerController
   m_TagString: Player
@@ -875,6 +876,12 @@ MonoBehaviour:
   headBobController: {fileID: 117197481222689525}
   normalHeadBobAmplitude: 0.0005
   sprintHeadBobAmplitude: 0.001
+  footStepSFX:
+  - {fileID: 8300000, guid: 06ba936d2dc6f9b44865a88d8b19cb54, type: 3}
+  - {fileID: 8300000, guid: 1dfecd59cde9728489cc9ee26b59c48c, type: 3}
+  - {fileID: 8300000, guid: c4b0ea90d4a8950448e247c8b9dcdcfd, type: 3}
+  - {fileID: 8300000, guid: ac8de9236f286604bb8aa20e619d1bde, type: 3}
+  - {fileID: 8300000, guid: f96f398c2715cab49897f40991a3f472, type: 3}
 --- !u!114 &117197481222689525
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -892,6 +899,92 @@ MonoBehaviour:
   frequency: 10
   playerCamera: {fileID: 6420845347868447399}
   cameraHolder: {fileID: 5602289679407740577}
+--- !u!114 &708942461
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6420845348021856009}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c583a1393bd16674d9372aa50af36600, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mixerGroup: {fileID: 0}
+  sounds:
+  - name: Step
+    type: 0
+    clip: {fileID: 8300000, guid: c4b0ea90d4a8950448e247c8b9dcdcfd, type: 3}
+    volume: 0.25
+    volumeVariance: 0.3
+    pitch: 1
+    pitchVariance: 0.3
+    spatialBlend: 0
+    loop: 0
+    playOnAwake: 0
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+  - name: Crouch
+    type: 0
+    clip: {fileID: 8300000, guid: e91fffee1a394104cb7c8f3c722730f9, type: 3}
+    volume: 0.25
+    volumeVariance: 0.3
+    pitch: 1
+    pitchVariance: 0.1
+    spatialBlend: 0
+    loop: 0
+    playOnAwake: 0
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+  - name: Stand
+    type: 0
+    clip: {fileID: 8300000, guid: cbe256f168b5d6149a0b3e284f1e6124, type: 3}
+    volume: 0.25
+    volumeVariance: 0.3
+    pitch: 1
+    pitchVariance: 0.1
+    spatialBlend: 0
+    loop: 0
+    playOnAwake: 0
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+  - name: Crouch Walk
+    type: 0
+    clip: {fileID: 8300000, guid: 52722bdb0a8f5a94c85ce100cffb409f, type: 3}
+    volume: 0.1
+    volumeVariance: 0.3
+    pitch: 1
+    pitchVariance: 0.1
+    spatialBlend: 0
+    loop: 1
+    playOnAwake: 0
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+  - name: Pickup
+    type: 0
+    clip: {fileID: 8300000, guid: 56478b5a9c6821a49a58e2d3e2f9f14b, type: 3}
+    volume: 0.25
+    volumeVariance: 0.3
+    pitch: 1
+    pitchVariance: 0.1
+    spatialBlend: 0
+    loop: 0
+    playOnAwake: 0
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+  - name: Pickup Key
+    type: 0
+    clip: {fileID: 8300000, guid: 2eb083c131543b04abdd2fb5c10f6fac, type: 3}
+    volume: 0.5
+    volumeVariance: 0.3
+    pitch: 1
+    pitchVariance: 0.1
+    spatialBlend: 0
+    loop: 0
+    playOnAwake: 0
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
 --- !u!1 &8935804906496113882
 GameObject:
   m_ObjectHideFlags: 0
