@@ -16,7 +16,13 @@ public class Interactable : MonoBehaviour
     void Start()
     {
         ID = Random.Range(0, 9999);
-    }    
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        
+    }
 
     public void DebugPrint(string message)
     {
@@ -40,7 +46,7 @@ public class Interactable : MonoBehaviour
     }
 
     public void UnlockDoor()
-    {        
+    {
         isUnlocked = true;
         interactText = "open";
     }

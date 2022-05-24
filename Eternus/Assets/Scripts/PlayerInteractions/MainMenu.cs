@@ -8,7 +8,6 @@ public class MainMenu : MonoBehaviour
 {
     [SerializeField] GameObject settingsPanel;
     [SerializeField] GameObject playPanel;
-    [SerializeField] Button continueButton;
     bool isSettingsToggled = false;
     //bool isPlayToggled = false;
     //things for saving and loading player progress
@@ -19,15 +18,7 @@ public class MainMenu : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //ADDED BY VEN - Checks if save data exists
-        if(SaveLoad.Load() != null)
-        {
-            continueButton.interactable = true;
-        }
-        else
-        {
-            continueButton.interactable = false;
-        }
+        
     }
 
     // Update is called once per frame
@@ -41,16 +32,11 @@ public class MainMenu : MonoBehaviour
 
     }
 
-    //ADDED BY VEN - Load's players existing save data
-    public void OnContinue()
-    {
-        GlobalData.instance.LoadData();
-    }
 
     public void LoadLevel(string levelName)
     {
         //do a transition?
-        SceneManager.LoadScene(levelName);
+        //SceneManager.LoadScene(levelName);
         print("This will load into level: " + levelName);
     }
 
