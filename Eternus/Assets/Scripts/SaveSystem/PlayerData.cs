@@ -20,16 +20,4 @@ public class PlayerData : MonoBehaviour
             hasKey = data.hasKey;
         }
     }
-
-    public void Save()
-    {
-        print("saved");
-        GlobalData.instance.SaveData(this);
-    }
-
-    //FOR TESTING ONLY. REMOVE LATER
-    public void OnApplicationQuit()
-    {
-        Save();
-    }
 }
