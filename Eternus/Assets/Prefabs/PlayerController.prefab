@@ -863,7 +863,7 @@ MonoBehaviour:
   controller: {fileID: 6420845348021856010}
   walkingSpeed: 6
   gravity: -19.62
-  jumpHeight: 1
+  jumpHeight: 1.25
   crouchHeight: 1
   crouchSpeed: 2
   sprintSpeed: 10
