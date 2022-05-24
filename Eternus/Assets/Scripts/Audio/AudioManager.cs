@@ -26,7 +26,7 @@ public class AudioManager : MonoBehaviour
 
 			s.source.outputAudioMixerGroup = mixerGroup;
 		}
-		Play("BGM");
+		//Play("BGM"); //uncomment when we have BGM
 	}
 	/// <summary>
 	/// Plays the selected sound
@@ -78,7 +78,7 @@ public class AudioManager : MonoBehaviour
 		s.source.pitch = pitch;
 	}
 	/// <summary>
-	/// Changes the volume at runtime, buggy at the moment
+	/// Changes the volume at runtime
 	/// </summary>
 	/// <param name="sound"></param>
 	/// <param name="volume"></param>
@@ -141,6 +141,22 @@ public class AudioManager : MonoBehaviour
 			s.source.volume = vol;
 			yield return new WaitForSeconds(time / 10);
 		}		
+	}
+	/// <summary>
+	/// Replaces the current audio clip with a new one
+	/// </summary>
+	/// <param name="sound"></param>
+	/// <param name="newAudioClip"></param>
+	public void ReplaceClip(string sound, AudioClip newAudioClip)
+    {
+		Sound s = Array.Find(sounds, item => item.name == sound);
+		if (s == null)
+		{
+			Debug.LogWarning("Sound: " + sound + " not found!");
+			return;
+		}
+
+		s.source.clip = newAudioClip;
 	}
 
 }
