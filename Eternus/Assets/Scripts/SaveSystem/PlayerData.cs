@@ -7,7 +7,6 @@ public class PlayerData : MonoBehaviour
 {
     [HideInInspector] public string scene;
     [HideInInspector] public Vector3 position;
-    [HideInInspector] public bool hasKey;
 
     void Start()
     {
@@ -17,7 +16,6 @@ public class PlayerData : MonoBehaviour
         {
             SaveData data = SaveLoad.Load();
             transform.position = new Vector3(data.x, data.y, data.z);
-            hasKey = data.hasKey;
         }
     }
 }

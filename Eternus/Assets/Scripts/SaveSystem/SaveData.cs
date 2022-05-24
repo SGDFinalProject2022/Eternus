@@ -10,7 +10,6 @@ public class SaveData
     public float x;
     public float y;
     public float z;
-    public bool hasKey;
 
     public SaveData(PlayerData data)
     {
@@ -18,6 +17,5 @@ public class SaveData
         x = data.position.x;
         y = data.position.y;
         z = data.position.z;
-        hasKey = data.hasKey;
     }
 }
