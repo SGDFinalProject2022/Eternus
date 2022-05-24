@@ -985,6 +985,30 @@ MonoBehaviour:
     playOnAwake: 0
     mixerGroup: {fileID: 0}
     source: {fileID: 0}
+  - name: Jump
+    type: 0
+    clip: {fileID: 8300000, guid: eb3b4bf0d29f26449b6a5d62287e1da6, type: 3}
+    volume: 0.2
+    volumeVariance: 0.3
+    pitch: 1
+    pitchVariance: 0.1
+    spatialBlend: 0
+    loop: 0
+    playOnAwake: 0
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+  - name: Land
+    type: 0
+    clip: {fileID: 8300000, guid: f96f398c2715cab49897f40991a3f472, type: 3}
+    volume: 0.5
+    volumeVariance: 0.3
+    pitch: 1
+    pitchVariance: 0.1
+    spatialBlend: 0
+    loop: 0
+    playOnAwake: 0
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
 --- !u!1 &8935804906496113882
 GameObject:
   m_ObjectHideFlags: 0

@@ -15,6 +15,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float jumpHeight = 1f;
     Vector3 velocity;
     bool isOnGround;
+    bool isJumping;
 
     [Header("Crouching")]
     [SerializeField] float crouchHeight = 1f; //base is 3.8
@@ -65,12 +66,19 @@ public class PlayerMovement : MonoBehaviour
         if (isOnGround && velocity.y < 0)
         {
             velocity.y = -2f;
+            if(isJumping)
+            {
+                audioMan.Play("Land");
+                isJumping = false;
+            }
         }       
 
         //jump
         if(Input.GetButtonDown("Jump") && isOnGround && !isCrouching)
         {
-            velocity.y = Mathf.Sqrt(jumpHeight * -2 * gravity);           
+            velocity.y = Mathf.Sqrt(jumpHeight * -2 * gravity);
+            audioMan.Play("Jump");
+            isJumping = true;
         }
 
         //crouch
