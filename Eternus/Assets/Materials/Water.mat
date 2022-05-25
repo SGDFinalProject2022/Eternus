@@ -58,6 +58,7 @@ Material:
     - _Depth: 0.38
     - _QueueControl: 0
     - _QueueOffset: 0
+    - _Smoothness: 0.843
     - _Strength: 0.56
     m_Colors:
     - _DeepWaterColor: {r: 0.24523833, g: 0.26924148, b: 0.3113207, a: 1}
