@@ -39,6 +39,7 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("Stealth")]
     public bool isHidden = false;
+    public bool isHiding = false;
 
     [Header("Headbob")]
     [SerializeField] HeadBobController headBobController;
@@ -74,6 +75,13 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (isHiding) 
+        {
+            headBobController.amplitude = 0f;
+            headBobController.frequency = 0f;
+            return; 
+        }
+
         //checks if it's on the ground
         isOnGround = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
         if (Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit, 3))
@@ -157,7 +165,7 @@ public class PlayerMovement : MonoBehaviour
     }
 
     /// <summary>
-    /// Movement + Sprint + Crouch Speed, Changes footsteps volume + Headbob amplitude
+    /// Movement + Sprint + Crouch Speed, Changes footsteps volume + Headbob
     /// </summary>
     /// <param name="x"></param>
     /// <param name="y"></param>
