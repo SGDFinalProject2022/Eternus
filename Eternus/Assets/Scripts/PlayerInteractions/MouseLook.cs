@@ -32,8 +32,8 @@ public class MouseLook : MonoBehaviour
     void Update()
     {
         //mouse movement
-        float mouseX = Input.GetAxisRaw("Mouse X") * mouseSensitivity * Time.deltaTime;
-        float mouseY = Input.GetAxisRaw("Mouse Y") * mouseSensitivity * Time.deltaTime;
+        float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
+        float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime;
 
         xRotation -= mouseY;
         xRotation = Mathf.Clamp(xRotation, -70, 70);
@@ -42,6 +42,16 @@ public class MouseLook : MonoBehaviour
         playerBody.Rotate(Vector3.up * mouseX);
 
         //interactions
+        PlayerInteractions();
+    }
+
+    private void FixedUpdate()
+    {
+        
+    }
+
+    void PlayerInteractions()
+    {
         RaycastHit hit;
         if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, 4, interactableLayerMask))
         {
@@ -52,12 +62,12 @@ public class MouseLook : MonoBehaviour
             if (hit.collider.GetComponent<Interactable>()) //just in case
             {
                 //making sure it only calls the selected interactable's event
-                if(interactable == null || interactable.ID != hit.collider.GetComponent<Interactable>().ID)
+                if (interactable == null || interactable.ID != hit.collider.GetComponent<Interactable>().ID)
                 {
                     interactable = hit.collider.GetComponent<Interactable>();
                 }
                 uiController.interactText.text = interactable.interactText;
-                if(Input.GetButtonDown("Interact"))
+                if (Input.GetButtonDown("Interact"))
                 {
                     interactable.onInteract.Invoke();
                 }

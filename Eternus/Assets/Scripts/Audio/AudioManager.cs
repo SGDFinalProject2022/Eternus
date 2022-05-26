@@ -47,6 +47,25 @@ public class AudioManager : MonoBehaviour
 		s.source.Play();
 	}
 	/// <summary>
+	/// Makes a sound play a custom clip
+	/// </summary>
+	/// <param name="sound"></param>
+	/// <param name="clip"></param>
+	public void PlayOneShot(string sound, AudioClip clip)
+    {
+		Sound s = Array.Find(sounds, item => item.name == sound);
+		if (s == null)
+		{
+			Debug.LogWarning("Sound: " + sound + " not found!");
+			return;
+		}
+
+		s.source.volume = s.volume * (1f + UnityEngine.Random.Range(-s.volumeVariance / 2f, s.volumeVariance / 2f));
+		s.source.pitch = s.pitch * (1f + UnityEngine.Random.Range(-s.pitchVariance / 2f, s.pitchVariance / 2f));
+
+		s.source.PlayOneShot(clip);
+	}
+	/// <summary>
 	/// Stops playing the selected sound
 	/// </summary>
 	/// <param name="sound"></param>

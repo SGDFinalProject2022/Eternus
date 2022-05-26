@@ -12,10 +12,11 @@ public class PlayerMovement : MonoBehaviour
     [Header("Player Parameters")]
     [SerializeField] float walkingSpeed = 8f;
     [SerializeField] float gravity = -9.81f;
-    [SerializeField] float jumpHeight = 1f;
+    [SerializeField] float jumpHeight = 1f;    
     Vector3 velocity;
     bool isOnGround;
     bool isJumping;
+    
 
     [Header("Crouching")]
     [SerializeField] float crouchHeight = 1f; //base is 3.8
@@ -26,6 +27,10 @@ public class PlayerMovement : MonoBehaviour
     [Header("Sprint")]
     [SerializeField] float sprintSpeed = 12f;
     bool isSprinting;
+
+    [Header("Water")]
+    [SerializeField] float waterSpeed = 3f;
+    bool isInWater;
 
     [Header("Ground Check")]
     [SerializeField] Transform groundCheck;
@@ -39,16 +44,25 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] HeadBobController headBobController;
     [SerializeField] float normalHeadBobAmplitude = 0.0005f;
     [SerializeField] float sprintHeadBobAmplitude = 0.001f;
+    [SerializeField] float normalHeadBobFrequency = 10f;
+    [SerializeField] float sprintHeadBobFrequency = 15f;
 
     [Header("Audio")]
     AudioManager audioMan;
     [SerializeField] AudioClip[] footStepSFX; //make multiple arrays if there are more floor materials (probably for water)
+    [SerializeField] AudioClip[] waterStepSFX;
+
     float footstepTimer = 0f;
     float baseStepSpeed = 0.6f;
     float crouchStepMultiplier = 1.5f;
-    float sprintStepMultiplier = 0.6f;   
+    float sprintStepMultiplier = 0.6f;
+    float waterStepMultiplier = 2f;
     //no clue how tf this works but i found a tutorial :D
-    float getCurrentOffset => isCrouching ? baseStepSpeed * crouchStepMultiplier : isSprinting ? baseStepSpeed * sprintStepMultiplier : baseStepSpeed;
+    float getCurrentOffset => 
+        isInWater ? baseStepSpeed * waterStepMultiplier 
+        : isCrouching ? baseStepSpeed * crouchStepMultiplier 
+        : isSprinting ? baseStepSpeed * sprintStepMultiplier 
+        : baseStepSpeed;
 
     // Start is called before the first frame update
     void Start()
@@ -62,29 +76,63 @@ public class PlayerMovement : MonoBehaviour
     {
         //checks if it's on the ground
         isOnGround = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
+        if (Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit, 3))
+        {
+            isInWater = hit.collider.CompareTag("Footsteps/Water");
+        }
 
+        float x = Input.GetAxis("Horizontal");
+        float y = Input.GetAxis("Crouch");
+        float z = Input.GetAxis("Vertical");
+
+        JumpLandHandler();
+        CrouchHandler(y);     
+        MovementHandler(x, y, z);
+        GravityHandler();
+        FootstepSoundHandler(x, z);
+    }
+
+    /// <summary>
+    /// Handles Jumping and Landing
+    /// </summary>
+    void JumpLandHandler()
+    {
+        //landing
         if (isOnGround && velocity.y < 0)
         {
             velocity.y = -2f;
-            if(isJumping)
+            if (isJumping)
             {
                 audioMan.Play("Land");
                 isJumping = false;
             }
-        }       
+        }
 
-        //jump
-        if(Input.GetButtonDown("Jump") && isOnGround && !isCrouching)
+        //jumping
+        if (Input.GetButtonDown("Jump") && isOnGround && !isCrouching && !isInWater)
         {
             velocity.y = Mathf.Sqrt(jumpHeight * -2 * gravity);
             audioMan.Play("Jump");
             isJumping = true;
         }
+    }
 
-        //crouch
-        float y = Input.GetAxis("Crouch");
+    /// <summary>
+    /// Changes PlayerController's height, Sets isCrouching, Plays crouching SFX
+    /// </summary>
+    /// <param name="y"></param>
+    void CrouchHandler(float y)
+    {
         controller.height = Mathf.Lerp(originalHeight, crouchHeight, y);
-        groundCheck.localPosition = new Vector3(0, Mathf.Lerp(-1.8f, -crouchHeight/2, y), 0);
+        groundCheck.localPosition = new Vector3(0, Mathf.Lerp(-1.8f, -crouchHeight / 2, y), 0);
+
+        if(isInWater)
+        {
+            audioMan.Stop("Crouch Walk");
+            return;
+        }
+
+        //sets is crouching and moves groundCheck accordingly
         if (y > 0)
         {
             isCrouching = true;
@@ -94,35 +142,44 @@ public class PlayerMovement : MonoBehaviour
         {
             isCrouching = false;
         }
-        if(Input.GetButtonDown("Crouch") && y < 0.5)
+
+        //sfx
+        if (Input.GetButtonDown("Crouch") && y < 0.5)
         {
             audioMan.Play("Crouch");
             audioMan.Play("Crouch Walk");
         }
-        if(Input.GetButtonUp("Crouch") && y > 0.5f)
+        if (Input.GetButtonUp("Crouch") && y > 0.5f)
         {
             audioMan.Play("Stand");
             audioMan.Stop("Crouch Walk");
         }
+    }
 
+    /// <summary>
+    /// Movement + Sprint + Crouch Speed, Changes footsteps volume + Headbob amplitude
+    /// </summary>
+    /// <param name="x"></param>
+    /// <param name="y"></param>
+    /// <param name="z"></param>
+    void MovementHandler(float x, float y, float z)
+    {
+        //setting footstep volume to default
         audioMan.ChangeVolume("Step", 0.25f);
-
-        //movement + sprint + crouch speed
-        float x = Input.GetAxis("Horizontal");
-        float z = Input.GetAxis("Vertical");
         float sprint = Input.GetAxis("Sprint");
         float finalSpeed = walkingSpeed;
-        if (y > 0) //Crouching
+        if (isCrouching && !isInWater)
         {
             finalSpeed = Mathf.Lerp(walkingSpeed, crouchSpeed, y);
             audioMan.ChangeVolume("Crouch Walk", Mathf.Lerp(0.0f, 0.1f, Mathf.Abs(x) + Mathf.Abs(z)));
             audioMan.ChangeVolume("Step", 0.1f);
         }
         //can only sprint forward
-        if (!isCrouching && sprint > 0 && z > 0 && x == 0) //Sprinting
+        if (!isCrouching && sprint > 0 && z > 0 && x == 0 && !isInWater) //Sprinting
         {
             finalSpeed = Mathf.Lerp(walkingSpeed, sprintSpeed, sprint);
             headBobController.amplitude = Mathf.Lerp(normalHeadBobAmplitude, sprintHeadBobAmplitude, sprint);
+            headBobController.frequency = sprintHeadBobFrequency;
             isSprinting = true;
             audioMan.ChangeVolume("Step", 0.5f);
         }
@@ -130,30 +187,54 @@ public class PlayerMovement : MonoBehaviour
         {
             //headbobs in any direction
             headBobController.amplitude = Mathf.Lerp(0, normalHeadBobAmplitude, (Mathf.Abs(x) + Mathf.Abs(z)));
+            headBobController.frequency = normalHeadBobFrequency;
             isSprinting = false;
+        }
+        if(isInWater)
+        {
+            isSprinting = false; isCrouching = false;
+            headBobController.frequency = 5f;
+            finalSpeed = waterSpeed;
         }
         Vector3 move = transform.right * x + transform.forward * z;
         controller.Move(finalSpeed * Time.deltaTime * move);
+    }
 
-        //gravity
+    void GravityHandler()
+    {
         velocity.y += gravity * Time.deltaTime;
         controller.Move(velocity * Time.deltaTime);
+    }
 
-        //footstep SFX
-        if(isOnGround && (x != 0 || z != 0))
+    /// <summary>
+    /// Plays the corresponding footstep sound if on ground and moving
+    /// </summary>
+    /// <param name="x"></param>
+    /// <param name="z"></param>
+    void FootstepSoundHandler(float x, float z)
+    {
+        if (isOnGround && (x != 0 || z != 0))
         {
             footstepTimer -= Time.deltaTime;
 
-            if(footstepTimer <= 0)
+            if (footstepTimer <= 0)
             {
-                //we don't need this right now but we will later
-                /*if(Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit, 3))
+                if (Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit, 3))
                 {
+                    switch (hit.collider.tag)
+                    {
+                        case "Footsteps/Pavement":
+                            audioMan.PlayOneShot("Step", footStepSFX[Random.Range(0, footStepSFX.Length - 1)]);
+                            break;
+                        case "Footsteps/Water":
+                            audioMan.PlayOneShot("Step", waterStepSFX[Random.Range(0, waterStepSFX.Length - 1)]);
+                            break;
+                        default:
+                            audioMan.PlayOneShot("Step", footStepSFX[Random.Range(0, footStepSFX.Length - 1)]);
+                            break;
+                    }
 
-                }*/
-
-                audioMan.ReplaceClip("Step", footStepSFX[Random.Range(0, footStepSFX.Length - 1)]);
-                audioMan.Play("Step");
+                }
 
                 footstepTimer = getCurrentOffset;
             }
