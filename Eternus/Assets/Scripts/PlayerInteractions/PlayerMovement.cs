@@ -118,7 +118,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
         //jumping
-        if (Input.GetButtonDown("Jump") && isOnGround && !isCrouching && !isInWater)
+        if (Input.GetButtonDown("Jump") && isOnGround && !isSprinting && !isCrouching && !isInWater)
         {
             velocity.y = Mathf.Sqrt(jumpHeight * -2 * gravity);
             audioMan.Play("Jump");
@@ -132,6 +132,13 @@ public class PlayerMovement : MonoBehaviour
     /// <param name="y"></param>
     void CrouchHandler(float y)
     {
+        //preventing crouch jumping
+        if (!isOnGround && !isCrouching) 
+        {
+            controller.height = originalHeight;
+            groundCheck.localPosition = new Vector3(0, -1.8f, 0);
+            return; 
+        }
         controller.height = Mathf.Lerp(originalHeight, crouchHeight, y);
         groundCheck.localPosition = new Vector3(0, Mathf.Lerp(-1.8f, -crouchHeight / 2, y), 0);
 
