@@ -75,6 +75,7 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //forces everthing to a halt while the player is hiding something
         if (isHiding) 
         {
             headBobController.amplitude = 0f;
@@ -82,7 +83,7 @@ public class PlayerMovement : MonoBehaviour
             return; 
         }
 
-        //checks if it's on the ground
+        //checks if it's on the ground or on water
         isOnGround = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
         if (Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit, 3))
         {
