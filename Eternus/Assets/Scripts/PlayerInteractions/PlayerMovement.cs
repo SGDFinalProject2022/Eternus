@@ -112,7 +112,7 @@ public class PlayerMovement : MonoBehaviour
             velocity.y = -2f;
             if (isJumping)
             {
-                audioMan.Play("Land");
+                PlayFootstep();
                 isJumping = false;
             }
         }
@@ -199,13 +199,21 @@ public class PlayerMovement : MonoBehaviour
             headBobController.frequency = normalHeadBobFrequency;
             isSprinting = false;
         }
-        if(isInWater)
+        if(isInWater) //separate things when the player is in water
         {
-            isSprinting = false; isCrouching = false;
+            isCrouching = false;
             headBobController.frequency = 5f;
-            finalSpeed = waterSpeed;
+            if(sprint > 0)
+            {
+                finalSpeed = Mathf.Lerp(waterSpeed, waterSpeed * 1.5f, sprint);
+            }
+            else
+            {
+                finalSpeed = waterSpeed;
+            }            
         }
-        Vector3 move = transform.right * x + transform.forward * z;
+        Vector3 move = transform.right * x + transform.forward * z;     
+        if(move.magnitude >= 1f) { move = move.normalized; }       
         controller.Move(finalSpeed * Time.deltaTime * move);
     }
 
@@ -216,7 +224,7 @@ public class PlayerMovement : MonoBehaviour
     }
 
     /// <summary>
-    /// Plays the corresponding footstep sound if on ground and moving
+    /// Calls the PlayFootstep function if on the ground and footstepTimer is 0
     /// </summary>
     /// <param name="x"></param>
     /// <param name="z"></param>
@@ -228,25 +236,32 @@ public class PlayerMovement : MonoBehaviour
 
             if (footstepTimer <= 0)
             {
-                if (Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit, 3))
-                {
-                    switch (hit.collider.tag)
-                    {
-                        case "Footsteps/Pavement":
-                            audioMan.PlayOneShot("Step", footStepSFX[Random.Range(0, footStepSFX.Length - 1)]);
-                            break;
-                        case "Footsteps/Water":
-                            audioMan.PlayOneShot("Step", waterStepSFX[Random.Range(0, waterStepSFX.Length - 1)]);
-                            break;
-                        default:
-                            audioMan.PlayOneShot("Step", footStepSFX[Random.Range(0, footStepSFX.Length - 1)]);
-                            break;
-                    }
-
-                }
+                PlayFootstep();
 
                 footstepTimer = getCurrentOffset;
             }
+        }
+    }
+    /// <summary>
+    /// Plays a footstep sound based on the tag of the ground
+    /// </summary>
+    void PlayFootstep()
+    {
+        if (Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit, 3))
+        {
+            switch (hit.collider.tag)
+            {
+                case "Footsteps/Pavement":
+                    audioMan.PlayOneShot("Step", footStepSFX[Random.Range(0, footStepSFX.Length - 1)]);
+                    break;
+                case "Footsteps/Water":
+                    audioMan.PlayOneShot("Step", waterStepSFX[Random.Range(0, waterStepSFX.Length - 1)]);
+                    break;
+                default:
+                    audioMan.PlayOneShot("Step", footStepSFX[Random.Range(0, footStepSFX.Length - 1)]);
+                    break;
+            }
+
         }
     }
 }
