@@ -18,7 +18,9 @@ public class MouseLook : MonoBehaviour
     UI uiController;
 
     float xRotation = 0f;
+    float yRotation = 0f;
     Interactable interactable;
+    PlayerMovement playerMovement;
 
 
     // Start is called before the first frame update
@@ -26,22 +28,44 @@ public class MouseLook : MonoBehaviour
     {
         Cursor.lockState = CursorLockMode.Locked;
         uiController = GetComponent<UI>();
+        playerMovement = GetComponentInParent<PlayerMovement>();
     }
 
     // Update is called once per frame
     void Update()
     {
         //mouse movement
-        float mouseX = Input.GetAxisRaw("Mouse X") * mouseSensitivity * Time.deltaTime;
-        float mouseY = Input.GetAxisRaw("Mouse Y") * mouseSensitivity * Time.deltaTime;
-
+        float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
+        float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime;
         xRotation -= mouseY;
-        xRotation = Mathf.Clamp(xRotation, -70, 70);
+        yRotation += mouseX;
+
+        if (!playerMovement.isHiding) //Normal
+        {           
+            xRotation = Mathf.Clamp(xRotation, -70, 70);
+            playerBody.Rotate(Vector3.up * mouseX);
+        }
+        else //Hiding
+        {
+            xRotation = Mathf.Clamp(xRotation, -20, 30);
+            yRotation = Mathf.Clamp(yRotation, -30, 30);
+            playerBody.localRotation = Quaternion.Euler(0f, yRotation, 0f);
+        }
 
         transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
-        playerBody.Rotate(Vector3.up * mouseX);
+        //playerBody.Rotate(Vector3.up * yRotation);
 
         //interactions
+        PlayerInteractions();
+    }
+
+    private void FixedUpdate()
+    {
+        
+    }
+
+    void PlayerInteractions()
+    {
         RaycastHit hit;
         if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, 4, interactableLayerMask))
         {
@@ -52,12 +76,12 @@ public class MouseLook : MonoBehaviour
             if (hit.collider.GetComponent<Interactable>()) //just in case
             {
                 //making sure it only calls the selected interactable's event
-                if(interactable == null || interactable.ID != hit.collider.GetComponent<Interactable>().ID)
+                if (interactable == null || interactable.ID != hit.collider.GetComponent<Interactable>().ID)
                 {
                     interactable = hit.collider.GetComponent<Interactable>();
                 }
                 uiController.interactText.text = interactable.interactText;
-                if(Input.GetButtonDown("Interact"))
+                if (Input.GetButtonDown("Interact"))
                 {
                     interactable.onInteract.Invoke();
                 }
