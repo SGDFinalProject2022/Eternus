@@ -1306,7 +1306,7 @@ ParticleSystem:
       maxGradient:
         serializedVersion: 2
         key0: {r: 0.25872195, g: 0.28032202, b: 0.3207547, a: 1}
-        key1: {r: 0.378471, g: 0.4245283, b: 0.40788183, a: 0}
+        key1: {r: 0.81501424, g: 0.9339623, b: 0.89070845, a: 0}
         key2: {r: 0, g: 0, b: 0, a: 0}
         key3: {r: 0, g: 0, b: 0, a: 0}
         key4: {r: 0, g: 0, b: 0, a: 0}
@@ -4955,7 +4955,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6f294cbbdd4acb43a07713f1b018a1d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 5
   nodeParent: {fileID: 930563907817144007}
   deaggroTime: 5
   aggroRange: 3
@@ -4963,6 +4962,7 @@ MonoBehaviour:
   attackTime: 1
   randomPath: 0
   reversePath: 0
+  isAggrod: 0
 --- !u!195 &930563907902548320
 NavMeshAgent:
   m_ObjectHideFlags: 0
