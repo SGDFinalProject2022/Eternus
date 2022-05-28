@@ -5,7 +5,6 @@ using UnityEngine.AI;
 
 public class EnemyAI : MonoBehaviour
 {
-    [SerializeField] private float movementSpeed = 5f;
     [SerializeField] private Transform nodeParent;
     [SerializeField] private float deaggroTime = 5f;
     [SerializeField] private float aggroRange = 3f;
@@ -16,12 +15,12 @@ public class EnemyAI : MonoBehaviour
     private List<Transform> nodes = new List<Transform>();
 
     //Patrol
-    NavMeshAgent ai;
+    protected NavMeshAgent ai;
     int currentNode = 0;
     bool inReverse = false;
 
     //Aggro
-    bool isAggrod = false;
+    [SerializeField] protected bool isAggrod = false;
     bool playerInSight = false;
     bool playerIsHidden = false;
     bool isSoundAggrod = false;
@@ -35,13 +34,12 @@ public class EnemyAI : MonoBehaviour
     void Awake()
     {
         ai = GetComponent<NavMeshAgent>();
-        ai.speed = movementSpeed;        
         SetUpNodes();
         transform.position = nodes[0].position;
         MoveToNextNode();
     }
 
-    void Update()
+    protected void Update()
     {
         if(!isAggrod)
         {
@@ -77,7 +75,7 @@ public class EnemyAI : MonoBehaviour
         else if (Vector3.Distance(transform.position, nodes[currentNode].position) < .5f)
         {
             //Check for reverse path parameter
-            if(reversePath)
+            if (reversePath)
             {
                 if (inReverse)
                 {
@@ -168,9 +166,7 @@ public class EnemyAI : MonoBehaviour
                 break;
             }
             print("Hit the player");
-            ai.speed = 0;
             yield return new WaitForSeconds(attackTime);
-            ai.speed = movementSpeed;
         }        
     }
 
