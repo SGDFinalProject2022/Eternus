@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 864189121332238912}
   - component: {fileID: 3178063750898069130}
   - component: {fileID: 4346515665785247204}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: ModFloor
-  m_TagString: Untagged
+  m_TagString: Footsteps/Pavement
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
