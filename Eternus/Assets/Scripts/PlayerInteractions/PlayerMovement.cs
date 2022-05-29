@@ -75,6 +75,7 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //forces everthing to a halt while the player is hiding something
         if (isHiding) 
         {
             headBobController.amplitude = 0f;
@@ -82,7 +83,7 @@ public class PlayerMovement : MonoBehaviour
             return; 
         }
 
-        //checks if it's on the ground
+        //checks if it's on the ground or on water
         isOnGround = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
         if (Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit, 3))
         {
@@ -111,13 +112,13 @@ public class PlayerMovement : MonoBehaviour
             velocity.y = -2f;
             if (isJumping)
             {
-                audioMan.Play("Land");
+                PlayFootstep();
                 isJumping = false;
             }
         }
 
         //jumping
-        if (Input.GetButtonDown("Jump") && isOnGround && !isCrouching && !isInWater)
+        if (Input.GetButtonDown("Jump") && isOnGround && !isSprinting && !isCrouching && !isInWater)
         {
             velocity.y = Mathf.Sqrt(jumpHeight * -2 * gravity);
             audioMan.Play("Jump");
@@ -131,6 +132,13 @@ public class PlayerMovement : MonoBehaviour
     /// <param name="y"></param>
     void CrouchHandler(float y)
     {
+        //preventing crouch jumping
+        if (!isOnGround && !isCrouching) 
+        {
+            controller.height = originalHeight;
+            groundCheck.localPosition = new Vector3(0, -1.8f, 0);
+            return; 
+        }
         controller.height = Mathf.Lerp(originalHeight, crouchHeight, y);
         groundCheck.localPosition = new Vector3(0, Mathf.Lerp(-1.8f, -crouchHeight / 2, y), 0);
 
@@ -198,13 +206,21 @@ public class PlayerMovement : MonoBehaviour
             headBobController.frequency = normalHeadBobFrequency;
             isSprinting = false;
         }
-        if(isInWater)
+        if(isInWater) //separate things when the player is in water
         {
-            isSprinting = false; isCrouching = false;
+            isCrouching = false;
             headBobController.frequency = 5f;
-            finalSpeed = waterSpeed;
+            if(sprint > 0)
+            {
+                finalSpeed = Mathf.Lerp(waterSpeed, waterSpeed * 1.5f, sprint);
+            }
+            else
+            {
+                finalSpeed = waterSpeed;
+            }            
         }
-        Vector3 move = transform.right * x + transform.forward * z;
+        Vector3 move = transform.right * x + transform.forward * z;     
+        if(move.magnitude >= 1f) { move = move.normalized; }       
         controller.Move(finalSpeed * Time.deltaTime * move);
     }
 
@@ -215,7 +231,7 @@ public class PlayerMovement : MonoBehaviour
     }
 
     /// <summary>
-    /// Plays the corresponding footstep sound if on ground and moving
+    /// Calls the PlayFootstep function if on the ground and footstepTimer is 0
     /// </summary>
     /// <param name="x"></param>
     /// <param name="z"></param>
@@ -227,25 +243,32 @@ public class PlayerMovement : MonoBehaviour
 
             if (footstepTimer <= 0)
             {
-                if (Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit, 3))
-                {
-                    switch (hit.collider.tag)
-                    {
-                        case "Footsteps/Pavement":
-                            audioMan.PlayOneShot("Step", footStepSFX[Random.Range(0, footStepSFX.Length - 1)]);
-                            break;
-                        case "Footsteps/Water":
-                            audioMan.PlayOneShot("Step", waterStepSFX[Random.Range(0, waterStepSFX.Length - 1)]);
-                            break;
-                        default:
-                            audioMan.PlayOneShot("Step", footStepSFX[Random.Range(0, footStepSFX.Length - 1)]);
-                            break;
-                    }
-
-                }
+                PlayFootstep();
 
                 footstepTimer = getCurrentOffset;
             }
+        }
+    }
+    /// <summary>
+    /// Plays a footstep sound based on the tag of the ground
+    /// </summary>
+    void PlayFootstep()
+    {
+        if (Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit, 3))
+        {
+            switch (hit.collider.tag)
+            {
+                case "Footsteps/Pavement":
+                    audioMan.PlayOneShot("Step", footStepSFX[Random.Range(0, footStepSFX.Length - 1)]);
+                    break;
+                case "Footsteps/Water":
+                    audioMan.PlayOneShot("Step", waterStepSFX[Random.Range(0, waterStepSFX.Length - 1)]);
+                    break;
+                default:
+                    audioMan.PlayOneShot("Step", footStepSFX[Random.Range(0, footStepSFX.Length - 1)]);
+                    break;
+            }
+
         }
     }
 }

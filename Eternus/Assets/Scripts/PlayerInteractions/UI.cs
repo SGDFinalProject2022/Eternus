@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 /// <summary>
 /// Controls the UI for the player
 /// </summary>
@@ -17,6 +18,10 @@ public class UI : MonoBehaviour
     public Text itemText;
     public Image itemImage;
     public Sprite defaultItemImage;
+    [Header("Pause")]
+    [SerializeField] GameObject pauseMenuPanel;
+    bool isPaused;
+    HeadBobController headBobController;
     
     bool isObjectiveRunning = false;
 
@@ -26,12 +31,30 @@ public class UI : MonoBehaviour
         objectiveText.color = new Color(objectiveText.color.r, objectiveText.color.g, objectiveText.color.b, 0f);
         itemImage.color = new Color(objectiveText.color.r, objectiveText.color.g, objectiveText.color.b, 0f);
         itemText.color = new Color(objectiveText.color.r, objectiveText.color.g, objectiveText.color.b, 0f);
+        pauseMenuPanel.SetActive(false);
+        headBobController = GetComponentInParent<HeadBobController>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if(Input.GetButtonDown("Pause"))
+        {
+            if(!isPaused)
+            {
+                headBobController.enableHeadbob = false;
+                Cursor.lockState = CursorLockMode.None;
+                pauseMenuPanel.SetActive(true);
+                Time.timeScale = 0.001f;
+            }
+            else
+            {               
+                Cursor.lockState = CursorLockMode.Locked;
+                pauseMenuPanel.SetActive(false);
+                Time.timeScale = 1;
+                headBobController.enableHeadbob = true;
+            }
+        }
     }
 
     public void ShowObjective(string objective)
@@ -110,5 +133,22 @@ public class UI : MonoBehaviour
             yield return null;
         }
         itemImage.sprite = defaultItemImage;
+    }
+
+    public void Resume()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+        isPaused = false;
+        Time.timeScale = 1;
+        pauseMenuPanel.SetActive(false);
+        GetComponentInParent<HeadBobController>().enableHeadbob = true;
+    }
+    public void Settings()
+    {
+
+    }
+    public void Return()
+    {
+        SceneManager.LoadScene("MainMenu");
     }
 }
