@@ -908,6 +908,7 @@ MonoBehaviour:
   ID: 0
   interactText: Hide
   isUnlocked: 1
+  jiggleSFX: []
 --- !u!65 &410271092
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1111,6 +1112,7 @@ MonoBehaviour:
   ID: 0
   interactText: interact
   isUnlocked: 1
+  jiggleSFX: []
 --- !u!114 &509055029 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 509055033, guid: c2baed0eff0758a44b2313f42af65068, type: 3}
@@ -1122,6 +1124,134 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d77110b985694d048afecd3c283a80d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &522897903
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 522897905}
+  - component: {fileID: 522897904}
+  m_Layer: 0
+  m_Name: Audio Source
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!82 &522897904
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 522897903}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 9f5968e81c6bafb488486681ebbac027, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 0.213
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!4 &522897905
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 522897903}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -11.349913, y: -13.283234, z: -33.258842}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 26
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &629131520
 GameObject:
   m_ObjectHideFlags: 0
@@ -1993,6 +2123,7 @@ MonoBehaviour:
   ID: 0
   interactText: Exit
   isUnlocked: 1
+  jiggleSFX: []
 --- !u!65 &1215262469
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2179,6 +2310,7 @@ MonoBehaviour:
   ID: 0
   interactText: Hide
   isUnlocked: 1
+  jiggleSFX: []
 --- !u!114 &1266617501
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2369,6 +2501,7 @@ GameObject:
   - component: {fileID: 1338086052}
   - component: {fileID: 1338086051}
   - component: {fileID: 1338086055}
+  - component: {fileID: 1338086056}
   m_Layer: 7
   m_Name: Door
   m_TagString: Untagged
@@ -2496,6 +2629,48 @@ MonoBehaviour:
   ID: 0
   interactText: interact
   isUnlocked: 0
+  jiggleSFX:
+  - {fileID: 8300000, guid: 02a515af8177cca4f9f5aa7c327e0a7c, type: 3}
+  - {fileID: 8300000, guid: 2450e8188085bcf449da76aeb65de65e, type: 3}
+  - {fileID: 8300000, guid: b399fc9b83ceaf342a8587028e19cc44, type: 3}
+--- !u!114 &1338086056
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1338086050}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c583a1393bd16674d9372aa50af36600, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mixerGroup: {fileID: 0}
+  sounds:
+  - name: Locked
+    type: 0
+    clip: {fileID: 8300000, guid: 02a515af8177cca4f9f5aa7c327e0a7c, type: 3}
+    volume: 0.25
+    volumeVariance: 0.1
+    pitch: 1
+    pitchVariance: 0.12
+    spatialBlend: 1
+    loop: 0
+    playOnAwake: 0
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+  - name: Open
+    type: 0
+    clip: {fileID: 8300000, guid: c811bc49d0530d743890e68bf0eb5c6e, type: 3}
+    volume: 0.3
+    volumeVariance: 0.1
+    pitch: 1
+    pitchVariance: 0.12
+    spatialBlend: 1
+    loop: 0
+    playOnAwake: 0
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
 --- !u!1 &1523956354
 GameObject:
   m_ObjectHideFlags: 0
@@ -2869,6 +3044,7 @@ MonoBehaviour:
   ID: 0
   interactText: pick up
   isUnlocked: 1
+  jiggleSFX: []
 --- !u!1 &1782343224
 GameObject:
   m_ObjectHideFlags: 0
@@ -3004,10 +3180,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 6420845347868447398, guid: c2baed0eff0758a44b2313f42af65068, type: 3}
-      propertyPath: far clip plane
-      value: 800
-      objectReference: {fileID: 0}
     - target: {fileID: 6420845348021856009, guid: c2baed0eff0758a44b2313f42af65068, type: 3}
       propertyPath: m_Name
       value: PlayerController
@@ -3054,46 +3226,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6420845348021856011, guid: c2baed0eff0758a44b2313f42af65068, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6420845348021856012, guid: c2baed0eff0758a44b2313f42af65068, type: 3}
-      propertyPath: waterMask.m_Bits
-      value: 16
-      objectReference: {fileID: 0}
-    - target: {fileID: 6420845348021856012, guid: c2baed0eff0758a44b2313f42af65068, type: 3}
-      propertyPath: sprintHeadBobAmplitude
-      value: 0.001
-      objectReference: {fileID: 0}
-    - target: {fileID: 6420845348021856012, guid: c2baed0eff0758a44b2313f42af65068, type: 3}
-      propertyPath: sprintHeadBobFrequency
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 6420845348021856012, guid: c2baed0eff0758a44b2313f42af65068, type: 3}
-      propertyPath: waterStepSFX.Array.size
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 6420845348021856012, guid: c2baed0eff0758a44b2313f42af65068, type: 3}
-      propertyPath: waterStepSFX.Array.data[0]
-      value: 
-      objectReference: {fileID: 8300000, guid: f48bc8efdd5c6974e85dc3f8a643ba7c, type: 3}
-    - target: {fileID: 6420845348021856012, guid: c2baed0eff0758a44b2313f42af65068, type: 3}
-      propertyPath: waterStepSFX.Array.data[1]
-      value: 
-      objectReference: {fileID: 8300000, guid: 3fae257238e8fa643a2a51c9d207ab36, type: 3}
-    - target: {fileID: 6420845348021856012, guid: c2baed0eff0758a44b2313f42af65068, type: 3}
-      propertyPath: waterStepSFX.Array.data[2]
-      value: 
-      objectReference: {fileID: 8300000, guid: 043a15b585f75a54ba4d4b0762f1714b, type: 3}
-    - target: {fileID: 6420845348021856012, guid: c2baed0eff0758a44b2313f42af65068, type: 3}
-      propertyPath: waterStepSFX.Array.data[3]
-      value: 
-      objectReference: {fileID: 8300000, guid: d86cfd799e58ebf4fb1cf4529218b1c2, type: 3}
-    - target: {fileID: 6420845348021856012, guid: c2baed0eff0758a44b2313f42af65068, type: 3}
-      propertyPath: waterStepSFX.Array.data[4]
-      value: 
-      objectReference: {fileID: 8300000, guid: cb7022394b7f6194da8ac22771f59b44, type: 3}
-    - target: {fileID: 6650164697162761688, guid: c2baed0eff0758a44b2313f42af65068, type: 3}
-      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -3238,6 +3370,7 @@ MonoBehaviour:
   ID: 0
   interactText: pick up
   isUnlocked: 1
+  jiggleSFX: []
 --- !u!1 &1933704734
 GameObject:
   m_ObjectHideFlags: 0
@@ -3378,6 +3511,7 @@ MonoBehaviour:
   ID: 0
   interactText: pick up
   isUnlocked: 1
+  jiggleSFX: []
 --- !u!1 &2018907306
 GameObject:
   m_ObjectHideFlags: 0
@@ -3513,6 +3647,7 @@ MonoBehaviour:
   ID: 0
   interactText: you did it :D
   isUnlocked: 1
+  jiggleSFX: []
 --- !u!65 &2113223270
 BoxCollider:
   m_ObjectHideFlags: 0
