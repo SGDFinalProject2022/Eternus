@@ -908,6 +908,7 @@ MonoBehaviour:
   ID: 0
   interactText: Hide
   isUnlocked: 1
+  jiggleSFX: []
 --- !u!65 &410271092
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1111,6 +1112,7 @@ MonoBehaviour:
   ID: 0
   interactText: interact
   isUnlocked: 1
+  jiggleSFX: []
 --- !u!114 &509055029 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 509055033, guid: c2baed0eff0758a44b2313f42af65068, type: 3}
@@ -2121,6 +2123,7 @@ MonoBehaviour:
   ID: 0
   interactText: Exit
   isUnlocked: 1
+  jiggleSFX: []
 --- !u!65 &1215262469
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2307,6 +2310,7 @@ MonoBehaviour:
   ID: 0
   interactText: Hide
   isUnlocked: 1
+  jiggleSFX: []
 --- !u!114 &1266617501
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2497,6 +2501,7 @@ GameObject:
   - component: {fileID: 1338086052}
   - component: {fileID: 1338086051}
   - component: {fileID: 1338086055}
+  - component: {fileID: 1338086056}
   m_Layer: 7
   m_Name: Door
   m_TagString: Untagged
@@ -2624,6 +2629,48 @@ MonoBehaviour:
   ID: 0
   interactText: interact
   isUnlocked: 0
+  jiggleSFX:
+  - {fileID: 8300000, guid: 02a515af8177cca4f9f5aa7c327e0a7c, type: 3}
+  - {fileID: 8300000, guid: 2450e8188085bcf449da76aeb65de65e, type: 3}
+  - {fileID: 8300000, guid: b399fc9b83ceaf342a8587028e19cc44, type: 3}
+--- !u!114 &1338086056
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1338086050}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c583a1393bd16674d9372aa50af36600, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mixerGroup: {fileID: 0}
+  sounds:
+  - name: Locked
+    type: 0
+    clip: {fileID: 8300000, guid: 02a515af8177cca4f9f5aa7c327e0a7c, type: 3}
+    volume: 0.25
+    volumeVariance: 0.1
+    pitch: 1
+    pitchVariance: 0.12
+    spatialBlend: 1
+    loop: 0
+    playOnAwake: 0
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+  - name: Open
+    type: 0
+    clip: {fileID: 8300000, guid: c811bc49d0530d743890e68bf0eb5c6e, type: 3}
+    volume: 0.3
+    volumeVariance: 0.1
+    pitch: 1
+    pitchVariance: 0.12
+    spatialBlend: 1
+    loop: 0
+    playOnAwake: 0
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
 --- !u!1 &1523956354
 GameObject:
   m_ObjectHideFlags: 0
@@ -2997,6 +3044,7 @@ MonoBehaviour:
   ID: 0
   interactText: pick up
   isUnlocked: 1
+  jiggleSFX: []
 --- !u!1 &1782343224
 GameObject:
   m_ObjectHideFlags: 0
@@ -3322,6 +3370,7 @@ MonoBehaviour:
   ID: 0
   interactText: pick up
   isUnlocked: 1
+  jiggleSFX: []
 --- !u!1 &1933704734
 GameObject:
   m_ObjectHideFlags: 0
@@ -3462,6 +3511,7 @@ MonoBehaviour:
   ID: 0
   interactText: pick up
   isUnlocked: 1
+  jiggleSFX: []
 --- !u!1 &2018907306
 GameObject:
   m_ObjectHideFlags: 0
@@ -3597,6 +3647,7 @@ MonoBehaviour:
   ID: 0
   interactText: you did it :D
   isUnlocked: 1
+  jiggleSFX: []
 --- !u!65 &2113223270
 BoxCollider:
   m_ObjectHideFlags: 0
