@@ -38,7 +38,7 @@ public class Interactable : MonoBehaviour
         if(isUnlocked)
         {
             audioMan.PlayForceEntirely("Open"); //when we have an animation for the door, this will play
-            FindObjectOfType<UI>().ShowObjective("Find a key: Complete");
+            FindObjectOfType<UI>().ShowObjective("Unlocked door");
             print(this.gameObject.name + " will open (probably using some door open animation)");
             gameObject.layer = 0;
             gameObject.SetActive(false); //remove when there is an animation!!

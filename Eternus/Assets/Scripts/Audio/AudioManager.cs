@@ -25,6 +25,13 @@ public class AudioManager : MonoBehaviour
 			s.source.spatialBlend = s.spatialBlend;
 
 			s.source.outputAudioMixerGroup = mixerGroup;
+
+            s.originalVolume = s.volume;
+
+			if(s.playOnAwake)
+            {
+				Play(s.name);
+            }
 		}
 		//Play("BGM"); //uncomment when we have BGM
 	}
@@ -113,7 +120,7 @@ public class AudioManager : MonoBehaviour
 		s.source.volume = volume;
 	}
 	/// <summary>
-	/// Changes the volume of all sounds in the certain soundtype
+	/// Lerps the volume of all sounds of a certain soundtype from 0 to 1 (original volume)
 	/// </summary>
 	/// <param name="type"></param>
 	/// <param name="volume"></param>
@@ -127,8 +134,9 @@ public class AudioManager : MonoBehaviour
 		
 		foreach (Sound sound in s)
         {
-			sound.volume = volume;
-			sound.source.volume = volume;
+			float newVol = Mathf.Lerp(0, sound.originalVolume, volume);
+			sound.volume = newVol;
+			sound.source.volume = newVol;
         }
     }
 	/// <summary>

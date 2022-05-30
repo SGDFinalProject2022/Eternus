@@ -53,6 +53,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] AudioClip[] footStepSFX; //make multiple arrays if there are more floor materials (probably for water)
     [SerializeField] AudioClip[] waterStepSFX;
 
+    //Footsteps
     float footstepTimer = 0f;
     float baseStepSpeed = 0.6f;
     float crouchStepMultiplier = 1.5f;
@@ -65,18 +66,24 @@ public class PlayerMovement : MonoBehaviour
         : isSprinting ? baseStepSpeed * sprintStepMultiplier 
         : baseStepSpeed;
 
+    //multiply everything that changes volume based on this value
+    [HideInInspector] public float footstepBaseVolume = 0.25f;
+
+    UI uiController;
+
     // Start is called before the first frame update
     void Start()
     {
         originalHeight = controller.height;
         audioMan = GetComponent<AudioManager>();
+        uiController = FindObjectOfType<UI>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        //forces everthing to a halt while the player is hiding something
-        if (isHiding) 
+        //forces everthing to a halt while the player is hiding or paused
+        if (isHiding || uiController.isPaused)
         {
             headBobController.amplitude = 0f;
             headBobController.frequency = 0f;
@@ -181,14 +188,14 @@ public class PlayerMovement : MonoBehaviour
     void MovementHandler(float x, float y, float z)
     {
         //setting footstep volume to default
-        audioMan.ChangeVolume("Step", 0.25f);
+        audioMan.ChangeVolume("Step", footstepBaseVolume);
         float sprint = Input.GetAxis("Sprint");
         float finalSpeed = walkingSpeed;
         if (isCrouching && !isInWater)
         {
             finalSpeed = Mathf.Lerp(walkingSpeed, crouchSpeed, y);
-            audioMan.ChangeVolume("Crouch Walk", Mathf.Lerp(0.0f, 0.1f, Mathf.Abs(x) + Mathf.Abs(z)));
-            audioMan.ChangeVolume("Step", 0.1f);
+            audioMan.ChangeVolume("Crouch Walk", Mathf.Lerp(0.0f, footstepBaseVolume * 0.4f, Mathf.Abs(x) + Mathf.Abs(z)));
+            audioMan.ChangeVolume("Step", footstepBaseVolume * 0.4f);
         }
         //can only sprint forward
         if (!isCrouching && sprint > 0 && z > 0 && x == 0 && !isInWater) //Sprinting
@@ -197,7 +204,7 @@ public class PlayerMovement : MonoBehaviour
             headBobController.amplitude = Mathf.Lerp(normalHeadBobAmplitude, sprintHeadBobAmplitude, sprint);
             headBobController.frequency = sprintHeadBobFrequency;
             isSprinting = true;
-            audioMan.ChangeVolume("Step", 0.5f);
+            audioMan.ChangeVolume("Step", footstepBaseVolume * 2f);
         }
         else
         {
