@@ -47,6 +47,25 @@ public class AudioManager : MonoBehaviour
 		s.source.Play();
 	}
 	/// <summary>
+	/// Makes a sound play a custom clip
+	/// </summary>
+	/// <param name="sound"></param>
+	/// <param name="clip"></param>
+	public void PlayOneShot(string sound, AudioClip clip)
+    {
+		Sound s = Array.Find(sounds, item => item.name == sound);
+		if (s == null)
+		{
+			Debug.LogWarning("Sound: " + sound + " not found!");
+			return;
+		}
+
+		s.source.volume = s.volume * (1f + UnityEngine.Random.Range(-s.volumeVariance / 2f, s.volumeVariance / 2f));
+		s.source.pitch = s.pitch * (1f + UnityEngine.Random.Range(-s.pitchVariance / 2f, s.pitchVariance / 2f));
+
+		s.source.PlayOneShot(clip);
+	}
+	/// <summary>
 	/// Stops playing the selected sound
 	/// </summary>
 	/// <param name="sound"></param>
@@ -159,4 +178,58 @@ public class AudioManager : MonoBehaviour
 		s.source.clip = newAudioClip;
 	}
 
+	bool isPlaying = false;
+	/// <summary>
+	/// Like Play() but forces the sound to be played in it's entirety before calling again
+	/// </summary>
+	/// <param name="sound"></param>
+	public void PlayForceEntirely(string sound)
+    {
+        if (isPlaying) { return; }
+
+		Sound s = Array.Find(sounds, item => item.name == sound);
+		if (s == null)
+		{
+			Debug.LogWarning("Sound: " + sound + " not found!");
+			return;
+		}
+		StartCoroutine(ForcePlayEntirelyCoroutine(s));
+	}
+	IEnumerator ForcePlayEntirelyCoroutine(Sound s)
+    {
+		isPlaying = true;
+		s.source.volume = s.volume * (1f + UnityEngine.Random.Range(-s.volumeVariance / 2f, s.volumeVariance / 2f));
+		s.source.pitch = s.pitch * (1f + UnityEngine.Random.Range(-s.pitchVariance / 2f, s.pitchVariance / 2f));
+		s.source.Play();
+
+		yield return new WaitForSeconds(s.clip.length);
+		isPlaying = false;
+	}
+	/// <summary>
+	/// Forces the sound to play newAudioClip in it's entirety before calling again
+	/// </summary>
+	/// <param name="sound"></param>
+	/// <param name="newAudioClip"></param>
+	public void PlayForceEntirely(string sound, AudioClip newAudioClip)
+	{
+		if (isPlaying) { return; }
+
+		Sound s = Array.Find(sounds, item => item.name == sound);
+		if (s == null)
+		{
+			Debug.LogWarning("Sound: " + sound + " not found!");
+			return;
+		}
+		StartCoroutine(ForcePlayEntirelyCoroutine(s, newAudioClip));
+	}
+	IEnumerator ForcePlayEntirelyCoroutine(Sound s, AudioClip clip)
+	{
+		isPlaying = true;
+		s.source.volume = s.volume * (1f + UnityEngine.Random.Range(-s.volumeVariance / 2f, s.volumeVariance / 2f));
+		s.source.pitch = s.pitch * (1f + UnityEngine.Random.Range(-s.pitchVariance / 2f, s.pitchVariance / 2f));
+		s.source.PlayOneShot(clip);
+
+		yield return new WaitForSeconds(s.clip.length);
+		isPlaying = false;
+	}
 }
