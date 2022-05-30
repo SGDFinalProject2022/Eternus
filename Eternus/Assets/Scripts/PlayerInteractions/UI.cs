@@ -20,7 +20,7 @@ public class UI : MonoBehaviour
     public Sprite defaultItemImage;
     [Header("Pause")]
     [SerializeField] GameObject pauseMenuPanel;
-    bool isPaused;
+    [HideInInspector] public bool isPaused;
     HeadBobController headBobController;
     
     bool isObjectiveRunning = false;
@@ -46,6 +46,7 @@ public class UI : MonoBehaviour
                 Cursor.lockState = CursorLockMode.None;
                 pauseMenuPanel.SetActive(true);
                 Time.timeScale = 0.001f;
+                isPaused = true;
             }
             else
             {               
@@ -53,6 +54,7 @@ public class UI : MonoBehaviour
                 pauseMenuPanel.SetActive(false);
                 Time.timeScale = 1;
                 headBobController.enableHeadbob = true;
+                isPaused = false;
             }
         }
     }
@@ -137,8 +139,8 @@ public class UI : MonoBehaviour
 
     public void Resume()
     {
-        Cursor.lockState = CursorLockMode.Locked;
         isPaused = false;
+        Cursor.lockState = CursorLockMode.Locked;
         Time.timeScale = 1;
         pauseMenuPanel.SetActive(false);
         GetComponentInParent<HeadBobController>().enableHeadbob = true;

@@ -111,7 +111,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 1}
+  m_AnchorMax: {x: 1, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -232,7 +232,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u2713"
+  m_Text: X
 --- !u!1 &485292462
 GameObject:
   m_ObjectHideFlags: 0
@@ -783,7 +783,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 509055033}
+      - m_Target: {fileID: 8457383100502241946}
         m_TargetAssemblyTypeName: UI, Assembly-CSharp
         m_MethodName: Resume
         m_Mode: 1
@@ -999,10 +999,22 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 0
+  m_Value: 1
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1879974563}
+        m_TargetAssemblyTypeName: SettingsMenu, Assembly-CSharp
+        m_MethodName: OnMusicVolumeChange
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &834399711
 GameObject:
   m_ObjectHideFlags: 0
@@ -1326,10 +1338,22 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 0
+  m_Value: 1
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1879974563}
+        m_TargetAssemblyTypeName: SettingsMenu, Assembly-CSharp
+        m_MethodName: OnOverallVolumeChange
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &894535310
 GameObject:
   m_ObjectHideFlags: 0
@@ -1417,10 +1441,22 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 0
+  m_Value: 1
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1879974563}
+        m_TargetAssemblyTypeName: SettingsMenu, Assembly-CSharp
+        m_MethodName: OnSFXVolumeChange
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &932803506
 GameObject:
   m_ObjectHideFlags: 0
@@ -1962,8 +1998,8 @@ RectTransform:
   m_Father: {fileID: 1413601939}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 1}
+  m_AnchorMin: {x: 1, y: 0}
+  m_AnchorMax: {x: 1, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -2038,8 +2074,8 @@ RectTransform:
   m_Father: {fileID: 1782016713}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 1}
+  m_AnchorMin: {x: 1, y: 0}
+  m_AnchorMax: {x: 1, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -2152,7 +2188,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 1}
+  m_AnchorMax: {x: 1, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -2363,6 +2399,7 @@ GameObject:
   - component: {fileID: 1460088208}
   - component: {fileID: 1460088210}
   - component: {fileID: 1460088209}
+  - component: {fileID: 1879974563}
   m_Layer: 5
   m_Name: Settings Center Button Panel
   m_TagString: Untagged
@@ -2438,6 +2475,24 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &1879974563
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1460088207}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a485ed4eaf80236499c81e465981569b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioListener: {fileID: 6420845347868447397}
+  overallVolumeSlider: {fileID: 888177157}
+  sfxVolumeSlider: {fileID: 894535312}
+  musicVolumeSlider: {fileID: 771689043}
+  fullscreenText: {fileID: 466899806}
+  checkmark: "\u2713"
 --- !u!1 &1473145193
 GameObject:
   m_ObjectHideFlags: 0
@@ -3108,7 +3163,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1854546447}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1879974563}
+        m_TargetAssemblyTypeName: SettingsMenu, Assembly-CSharp
+        m_MethodName: FullscreenToggle
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1872643237
 GameObject:
   m_ObjectHideFlags: 0
@@ -3351,8 +3418,8 @@ RectTransform:
   m_Father: {fileID: 1092940876}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 1}
+  m_AnchorMin: {x: 1, y: 0}
+  m_AnchorMax: {x: 1, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -3540,7 +3607,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 1}
+  m_AnchorMax: {x: 1, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -3922,6 +3989,7 @@ MonoBehaviour:
   itemImage: {fileID: 994198677}
   defaultItemImage: {fileID: 21300000, guid: a8d916ee3b994144785f9f4a837c4eef, type: 3}
   pauseMenuPanel: {fileID: 978103540}
+  isPaused: 0
 --- !u!1 &6420845347386534985
 GameObject:
   m_ObjectHideFlags: 0
@@ -4163,6 +4231,7 @@ MonoBehaviour:
   itemImage: {fileID: 994198677}
   defaultItemImage: {fileID: 21300000, guid: a8d916ee3b994144785f9f4a837c4eef, type: 3}
   pauseMenuPanel: {fileID: 978103540}
+  isPaused: 0
 --- !u!1 &6420845348021856009
 GameObject:
   m_ObjectHideFlags: 0
@@ -4265,6 +4334,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 043a15b585f75a54ba4d4b0762f1714b, type: 3}
   - {fileID: 8300000, guid: d86cfd799e58ebf4fb1cf4529218b1c2, type: 3}
   - {fileID: 8300000, guid: cb7022394b7f6194da8ac22771f59b44, type: 3}
+  footstepBaseVolume: 0.25
 --- !u!114 &117197481222689525
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4300,7 +4370,8 @@ MonoBehaviour:
     type: 0
     clip: {fileID: 8300000, guid: c4b0ea90d4a8950448e247c8b9dcdcfd, type: 3}
     volume: 0.25
-    volumeVariance: 0.3
+    volumeVariance: 0
+    originalVolume: 0
     pitch: 1
     pitchVariance: 0.3
     spatialBlend: 0
@@ -4313,6 +4384,7 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: e91fffee1a394104cb7c8f3c722730f9, type: 3}
     volume: 0.25
     volumeVariance: 0.3
+    originalVolume: 0
     pitch: 1
     pitchVariance: 0.1
     spatialBlend: 0
@@ -4325,6 +4397,7 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: cbe256f168b5d6149a0b3e284f1e6124, type: 3}
     volume: 0.25
     volumeVariance: 0.3
+    originalVolume: 0
     pitch: 1
     pitchVariance: 0.1
     spatialBlend: 0
@@ -4336,7 +4409,8 @@ MonoBehaviour:
     type: 0
     clip: {fileID: 8300000, guid: 52722bdb0a8f5a94c85ce100cffb409f, type: 3}
     volume: 0.1
-    volumeVariance: 0.3
+    volumeVariance: 0
+    originalVolume: 0
     pitch: 1
     pitchVariance: 0.1
     spatialBlend: 0
@@ -4349,6 +4423,7 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 56478b5a9c6821a49a58e2d3e2f9f14b, type: 3}
     volume: 0.25
     volumeVariance: 0.3
+    originalVolume: 0
     pitch: 1
     pitchVariance: 0.1
     spatialBlend: 0
@@ -4361,6 +4436,7 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 2eb083c131543b04abdd2fb5c10f6fac, type: 3}
     volume: 0.5
     volumeVariance: 0.3
+    originalVolume: 0
     pitch: 1
     pitchVariance: 0.1
     spatialBlend: 0
@@ -4373,6 +4449,7 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: eb3b4bf0d29f26449b6a5d62287e1da6, type: 3}
     volume: 0.2
     volumeVariance: 0.3
+    originalVolume: 0
     pitch: 1
     pitchVariance: 0.1
     spatialBlend: 0
@@ -4385,6 +4462,7 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: f96f398c2715cab49897f40991a3f472, type: 3}
     volume: 0.5
     volumeVariance: 0.3
+    originalVolume: 0
     pitch: 1
     pitchVariance: 0.1
     spatialBlend: 0
