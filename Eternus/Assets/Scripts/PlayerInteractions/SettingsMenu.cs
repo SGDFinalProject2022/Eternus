@@ -21,7 +21,7 @@ public class SettingsMenu : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //load from save
+        LoadSettings();
 
         audioMen = FindObjectsOfType<AudioManager>();
     }
@@ -29,9 +29,10 @@ public class SettingsMenu : MonoBehaviour
     public void OnOverallVolumeChange()
     {
         AudioListener.volume = overallVolumeSlider.value;
+        GlobalData.instance.SaveSettings(musicVolumeSlider.value, sfxVolumeSlider.value, isFullscreen);
     }
     public void OnSFXVolumeChange()
-    {
+    {        
         foreach (AudioManager audioMan in audioMen)
         {
             audioMan.ChangeVolumeOfType(soundType.SFX, sfxVolumeSlider.value);
@@ -41,12 +42,25 @@ public class SettingsMenu : MonoBehaviour
             FindObjectOfType<PlayerMovement>().footstepBaseVolume =
             Mathf.Lerp(0, 0.25f, sfxVolumeSlider.value); //hhhhhhh
         }
+        GlobalData.instance.SaveSettings(musicVolumeSlider.value, sfxVolumeSlider.value, isFullscreen);
     }
     public void OnMusicVolumeChange()
     {
         foreach (AudioManager audioMan in audioMen)
         {
             audioMan.ChangeVolumeOfType(soundType.music, musicVolumeSlider.value);
+        }
+        GlobalData.instance.SaveSettings(musicVolumeSlider.value, sfxVolumeSlider.value, isFullscreen);
+    }
+
+    public void LoadSettings()
+    {
+        SettingsData data = SaveLoad.LoadSettings();
+        if(data != null)
+        {
+            isFullscreen = data.fullscreen;
+            musicVolumeSlider.value = data.bgmVolume;
+            sfxVolumeSlider.value = data.sfxVolume;
         }
     }
     public void FullscreenToggle()
@@ -65,5 +79,6 @@ public class SettingsMenu : MonoBehaviour
             Screen.fullScreen = false;
             isFullscreen = false;
         }
+        GlobalData.instance.SaveSettings(musicVolumeSlider.value, sfxVolumeSlider.value, isFullscreen);
     }
 }
