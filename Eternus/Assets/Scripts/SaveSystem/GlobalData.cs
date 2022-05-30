@@ -38,5 +38,11 @@ public class GlobalData : MonoBehaviour
         loadSaveData = true;
         SaveData data = SaveLoad.Load();
         SceneManager.LoadScene(data.scene);    
-    }    
+    } 
+
+    public void SaveSettings(float bgm, float sfx, bool isFull)
+    {
+        SettingsData data = new SettingsData(bgm, sfx, isFull);
+        SaveLoad.SaveSettings(data);
+    }
 }
