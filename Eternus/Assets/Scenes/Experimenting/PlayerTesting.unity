@@ -1113,6 +1113,28 @@ MonoBehaviour:
   interactText: interact
   isUnlocked: 1
   jiggleSFX: []
+--- !u!1 &508227593 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8036006173252857325, guid: 41ae7d308af558c4893f2e986ce71545, type: 3}
+  m_PrefabInstance: {fileID: 7153062939811855190}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &508227602
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 508227593}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ca4ad0c6cc6b484281b74d246e1943c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  footsteps:
+  - {fileID: 8300000, guid: 663e681daa5d2a34dbbd03e4e7fb74b9, type: 3}
+  - {fileID: 8300000, guid: 1c0a34149f1c4ac49911aa21f01eb70c, type: 3}
+  - {fileID: 8300000, guid: 08cb55febd9cd8543bcbd63f5c66d5c9, type: 3}
+  - {fileID: 8300000, guid: aebda33fa5b47a44e960953be13c5ffc, type: 3}
 --- !u!114 &509055029 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 509055033, guid: c2baed0eff0758a44b2313f42af65068, type: 3}
@@ -3830,6 +3852,10 @@ PrefabInstance:
     - target: {fileID: 8036006173252857325, guid: 41ae7d308af558c4893f2e986ce71545, type: 3}
       propertyPath: m_Name
       value: SetoBedBlanket
+      objectReference: {fileID: 0}
+    - target: {fileID: 8036006173252857325, guid: 41ae7d308af558c4893f2e986ce71545, type: 3}
+      propertyPath: m_TagString
+      value: Footsteps/Custom
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 41ae7d308af558c4893f2e986ce71545, type: 3}
