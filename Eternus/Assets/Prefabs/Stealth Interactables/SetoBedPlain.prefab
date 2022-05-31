@@ -207,9 +207,10 @@ GameObject:
   - component: {fileID: 2654156027344817099}
   - component: {fileID: 2654156027344817097}
   - component: {fileID: 2654156027344817102}
+  - component: {fileID: 623819654}
   m_Layer: 6
   m_Name: SetoBedPlain
-  m_TagString: Untagged
+  m_TagString: Footsteps/Custom
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -221,7 +222,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2654156027344817106}
-  m_LocalRotation: {x: -0, y: -0.70710677, z: -0, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 22.104, y: 1.303, z: 28.52}
   m_LocalScale: {x: 2.5, y: 2.5, z: 2.5}
   m_ConstrainProportionsScale: 0
@@ -354,8 +355,8 @@ MonoBehaviour:
   sounds:
   - name: Hide
     type: 0
-    clip: {fileID: 8300000, guid: d949a90fb94cd8f4aa7e98c63ab1ca3a, type: 3}
-    volume: 1
+    clip: {fileID: 8300000, guid: 1dd6910777f445643a240002e2434b20, type: 3}
+    volume: 0.8
     volumeVariance: 0.2
     originalVolume: 0
     pitch: 1
@@ -367,8 +368,8 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: Exit
     type: 0
-    clip: {fileID: 8300000, guid: 799a4c15986856c4e88c0f3ce74f3338, type: 3}
-    volume: 1
+    clip: {fileID: 8300000, guid: f0a9f445b5e6ac341a58feb16b7cb578, type: 3}
+    volume: 0.8
     volumeVariance: 0.2
     originalVolume: 0
     pitch: 1
@@ -391,6 +392,23 @@ MonoBehaviour:
     playOnAwake: 0
     mixerGroup: {fileID: 0}
     source: {fileID: 0}
+--- !u!114 &623819654
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2654156027344817106}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ca4ad0c6cc6b484281b74d246e1943c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  footsteps:
+  - {fileID: 8300000, guid: ddb17cf544434a340814b5608bc2550c, type: 3}
+  - {fileID: 8300000, guid: 8abc74552aa617e4396703d587a28fb9, type: 3}
+  - {fileID: 8300000, guid: 50d1c866251f3ef40a9b4d0a3abf39cd, type: 3}
+  - {fileID: 8300000, guid: 04b622f261e96114b87b9e5078457976, type: 3}
 --- !u!1 &2654156027638098555
 GameObject:
   m_ObjectHideFlags: 0
