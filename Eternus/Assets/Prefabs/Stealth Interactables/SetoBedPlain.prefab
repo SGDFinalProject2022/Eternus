@@ -354,7 +354,7 @@ MonoBehaviour:
   sounds:
   - name: Hide
     type: 0
-    clip: {fileID: 8300000, guid: d949a90fb94cd8f4aa7e98c63ab1ca3a, type: 3}
+    clip: {fileID: 8300000, guid: 1dd6910777f445643a240002e2434b20, type: 3}
     volume: 1
     volumeVariance: 0.2
     originalVolume: 0
@@ -367,7 +367,7 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: Exit
     type: 0
-    clip: {fileID: 8300000, guid: 799a4c15986856c4e88c0f3ce74f3338, type: 3}
+    clip: {fileID: 8300000, guid: f0a9f445b5e6ac341a58feb16b7cb578, type: 3}
     volume: 1
     volumeVariance: 0.2
     originalVolume: 0
