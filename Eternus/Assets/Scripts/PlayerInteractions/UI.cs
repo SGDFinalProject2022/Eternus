@@ -22,6 +22,10 @@ public class UI : MonoBehaviour
     [SerializeField] GameObject pauseMenuPanel;
     [HideInInspector] public bool isPaused;
     HeadBobController headBobController;
+    [Header("Tutorial")]
+    public GameObject tutorialPanel;
+    [SerializeField] Image tutImage;
+    [SerializeField] Text tutorialText;
     
     bool isObjectiveRunning = false;
 
@@ -32,6 +36,7 @@ public class UI : MonoBehaviour
         itemImage.color = new Color(objectiveText.color.r, objectiveText.color.g, objectiveText.color.b, 0f);
         itemText.color = new Color(objectiveText.color.r, objectiveText.color.g, objectiveText.color.b, 0f);
         pauseMenuPanel.SetActive(false);
+        tutorialPanel.SetActive(false);
         headBobController = GetComponentInParent<HeadBobController>();
     }
 
@@ -74,23 +79,10 @@ public class UI : MonoBehaviour
         StartCoroutine(HideItemCoroutine());
     }
 
-    //keeping just in case we need it later (broken)
-    public IEnumerator AlphaFade(Color input)
+    public void ShowTutorial(string tutorial)
     {
-        //float alpha = input.a;
-        /*for (float t = 0.0f; t < 1.0f; t += Time.deltaTime / time)
-        {
-            input = new Color(input.r, input.g, input.b, Mathf.Lerp(alpha, value, t));
-            yield return null;
-            print(input.a);
-        }*/
-        for (float t = 0.0f; t < 1.0f; t += 0.01f)
-        {
-            input = new Color(input.r, input.g, input.b, t);
-            yield return null;
-        }
+        StartCoroutine(ShowTutorialCoroutine(tutorial));
     }
-
 
     IEnumerator ShowObjectiveCoroutine(string objective)
     {
@@ -135,6 +127,27 @@ public class UI : MonoBehaviour
             yield return null;
         }
         itemImage.sprite = defaultItemImage;
+    }
+
+    IEnumerator ShowTutorialCoroutine(string tutorial)
+    {
+        tutorialPanel.SetActive(true);
+        tutorialText.text = tutorial;
+        Color tutPanelColor = tutImage.color;
+        for (float t = 0.0f; t < 1.0f; t += 0.01f)
+        {
+            tutPanelColor = new Color(tutPanelColor.r, tutPanelColor.g, tutPanelColor.b, t);
+            tutorialText.color = new Color(tutorialText.color.r, tutorialText.color.b, tutorialText.color.g, t);
+            yield return null;
+        }
+        yield return new WaitForSeconds(5);
+        for (float t = 1.0f; t > 0.0f; t -= 0.01f)
+        {
+            tutPanelColor = new Color(tutPanelColor.r, tutPanelColor.g, tutPanelColor.b, t);
+            tutorialText.color = new Color(tutorialText.color.r, tutorialText.color.b, tutorialText.color.g, t);
+            yield return null;
+        }
+        tutorialPanel.SetActive(false);
     }
 
     public void Resume()
