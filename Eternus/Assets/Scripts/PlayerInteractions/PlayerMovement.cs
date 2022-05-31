@@ -276,6 +276,17 @@ public class PlayerMovement : MonoBehaviour
                 case "Footsteps/Water":
                     audioMan.PlayOneShot("Step", waterStepSFX[Random.Range(0, waterStepSFX.Length - 1)]);
                     break;
+                case "Footsteps/Custom":
+                    CustomFootsteps customFootsteps;
+                    if(hit.collider.gameObject.GetComponent<CustomFootsteps>() == null)
+                    {
+                        Debug.LogWarning(hit.collider.gameObject.name + " does not have CustomFootsteps attached!");
+                        audioMan.PlayOneShot("Step", footStepSFX[Random.Range(0, footStepSFX.Length - 1)]);
+                        break;
+                    }
+                    customFootsteps = hit.collider.gameObject.GetComponent<CustomFootsteps>();                  
+                    audioMan.PlayOneShot("Step", customFootsteps.footsteps[Random.Range(0, customFootsteps.footsteps.Length - 1)]);
+                    break;
                 default:
                     audioMan.PlayOneShot("Step", footStepSFX[Random.Range(0, footStepSFX.Length - 1)]);
                     break;
