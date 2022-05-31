@@ -68,11 +68,11 @@ public class EnemyAI : MonoBehaviour
     void MoveToNextNode()
     {
         //Check for random path parameter
-        if(Vector3.Distance(transform.position, nodes[currentNode].position) < .5f && randomPath)
+        if(Vector3.Distance(transform.position, nodes[currentNode].position) < 3f && randomPath)
         {
             currentNode = Random.Range(0, nodes.Count);
         }        
-        else if (Vector3.Distance(transform.position, nodes[currentNode].position) < .5f)
+        else if (Vector3.Distance(transform.position, nodes[currentNode].position) < 3f)
         {
             //Check for reverse path parameter
             if (reversePath)
@@ -107,7 +107,7 @@ public class EnemyAI : MonoBehaviour
         }        
         ai.destination = nodes[currentNode].position;
     }
-    
+        
     //Enemy is aggrod, moves to location of sound queue.
     public void SoundAggro(Transform sound)
     {
