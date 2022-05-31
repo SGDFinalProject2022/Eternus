@@ -144,7 +144,12 @@ public class PlayerMovement : MonoBehaviour
         {
             controller.height = originalHeight;
             groundCheck.localPosition = new Vector3(0, -1.8f, 0);
-            return; 
+            
+            if(!isInWater)
+            {
+                return;
+            }
+            
         }
         controller.height = Mathf.Lerp(originalHeight, crouchHeight, y);
         groundCheck.localPosition = new Vector3(0, Mathf.Lerp(-1.8f, -crouchHeight / 2, y), 0);
