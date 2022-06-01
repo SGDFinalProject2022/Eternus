@@ -91,7 +91,7 @@ public class MouseLook : MonoBehaviour
         else
         {
             //makes the crosshair invisible
-            crosshair.color = new Color(crosshair.color.r, crosshair.color.g, crosshair.color.b, 0f);
+            crosshair.color = new Color(crosshair.color.r, crosshair.color.g, crosshair.color.b, 0.15f);
             uiController.interactText.text = "";
         }
     }
