@@ -336,9 +336,10 @@ GameObject:
   - component: {fileID: 6008270502721386736}
   - component: {fileID: 7153062939899509865}
   - component: {fileID: 7153062939899509782}
+  - component: {fileID: 847648926}
   m_Layer: 6
   m_Name: SetoBedBlanket
-  m_TagString: Untagged
+  m_TagString: Footsteps/Custom
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -350,7 +351,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8036006173252857325}
-  m_LocalRotation: {x: -0, y: -0.70710677, z: -0, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 22.024117, y: 1.24, z: 16.31}
   m_LocalScale: {x: 2.5, y: 2.5, z: 2.5}
   m_ConstrainProportionsScale: 0
@@ -520,3 +521,20 @@ MonoBehaviour:
     playOnAwake: 0
     mixerGroup: {fileID: 0}
     source: {fileID: 0}
+--- !u!114 &847648926
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8036006173252857325}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ca4ad0c6cc6b484281b74d246e1943c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  footsteps:
+  - {fileID: 8300000, guid: ddb17cf544434a340814b5608bc2550c, type: 3}
+  - {fileID: 8300000, guid: 8abc74552aa617e4396703d587a28fb9, type: 3}
+  - {fileID: 8300000, guid: 50d1c866251f3ef40a9b4d0a3abf39cd, type: 3}
+  - {fileID: 8300000, guid: 04b622f261e96114b87b9e5078457976, type: 3}
