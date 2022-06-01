@@ -239,14 +239,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6f294cbbdd4acb43a07713f1b018a1d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 5
   nodeParent: {fileID: 8159766734796527036}
   deaggroTime: 5
-  aggroRange: 3
+  aggroRange: 10
   attackRange: 3
   attackTime: 1
   randomPath: 0
   reversePath: 0
+  isAggrod: 0
 --- !u!195 &8159766734315799067
 NavMeshAgent:
   m_ObjectHideFlags: 0
