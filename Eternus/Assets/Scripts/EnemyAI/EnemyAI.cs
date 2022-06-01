@@ -19,6 +19,10 @@ public class EnemyAI : MonoBehaviour
     bool inReverse = false;
 
     //Aggro
+
+    [SerializeField] GameObject walkRange;
+    [SerializeField] GameObject sprintRange;
+    [SerializeField] GameObject crouchRange;
     protected bool isAggrod = false;
     bool playerInSight = false;
     bool isSoundAggrod = false;
@@ -107,6 +111,28 @@ public class EnemyAI : MonoBehaviour
         }        
         ai.destination = nodes[currentNode].position;
     }
+
+    void ChangeRangeCheck()
+    {
+        if(playerMov.isSprinting)
+        {
+            sprintRange.SetActive(true);
+            crouchRange.SetActive(false);
+            walkRange.SetActive(false);
+        }
+        else if (playerMov.isCrouching)
+        {
+            sprintRange.SetActive(false);
+            crouchRange.SetActive(true);
+            walkRange.SetActive(false);
+        }
+        else
+        {
+            sprintRange.SetActive(false);
+            crouchRange.SetActive(false);
+            walkRange.SetActive(true);
+        }
+    }
         
     //Enemy is aggrod, moves to location of sound queue.
     public void SoundAggro(Transform sound)
@@ -168,13 +194,6 @@ public class EnemyAI : MonoBehaviour
             print("Hit the player");
             yield return new WaitForSeconds(attackTime);
         }        
-    }
-    void OnTriggerStay(Collider other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            SightAggro();
-        }
     }
 
     //If player is within sight range and is not hidden, aggro on the player
