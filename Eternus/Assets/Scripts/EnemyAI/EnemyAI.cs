@@ -7,12 +7,10 @@ public class EnemyAI : MonoBehaviour
 {
     [SerializeField] private Transform nodeParent;
     [SerializeField] private float deaggroTime = 5f;
-    [SerializeField] private float aggroRange = 3f;
     [SerializeField] private float attackRange = 3f;
     [SerializeField] private float attackTime = 3f;
     [SerializeField] private bool randomPath;
     [SerializeField] private bool reversePath;
-    [SerializeField] Collider rangeCheck;
     private List<Transform> nodes = new List<Transform>();
 
     //Patrol
@@ -21,10 +19,10 @@ public class EnemyAI : MonoBehaviour
     bool inReverse = false;
 
     //Aggro
-    [SerializeField] protected bool isAggrod = false;
-    public bool playerInSight = false;
+    protected bool isAggrod = false;
+    bool playerInSight = false;
     bool isSoundAggrod = false;
-    public bool idle = false;
+    bool idle = false;
   
     //Attack
     bool isAttacking = false;
