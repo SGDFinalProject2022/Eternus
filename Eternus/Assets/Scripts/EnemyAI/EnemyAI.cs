@@ -7,7 +7,6 @@ public class EnemyAI : MonoBehaviour
 {
     [SerializeField] private Transform nodeParent;
     [SerializeField] private float deaggroTime = 5f;
-    [SerializeField] private float aggroRange = 3f;
     [SerializeField] private float attackRange = 3f;
     [SerializeField] private float attackTime = 3f;
     [SerializeField] private bool randomPath;
@@ -20,10 +19,14 @@ public class EnemyAI : MonoBehaviour
     bool inReverse = false;
 
     //Aggro
-    [SerializeField] protected bool isAggrod = false;
-    public bool playerInSight = false;
+
+    [SerializeField] GameObject walkRange;
+    [SerializeField] GameObject sprintRange;
+    [SerializeField] GameObject crouchRange;
+    protected bool isAggrod = false;
+    bool playerInSight = false;
     bool isSoundAggrod = false;
-    public bool idle = false;
+    bool idle = false;
   
     //Attack
     bool isAttacking = false;
@@ -41,8 +44,9 @@ public class EnemyAI : MonoBehaviour
         playerMov = GameObject.FindGameObjectWithTag("Player").gameObject.GetComponent<PlayerMovement>();
     }
 
+
     protected void Update()
-    {    
+    {
         if(!isAggrod)
         {
             MoveToNextNode();
@@ -51,8 +55,6 @@ public class EnemyAI : MonoBehaviour
         {
             ai.destination = player.position;
         }
-
-        SightAggro();
         BeginDeaggro();
         AttackPlayer();
         ArriveAtSoundAggro();
@@ -108,6 +110,28 @@ public class EnemyAI : MonoBehaviour
             }    
         }        
         ai.destination = nodes[currentNode].position;
+    }
+
+    void ChangeRangeCheck()
+    {
+        if(playerMov.isSprinting)
+        {
+            sprintRange.SetActive(true);
+            crouchRange.SetActive(false);
+            walkRange.SetActive(false);
+        }
+        else if (playerMov.isCrouching)
+        {
+            sprintRange.SetActive(false);
+            crouchRange.SetActive(true);
+            walkRange.SetActive(false);
+        }
+        else
+        {
+            sprintRange.SetActive(false);
+            crouchRange.SetActive(false);
+            walkRange.SetActive(true);
+        }
     }
         
     //Enemy is aggrod, moves to location of sound queue.
@@ -173,19 +197,21 @@ public class EnemyAI : MonoBehaviour
     }
 
     //If player is within sight range and is not hidden, aggro on the player
-    void SightAggro()
+    public void SightAggro()
     {
-        //Get all objects within range
         bool inRange = false;
-        Collider[] hit = Physics.OverlapSphere(transform.position, aggroRange);
-        foreach(Collider col in hit)
+
+        //shoot ray to player to see if they're behind a wall
+        RaycastHit hit;
+        // Does the ray intersect any objects excluding the player layer
+        if (Physics.Linecast(transform.position, player.position, out hit, 3))
         {
-            if(col.tag == "Player")
+            if(hit.collider.gameObject.tag == "Player")
             {
                 inRange = true;
-                player = col.gameObject.transform;
             }
         }
+
 
         //Check if the player is in sight range
         if (inRange)

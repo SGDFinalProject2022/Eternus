@@ -247,6 +247,8 @@ MonoBehaviour:
   randomPath: 0
   reversePath: 0
   isAggrod: 0
+  playerInSight: 0
+  idle: 0
 --- !u!195 &8159766734315799067
 NavMeshAgent:
   m_ObjectHideFlags: 0
