@@ -21,12 +21,12 @@ public class PlayerMovement : MonoBehaviour
     [Header("Crouching")]
     [SerializeField] float crouchHeight = 1f; //base is 3.8
     [SerializeField] float crouchSpeed = 3f;
-    bool isCrouching;
+    [HideInInspector] public bool isCrouching;
     float originalHeight;
 
     [Header("Sprint")]
     [SerializeField] float sprintSpeed = 12f;
-    bool isSprinting;
+    [HideInInspector] public bool isSprinting;
 
     [Header("Water")]
     [SerializeField] float waterSpeed = 3f;
