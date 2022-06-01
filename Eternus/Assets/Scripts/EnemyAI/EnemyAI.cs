@@ -12,6 +12,7 @@ public class EnemyAI : MonoBehaviour
     [SerializeField] private float attackTime = 3f;
     [SerializeField] private bool randomPath;
     [SerializeField] private bool reversePath;
+    [SerializeField] Collider rangeCheck;
     private List<Transform> nodes = new List<Transform>();
 
     //Patrol
@@ -41,8 +42,9 @@ public class EnemyAI : MonoBehaviour
         playerMov = GameObject.FindGameObjectWithTag("Player").gameObject.GetComponent<PlayerMovement>();
     }
 
+
     protected void Update()
-    {    
+    {
         if(!isAggrod)
         {
             MoveToNextNode();
@@ -51,8 +53,6 @@ public class EnemyAI : MonoBehaviour
         {
             ai.destination = player.position;
         }
-
-        SightAggro();
         BeginDeaggro();
         AttackPlayer();
         ArriveAtSoundAggro();
@@ -171,21 +171,30 @@ public class EnemyAI : MonoBehaviour
             yield return new WaitForSeconds(attackTime);
         }        
     }
+    void OnTriggerStay(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            SightAggro();
+        }
+    }
 
     //If player is within sight range and is not hidden, aggro on the player
-    void SightAggro()
+    public void SightAggro()
     {
-        //Get all objects within range
+        print("collided");
         bool inRange = false;
-        Collider[] hit = Physics.OverlapSphere(transform.position, aggroRange);
-        foreach(Collider col in hit)
+
+
+        //shoot ray to player to see if they're behind a wall
+        RaycastHit hit;
+        // Does the ray intersect any objects excluding the player layer
+        if (Physics.Raycast(transform.position, (player.position - transform.position), out hit, Mathf.Infinity))
         {
-            if(col.tag == "Player")
-            {
-                inRange = true;
-                player = col.gameObject.transform;
-            }
+            Debug.DrawLine(transform.position, (player.position), Color.yellow);
+            Debug.Log(hit.collider.gameObject);
         }
+
 
         //Check if the player is in sight range
         if (inRange)
