@@ -21,15 +21,15 @@ public class EnemyAI : MonoBehaviour
 
     //Aggro
     [SerializeField] protected bool isAggrod = false;
-    bool playerInSight = false;
-    bool playerIsHidden = false;
+    public bool playerInSight = false;
     bool isSoundAggrod = false;
-    bool idle = false;
+    public bool idle = false;
   
     //Attack
     bool isAttacking = false;
     
     Transform player;
+    PlayerMovement playerMov;
 
     void Awake()
     {
@@ -37,16 +37,17 @@ public class EnemyAI : MonoBehaviour
         SetUpNodes();
         transform.position = nodes[0].position;
         MoveToNextNode();
+        player = GameObject.FindGameObjectWithTag("Player").transform;
+        playerMov = GameObject.FindGameObjectWithTag("Player").gameObject.GetComponent<PlayerMovement>();
     }
 
     protected void Update()
-    {
+    {    
         if(!isAggrod)
         {
             MoveToNextNode();
         }
-
-        if(playerInSight)
+        else
         {
             ai.destination = player.position;
         }
@@ -55,6 +56,7 @@ public class EnemyAI : MonoBehaviour
         BeginDeaggro();
         AttackPlayer();
         ArriveAtSoundAggro();
+        UpdateHiddenStatus();
     }
     void SetUpNodes()
     {
@@ -189,9 +191,8 @@ public class EnemyAI : MonoBehaviour
         if (inRange)
         {
             //Check if player is hidden
-            if (!playerIsHidden)
+            if (!playerMov.isHiding)
             {
-                print("Spotted the player");
                 playerInSight = true;
                 isAggrod = true;
             }
@@ -202,12 +203,28 @@ public class EnemyAI : MonoBehaviour
         }        
     }
 
+    void UpdateHiddenStatus()
+    {
+        if(playerInSight)
+        {
+            if (!playerMov.isHiding)
+            {
+                playerInSight = true;
+            }
+            else
+            {
+                playerInSight = false;
+            }
+        }
+    }
+
     //If enemy is aggrod but player is not in sight
     void BeginDeaggro()
     {
         if(!idle && isAggrod && !playerInSight)
         {
-            if (Vector3.Distance(transform.position, ai.destination) < .5f)
+            print("Starting deaggro");
+            if (Vector3.Distance(transform.position, ai.destination) < 10f)
             {
                 idle = true;
                 StartCoroutine("LoseAggro");
@@ -221,6 +238,7 @@ public class EnemyAI : MonoBehaviour
         int secondsElapsed = 0;
         while(!playerInSight)
         {
+            print("Searching");
             yield return new WaitForSeconds(1f);
             secondsElapsed++;
 
