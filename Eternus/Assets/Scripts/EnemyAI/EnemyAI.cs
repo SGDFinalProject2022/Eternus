@@ -182,17 +182,17 @@ public class EnemyAI : MonoBehaviour
     //If player is within sight range and is not hidden, aggro on the player
     public void SightAggro()
     {
-        print("collided");
         bool inRange = false;
-
 
         //shoot ray to player to see if they're behind a wall
         RaycastHit hit;
         // Does the ray intersect any objects excluding the player layer
-        if (Physics.Raycast(transform.position, (player.position - transform.position), out hit, Mathf.Infinity))
+        if (Physics.Linecast(transform.position, player.position, out hit, 3))
         {
-            Debug.DrawLine(transform.position, (player.position), Color.yellow);
-            Debug.Log(hit.collider.gameObject);
+            if(hit.collider.gameObject.tag == "Player")
+            {
+                inRange = true;
+            }
         }
 
 
