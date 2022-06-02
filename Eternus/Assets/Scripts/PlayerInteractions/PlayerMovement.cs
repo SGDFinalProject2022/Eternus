@@ -21,12 +21,12 @@ public class PlayerMovement : MonoBehaviour
     [Header("Crouching")]
     [SerializeField] float crouchHeight = 1f; //base is 3.8
     [SerializeField] float crouchSpeed = 3f;
-    bool isCrouching;
+    [HideInInspector] public bool isCrouching;
     float originalHeight;
 
     [Header("Sprint")]
     [SerializeField] float sprintSpeed = 12f;
-    bool isSprinting;
+    [HideInInspector] public bool isSprinting;
 
     [Header("Water")]
     [SerializeField] float waterSpeed = 3f;
@@ -87,6 +87,7 @@ public class PlayerMovement : MonoBehaviour
         {
             headBobController.amplitude = 0f;
             headBobController.frequency = 0f;
+            audioMan.Stop("Crouch Walk");
             return; 
         }
 
@@ -125,10 +126,11 @@ public class PlayerMovement : MonoBehaviour
         }
 
         //jumping
-        if (Input.GetButtonDown("Jump") && isOnGround && !isSprinting && !isCrouching && !isInWater)
+        if (Input.GetButtonDown("Jump") && isOnGround && !isSprinting && !isCrouching)
         {
             velocity.y = Mathf.Sqrt(jumpHeight * -2 * gravity);
-            audioMan.Play("Jump");
+            if (!isInWater) { audioMan.Play("Jump"); }
+            else { audioMan.PlayOneShot("Jump", waterStepSFX[Random.Range(0, waterStepSFX.Length - 1)]); }
             isJumping = true;
         }
     }
@@ -225,10 +227,12 @@ public class PlayerMovement : MonoBehaviour
             if(sprint > 0)
             {
                 finalSpeed = Mathf.Lerp(waterSpeed, waterSpeed * 1.5f, sprint);
+                isSprinting = true;
             }
             else
             {
                 finalSpeed = waterSpeed;
+                isSprinting = false;
             }            
         }
         Vector3 move = transform.right * x + transform.forward * z;     
@@ -275,6 +279,17 @@ public class PlayerMovement : MonoBehaviour
                     break;
                 case "Footsteps/Water":
                     audioMan.PlayOneShot("Step", waterStepSFX[Random.Range(0, waterStepSFX.Length - 1)]);
+                    break;
+                case "Footsteps/Custom":
+                    CustomFootsteps customFootsteps;
+                    if(hit.collider.gameObject.GetComponent<CustomFootsteps>() == null)
+                    {
+                        Debug.LogWarning(hit.collider.gameObject.name + " does not have CustomFootsteps attached!");
+                        audioMan.PlayOneShot("Step", footStepSFX[Random.Range(0, footStepSFX.Length - 1)]);
+                        break;
+                    }
+                    customFootsteps = hit.collider.gameObject.GetComponent<CustomFootsteps>();                  
+                    audioMan.PlayOneShot("Step", customFootsteps.footsteps[Random.Range(0, customFootsteps.footsteps.Length - 1)]);
                     break;
                 default:
                     audioMan.PlayOneShot("Step", footStepSFX[Random.Range(0, footStepSFX.Length - 1)]);
