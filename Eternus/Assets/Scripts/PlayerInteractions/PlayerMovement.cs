@@ -227,10 +227,12 @@ public class PlayerMovement : MonoBehaviour
             if(sprint > 0)
             {
                 finalSpeed = Mathf.Lerp(waterSpeed, waterSpeed * 1.5f, sprint);
+                isSprinting = true;
             }
             else
             {
                 finalSpeed = waterSpeed;
+                isSprinting = false;
             }            
         }
         Vector3 move = transform.right * x + transform.forward * z;     
