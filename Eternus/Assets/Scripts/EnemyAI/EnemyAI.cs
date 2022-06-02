@@ -5,21 +5,23 @@ using UnityEngine.AI;
 
 public class EnemyAI : MonoBehaviour
 {
+    //Patrol
+    [Header("Movement")]
     [SerializeField] private Transform nodeParent;
-    [SerializeField] private float deaggroTime = 5f;
-    [SerializeField] private float attackRange = 3f;
-    [SerializeField] private float attackTime = 3f;
     [SerializeField] private bool randomPath;
     [SerializeField] private bool reversePath;
+    [SerializeField] float normalSpeed = 2f;
+    [SerializeField] float aggroSpeed = 6f;
     private List<Transform> nodes = new List<Transform>();
 
-    //Patrol
     protected NavMeshAgent ai;
     int currentNode = 0;
     bool inReverse = false;
 
     //Aggro
-
+    [Header("Aggro")]
+    [SerializeField] private float deaggroTime = 5f;
+    [SerializeField] float yieldTime = 3f;
     [SerializeField] GameObject walkRange;
     [SerializeField] GameObject sprintRange;
     [SerializeField] GameObject crouchRange;
@@ -27,8 +29,11 @@ public class EnemyAI : MonoBehaviour
     bool playerInSight = false;
     bool isSoundAggrod = false;
     bool idle = false;
-  
+
     //Attack
+    [Header("Attack")]
+    [SerializeField] private float attackRange = 3f;
+    [SerializeField] private float attackTime = 3f;
     bool isAttacking = false;
     
     Transform player;
@@ -42,6 +47,7 @@ public class EnemyAI : MonoBehaviour
         MoveToNextNode();
         player = GameObject.FindGameObjectWithTag("Player").transform;
         playerMov = GameObject.FindGameObjectWithTag("Player").gameObject.GetComponent<PlayerMovement>();
+        ai.speed = normalSpeed;
     }
 
 
@@ -55,6 +61,7 @@ public class EnemyAI : MonoBehaviour
         {
             ai.destination = player.position;
         }
+        ChangeRangeCheck();
         BeginDeaggro();
         AttackPlayer();
         ArriveAtSoundAggro();
@@ -132,6 +139,15 @@ public class EnemyAI : MonoBehaviour
             crouchRange.SetActive(false);
             walkRange.SetActive(true);
         }
+    }
+
+    IEnumerator BeginChase()
+    {
+        print("Thinking...");
+        ai.speed = 0;
+        yield return new WaitForSeconds(yieldTime);
+        print("Chasing.");
+        ai.speed = aggroSpeed;
     }
         
     //Enemy is aggrod, moves to location of sound queue.
@@ -217,10 +233,11 @@ public class EnemyAI : MonoBehaviour
         if (inRange)
         {
             //Check if player is hidden
-            if (!playerMov.isHiding)
+            if (!playerMov.isHiding && !isAggrod)
             {
                 playerInSight = true;
                 isAggrod = true;
+                StartCoroutine("BeginChase");
             }
             else
             {
@@ -276,5 +293,6 @@ public class EnemyAI : MonoBehaviour
             }
         }
         idle = false;
+        ai.speed = normalSpeed;
     }
 }
