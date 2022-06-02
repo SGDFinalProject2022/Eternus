@@ -126,10 +126,11 @@ public class PlayerMovement : MonoBehaviour
         }
 
         //jumping
-        if (Input.GetButtonDown("Jump") && isOnGround && !isSprinting && !isCrouching && !isInWater)
+        if (Input.GetButtonDown("Jump") && isOnGround && !isSprinting && !isCrouching)
         {
             velocity.y = Mathf.Sqrt(jumpHeight * -2 * gravity);
-            audioMan.Play("Jump");
+            if (!isInWater) { audioMan.Play("Jump"); }
+            else { audioMan.PlayOneShot("Jump", waterStepSFX[Random.Range(0, waterStepSFX.Length - 1)]); }
             isJumping = true;
         }
     }
