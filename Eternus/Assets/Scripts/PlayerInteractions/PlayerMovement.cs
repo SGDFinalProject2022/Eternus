@@ -87,6 +87,7 @@ public class PlayerMovement : MonoBehaviour
         {
             headBobController.amplitude = 0f;
             headBobController.frequency = 0f;
+            audioMan.Stop("Crouch Walk");
             return; 
         }
 
