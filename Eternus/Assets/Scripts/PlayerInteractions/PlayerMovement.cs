@@ -87,6 +87,7 @@ public class PlayerMovement : MonoBehaviour
         {
             headBobController.amplitude = 0f;
             headBobController.frequency = 0f;
+            audioMan.Stop("Crouch Walk");
             return; 
         }
 
@@ -125,10 +126,11 @@ public class PlayerMovement : MonoBehaviour
         }
 
         //jumping
-        if (Input.GetButtonDown("Jump") && isOnGround && !isSprinting && !isCrouching && !isInWater)
+        if (Input.GetButtonDown("Jump") && isOnGround && !isSprinting && !isCrouching)
         {
             velocity.y = Mathf.Sqrt(jumpHeight * -2 * gravity);
-            audioMan.Play("Jump");
+            if (!isInWater) { audioMan.Play("Jump"); }
+            else { audioMan.PlayOneShot("Jump", waterStepSFX[Random.Range(0, waterStepSFX.Length - 1)]); }
             isJumping = true;
         }
     }
@@ -225,10 +227,12 @@ public class PlayerMovement : MonoBehaviour
             if(sprint > 0)
             {
                 finalSpeed = Mathf.Lerp(waterSpeed, waterSpeed * 1.5f, sprint);
+                isSprinting = true;
             }
             else
             {
                 finalSpeed = waterSpeed;
+                isSprinting = false;
             }            
         }
         Vector3 move = transform.right * x + transform.forward * z;     
