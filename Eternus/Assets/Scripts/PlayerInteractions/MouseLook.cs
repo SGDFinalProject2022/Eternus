@@ -20,6 +20,7 @@ public class MouseLook : MonoBehaviour
     float xRotation = 0f;
     float yRotation = 0f;
     Interactable interactable;
+    DoorController doorController;
     PlayerMovement playerMovement;
 
 
@@ -74,7 +75,7 @@ public class MouseLook : MonoBehaviour
 
             //makes the crosshair visible
             crosshair.color = new Color(crosshair.color.r, crosshair.color.g, crosshair.color.b, 0.5f);
-            if (hit.collider.GetComponent<Interactable>()) //just in case
+            if (hit.collider.GetComponent<Interactable>()) //interactables
             {
                 //making sure it only calls the selected interactable's event
                 if (interactable == null || interactable.ID != hit.collider.GetComponent<Interactable>().ID)
@@ -85,6 +86,20 @@ public class MouseLook : MonoBehaviour
                 if (Input.GetButtonDown("Interact"))
                 {
                     interactable.onInteract.Invoke();
+                }
+            }
+
+            if (hit.collider.GetComponent<DoorController>()) //doors
+            {
+                //making sure it only calls the selected interactable's event
+                if (doorController == null || doorController.ID != hit.collider.GetComponent<DoorController>().ID)
+                {
+                    doorController = hit.collider.GetComponent<DoorController>();
+                }
+                uiController.interactText.text = doorController.interactText;
+                if (Input.GetButtonDown("Interact"))
+                {
+                    doorController.onInteract.Invoke();
                 }
             }
         }
