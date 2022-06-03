@@ -12,6 +12,7 @@ public class DoorController : MonoBehaviour
     public string interactText;
     public bool isUnlocked = true;
     public bool canBeUnlocked = true;
+    [SerializeField] bool onlyOpenOnce = false;
     [SerializeField] AudioClip[] jiggleSFX;
     [SerializeField] AudioClip[] squeakSFX;
     [SerializeField] Animator doorAnimator;
@@ -51,6 +52,7 @@ public class DoorController : MonoBehaviour
                 doorAnimator.SetBool("isOpen", true);
                 audioMan.Play("Open");
                 audioMan.PlayOneShot("Squeak", squeakSFX[Random.Range(0, jiggleSFX.Length - 1)]);
+                if(onlyOpenOnce) { gameObject.layer = 0; }
                 isOpen = true;
             }
             else
@@ -59,7 +61,6 @@ public class DoorController : MonoBehaviour
                 audioMan.PlayOneShot("Squeak", squeakSFX[Random.Range(0, jiggleSFX.Length - 1)]);
                 isOpen = false;
             }
-            //gameObject.layer = 0;
         }
         else //LOCKED
         {
