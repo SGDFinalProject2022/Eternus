@@ -16,7 +16,7 @@ public class DoorController : MonoBehaviour
     [SerializeField] AudioClip[] jiggleSFX;
     [SerializeField] AudioClip[] squeakSFX;
     [SerializeField] Animator doorAnimator;
-    bool isOpen = false;
+    public bool isOpen = false;
     UI uI;
 
     // Start is called before the first frame update
@@ -69,6 +69,28 @@ public class DoorController : MonoBehaviour
             { interactText = "locked. find a key"; uI.HideItem(); }            
         }
     }
+
+
+    //function added to allow peaches to open/close doors - Ven
+    public void AIDoor()
+    {
+        AudioManager audioMan = GetComponent<AudioManager>();
+        if (!isOpen)
+        {
+            doorAnimator.SetBool("isOpen", true);
+            audioMan.Play("Open");
+            audioMan.PlayOneShot("Squeak", squeakSFX[Random.Range(0, jiggleSFX.Length - 1)]);
+            if (onlyOpenOnce) { gameObject.layer = 0; }
+            isOpen = true;
+        }
+        else
+        {
+            doorAnimator.SetBool("isOpen", false);
+            audioMan.PlayOneShot("Squeak", squeakSFX[Random.Range(0, jiggleSFX.Length - 1)]);
+            isOpen = false;
+        }
+    }
+
 
     public void UnlockDoor()
     {
