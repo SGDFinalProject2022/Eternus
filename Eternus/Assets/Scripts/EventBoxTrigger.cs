@@ -16,4 +16,9 @@ public class EventBoxTrigger : MonoBehaviour
             onTrigger.Invoke();
         }
     }
+
+    public void DebugLog(string text)
+    {
+        Debug.Log(text);
+    }
 }
