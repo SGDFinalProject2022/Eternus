@@ -27,4 +27,11 @@ public class Interactable : MonoBehaviour
     {
         Debug.Log(message);
     }   
+    public void ChangeScene(string sceneName)
+    {
+        if(GlobalData.instance != null)
+        {
+            GlobalData.instance.LoadScene(sceneName);
+        }       
+    }
 }
