@@ -42,7 +42,7 @@ public class DoorController : MonoBehaviour
         {
             if (wasPreviouslyLocked) //if the door was unlocked by a key
             { 
-                FindObjectOfType<UI>().ShowObjective("Unlocked door"); 
+                FindObjectOfType<UI>().ShowObjective("Unlocked"); 
                 uI.HideItem();
                 wasPreviouslyLocked = false;
             }
@@ -101,6 +101,8 @@ public class DoorController : MonoBehaviour
     public void LockDoor()
     {
         isUnlocked = false;
-        interactText = "locked";
+        if (canBeUnlocked) { interactText = "locked. find a key"; }
+        else { interactText = "locked"; }
+        
     }
 }
