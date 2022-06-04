@@ -222,6 +222,7 @@ public class EnemyAI : MonoBehaviour
             print("Hit the player");
             anim.SetTrigger("Attack");
             yield return new WaitForSeconds(attackTime);
+            anim.SetTrigger("Fast");
         }
         anim.SetTrigger("Fast");
         ai.speed = aggroSpeed;
