@@ -25,6 +25,8 @@ public class KeySpawner : MonoBehaviour
     void Spawn()
     {
         int randomLocation = Random.Range(0, spawns.Count);
-        Instantiate(key, spawns[randomLocation]);
+        //Instantiate(key, spawns[randomLocation]);        
+        key.transform.parent = spawns[randomLocation];
+        key.transform.localPosition = Vector3.zero;
     }
 }

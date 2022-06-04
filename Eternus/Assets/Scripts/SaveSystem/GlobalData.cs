@@ -9,6 +9,7 @@ public class GlobalData : MonoBehaviour
 
     [HideInInspector] public bool loadSaveData;
     [HideInInspector] public PlayerData player;
+    [SerializeField] Animator anim;
 
     void Awake()
     {
@@ -22,6 +23,15 @@ public class GlobalData : MonoBehaviour
             Destroy(gameObject);
         }        
         
+    }
+
+    void Update()
+    {
+        //FOR TESTING PURPOSED ONLY. DELETE LATER
+        if (Input.GetKeyDown("u"))
+        {
+            LoadScene("floor_3");
+        }
     }
 
     //Saves player data passed in through player GO
@@ -44,5 +54,23 @@ public class GlobalData : MonoBehaviour
     {
         SettingsData data = new SettingsData(bgm, sfx, isFull);
         SaveLoad.SaveSettings(data);
+    }
+
+    public void LoadScene(string sceneName)
+    {
+        StartCoroutine(SceneChange(sceneName));
+    }
+
+    IEnumerator SceneChange(string sceneName)
+    {
+        anim.SetTrigger("FadeOut");
+        yield return new WaitForSeconds(1f);
+        AsyncOperation asyncLoadLevel = SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Single);
+        while (!asyncLoadLevel.isDone)
+        {
+            yield return null;
+        }
+        yield return new WaitForSeconds(1f);
+        anim.SetTrigger("FadeIn");
     }
 }

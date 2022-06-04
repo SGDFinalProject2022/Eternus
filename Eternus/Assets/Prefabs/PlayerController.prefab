@@ -4239,7 +4239,9 @@ MonoBehaviour:
   jumpHeight: 1.25
   crouchHeight: 1
   crouchSpeed: 2
+  isCrouching: 0
   sprintSpeed: 10
+  isSprinting: 0
   waterSpeed: 3
   groundCheck: {fileID: 1648138772}
   groundDistance: 0.4
@@ -4255,7 +4257,7 @@ MonoBehaviour:
   sprintHeadBobFrequency: 15
   footStepSFX:
   - {fileID: 8300000, guid: 06ba936d2dc6f9b44865a88d8b19cb54, type: 3}
-  - {fileID: 8300000, guid: 1dfecd59cde9728489cc9ee26b59c48c, type: 3}
+  - {fileID: 8300000, guid: 20fff088803ea2b449d4986ba7aacb70, type: 3}
   - {fileID: 8300000, guid: c4b0ea90d4a8950448e247c8b9dcdcfd, type: 3}
   - {fileID: 8300000, guid: ac8de9236f286604bb8aa20e619d1bde, type: 3}
   - {fileID: 8300000, guid: f96f398c2715cab49897f40991a3f472, type: 3}
