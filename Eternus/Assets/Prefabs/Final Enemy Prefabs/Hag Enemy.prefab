@@ -3289,7 +3289,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 2856946703335791428}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.2
+  m_Radius: 0.5
   m_Speed: 3.5
   m_Acceleration: 200
   avoidancePriority: 50
@@ -3325,7 +3325,7 @@ MonoBehaviour:
   walkRange: {fileID: 6982107925054311289}
   sprintRange: {fileID: 3001542567359411085}
   crouchRange: {fileID: 7536006493829617}
-  attackRange: 3
+  attackRange: 4
   attackTime: 3
 --- !u!1 &2856946703634404526
 GameObject:
