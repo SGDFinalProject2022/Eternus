@@ -97,4 +97,10 @@ public class DoorController : MonoBehaviour
         isUnlocked = true;
         interactText = "open";
     }
+
+    public void LockDoor()
+    {
+        isUnlocked = false;
+        interactText = "locked";
+    }
 }
