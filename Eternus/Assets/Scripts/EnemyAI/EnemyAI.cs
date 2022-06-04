@@ -5,6 +5,7 @@ using UnityEngine.AI;
 
 public class EnemyAI : MonoBehaviour
 {
+    [SerializeField] Animator anim;
     //Patrol
     [Header("Movement")]
     [SerializeField] private Transform nodeParent;
@@ -50,7 +51,6 @@ public class EnemyAI : MonoBehaviour
         ai.speed = normalSpeed;
     }
 
-
     protected void Update()
     {
         if(!isAggrod)
@@ -66,6 +66,15 @@ public class EnemyAI : MonoBehaviour
         AttackPlayer();
         ArriveAtSoundAggro();
         UpdateHiddenStatus();
+
+        if(isAttacking)
+        {
+            var lookAtPos = player.position;
+            lookAtPos.y = transform.position.y; //set y pos to the same as mine, so I don't look up/down
+            transform.LookAt(lookAtPos);
+
+        }
+
     }
     void SetUpNodes()
     {
@@ -145,8 +154,10 @@ public class EnemyAI : MonoBehaviour
     {
         print("Thinking...");
         ai.speed = 0;
+        anim.SetTrigger("Transition");
         yield return new WaitForSeconds(yieldTime);
         print("Chasing.");
+        anim.SetTrigger("Fast");
         ai.speed = aggroSpeed;
     }
         
@@ -201,15 +212,19 @@ public class EnemyAI : MonoBehaviour
     }
     IEnumerator Hit()
     {
+        ai.speed = 0;
         while (true)
         {
             if (Vector3.Distance(transform.position, player.position) > attackRange)
-            {
+            {                
                 break;
             }
             print("Hit the player");
+            anim.SetTrigger("Attack");
             yield return new WaitForSeconds(attackTime);
-        }        
+        }
+        anim.SetTrigger("Fast");
+        ai.speed = aggroSpeed;
     }
 
     //If player is within sight range and is not hidden, aggro on the player
@@ -238,10 +253,6 @@ public class EnemyAI : MonoBehaviour
                 playerInSight = true;
                 isAggrod = true;
                 StartCoroutine("BeginChase");
-            }
-            else
-            {
-                playerInSight = false;
             }
         }        
     }
@@ -292,6 +303,8 @@ public class EnemyAI : MonoBehaviour
                 break;
             }
         }
+        anim.SetTrigger("Slow");
+        print("lost aggro");
         idle = false;
         ai.speed = normalSpeed;
     }
