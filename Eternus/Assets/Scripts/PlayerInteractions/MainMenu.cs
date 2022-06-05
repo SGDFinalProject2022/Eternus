@@ -50,9 +50,7 @@ public class MainMenu : MonoBehaviour
 
     public void LoadLevel(string levelName)
     {
-        //do a transition?
-        //SceneManager.LoadScene(levelName);
-        print("This will load into level: " + levelName);
+        GlobalData.instance.LoadScene(levelName);
     }
 
     public void OnQuitButtonClick()
