@@ -62,6 +62,8 @@ public class UI : MonoBehaviour
                 isPaused = false;
             }
         }
+
+        
     }
 
     public void ShowObjective(string objective)
@@ -150,6 +152,7 @@ public class UI : MonoBehaviour
         tutorialPanel.SetActive(false);
     }
 
+    //Pasue Menu
     public void Resume()
     {
         isPaused = false;
