@@ -127,8 +127,6 @@ MonoBehaviour:
         m_CallState: 2
   ID: 0
   interactText: Exit
-  isUnlocked: 1
-  jiggleSFX: []
 --- !u!1 &7153062939573081583
 GameObject:
   m_ObjectHideFlags: 0
@@ -256,8 +254,6 @@ MonoBehaviour:
         m_CallState: 2
   ID: 0
   interactText: Hide
-  isUnlocked: 1
-  jiggleSFX: []
 --- !u!1 &7153062939956442744
 GameObject:
   m_ObjectHideFlags: 0
@@ -510,12 +506,12 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: Hidden
     type: 0
-    clip: {fileID: 8300000, guid: 52722bdb0a8f5a94c85ce100cffb409f, type: 3}
+    clip: {fileID: 8300000, guid: 0d63a0a52e4b80244b9c5442a5a0bb61, type: 3}
     volume: 0.5
     volumeVariance: 0.2
     originalVolume: 0
     pitch: 1
-    pitchVariance: 0.3
+    pitchVariance: 0
     spatialBlend: 0
     loop: 1
     playOnAwake: 0
