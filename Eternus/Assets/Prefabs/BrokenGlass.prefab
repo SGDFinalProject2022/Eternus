@@ -126,6 +126,18 @@ MonoBehaviour:
           m_StringArgument: player stepped on glass
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 3444377202427710888}
+        m_TargetAssemblyTypeName: EventBoxTrigger, Assembly-CSharp
+        m_MethodName: AlertEnemy
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &2299510067676478517
 GameObject:
   m_ObjectHideFlags: 0
