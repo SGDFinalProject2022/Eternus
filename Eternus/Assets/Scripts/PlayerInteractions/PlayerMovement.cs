@@ -16,7 +16,7 @@ public class PlayerMovement : MonoBehaviour
     Vector3 velocity;
     bool isOnGround;
     bool isJumping;
-    public bool isDead = false;
+    
 
     [Header("Crouching")]
     [SerializeField] float crouchHeight = 1f; //base is 3.8
@@ -83,7 +83,7 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         //forces everthing to a halt while the player is hiding or paused
-        if (isHiding || uiController.isPaused || isDead)
+        if (isHiding || uiController.isPaused)
         {
             headBobController.amplitude = 0f;
             headBobController.frequency = 0f;

@@ -39,7 +39,6 @@ public class EnemyAI : MonoBehaviour
     
     Transform player;
     PlayerMovement playerMov;
-    HealthController healthController;
 
     void Awake()
     {
@@ -50,8 +49,6 @@ public class EnemyAI : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player").transform;
         playerMov = GameObject.FindGameObjectWithTag("Player").gameObject.GetComponent<PlayerMovement>();
         ai.speed = normalSpeed;
-
-        healthController = FindObjectOfType<HealthController>();
     }
 
     protected void Update()
@@ -223,7 +220,6 @@ public class EnemyAI : MonoBehaviour
                 break;
             }
             print("Hit the player");
-            healthController.HurtPlayer(0.6f);
             anim.SetTrigger("Attack");
             yield return new WaitForSeconds(attackTime);
             anim.SetTrigger("Fast");
