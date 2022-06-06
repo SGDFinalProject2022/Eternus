@@ -1865,7 +1865,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1482285129}
   m_LocalRotation: {x: -0, y: -0.6944795, z: 0, w: 0.7195125}
-  m_LocalPosition: {x: -43.708855, y: -11.401, z: -1.4537735}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3888,6 +3888,7 @@ GameObject:
   - component: {fileID: 2245629703350811115}
   - component: {fileID: 8457383100502241946}
   - component: {fileID: 1594374866}
+  - component: {fileID: 1594374867}
   m_Layer: 0
   m_Name: Camera Holder
   m_TagString: Untagged
@@ -3966,6 +3967,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerVolume: {fileID: 1482285131}
+  camHoldAnimator: {fileID: 1594374867}
+--- !u!95 &1594374867
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6132005458818927078}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 4ede048698e6d8044bf0d2f1e8a73188, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &6420845347386534985
 GameObject:
   m_ObjectHideFlags: 0
@@ -4302,6 +4324,7 @@ MonoBehaviour:
   walkingSpeed: 6
   gravity: -19.62
   jumpHeight: 1.25
+  isDead: 0
   crouchHeight: 1
   crouchSpeed: 2
   isCrouching: 0
