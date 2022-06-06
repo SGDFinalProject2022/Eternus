@@ -58,7 +58,6 @@ public class HealthController : MonoBehaviour
             camHoldAnimator.enabled = true;           
             camHoldAnimator.SetBool("isDead", true);
             isDead = true;
-            GlobalData.instance.LoadScene("Death");
         }
     }
     public void HurtPlayer(float damage)
@@ -71,7 +70,6 @@ public class HealthController : MonoBehaviour
             camHoldAnimator.enabled = true;
             camHoldAnimator.SetBool("isDead", true);
             isDead = true;
-            GlobalData.instance.LoadScene("Death");
         }
     }
 }
