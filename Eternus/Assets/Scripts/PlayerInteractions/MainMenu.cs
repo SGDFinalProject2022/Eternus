@@ -44,7 +44,7 @@ public class MainMenu : MonoBehaviour
     public void OnContinue()
     {
         SaveData data = SaveLoad.Load();
-        SceneManager.LoadScene(data.scene);
+        GlobalData.instance.LoadScene(data.scene);
     }
 
 
