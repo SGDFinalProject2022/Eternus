@@ -206,7 +206,7 @@ public class EnemyAI : MonoBehaviour
         ai.speed = 0;
         while (true)
         {
-            if (Vector3.Distance(transform.position, player.position) > attackRange)
+            if (Vector3.Distance(transform.position, player.position) > attackRange || !playerInSight)
             {
                 break;
             }
@@ -228,6 +228,7 @@ public class EnemyAI : MonoBehaviour
         //shoot ray to player to see if they're behind a wall
         RaycastHit hit;
         // Does the ray intersect any objects excluding the player layer
+       
         if (Physics.Linecast(transform.position, player.position, out hit, 3))
         {
             if (hit.collider.gameObject.tag == "Player")
@@ -240,24 +241,48 @@ public class EnemyAI : MonoBehaviour
         //Check if the player is in sight range
         if (inRange)
         {
-            //Check if player is hidden
-            if (!playerMov.isHiding && !isAggrod)
+            if (anim.gameObject.name != "WaterMonster")
             {
-                playerInSight = true;
-                isAggrod = true;
-                StartCoroutine("BeginChase");
+                //Check if player is hidden
+                if (!playerMov.isHiding && !isAggrod)
+                {
+                    playerInSight = true;
+                    isAggrod = true;
+                    StartCoroutine("BeginChase");
+                }
+            }
+            else
+            {
+                if(playerMov.isInWater && !isAggrod)
+                {
+                    playerInSight = true;
+                    isAggrod = true;
+                    StartCoroutine("BeginChase");
+                }
             }
         }
         else if (!inRange && isAggrod)
         {
-            if (Physics.Linecast(transform.position, player.position, out hit, 3))
+
+            if (anim.gameObject.name != "WaterMonster")
             {
-                if (hit.collider.gameObject.tag != "Player")
+                if (Physics.Linecast(transform.position, player.position, out hit, 3))
+                {
+                    if (hit.collider.gameObject.tag != "Player")
+                    {
+                        playerInSight = false;
+                        BeginDeaggro();
+                    }
+                }
+            }
+            else
+            {
+                if(!playerMov.isInWater)
                 {
                     playerInSight = false;
                     BeginDeaggro();
                 }
-            }
+            }            
         }
     }
 
@@ -265,14 +290,31 @@ public class EnemyAI : MonoBehaviour
     {
         if (playerInSight)
         {
-            if (!playerMov.isHiding)
+            if(anim.gameObject.name == "WaterMonster")
             {
-                playerInSight = true;
+                if (playerMov.isInWater)
+                {
+                    print("in sight");
+                    playerInSight = true;
+                }
+                else
+                {
+                    print("out of sight");
+                    playerInSight = false;
+                }
             }
             else
             {
-                playerInSight = false;
+                if (!playerMov.isHiding)
+                {
+                    playerInSight = true;
+                }
+                else
+                {
+                    playerInSight = false;
+                }
             }
+            
         }
     }
 
