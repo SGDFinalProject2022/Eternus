@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.30692244, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -553,50 +553,16 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: 'Credits
-
-
-
-
-
-    Art
-
-
-
-    Character Art: Gilberto Arguelles-Estrada
-
-
-    Level
-    Design: Logan Pomper
-
-
-    Environment Art: Carly Seto
-
-
-
-
-
-    Programming
-
-
-
-    Player
-    Interaction & UI: Josiah Holcom
-
-
-    Enemy AI and Save System: Ven Lewis
-
-
-
-    Audio
-
-
-    Sound
-    Effects: Carly Seto & Josiah Holcom
-
-    Music: [TBD]
-
-'
+  m_Text: "Credits\n\n\n\n\nArt\n\n\nCharacter Art: Gilberto Arguelles-Estrada\n\nLevel
+    Design: Logan Pomper\n\nEnvironment Art: Carly Seto\n\n\n\n\nProgramming\n\n\nPlayer
+    Interaction & UI: Josiah Holcom\n\nEnemy AI and Save System: Ven Lewis\n\n\nAudio\n\nSound
+    Effects: Carly Seto & Josiah Holcom\nMusic: [Work in Progress]\n\n\nFreesound
+    Credits:\n\nShirt clothing movement by leonelmail\r\nFootsteps concrete by Yuval\r\nKeys
+    in hand by ftpalad\r\ndeep water footsteps.wav by bruno.auzet \r\ndoor handle1.wav
+    by ccrev \r\nOpening Door Handle by amholma\r\nMetal Squeak Door by Sheyvan \r\nDoor
+    close close distance.wav by MootMcnoodles \r\nwalk_on_bed.WAV by gyzhor\r\nDoor
+    sliding along a metal track by wlabarron \r\nMetal creak.wav by sophiehall3535
+    \r\nHammers.wav by noctored \r\nWalking on Broken Glass by Akc1231 \n"
 --- !u!222 &1153719798
 CanvasRenderer:
   m_ObjectHideFlags: 0
