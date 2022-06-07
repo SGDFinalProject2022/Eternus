@@ -39,6 +39,7 @@ public class EnemyAI : MonoBehaviour
 
     Transform player;
     PlayerMovement playerMov;
+    [SerializeField] HealthController healthController;
 
     void Awake()
     {
@@ -203,11 +204,8 @@ public class EnemyAI : MonoBehaviour
             {
                 break;
             }
-<<<<<<< Updated upstream
             print("Hit the player");
-=======
             healthController.HurtPlayer(0.6f);
->>>>>>> Stashed changes
             anim.SetTrigger("Attack");
             yield return new WaitForSeconds(attackTime);
             anim.SetTrigger("Fast");
