@@ -127,6 +127,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  onUnlock:
+    m_PersistentCalls:
+      m_Calls: []
   ID: 0
   interactText: interact
   isUnlocked: 1
@@ -142,6 +145,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: d3e22d48e04de9740991cf724aca1e3f, type: 3}
   - {fileID: 8300000, guid: 3596681aa037f9d4c8c92e38851bdeae, type: 3}
   doorAnimator: {fileID: 2472477722383951820}
+  final: 0
   isOpen: 0
 --- !u!114 &2472477722383951821
 MonoBehaviour:
@@ -204,7 +208,7 @@ MonoBehaviour:
     originalVolume: 0
     pitch: 1
     pitchVariance: 0.12
-    spatialBlend: 0.7
+    spatialBlend: 0.95
     loop: 0
     playOnAwake: 0
     mixerGroup: {fileID: 0}
