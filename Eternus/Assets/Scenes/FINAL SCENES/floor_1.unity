@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.30692244, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -106,7 +106,7 @@ NavMeshSettings:
   m_BuildSettings:
     serializedVersion: 2
     agentTypeID: 0
-    agentRadius: 0.5
+    agentRadius: 1
     agentHeight: 2
     agentSlope: 45
     agentClimb: 0.4
@@ -114,7 +114,7 @@ NavMeshSettings:
     maxJumpAcrossDistance: 0
     minRegionArea: 2
     manualCellSize: 0
-    cellSize: 0.16666667
+    cellSize: 0.33333334
     manualTileSize: 0
     tileSize: 256
     accuratePlacement: 0
@@ -122,7 +122,7 @@ NavMeshSettings:
     preserveTilesOutsideBounds: 0
     debug:
       m_Flags: 0
-  m_NavMeshData: {fileID: 0}
+  m_NavMeshData: {fileID: 23800000, guid: 13506ca1dfae22945a4dcc31931c8ab9, type: 2}
 --- !u!1 &258017
 GameObject:
   m_ObjectHideFlags: 0
@@ -586,6 +586,71 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6999487031657109285, guid: 035cb70188cfb974b9a1a52f006c04fd, type: 3}
   m_PrefabInstance: {fileID: 12214880}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &13296300
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2856946702132729281, guid: 42e444d0eb3646147bfbeebdc51f670e, type: 3}
+      propertyPath: m_RootOrder
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 2856946702132729281, guid: 42e444d0eb3646147bfbeebdc51f670e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 71.08
+      objectReference: {fileID: 0}
+    - target: {fileID: 2856946702132729281, guid: 42e444d0eb3646147bfbeebdc51f670e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2856946702132729281, guid: 42e444d0eb3646147bfbeebdc51f670e, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1.54
+      objectReference: {fileID: 0}
+    - target: {fileID: 2856946702132729281, guid: 42e444d0eb3646147bfbeebdc51f670e, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2856946702132729281, guid: 42e444d0eb3646147bfbeebdc51f670e, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2856946702132729281, guid: 42e444d0eb3646147bfbeebdc51f670e, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2856946702132729281, guid: 42e444d0eb3646147bfbeebdc51f670e, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2856946702132729281, guid: 42e444d0eb3646147bfbeebdc51f670e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2856946702132729281, guid: 42e444d0eb3646147bfbeebdc51f670e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2856946702132729281, guid: 42e444d0eb3646147bfbeebdc51f670e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2856946702132729282, guid: 42e444d0eb3646147bfbeebdc51f670e, type: 3}
+      propertyPath: m_Name
+      value: Water Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 4710051376123386672, guid: 42e444d0eb3646147bfbeebdc51f670e, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1585592198}
+    - target: {fileID: 4710051376123386672, guid: 42e444d0eb3646147bfbeebdc51f670e, type: 3}
+      propertyPath: healthController
+      value: 
+      objectReference: {fileID: 674758145}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 42e444d0eb3646147bfbeebdc51f670e, type: 3}
 --- !u!1001 &13995344
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1482,8 +1547,8 @@ GameObject:
   m_Name: desk (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &33165592
 Transform:
@@ -3133,8 +3198,8 @@ GameObject:
   m_Name: chair (7)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &66587380
 Transform:
@@ -3523,8 +3588,8 @@ GameObject:
   m_Name: chair
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &73970597
 Transform:
@@ -8076,6 +8141,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: DoorController (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 2472477723098537490, guid: c8beb5750e3f8094980a36ed9461e211, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2472477723098537491, guid: c8beb5750e3f8094980a36ed9461e211, type: 3}
       propertyPath: m_RootOrder
       value: 12
@@ -11856,8 +11925,8 @@ GameObject:
   m_Name: chair (8)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &273694733
 Transform:
@@ -15131,8 +15200,8 @@ GameObject:
   m_Name: chair (19)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &354747515
 Transform:
@@ -15298,8 +15367,8 @@ GameObject:
   m_Name: desk (11)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &356039997
 Transform:
@@ -18101,8 +18170,8 @@ GameObject:
   m_Name: desk (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &421446432
 Transform:
@@ -18416,8 +18485,8 @@ GameObject:
   m_Name: desk (7)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &430747979
 Transform:
@@ -19624,6 +19693,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: DoorController (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 2472477723098537490, guid: c8beb5750e3f8094980a36ed9461e211, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2472477723098537491, guid: c8beb5750e3f8094980a36ed9461e211, type: 3}
       propertyPath: m_RootOrder
       value: 14
@@ -20630,8 +20703,8 @@ GameObject:
   m_Name: chair (10)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &473878032
 Transform:
@@ -22669,8 +22742,8 @@ GameObject:
   m_Name: filingcabinet (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &507101571
 Transform:
@@ -25432,8 +25505,8 @@ GameObject:
   m_Name: chair (16)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &558443678
 Transform:
@@ -26796,8 +26869,8 @@ GameObject:
   m_Name: desk (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &589813325
 Transform:
@@ -27605,8 +27678,8 @@ GameObject:
   m_Name: filingcabinet (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &612740790
 Transform:
@@ -28702,8 +28775,8 @@ GameObject:
   m_Name: chair (21)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &645398663
 Transform:
@@ -29383,8 +29456,8 @@ GameObject:
   m_Name: shelf
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &655915404
 Transform:
@@ -30178,6 +30251,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4346515665785247205, guid: dc6faa51c01245645816f38d3d4c53c2, type: 3}
   m_PrefabInstance: {fileID: 673422091}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &674758145 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1594374866, guid: c2baed0eff0758a44b2313f42af65068, type: 3}
+  m_PrefabInstance: {fileID: 1585592195}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5d6db68d1a5b9344865b0f16913824e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &675475903
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -33402,8 +33486,8 @@ GameObject:
   m_Name: chair (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &753807930
 Transform:
@@ -34442,8 +34526,8 @@ GameObject:
   m_Name: desk (10)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &776821360
 Transform:
@@ -38963,8 +39047,8 @@ GameObject:
   m_Name: desk (12)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &883905149
 Transform:
@@ -39528,8 +39612,8 @@ GameObject:
   m_Name: chair (15)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &889974259
 Transform:
@@ -40687,8 +40771,8 @@ GameObject:
   m_Name: chair (18)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &919387950
 Transform:
@@ -42735,8 +42819,8 @@ GameObject:
   m_Name: desk (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &984257346
 Transform:
@@ -43434,8 +43518,8 @@ GameObject:
   m_Name: chair (17)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &993402688
 Transform:
@@ -45274,8 +45358,8 @@ GameObject:
   m_Name: chair (14)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &1045414796
 Transform:
@@ -49235,8 +49319,8 @@ GameObject:
   m_Name: desk (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &1133650033
 Transform:
@@ -49900,8 +49984,8 @@ GameObject:
   m_Name: chair (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &1150171069
 Transform:
@@ -51472,8 +51556,8 @@ GameObject:
   m_Name: chair (13)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &1188947206
 Transform:
@@ -52609,8 +52693,8 @@ GameObject:
   m_Name: chair (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &1214736088
 Transform:
@@ -56335,8 +56419,8 @@ GameObject:
   m_Name: chair (22)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &1296126311
 Transform:
@@ -56432,8 +56516,8 @@ GameObject:
   m_Name: desk
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &1300913882
 Transform:
@@ -58981,8 +59065,8 @@ GameObject:
   m_Name: desk (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &1351901986
 Transform:
@@ -59828,8 +59912,8 @@ GameObject:
   m_Name: filingcabinet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &1360474928
 Transform:
@@ -61117,8 +61201,8 @@ GameObject:
   m_Name: filingcabinet (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &1392763686
 Transform:
@@ -63226,8 +63310,8 @@ GameObject:
   m_Name: shelf (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &1434991574
 Transform:
@@ -63323,8 +63407,8 @@ GameObject:
   m_Name: chair (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &1436033759
 Transform:
@@ -65272,8 +65356,8 @@ GameObject:
   m_Name: chair (24)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &1485944331
 Transform:
@@ -66085,8 +66169,8 @@ GameObject:
   m_Name: shelf (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &1502372442
 Transform:
@@ -69257,6 +69341,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d77110b985694d048afecd3c283a80d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!4 &1585592198 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6420845348021856011, guid: c2baed0eff0758a44b2313f42af65068, type: 3}
+  m_PrefabInstance: {fileID: 1585592195}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1586972742
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -75947,8 +76036,8 @@ GameObject:
   m_Name: desk (8)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &1760408780
 Transform:
@@ -76768,8 +76857,8 @@ GameObject:
   m_Name: chair (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &1776488255
 Transform:
@@ -78621,8 +78710,8 @@ GameObject:
   m_Name: chair (11)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &1811219958
 Transform:
@@ -80650,8 +80739,8 @@ GameObject:
   m_Name: filingcabinet (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &1866667607
 Transform:
@@ -80965,8 +81054,8 @@ GameObject:
   m_Name: chair (23)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &1871686382
 Transform:
@@ -81498,8 +81587,8 @@ GameObject:
   m_Name: chair (12)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &1884115333
 Transform:
@@ -83275,8 +83364,8 @@ GameObject:
   m_Name: desk (9)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &1930481381
 Transform:
@@ -83442,8 +83531,8 @@ GameObject:
   m_Name: shelf (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &1931669487
 Transform:
@@ -83749,8 +83838,8 @@ GameObject:
   m_Name: chair (9)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &1940832986
 Transform:
@@ -85872,8 +85961,8 @@ GameObject:
   m_Name: elevator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &2001353761
 Transform:
@@ -89769,8 +89858,8 @@ GameObject:
   m_Name: chair (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &2099006276
 Transform:
@@ -92829,7 +92918,7 @@ GameObject:
   m_Name: Railing2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
+  m_NavMeshLayer: 1
   m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!1 &8062740506444859260

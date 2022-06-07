@@ -9,7 +9,7 @@ public class EnemyDoorAI : MonoBehaviour
     //checks if peaches is in range to open the door. ONLY allows this for peaches; other enemies cannot open doors
     void OnTriggerEnter(Collider other)
     {
-        if(other.CompareTag("Enemy") && other.gameObject.name == "Peaches")
+        if(other.CompareTag("Enemy") && other.gameObject.name == "Peaches" && doorController.isUnlocked)
         {           
             if(doorController.isOpen)
             {
@@ -25,7 +25,7 @@ public class EnemyDoorAI : MonoBehaviour
     //closes the door after peaches leaves range.
     void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Enemy") && other.gameObject.name == "Peaches")
+        if (other.CompareTag("Enemy") && other.gameObject.name == "Peaches" && doorController.isUnlocked)
         {
             print("Peaches has closed the door.");
             doorController.AIDoor();

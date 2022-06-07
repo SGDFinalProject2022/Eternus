@@ -5,6 +5,7 @@ using UnityEngine.AI;
 
 public class EnemyAI : MonoBehaviour
 {
+    [SerializeField] string enemyName;
     [SerializeField] Animator anim;
     //Patrol
     [Header("Movement")]
@@ -84,6 +85,14 @@ public class EnemyAI : MonoBehaviour
         }
 
     }
+
+    void Animate(string animation)
+    {
+        if(anim != null)
+        {
+            anim.SetTrigger(animation);
+        }
+    }
     void SetUpNodes()
     {
         currentNode = 0;
@@ -161,9 +170,9 @@ public class EnemyAI : MonoBehaviour
     IEnumerator BeginChase()
     {
         ai.speed = 0;
-        anim.SetTrigger("Transition");
+        Animate("Transition");
         yield return new WaitForSeconds(yieldTime);
-        anim.SetTrigger("Fast");
+        Animate("Fast");
         ai.speed = aggroSpeed;
     }
 
@@ -206,17 +215,17 @@ public class EnemyAI : MonoBehaviour
         ai.speed = 0;
         while (true)
         {
-            if (Vector3.Distance(transform.position, player.position) > attackRange)
+            if (Vector3.Distance(transform.position, player.position) > attackRange || !playerInSight)
             {
                 break;
             }
             print("Hit the player");
             healthController.HurtPlayer(0.6f);
-            anim.SetTrigger("Attack");
+            Animate("Attack");
             yield return new WaitForSeconds(attackTime);
-            anim.SetTrigger("Fast");
+            Animate("Attack");
         }
-        anim.SetTrigger("Fast");
+        Animate("Fast");
         ai.speed = aggroSpeed;
     }
 
@@ -228,6 +237,7 @@ public class EnemyAI : MonoBehaviour
         //shoot ray to player to see if they're behind a wall
         RaycastHit hit;
         // Does the ray intersect any objects excluding the player layer
+       
         if (Physics.Linecast(transform.position, player.position, out hit, 3))
         {
             if (hit.collider.gameObject.tag == "Player")
@@ -240,24 +250,48 @@ public class EnemyAI : MonoBehaviour
         //Check if the player is in sight range
         if (inRange)
         {
-            //Check if player is hidden
-            if (!playerMov.isHiding && !isAggrod)
+            if (enemyName != "Water Monster")
             {
-                playerInSight = true;
-                isAggrod = true;
-                StartCoroutine("BeginChase");
+                //Check if player is hidden
+                if (!playerMov.isHiding && !isAggrod)
+                {
+                    playerInSight = true;
+                    isAggrod = true;
+                    StartCoroutine("BeginChase");
+                }
+            }
+            else
+            {
+                if (playerMov.isInWater && !isAggrod)
+                {
+                    playerInSight = true;
+                    isAggrod = true;
+                    StartCoroutine("BeginChase");
+                }
             }
         }
         else if (!inRange && isAggrod)
         {
-            if (Physics.Linecast(transform.position, player.position, out hit, 3))
+
+            if (enemyName != "Water Monster")
             {
-                if (hit.collider.gameObject.tag != "Player")
+                if (Physics.Linecast(transform.position, player.position, out hit, 3))
+                {
+                    if (hit.collider.gameObject.tag != "Player")
+                    {
+                        playerInSight = false;
+                        BeginDeaggro();
+                    }
+                }
+            }
+            else
+            {
+                if(!playerMov.isInWater)
                 {
                     playerInSight = false;
                     BeginDeaggro();
                 }
-            }
+            }            
         }
     }
 
@@ -265,14 +299,30 @@ public class EnemyAI : MonoBehaviour
     {
         if (playerInSight)
         {
-            if (!playerMov.isHiding)
+            if(enemyName == "Water Monster")
             {
-                playerInSight = true;
+                if (playerMov.isInWater)
+                {
+                    print("in sight");
+                    playerInSight = true;
+                }
+                else
+                {
+                    print("out of sight");
+                    playerInSight = false;
+                }
             }
             else
             {
-                playerInSight = false;
-            }
+                if (!playerMov.isHiding)
+                {
+                    playerInSight = true;
+                }
+                else
+                {
+                    playerInSight = false;
+                }
+            }            
         }
     }
 
@@ -311,7 +361,7 @@ public class EnemyAI : MonoBehaviour
                 break;
             }
         }
-        anim.SetTrigger("Slow");
+        Animate("Slow");
         print("lost aggro");
         idle = false;
         ai.speed = normalSpeed;
