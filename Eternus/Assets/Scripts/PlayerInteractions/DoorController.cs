@@ -113,7 +113,7 @@ public class DoorController : MonoBehaviour
         isUnlocked = false;
         if (canBeUnlocked) { interactText = "Locked. Find a key"; }
         else { interactText = "Locked"; }
-        
+        isOpen = false;
     }
 
     public void TriggerCutscene()
