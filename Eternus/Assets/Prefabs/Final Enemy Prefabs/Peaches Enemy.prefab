@@ -469,7 +469,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6f294cbbdd4acb43a07713f1b018a1d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  anim: {fileID: 6057829538329637325}
+  enemyName: Peaches
+  anim: {fileID: 0}
   nodeParent: {fileID: 1965708118906000970}
   randomPath: 0
   reversePath: 0
@@ -482,6 +483,8 @@ MonoBehaviour:
   crouchRange: {fileID: 4393460484050576197}
   attackRange: 3
   attackTime: 3
+  player: {fileID: 0}
+  healthController: {fileID: 0}
 --- !u!1 &1965708120428793718
 GameObject:
   m_ObjectHideFlags: 0

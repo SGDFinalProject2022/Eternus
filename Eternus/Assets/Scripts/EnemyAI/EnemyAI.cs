@@ -5,6 +5,7 @@ using UnityEngine.AI;
 
 public class EnemyAI : MonoBehaviour
 {
+    [SerializeField] string enemyName;
     [SerializeField] Animator anim;
     //Patrol
     [Header("Movement")]
@@ -84,6 +85,14 @@ public class EnemyAI : MonoBehaviour
         }
 
     }
+
+    void Animate(string animation)
+    {
+        if(anim != null)
+        {
+            anim.SetTrigger(animation);
+        }
+    }
     void SetUpNodes()
     {
         currentNode = 0;
@@ -161,9 +170,9 @@ public class EnemyAI : MonoBehaviour
     IEnumerator BeginChase()
     {
         ai.speed = 0;
-        anim.SetTrigger("Transition");
+        Animate("Transition");
         yield return new WaitForSeconds(yieldTime);
-        anim.SetTrigger("Fast");
+        Animate("Fast");
         ai.speed = aggroSpeed;
     }
 
@@ -212,11 +221,11 @@ public class EnemyAI : MonoBehaviour
             }
             print("Hit the player");
             healthController.HurtPlayer(0.6f);
-            anim.SetTrigger("Attack");
+            Animate("Attack");
             yield return new WaitForSeconds(attackTime);
-            anim.SetTrigger("Fast");
+            Animate("Attack");
         }
-        anim.SetTrigger("Fast");
+        Animate("Fast");
         ai.speed = aggroSpeed;
     }
 
@@ -241,7 +250,7 @@ public class EnemyAI : MonoBehaviour
         //Check if the player is in sight range
         if (inRange)
         {
-            if (anim.gameObject.name != "WaterMonster")
+            if (enemyName != "Water Monster")
             {
                 //Check if player is hidden
                 if (!playerMov.isHiding && !isAggrod)
@@ -253,7 +262,7 @@ public class EnemyAI : MonoBehaviour
             }
             else
             {
-                if(playerMov.isInWater && !isAggrod)
+                if (playerMov.isInWater && !isAggrod)
                 {
                     playerInSight = true;
                     isAggrod = true;
@@ -264,7 +273,7 @@ public class EnemyAI : MonoBehaviour
         else if (!inRange && isAggrod)
         {
 
-            if (anim.gameObject.name != "WaterMonster")
+            if (enemyName != "Water Monster")
             {
                 if (Physics.Linecast(transform.position, player.position, out hit, 3))
                 {
@@ -290,7 +299,7 @@ public class EnemyAI : MonoBehaviour
     {
         if (playerInSight)
         {
-            if(anim.gameObject.name == "WaterMonster")
+            if(enemyName == "Water Monster")
             {
                 if (playerMov.isInWater)
                 {
@@ -313,8 +322,7 @@ public class EnemyAI : MonoBehaviour
                 {
                     playerInSight = false;
                 }
-            }
-            
+            }            
         }
     }
 
@@ -353,7 +361,7 @@ public class EnemyAI : MonoBehaviour
                 break;
             }
         }
-        anim.SetTrigger("Slow");
+        Animate("Slow");
         print("lost aggro");
         idle = false;
         ai.speed = normalSpeed;
