@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.30692244, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -599,7 +599,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2472477722383951822, guid: c8beb5750e3f8094980a36ed9461e211, type: 3}
       propertyPath: interactText
-      value: open
+      value: Interact
       objectReference: {fileID: 0}
     - target: {fileID: 2472477722383951822, guid: c8beb5750e3f8094980a36ed9461e211, type: 3}
       propertyPath: canBeUnlocked
@@ -7368,6 +7368,62 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6999487031657109285, guid: 035cb70188cfb974b9a1a52f006c04fd, type: 3}
   m_PrefabInstance: {fileID: 165322860}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &166336055
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 166336057}
+  - component: {fileID: 166336056}
+  m_Layer: 0
+  m_Name: Primary Reverb
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!167 &166336056
+AudioReverbZone:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 166336055}
+  m_Enabled: 1
+  m_MinDistance: 85.8
+  m_MaxDistance: 85.8
+  m_ReverbPreset: 6
+  m_Room: -1000
+  m_RoomHF: -300
+  m_DecayTime: 2.31
+  m_DecayHFRatio: 0.64
+  m_Reflections: -711
+  m_ReflectionsDelay: 0.012
+  m_Reverb: 83
+  m_ReverbDelay: 0.017
+  m_HFReference: 5000
+  m_Diffusion: 100
+  m_Density: 100
+  m_LFReference: 250
+  m_RoomLF: 0
+--- !u!4 &166336057
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 166336055}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 86.5, y: 0, z: -34.6}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 14
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &170342824
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7917,7 +7973,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2472477722383951822, guid: c8beb5750e3f8094980a36ed9461e211, type: 3}
       propertyPath: interactText
-      value: open
+      value: Interact
       objectReference: {fileID: 0}
     - target: {fileID: 2472477722383951822, guid: c8beb5750e3f8094980a36ed9461e211, type: 3}
       propertyPath: canBeUnlocked
@@ -19454,7 +19510,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2472477722383951822, guid: c8beb5750e3f8094980a36ed9461e211, type: 3}
       propertyPath: interactText
-      value: open
+      value: Interact
       objectReference: {fileID: 0}
     - target: {fileID: 2472477722383951822, guid: c8beb5750e3f8094980a36ed9461e211, type: 3}
       propertyPath: canBeUnlocked
@@ -25510,7 +25566,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2472477722383951822, guid: c8beb5750e3f8094980a36ed9461e211, type: 3}
       propertyPath: interactText
-      value: open
+      value: Interact
       objectReference: {fileID: 0}
     - target: {fileID: 2472477722383951822, guid: c8beb5750e3f8094980a36ed9461e211, type: 3}
       propertyPath: canBeUnlocked
@@ -30389,7 +30445,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2472477722383951822, guid: c8beb5750e3f8094980a36ed9461e211, type: 3}
       propertyPath: interactText
-      value: 
+      value: Interact
       objectReference: {fileID: 0}
     - target: {fileID: 2472477722383951822, guid: c8beb5750e3f8094980a36ed9461e211, type: 3}
       propertyPath: canBeUnlocked
@@ -32052,7 +32108,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2472477722383951822, guid: c8beb5750e3f8094980a36ed9461e211, type: 3}
       propertyPath: interactText
-      value: open
+      value: Interact
       objectReference: {fileID: 0}
     - target: {fileID: 2472477722383951822, guid: c8beb5750e3f8094980a36ed9461e211, type: 3}
       propertyPath: canBeUnlocked
@@ -38277,7 +38333,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2472477722383951822, guid: c8beb5750e3f8094980a36ed9461e211, type: 3}
       propertyPath: interactText
-      value: open
+      value: Interact
       objectReference: {fileID: 0}
     - target: {fileID: 2472477722383951822, guid: c8beb5750e3f8094980a36ed9461e211, type: 3}
       propertyPath: canBeUnlocked
@@ -44775,7 +44831,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2472477722383951822, guid: c8beb5750e3f8094980a36ed9461e211, type: 3}
       propertyPath: interactText
-      value: open
+      value: Interact
       objectReference: {fileID: 0}
     - target: {fileID: 2472477722383951822, guid: c8beb5750e3f8094980a36ed9461e211, type: 3}
       propertyPath: canBeUnlocked
@@ -51663,7 +51719,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3295187450575032477, guid: 43a0b0479338aea4195598bda1f12807, type: 3}
       propertyPath: m_RootOrder
-      value: 14
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 3295187450575032477, guid: 43a0b0479338aea4195598bda1f12807, type: 3}
       propertyPath: m_LocalPosition.x
@@ -71864,7 +71920,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7683230135470105075, guid: 84600325b8d4c2f4da6e288337bc19c5, type: 3}
       propertyPath: m_RootOrder
-      value: 13
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 7683230135470105075, guid: 84600325b8d4c2f4da6e288337bc19c5, type: 3}
       propertyPath: m_LocalScale.x
@@ -79096,7 +79152,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2472477722383951822, guid: c8beb5750e3f8094980a36ed9461e211, type: 3}
       propertyPath: interactText
-      value: locked. find a key
+      value: Locked. Find a key
       objectReference: {fileID: 0}
     - target: {fileID: 2472477722383951822, guid: c8beb5750e3f8094980a36ed9461e211, type: 3}
       propertyPath: canBeUnlocked
@@ -86931,7 +86987,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2032927942
 PrefabInstance:
