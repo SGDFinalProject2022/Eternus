@@ -36,10 +36,9 @@ public class EnemyAI : MonoBehaviour
     [SerializeField] private float attackRange = 3f;
     [SerializeField] private float attackTime = 3f;
     bool isAttacking = false;
-    
+
     Transform player;
     PlayerMovement playerMov;
-    HealthController healthController;
 
     void Awake()
     {
@@ -50,32 +49,32 @@ public class EnemyAI : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player").transform;
         playerMov = GameObject.FindGameObjectWithTag("Player").gameObject.GetComponent<PlayerMovement>();
         ai.speed = normalSpeed;
-
-        healthController = FindObjectOfType<HealthController>();
     }
 
     protected void Update()
     {
-        if(!isAggrod)
+        if (!isAggrod && !isSoundAggrod)
         {
             MoveToNextNode();
         }
-        else
+        else if (isAggrod)
         {
             ai.destination = player.position;
+        }
+        else if (isSoundAggrod)
+        {
+            ArriveAtSoundAggro();
         }
         ChangeRangeCheck();
         BeginDeaggro();
         AttackPlayer();
-        ArriveAtSoundAggro();
         UpdateHiddenStatus();
 
-        if(isAttacking)
+        if (isAttacking)
         {
             var lookAtPos = player.position;
             lookAtPos.y = transform.position.y; //set y pos to the same as mine, so I don't look up/down
             transform.LookAt(lookAtPos);
-
         }
 
     }
@@ -91,10 +90,10 @@ public class EnemyAI : MonoBehaviour
     void MoveToNextNode()
     {
         //Check for random path parameter
-        if(Vector3.Distance(transform.position, nodes[currentNode].position) < 3f && randomPath)
+        if (Vector3.Distance(transform.position, nodes[currentNode].position) < 3f && randomPath)
         {
             currentNode = Random.Range(0, nodes.Count);
-        }        
+        }
         else if (Vector3.Distance(transform.position, nodes[currentNode].position) < 3f)
         {
             //Check for reverse path parameter
@@ -126,14 +125,14 @@ public class EnemyAI : MonoBehaviour
                 {
                     currentNode = 0;
                 }
-            }    
-        }        
+            }
+        }
         ai.destination = nodes[currentNode].position;
     }
 
     void ChangeRangeCheck()
     {
-        if(playerMov.isSprinting)
+        if (playerMov.isSprinting)
         {
             sprintRange.SetActive(true);
             crouchRange.SetActive(false);
@@ -155,52 +154,34 @@ public class EnemyAI : MonoBehaviour
 
     IEnumerator BeginChase()
     {
-        print("Thinking...");
         ai.speed = 0;
         anim.SetTrigger("Transition");
         yield return new WaitForSeconds(yieldTime);
-        print("Chasing.");
         anim.SetTrigger("Fast");
         ai.speed = aggroSpeed;
     }
-        
+
     //Enemy is aggrod, moves to location of sound queue.
     public void SoundAggro(Transform sound)
     {
-        isAggrod = true;
         isSoundAggrod = true;
-
-        float distance = Vector3.Distance(nodes[0].position, sound.position);
-        Transform closestNode = nodes[0];
-        foreach(Transform node in nodes)
-        {
-            if(Vector3.Distance(node.position, sound.position) < distance)
-            {
-                closestNode = node;
-                distance = Vector3.Distance(node.position, sound.position);
-            }
-        }
-        ai.destination = closestNode.position;
-        BeginDeaggro();
+        ai.destination = sound.position;
+        StartCoroutine("BeginChase");
     }
 
     //Enemy arrives at sound aggro location
     void ArriveAtSoundAggro()
     {
-        if(isSoundAggrod)
+        if (Vector3.Distance(transform.position, ai.destination) < 5f)
         {
-            isSoundAggrod = false;
-            if(Vector3.Distance(transform.position, ai.destination) < .5f )
-            {
-                BeginDeaggro();
-            }
+            BeginDeaggro();
         }
     }
 
     //If player is in sight and is within attack range, hit the player
     void AttackPlayer()
     {
-        if(player != null)
+        if (player != null)
         {
             if (playerInSight && Vector3.Distance(transform.position, player.position) <= attackRange && !isAttacking)
             {
@@ -211,7 +192,7 @@ public class EnemyAI : MonoBehaviour
             {
                 isAttacking = false;
             }
-        }        
+        }
     }
     IEnumerator Hit()
     {
@@ -219,11 +200,14 @@ public class EnemyAI : MonoBehaviour
         while (true)
         {
             if (Vector3.Distance(transform.position, player.position) > attackRange)
-            {                
+            {
                 break;
             }
+<<<<<<< Updated upstream
             print("Hit the player");
+=======
             healthController.HurtPlayer(0.6f);
+>>>>>>> Stashed changes
             anim.SetTrigger("Attack");
             yield return new WaitForSeconds(attackTime);
             anim.SetTrigger("Fast");
@@ -242,7 +226,7 @@ public class EnemyAI : MonoBehaviour
         // Does the ray intersect any objects excluding the player layer
         if (Physics.Linecast(transform.position, player.position, out hit, 3))
         {
-            if(hit.collider.gameObject.tag == "Player")
+            if (hit.collider.gameObject.tag == "Player")
             {
                 inRange = true;
             }
@@ -259,12 +243,23 @@ public class EnemyAI : MonoBehaviour
                 isAggrod = true;
                 StartCoroutine("BeginChase");
             }
-        }        
+        }
+        else if (!inRange && isAggrod)
+        {
+            if (Physics.Linecast(transform.position, player.position, out hit, 3))
+            {
+                if (hit.collider.gameObject.tag != "Player")
+                {
+                    playerInSight = false;
+                    BeginDeaggro();
+                }
+            }
+        }
     }
 
     void UpdateHiddenStatus()
     {
-        if(playerInSight)
+        if (playerInSight)
         {
             if (!playerMov.isHiding)
             {
@@ -280,7 +275,7 @@ public class EnemyAI : MonoBehaviour
     //If enemy is aggrod but player is not in sight
     void BeginDeaggro()
     {
-        if(!idle && isAggrod && !playerInSight)
+        if (!idle && isAggrod && !playerInSight)
         {
             print("Starting deaggro");
             if (Vector3.Distance(transform.position, ai.destination) < 10f)
@@ -288,14 +283,14 @@ public class EnemyAI : MonoBehaviour
                 idle = true;
                 StartCoroutine("LoseAggro");
             }
-        }               
+        }
     }
 
     //Wait a set amount of time before returning to patrol. Reaggro if player is in sight.
     IEnumerator LoseAggro()
     {
         int secondsElapsed = 0;
-        while(!playerInSight)
+        while (!playerInSight)
         {
             print("Searching");
             yield return new WaitForSeconds(1f);
@@ -304,6 +299,7 @@ public class EnemyAI : MonoBehaviour
             if (secondsElapsed == deaggroTime)
             {
                 isAggrod = false;
+                isSoundAggrod = false;
                 ai.destination = nodes[currentNode].position;
                 break;
             }
