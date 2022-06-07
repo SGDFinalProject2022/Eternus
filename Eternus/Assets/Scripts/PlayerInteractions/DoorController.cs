@@ -8,6 +8,7 @@ using UnityEngine.Events;
 public class DoorController : MonoBehaviour
 {
     public UnityEvent onInteract;
+    public UnityEvent onUnlock;
     public int ID;
     public string interactText;
     public bool isUnlocked = true;
@@ -46,6 +47,7 @@ public class DoorController : MonoBehaviour
                 FindObjectOfType<UI>().ShowObjective("Unlocked"); 
                 uI.HideItem();
                 wasPreviouslyLocked = false;
+                onUnlock.Invoke();
             }
 
             if (!isOpen)
@@ -103,13 +105,13 @@ public class DoorController : MonoBehaviour
     public void UnlockDoor()
     {
         isUnlocked = true;
-        interactText = "open";
+        interactText = "Interact";
     }
 
     public void LockDoor()
     {
         isUnlocked = false;
-        if (canBeUnlocked) { interactText = "locked. find a key"; }
+        if (canBeUnlocked) { interactText = "Locked. Find a key"; }
         else { interactText = "locked"; }
         
     }
