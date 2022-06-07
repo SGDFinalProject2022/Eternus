@@ -167,6 +167,6 @@ public class UI : MonoBehaviour
     }
     public void Return()
     {
-        SceneManager.LoadScene("MainMenu");
+        GlobalData.instance.LoadScene("MainMenu");
     }
 }

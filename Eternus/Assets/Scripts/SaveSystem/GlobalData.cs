@@ -64,6 +64,7 @@ public class GlobalData : MonoBehaviour
     IEnumerator SceneChange(string sceneName)
     {
         anim.SetTrigger("FadeOut");
+        Time.timeScale = 1f;
         yield return new WaitForSeconds(1f);
         AsyncOperation asyncLoadLevel = SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Single);
         while (!asyncLoadLevel.isDone)
