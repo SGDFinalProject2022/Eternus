@@ -76,7 +76,7 @@ public class DoorController : MonoBehaviour
         {
             audioMan.PlayForceEntirely("Locked", jiggleSFX[Random.Range(0, jiggleSFX.Length - 1)]);
             if (canBeUnlocked) 
-            { interactText = "locked. find a key"; uI.HideItem(); }            
+            { interactText = "Locked. Find a key"; uI.HideItem(); }            
         }
     }
 
@@ -112,7 +112,7 @@ public class DoorController : MonoBehaviour
     {
         isUnlocked = false;
         if (canBeUnlocked) { interactText = "Locked. Find a key"; }
-        else { interactText = "locked"; }
+        else { interactText = "Locked"; }
         
     }
 
