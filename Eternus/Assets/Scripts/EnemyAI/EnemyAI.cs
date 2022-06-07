@@ -37,7 +37,7 @@ public class EnemyAI : MonoBehaviour
     [SerializeField] private float attackTime = 3f;
     bool isAttacking = false;
 
-    Transform player;
+    [SerializeField] Transform player;
     PlayerMovement playerMov;
     [SerializeField] HealthController healthController;
 
@@ -47,8 +47,12 @@ public class EnemyAI : MonoBehaviour
         SetUpNodes();
         transform.position = nodes[0].position;
         MoveToNextNode();
-        player = GameObject.FindGameObjectWithTag("Player").transform;
-        playerMov = GameObject.FindGameObjectWithTag("Player").gameObject.GetComponent<PlayerMovement>();
+        if(player == null)
+        {
+            player = GameObject.FindGameObjectWithTag("Player").transform;
+        }
+        
+        playerMov = player.gameObject.GetComponent<PlayerMovement>();
         ai.speed = normalSpeed;
     }
 
@@ -64,6 +68,7 @@ public class EnemyAI : MonoBehaviour
         }
         else if (isSoundAggrod)
         {
+            print("checking");
             ArriveAtSoundAggro();
         }
         ChangeRangeCheck();
@@ -175,6 +180,7 @@ public class EnemyAI : MonoBehaviour
     {
         if (Vector3.Distance(transform.position, ai.destination) < 5f)
         {
+            print("arrived");
             BeginDeaggro();
         }
     }
@@ -273,15 +279,18 @@ public class EnemyAI : MonoBehaviour
     //If enemy is aggrod but player is not in sight
     void BeginDeaggro()
     {
-        if (!idle && isAggrod && !playerInSight)
+        if(isAggrod || isSoundAggrod)
         {
-            print("Starting deaggro");
-            if (Vector3.Distance(transform.position, ai.destination) < 10f)
+            if (!idle && !playerInSight)
             {
-                idle = true;
-                StartCoroutine("LoseAggro");
+                print("Starting deaggro");
+                if (Vector3.Distance(transform.position, ai.destination) < 10f)
+                {
+                    idle = true;
+                    StartCoroutine("LoseAggro");
+                }
             }
-        }
+        }        
     }
 
     //Wait a set amount of time before returning to patrol. Reaggro if player is in sight.
