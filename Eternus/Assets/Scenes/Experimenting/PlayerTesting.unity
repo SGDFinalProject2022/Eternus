@@ -955,7 +955,6 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   ID: 0
-  interactText: Hide
 --- !u!65 &410271092
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1157,7 +1156,6 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   ID: 0
-  interactText: interact
 --- !u!114 &509055029 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 509055033, guid: c2baed0eff0758a44b2313f42af65068, type: 3}
@@ -1582,7 +1580,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 708942461, guid: c2baed0eff0758a44b2313f42af65068, type: 3}
   m_PrefabInstance: {fileID: 1879974556}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1960743068}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c583a1393bd16674d9372aa50af36600, type: 3}
@@ -2227,7 +2225,6 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   ID: 0
-  interactText: Exit
 --- !u!65 &1215262469
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2412,7 +2409,6 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   ID: 0
-  interactText: Hide
 --- !u!114 &1266617501
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2429,6 +2425,7 @@ MonoBehaviour:
   exitLocation: {fileID: 348981946}
   enterTrigger: {fileID: 410271089}
   exitTrigger: {fileID: 1215262466}
+  playerController: {fileID: 1960743068}
 --- !u!65 &1266617502
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2645,8 +2642,10 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  onUnlock:
+    m_PersistentCalls:
+      m_Calls: []
   ID: 0
-  interactText: 
   isUnlocked: 0
   canBeUnlocked: 0
   onlyOpenOnce: 0
@@ -2660,6 +2659,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: d3e22d48e04de9740991cf724aca1e3f, type: 3}
   - {fileID: 8300000, guid: 3596681aa037f9d4c8c92e38851bdeae, type: 3}
   doorAnimator: {fileID: 1291141986}
+  final: 0
   isOpen: 0
 --- !u!65 &1291141989
 BoxCollider:
@@ -3229,8 +3229,10 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  onUnlock:
+    m_PersistentCalls:
+      m_Calls: []
   ID: 0
-  interactText: interact
   isUnlocked: 0
   canBeUnlocked: 1
   onlyOpenOnce: 0
@@ -3244,6 +3246,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: d3e22d48e04de9740991cf724aca1e3f, type: 3}
   - {fileID: 8300000, guid: 3596681aa037f9d4c8c92e38851bdeae, type: 3}
   doorAnimator: {fileID: 1726522161}
+  final: 0
   isOpen: 0
 --- !u!1 &1782343224
 GameObject:
@@ -3568,7 +3571,6 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   ID: 0
-  interactText: pick up
 --- !u!1 &1933704734
 GameObject:
   m_ObjectHideFlags: 0
@@ -3707,7 +3709,11 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   ID: 0
-  interactText: pick up
+--- !u!1 &1960743068 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6420845348021856009, guid: c2baed0eff0758a44b2313f42af65068, type: 3}
+  m_PrefabInstance: {fileID: 1879974556}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2113223268
 GameObject:
   m_ObjectHideFlags: 0
@@ -3742,9 +3748,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   onInteract:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2114061134}
+        m_TargetAssemblyTypeName: UI, Assembly-CSharp
+        m_MethodName: ShowObjective
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: you did it :D
+          m_BoolArgument: 0
+        m_CallState: 2
   ID: 0
-  interactText: you did it :D
 --- !u!65 &2113223270
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4012,6 +4029,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2654156027344817097, guid: 4892f79dac6276947a37136227f4d73d, type: 3}
+      propertyPath: playerController
+      value: 
+      objectReference: {fileID: 1960743068}
     - target: {fileID: 2654156027344817103, guid: 4892f79dac6276947a37136227f4d73d, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -4142,6 +4163,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 7153062939899509865, guid: 41ae7d308af558c4893f2e986ce71545, type: 3}
+      propertyPath: playerController
+      value: 
+      objectReference: {fileID: 1960743068}
     - target: {fileID: 7263868203068389207, guid: 41ae7d308af558c4893f2e986ce71545, type: 3}
       propertyPath: m_RootOrder
       value: 2
