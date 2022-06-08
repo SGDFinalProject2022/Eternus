@@ -2639,7 +2639,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2023248198
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3930,6 +3930,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   crosshair: {fileID: 834399713}
+  defaultCrosshair: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  interactCrosshair: {fileID: 21300000, guid: 2b736c3bc11c9d649a3f454264b1e888, type: 3}
 --- !u!114 &8457383100502241946
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4224,6 +4226,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   crosshair: {fileID: 834399713}
+  defaultCrosshair: {fileID: 0}
+  interactCrosshair: {fileID: 0}
 --- !u!114 &509055033
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4331,6 +4335,7 @@ MonoBehaviour:
   sprintSpeed: 10
   isSprinting: 0
   waterSpeed: 3
+  isInWater: 0
   groundCheck: {fileID: 1648138772}
   groundDistance: 0.4
   groundMask:

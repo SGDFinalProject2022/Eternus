@@ -14,6 +14,8 @@ public class MouseLook : MonoBehaviour
     [Header("Interactions")]
     [SerializeField] LayerMask interactableLayerMask;
     [SerializeField] Image crosshair;
+    [SerializeField] Sprite defaultCrosshair;
+    [SerializeField] Sprite interactCrosshair;
 
     UI uiController;
 
@@ -75,6 +77,9 @@ public class MouseLook : MonoBehaviour
 
             //makes the crosshair visible
             crosshair.color = new Color(crosshair.color.r, crosshair.color.g, crosshair.color.b, 0.5f);
+            crosshair.sprite = interactCrosshair;
+            crosshair.transform.localScale = new Vector3(5, 5, 5);
+
             if (hit.collider.GetComponent<Interactable>()) //interactables
             {
                 //making sure it only calls the selected interactable's event
@@ -82,7 +87,7 @@ public class MouseLook : MonoBehaviour
                 {
                     interactable = hit.collider.GetComponent<Interactable>();
                 }
-                uiController.interactText.text = interactable.interactText;
+                //uiController.interactText.text = interactable.interactText;
                 if (Input.GetButtonDown("Interact"))
                 {
                     interactable.onInteract.Invoke();
@@ -96,7 +101,7 @@ public class MouseLook : MonoBehaviour
                 {
                     doorController = hit.collider.GetComponent<DoorController>();
                 }
-                uiController.interactText.text = doorController.interactText;
+                //uiController.interactText.text = doorController.interactText;
                 if (Input.GetButtonDown("Interact"))
                 {
                     doorController.onInteract.Invoke();
@@ -107,7 +112,9 @@ public class MouseLook : MonoBehaviour
         {
             //makes the crosshair invisible
             crosshair.color = new Color(crosshair.color.r, crosshair.color.g, crosshair.color.b, 0.15f);
-            uiController.interactText.text = "";
+            crosshair.sprite = defaultCrosshair;
+            crosshair.transform.localScale = new Vector3(1, 1, 1);
+            //uiController.interactText.text = "";
         }
     }
 }
