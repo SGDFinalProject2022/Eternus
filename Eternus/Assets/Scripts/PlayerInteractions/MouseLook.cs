@@ -16,6 +16,7 @@ public class MouseLook : MonoBehaviour
     [SerializeField] Image crosshair;
     [SerializeField] Sprite defaultCrosshair;
     [SerializeField] Sprite interactCrosshair;
+    [HideInInspector] public bool isInCutscene = false;
 
     UI uiController;
 
@@ -37,7 +38,7 @@ public class MouseLook : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (uiController.isPaused || playerMovement.isDead) { return; }
+        if (uiController.isPaused || playerMovement.isDead || isInCutscene) { return; }
         //mouse movement
         float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
         float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime;
@@ -63,9 +64,27 @@ public class MouseLook : MonoBehaviour
         PlayerInteractions();
     }
 
-    private void FixedUpdate()
+    public void StartIntroCutscene()
     {
-        
+        Debug.Log("Intro cutscene starting");
+        isInCutscene = true;
+        transform.parent.rotation =
+            new Quaternion(transform.parent.rotation.x, -transform.parent.rotation.y,
+            transform.parent.rotation.z, transform.parent.rotation.w);
+        Animator camHoldAnimator = GetComponent<Animator>();
+        camHoldAnimator.enabled = true;
+        camHoldAnimator.SetBool("isIntro", true);
+        crosshair.color = new Color(crosshair.color.r, crosshair.color.g, crosshair.color.b, 0f);
+    }
+    public void StopIntroCutscene()
+    {
+        Animator camHoldAnimator = GetComponent<Animator>();
+        camHoldAnimator.SetBool("isIntro", false);
+        camHoldAnimator.enabled = false;
+        transform.rotation =
+            new Quaternion(transform.parent.rotation.x, -transform.parent.rotation.y,
+            transform.parent.rotation.z, transform.parent.rotation.w);
+        isInCutscene = false;
     }
 
     void PlayerInteractions()
