@@ -9,7 +9,7 @@ using UnityEngine.UI;
 public class MouseLook : MonoBehaviour
 {
     [Header("Player Parameters")]
-    [SerializeField] float mouseSensitivity = 500f;
+    [Range(50f, 500f)] public float mouseSensitivity = 500f;
     [SerializeField] Transform playerBody;
     [Header("Interactions")]
     [SerializeField] LayerMask interactableLayerMask;
