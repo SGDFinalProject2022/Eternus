@@ -1,11 +1,11 @@
 fileFormatVersion: 2
-guid: 2383ce031c692ec4cade2d344611dd2c
+guid: 6ba5bc539564e10439b88608acf3eb4e
 ModelImporter:
   serializedVersion: 21202
   internalIDToNameTable:
   - first:
-      74: -3338121226502104584
-    second: ElevatorDoor
+      74: 913663979862799920
+    second: ElevatorAnim
   externalObjects: {}
   materials:
     materialImportMode: 2
