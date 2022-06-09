@@ -32,6 +32,7 @@ public class SettingsMenu : MonoBehaviour
         LoadSettings();
         /*AudioManager[] audioManagers = FindObjectsOfType<AudioManager>();
         audioMen = audioManagers;*/
+        gameObject.SetActive(false);
     }
 
     public void OnOverallVolumeChange()
@@ -57,6 +58,7 @@ public class SettingsMenu : MonoBehaviour
     }
     public void OnMusicVolumeChange()
     {
+        audioMen = FindObjectsOfType<AudioManager>();
         foreach (AudioManager audioMan in audioMen)
         {
             audioMan.ChangeVolumeOfType(soundType.music, musicVolumeSlider.value);
@@ -116,6 +118,22 @@ public class SettingsMenu : MonoBehaviour
         {
             mouseLook.mouseSensitivity = Mathf.Lerp(50f, 500f, PlayerPrefs.GetFloat("MouseSensitivity"));
         }
+        //Fullscreen Toggle
+        switch (PlayerPrefs.GetInt("Fullscreen"))
+        {
+            case 0:
+                Screen.fullScreen = false;
+                Debug.Log("fullscreen off");
+                fullscreenText.text = "X";
+                isFullscreen = false; break;
+            case 1: 
+                Screen.fullScreen = true;
+                Debug.Log("fullscreen on");
+                fullscreenText.text = checkmark;
+                isFullscreen = true; break;
+            default: Debug.LogError("PlayerPrefs ''Fullscreen'' is nonbinary"); break;
+        }
+        //do something similar with content toggle
     }
     void SaveSettings()
     {
