@@ -8,6 +8,7 @@ using UnityEngine.Events;
 public class DoorController : MonoBehaviour
 {
     public UnityEvent onInteract;
+    public UnityEvent onUnlock;
     public int ID;
     public string interactText;
     public bool isUnlocked = true;
@@ -16,6 +17,7 @@ public class DoorController : MonoBehaviour
     [SerializeField] AudioClip[] jiggleSFX;
     [SerializeField] AudioClip[] squeakSFX;
     [SerializeField] Animator doorAnimator;
+    [SerializeField] bool final = false;
     public bool isOpen = false;
     UI uI;
 
@@ -36,7 +38,7 @@ public class DoorController : MonoBehaviour
 
     bool wasPreviouslyLocked;
     public void CheckHasKey()
-    {
+    {       
         AudioManager audioMan = GetComponent<AudioManager>();
         if (isUnlocked) //UNLOCKED
         {
@@ -45,15 +47,23 @@ public class DoorController : MonoBehaviour
                 FindObjectOfType<UI>().ShowObjective("Unlocked"); 
                 uI.HideItem();
                 wasPreviouslyLocked = false;
+                onUnlock.Invoke();
             }
 
             if (!isOpen)
             {
-                doorAnimator.SetBool("isOpen", true);
-                audioMan.Play("Open");
-                audioMan.PlayOneShot("Squeak", squeakSFX[Random.Range(0, jiggleSFX.Length - 1)]);
-                if(onlyOpenOnce) { gameObject.layer = 0; }
-                isOpen = true;
+                if (final)
+                {
+                    GlobalData.instance.LoadScene("final_cutscene");
+                }
+                else
+                {
+                    doorAnimator.SetBool("isOpen", true);
+                    audioMan.Play("Open");
+                    audioMan.PlayOneShot("Squeak", squeakSFX[Random.Range(0, jiggleSFX.Length - 1)]);
+                    if (onlyOpenOnce) { gameObject.layer = 0; }
+                    isOpen = true;
+                }                
             }
             else
             {
@@ -66,7 +76,7 @@ public class DoorController : MonoBehaviour
         {
             audioMan.PlayForceEntirely("Locked", jiggleSFX[Random.Range(0, jiggleSFX.Length - 1)]);
             if (canBeUnlocked) 
-            { interactText = "locked. find a key"; uI.HideItem(); }            
+            { interactText = "Locked. Find a key"; uI.HideItem(); }            
         }
     }
 
@@ -95,14 +105,20 @@ public class DoorController : MonoBehaviour
     public void UnlockDoor()
     {
         isUnlocked = true;
-        interactText = "open";
+        interactText = "Interact";
     }
 
     public void LockDoor()
     {
         isUnlocked = false;
-        if (canBeUnlocked) { interactText = "locked. find a key"; }
-        else { interactText = "locked"; }
-        
+        if (canBeUnlocked) { interactText = "Locked. Find a key"; }
+        else { interactText = "Locked"; }
+        isOpen = false;
+        doorAnimator.SetBool("isOpen", false);
+    }
+
+    public void TriggerCutscene()
+    {
+        CutsceneTrigger.instance.Play();
     }
 }

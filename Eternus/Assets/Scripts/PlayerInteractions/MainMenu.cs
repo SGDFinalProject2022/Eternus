@@ -20,6 +20,7 @@ public class MainMenu : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Cursor.lockState = CursorLockMode.None;
         if (SaveLoad.Load() != null)
         {
             continueButton.interactable = true;

@@ -30,7 +30,7 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("Water")]
     [SerializeField] float waterSpeed = 3f;
-    bool isInWater;
+    [HideInInspector] public bool isInWater;
 
     [Header("Ground Check")]
     [SerializeField] Transform groundCheck;

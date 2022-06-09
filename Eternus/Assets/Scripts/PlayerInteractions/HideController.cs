@@ -8,13 +8,13 @@ public class HideController : MonoBehaviour
     [SerializeField] Transform exitLocation;
     [SerializeField] GameObject enterTrigger;
     [SerializeField] GameObject exitTrigger;
-    GameObject playerController;
+    [SerializeField] GameObject playerController;
     AudioManager audioMan;
 
     // Start is called before the first frame update
     void Start()
     {
-        playerController = GameObject.FindGameObjectWithTag("Player");
+        //playerController = GameObject.FindGameObjectWithTag("Player");
         audioMan = GetComponent<AudioManager>();
         enterTrigger.SetActive(true);
         exitTrigger.SetActive(false);
