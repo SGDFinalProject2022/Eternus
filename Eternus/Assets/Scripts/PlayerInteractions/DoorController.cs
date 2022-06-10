@@ -10,7 +10,7 @@ public class DoorController : MonoBehaviour
     public UnityEvent onInteract;
     public UnityEvent onUnlock;
     public int ID;
-    public string interactText;
+    //public string interactText;
     public bool isUnlocked = true;
     public bool canBeUnlocked = true;
     [SerializeField] bool onlyOpenOnce = false;
@@ -75,8 +75,7 @@ public class DoorController : MonoBehaviour
         else //LOCKED
         {
             audioMan.PlayForceEntirely("Locked", jiggleSFX[Random.Range(0, jiggleSFX.Length - 1)]);
-            if (canBeUnlocked) 
-            { interactText = "Locked. Find a key"; uI.HideItem(); }            
+            if (canBeUnlocked) { uI.HideItem(); }
         }
     }
 
@@ -105,14 +104,14 @@ public class DoorController : MonoBehaviour
     public void UnlockDoor()
     {
         isUnlocked = true;
-        interactText = "Interact";
+        //interactText = "Interact";
     }
 
     public void LockDoor()
     {
         isUnlocked = false;
-        if (canBeUnlocked) { interactText = "Locked. Find a key"; }
-        else { interactText = "Locked"; }
+        /*if (canBeUnlocked) { interactText = "Locked. Find a key"; }
+        else { interactText = "Locked"; }*/
         isOpen = false;
         doorAnimator.SetBool("isOpen", false);
     }
