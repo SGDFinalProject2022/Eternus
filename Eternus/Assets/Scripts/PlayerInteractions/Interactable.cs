@@ -9,7 +9,7 @@ public class Interactable : MonoBehaviour
 {
     public UnityEvent onInteract;
     public int ID;
-    public string interactText;
+    //public string interactText;
 
     // Start is called before the first frame update
     void Start()
