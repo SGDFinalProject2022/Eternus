@@ -33,7 +33,8 @@ Transform:
   m_LocalPosition: {x: -1.5199995, y: -3.438376, z: -0.059000015}
   m_LocalScale: {x: 2.4999998, y: 2.5000002, z: 2.4999998}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 123558861975975139}
   m_Father: {fileID: 2472477723098537491}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -131,10 +132,10 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   ID: 0
-  interactText: interact
   isUnlocked: 1
   canBeUnlocked: 1
   onlyOpenOnce: 0
+  handleAudioMan: {fileID: 2838796207870763557}
   jiggleSFX:
   - {fileID: 8300000, guid: 02a515af8177cca4f9f5aa7c327e0a7c, type: 3}
   - {fileID: 8300000, guid: 2450e8188085bcf449da76aeb65de65e, type: 3}
@@ -161,32 +162,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mixerGroup: {fileID: 0}
   sounds:
-  - name: Locked
-    type: 0
-    clip: {fileID: 8300000, guid: 02a515af8177cca4f9f5aa7c327e0a7c, type: 3}
-    volume: 0.25
-    volumeVariance: 0.1
-    originalVolume: 0
-    pitch: 1
-    pitchVariance: 0.12
-    spatialBlend: 1
-    loop: 0
-    playOnAwake: 0
-    mixerGroup: {fileID: 0}
-    source: {fileID: 0}
-  - name: Open
-    type: 0
-    clip: {fileID: 8300000, guid: 1eeea9a45924dab41885fe9e67c1b5cc, type: 3}
-    volume: 0.3
-    volumeVariance: 0.1
-    originalVolume: 0
-    pitch: 1
-    pitchVariance: 0.12
-    spatialBlend: 1
-    loop: 0
-    playOnAwake: 0
-    mixerGroup: {fileID: 0}
-    source: {fileID: 0}
   - name: Squeak
     type: 0
     clip: {fileID: 8300000, guid: 144ba7628383add4ebefac0dc664abf1, type: 3}
@@ -196,19 +171,6 @@ MonoBehaviour:
     pitch: 1
     pitchVariance: 0.12
     spatialBlend: 1
-    loop: 0
-    playOnAwake: 0
-    mixerGroup: {fileID: 0}
-    source: {fileID: 0}
-  - name: Close
-    type: 0
-    clip: {fileID: 8300000, guid: 52cd79d4403dd1a49b1bd8052229b512, type: 3}
-    volume: 0.3
-    volumeVariance: 0.1
-    originalVolume: 0
-    pitch: 1
-    pitchVariance: 0.12
-    spatialBlend: 0.95
     loop: 0
     playOnAwake: 0
     mixerGroup: {fileID: 0}
@@ -266,6 +228,91 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &5748627210752512817
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 123558861975975139}
+  - component: {fileID: 2838796207870763557}
+  m_Layer: 7
+  m_Name: Handle SFX
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &123558861975975139
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5748627210752512817}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.109, y: 1.048, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2472477722383951819}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2838796207870763557
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5748627210752512817}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c583a1393bd16674d9372aa50af36600, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mixerGroup: {fileID: 0}
+  sounds:
+  - name: Locked
+    type: 0
+    clip: {fileID: 8300000, guid: 02a515af8177cca4f9f5aa7c327e0a7c, type: 3}
+    volume: 0.25
+    volumeVariance: 0.1
+    originalVolume: 0
+    pitch: 1
+    pitchVariance: 0.12
+    spatialBlend: 1
+    loop: 0
+    playOnAwake: 0
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+  - name: Open
+    type: 0
+    clip: {fileID: 8300000, guid: 1eeea9a45924dab41885fe9e67c1b5cc, type: 3}
+    volume: 0.3
+    volumeVariance: 0.1
+    originalVolume: 0
+    pitch: 1
+    pitchVariance: 0.12
+    spatialBlend: 1
+    loop: 0
+    playOnAwake: 0
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+  - name: Close
+    type: 0
+    clip: {fileID: 8300000, guid: 52cd79d4403dd1a49b1bd8052229b512, type: 3}
+    volume: 0.3
+    volumeVariance: 0.1
+    originalVolume: 0
+    pitch: 1
+    pitchVariance: 0.12
+    spatialBlend: 0.95
+    loop: 0
+    playOnAwake: 0
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
 --- !u!1 &7426334429393374203
 GameObject:
   m_ObjectHideFlags: 0
