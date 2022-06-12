@@ -42,6 +42,8 @@ public class EnemyAI : MonoBehaviour
     PlayerMovement playerMov;
     [SerializeField] HealthController healthController;
 
+    AudioManager audioMan;
+
     void Awake()
     {
         ai = GetComponent<NavMeshAgent>();
@@ -55,6 +57,8 @@ public class EnemyAI : MonoBehaviour
         
         playerMov = player.gameObject.GetComponent<PlayerMovement>();
         ai.speed = normalSpeed;
+
+        audioMan = GetComponent<AudioManager>();
     }
 
     protected void Update()
@@ -168,11 +172,14 @@ public class EnemyAI : MonoBehaviour
     }
 
     IEnumerator BeginChase()
-    {
+    {        
         ai.speed = 0;
         Animate("Transition");
+        audioMan.Stop("Idle");
+        audioMan.Play("Stop");
         yield return new WaitForSeconds(yieldTime);
         Animate("Fast");
+        audioMan.Play("Fast");
         ai.speed = aggroSpeed;
     }
 
@@ -361,6 +368,8 @@ public class EnemyAI : MonoBehaviour
                 break;
             }
         }
+        audioMan.Stop("Fast");
+        audioMan.Play("Idle");
         Animate("Slow");
         print("lost aggro");
         idle = false;
