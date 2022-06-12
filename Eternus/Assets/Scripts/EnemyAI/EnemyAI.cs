@@ -88,8 +88,11 @@ public class EnemyAI : MonoBehaviour
             transform.LookAt(lookAtPos);
         }
 
-        audioMan.sounds[0].source.pitch = Mathf.Lerp(0, 1, ai.velocity.magnitude);
-        audioMan.sounds[2].source.pitch = Mathf.Lerp(0, 1, ai.velocity.magnitude);
+        if(audioMan != null)
+        {
+            audioMan.sounds[0].source.pitch = Mathf.Lerp(0, 1, ai.velocity.magnitude);
+            audioMan.sounds[2].source.pitch = Mathf.Lerp(0, 1, ai.velocity.magnitude);
+        }        
     }
 
     void Animate(string animation)
