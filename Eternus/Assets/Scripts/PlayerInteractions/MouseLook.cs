@@ -68,6 +68,7 @@ public class MouseLook : MonoBehaviour
     {
         Debug.Log("Intro cutscene starting");
         isInCutscene = true;
+        playerMovement.isHiding = true;
         transform.parent.rotation =
             new Quaternion(transform.parent.rotation.x, -transform.parent.rotation.y,
             transform.parent.rotation.z, transform.parent.rotation.w);
@@ -84,6 +85,7 @@ public class MouseLook : MonoBehaviour
         transform.rotation =
             new Quaternion(transform.parent.rotation.x, -transform.parent.rotation.y,
             transform.parent.rotation.z, transform.parent.rotation.w);
+        playerMovement.isHiding = false;
         isInCutscene = false;
     }
 

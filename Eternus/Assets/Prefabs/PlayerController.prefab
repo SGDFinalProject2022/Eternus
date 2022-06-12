@@ -4580,6 +4580,7 @@ MonoBehaviour:
   crosshair: {fileID: 834399713}
   defaultCrosshair: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
   interactCrosshair: {fileID: 21300000, guid: 2b736c3bc11c9d649a3f454264b1e888, type: 3}
+  isInCutscene: 0
 --- !u!114 &8457383100502241946
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4876,6 +4877,7 @@ MonoBehaviour:
   crosshair: {fileID: 834399713}
   defaultCrosshair: {fileID: 0}
   interactCrosshair: {fileID: 0}
+  isInCutscene: 0
 --- !u!114 &509055033
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4997,11 +4999,12 @@ MonoBehaviour:
   normalHeadBobFrequency: 10
   sprintHeadBobFrequency: 15
   footStepSFX:
-  - {fileID: 8300000, guid: 06ba936d2dc6f9b44865a88d8b19cb54, type: 3}
-  - {fileID: 8300000, guid: 20fff088803ea2b449d4986ba7aacb70, type: 3}
-  - {fileID: 8300000, guid: c4b0ea90d4a8950448e247c8b9dcdcfd, type: 3}
-  - {fileID: 8300000, guid: ac8de9236f286604bb8aa20e619d1bde, type: 3}
-  - {fileID: 8300000, guid: f96f398c2715cab49897f40991a3f472, type: 3}
+  - {fileID: 8300000, guid: ee4608e643b692a42900230d0ad58e47, type: 3}
+  - {fileID: 8300000, guid: 21e52363f9e2fdb41bbf73ff8ea8a87b, type: 3}
+  - {fileID: 8300000, guid: 1434fc9a992b7524ba104616645f1e9a, type: 3}
+  - {fileID: 8300000, guid: c3af671a393e44a4a99c3a5bd2672e0e, type: 3}
+  - {fileID: 8300000, guid: 740f92ad59044f741ab4435bcedc32c2, type: 3}
+  - {fileID: 8300000, guid: c7872c7d5cb991542af453eb5f87964e, type: 3}
   waterStepSFX:
   - {fileID: 8300000, guid: f48bc8efdd5c6974e85dc3f8a643ba7c, type: 3}
   - {fileID: 8300000, guid: 3fae257238e8fa643a2a51c9d207ab36, type: 3}

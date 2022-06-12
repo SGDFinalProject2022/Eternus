@@ -14,6 +14,7 @@ public class DoorController : MonoBehaviour
     public bool isUnlocked = true;
     public bool canBeUnlocked = true;
     [SerializeField] bool onlyOpenOnce = false;
+    [SerializeField] AudioManager handleAudioMan;
     [SerializeField] AudioClip[] jiggleSFX;
     [SerializeField] AudioClip[] squeakSFX;
     [SerializeField] Animator doorAnimator;
@@ -59,7 +60,7 @@ public class DoorController : MonoBehaviour
                 else
                 {
                     Animate(true);
-                    audioMan.Play("Open");
+                    handleAudioMan.Play("Open");
                     audioMan.PlayOneShot("Squeak", squeakSFX[Random.Range(0, jiggleSFX.Length - 1)]);
                     if (onlyOpenOnce) { gameObject.layer = 0; }
                     isOpen = true;
@@ -74,7 +75,7 @@ public class DoorController : MonoBehaviour
         }
         else //LOCKED
         {
-            audioMan.PlayForceEntirely("Locked", jiggleSFX[Random.Range(0, jiggleSFX.Length - 1)]);
+            handleAudioMan.PlayForceEntirely("Locked", jiggleSFX[Random.Range(0, jiggleSFX.Length - 1)]);
             if (canBeUnlocked) { uI.HideItem(); }
         }
     }
@@ -87,7 +88,7 @@ public class DoorController : MonoBehaviour
         if (!isOpen)
         {
             Animate(true);
-            audioMan.Play("Open");
+            handleAudioMan.Play("Open");
             audioMan.PlayOneShot("Squeak", squeakSFX[Random.Range(0, jiggleSFX.Length - 1)]);
             if (onlyOpenOnce) { gameObject.layer = 0; }
             isOpen = true;
@@ -127,5 +128,10 @@ public class DoorController : MonoBehaviour
         {
             doorAnimator.SetBool("isOpen", open);
         }
+    }
+
+    public void CloseDoorSFX()
+    {
+        handleAudioMan.PlayForceEntirely("Close");
     }
 }
