@@ -3348,7 +3348,7 @@ MonoBehaviour:
   - name: Idle
     type: 0
     clip: {fileID: 8300000, guid: f66affc3762bd144fabe2e9852169eaa, type: 3}
-    volume: 0.25
+    volume: 0.5
     volumeVariance: 0
     originalVolume: 0
     pitch: 1
@@ -3374,12 +3374,12 @@ MonoBehaviour:
   - name: Fast
     type: 0
     clip: {fileID: 8300000, guid: 7c44cb5bfd7712c4f85ddd3886550829, type: 3}
-    volume: 0.7
+    volume: 1
     volumeVariance: 0
     originalVolume: 0
     pitch: 1
     pitchVariance: 0
-    spatialBlend: 1
+    spatialBlend: 0.8
     loop: 1
     playOnAwake: 0
     mixerGroup: {fileID: 0}
