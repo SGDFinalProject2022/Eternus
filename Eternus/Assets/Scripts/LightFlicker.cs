@@ -6,7 +6,8 @@ public class LightFlicker : MonoBehaviour
 {
     [SerializeField] Light[] lights;
     [SerializeField] AudioSource buzzSFX;
-    [SerializeField] float maxDelay = 0.2f;
+    [SerializeField] float onMaxDuration = 1f;
+    [SerializeField] float offMaxDuration = 0.2f;
     bool isFlickering = false;
     float timeDelay;
 
@@ -29,11 +30,11 @@ public class LightFlicker : MonoBehaviour
         isFlickering = true;
         foreach (Light light in lights) { light.enabled = false; }     
         buzzSFX.volume = 0f;
-        timeDelay = Random.Range(0.01f, maxDelay);
+        timeDelay = Random.Range(0.01f, offMaxDuration);
         yield return new WaitForSeconds(timeDelay);
         foreach (Light light in lights) { light.enabled = true; }
         buzzSFX.volume = 1f;
-        timeDelay = Random.Range(0.01f, maxDelay);
+        timeDelay = Random.Range(0.01f, onMaxDuration);
         yield return new WaitForSeconds(timeDelay);
         isFlickering = false;
     }
