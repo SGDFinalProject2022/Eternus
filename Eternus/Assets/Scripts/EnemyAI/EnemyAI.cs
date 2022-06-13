@@ -43,6 +43,7 @@ public class EnemyAI : MonoBehaviour
     [SerializeField] HealthController healthController;
 
     AudioManager audioMan;
+    bool isChasing = false;
 
     void Awake()
     {
@@ -193,7 +194,8 @@ public class EnemyAI : MonoBehaviour
     }
 
     IEnumerator BeginChase()
-    {        
+    {
+        isChasing = true;
         ai.speed = 0;
         Animate("Transition");
         StopAudio("Idle");
@@ -209,7 +211,10 @@ public class EnemyAI : MonoBehaviour
     {
         isSoundAggrod = true;
         ai.destination = sound.position;
-        StartCoroutine("BeginChase");
+        if(!isChasing)
+        {
+            StartCoroutine("BeginChase");
+        }        
     }
 
     //Enemy arrives at sound aggro location
@@ -285,7 +290,10 @@ public class EnemyAI : MonoBehaviour
                 {
                     playerInSight = true;
                     isAggrod = true;
-                    StartCoroutine("BeginChase");
+                    if (!isChasing)
+                    {
+                        StartCoroutine("BeginChase");
+                    }
                 }
             }
             else
@@ -294,7 +302,10 @@ public class EnemyAI : MonoBehaviour
                 {
                     playerInSight = true;
                     isAggrod = true;
-                    StartCoroutine("BeginChase");
+                    if (!isChasing)
+                    {
+                        StartCoroutine("BeginChase");
+                    }
                 }
             }
         }
@@ -395,5 +406,6 @@ public class EnemyAI : MonoBehaviour
         print("lost aggro");
         idle = false;
         ai.speed = normalSpeed;
+        isChasing = false;
     }
 }
