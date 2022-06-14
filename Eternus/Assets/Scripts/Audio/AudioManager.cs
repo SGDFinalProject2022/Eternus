@@ -18,8 +18,9 @@ public class AudioManager : MonoBehaviour
 	{
 		foreach (Sound s in sounds)
 		{
-			s.source = gameObject.AddComponent<AudioSource>();
-			s.source.clip = s.clip;
+            if (s.customAudioSource == null) { s.source = gameObject.AddComponent<AudioSource>(); }
+            else { s.source = s.customAudioSource; }
+            s.source.clip = s.clip;
 			s.source.loop = s.loop;
 			s.source.playOnAwake = s.playOnAwake;
 			s.source.spatialBlend = s.spatialBlend;
@@ -237,7 +238,7 @@ public class AudioManager : MonoBehaviour
 		s.source.pitch = s.pitch * (1f + UnityEngine.Random.Range(-s.pitchVariance / 2f, s.pitchVariance / 2f));
 		s.source.PlayOneShot(clip);
 
-		yield return new WaitForSeconds(s.clip.length);
+        yield return new WaitForSeconds(clip.length);
 		isPlaying = false;
 	}
 }
