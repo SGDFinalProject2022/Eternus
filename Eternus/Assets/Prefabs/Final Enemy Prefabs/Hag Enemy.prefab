@@ -3315,7 +3315,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6f294cbbdd4acb43a07713f1b018a1d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyName: 
+  enemyName: Hag
   anim: {fileID: 949586508}
   nodeParent: {fileID: 2856946703828012286}
   randomPath: 0
