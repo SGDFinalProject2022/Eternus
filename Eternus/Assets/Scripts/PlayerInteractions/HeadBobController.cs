@@ -8,26 +8,21 @@ public class HeadBobController : MonoBehaviour
 {
     public bool enableHeadbob = true;
     public float amplitude = 0.0005f;
-    [SerializeField, Range(0, 30f)] public float frequency = 10f;
+    [Range(0, 30f)] public float frequency = 10f;
 
     [SerializeField] Transform playerCamera;
     [SerializeField] Transform cameraHolder;
 
     Vector3 startPos;
-    CharacterController controller;
+    PlayerMovement playerMovement;
 
     private void Awake()
     {
-        controller = GetComponent<CharacterController>();
         startPos = playerCamera.localPosition;
+        playerMovement = GetComponent<PlayerMovement>();
     }
 
-    void PlayMotion(Vector3 motion)
-    {
-        playerCamera.localPosition += motion;
-    }
-
-    Vector3 FootStepMotion()
+    private Vector3 GetFootStepMotion()
     {
         Vector3 pos = Vector3.zero;
         pos.y = Mathf.Sin(Time.time * frequency) * amplitude;
@@ -52,7 +47,9 @@ public class HeadBobController : MonoBehaviour
     void Update()
     {
         if (!enableHeadbob) { return; }
-        PlayMotion(FootStepMotion());
+        if (playerMovement.speed > 1)
+        { playerCamera.localPosition += GetFootStepMotion(); }
+        
         ResetPosition();
         playerCamera.LookAt(FocusTarget());
     }
