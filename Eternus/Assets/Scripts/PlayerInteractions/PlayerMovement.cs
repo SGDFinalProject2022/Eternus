@@ -14,6 +14,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float gravity = -9.81f;
     [SerializeField] float jumpHeight = 1f;    
     Vector3 velocity;
+    [HideInInspector] public float speed;
+    Vector3 lastPos;
     bool isOnGround;
     bool isJumping;
     public bool isDead = false;
@@ -107,6 +109,9 @@ public class PlayerMovement : MonoBehaviour
         MovementHandler(x, y, z);
         GravityHandler();
         FootstepSoundHandler(x, z);
+
+        speed = Vector3.Distance(lastPos, transform.position) / Time.deltaTime;
+        lastPos = transform.position;
     }
 
     /// <summary>

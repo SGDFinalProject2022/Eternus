@@ -43,6 +43,7 @@ public class EnemyAI : MonoBehaviour
     [SerializeField] HealthController healthController;
 
     AudioManager audioMan;
+    AIFootsteps aiFootsteps;
     bool isChasing = false;
 
     void Awake()
@@ -60,6 +61,7 @@ public class EnemyAI : MonoBehaviour
         ai.speed = normalSpeed;
 
         audioMan = GetComponent<AudioManager>();
+        aiFootsteps = GetComponent<AIFootsteps>();
     }
 
     protected void Update()
@@ -89,11 +91,14 @@ public class EnemyAI : MonoBehaviour
             transform.LookAt(lookAtPos);
         }
 
-        if(audioMan != null)
+        if(audioMan != null && enemyName == "Hag")
         {
             audioMan.sounds[0].source.pitch = Mathf.Lerp(0, 1, ai.velocity.magnitude);
             audioMan.sounds[2].source.pitch = Mathf.Lerp(0, 1, ai.velocity.magnitude);
         }
+
+        if(aiFootsteps != null) 
+        { aiFootsteps.velocity = ai.velocity.magnitude; aiFootsteps.isAggrod = isAggrod; }        
     }
 
     void Animate(string animation)

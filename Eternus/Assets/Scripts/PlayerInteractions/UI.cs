@@ -28,6 +28,10 @@ public class UI : MonoBehaviour
     [SerializeField] Text tutorialText;
     
     bool isObjectiveRunning = false;
+    [HideInInspector] public bool panelIsOpen;
+    [Header("Other")]
+    public PlayerMovement move;
+    public MouseLook look;
 
     // Start is called before the first frame update
     void Start()
@@ -43,23 +47,26 @@ public class UI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetButtonDown("Pause"))
+        if (!panelIsOpen)
         {
-            if(!isPaused)
+            if (Input.GetButtonDown("Pause"))
             {
-                headBobController.enableHeadbob = false;
-                Cursor.lockState = CursorLockMode.None;
-                pauseMenuPanel.SetActive(true);
-                Time.timeScale = 0.001f;
-                isPaused = true;
-            }
-            else
-            {               
-                Cursor.lockState = CursorLockMode.Locked;
-                pauseMenuPanel.SetActive(false);
-                Time.timeScale = 1;
-                headBobController.enableHeadbob = true;
-                isPaused = false;
+                if (!isPaused)
+                {
+                    headBobController.enableHeadbob = false;
+                    Cursor.lockState = CursorLockMode.None;
+                    pauseMenuPanel.SetActive(true);
+                    Time.timeScale = 0.001f;
+                    isPaused = true;
+                }
+                else if (isPaused)
+                {
+                    Cursor.lockState = CursorLockMode.Locked;
+                    pauseMenuPanel.SetActive(false);
+                    Time.timeScale = 1;
+                    headBobController.enableHeadbob = true;
+                    isPaused = false;
+                }
             }
         }
 
