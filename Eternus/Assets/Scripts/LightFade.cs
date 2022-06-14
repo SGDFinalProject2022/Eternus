@@ -14,11 +14,12 @@ public class LightFade : MonoBehaviour
         light = GetComponent<Light>();
         StartCoroutine("Fade");
         lightMax = light.intensity;
+        light.intensity = 0;
     }
 
     IEnumerator Fade()
     {
-        bool fadeOut = true;
+        bool fadeOut = false;
         while (true)
         {
             while (fadeOut)
