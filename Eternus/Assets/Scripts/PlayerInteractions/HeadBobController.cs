@@ -25,8 +25,8 @@ public class HeadBobController : MonoBehaviour
     private Vector3 GetFootStepMotion()
     {
         Vector3 pos = Vector3.zero;
-        pos.y = Mathf.Sin(Time.time * frequency) * amplitude;
-        pos.x = Mathf.Cos(Time.time * frequency) * amplitude * 2;
+        pos.y = Mathf.Sin(Time.time * frequency) * amplitude * Mathf.Lerp(0, 1, playerMovement.speed);
+        pos.x = Mathf.Cos(Time.time * frequency) * amplitude * 2 * Mathf.Lerp(0, 1, playerMovement.speed);
         return pos;
     }
 
@@ -47,9 +47,7 @@ public class HeadBobController : MonoBehaviour
     void Update()
     {
         if (!enableHeadbob) { return; }
-        if (playerMovement.speed > 1)
-        { playerCamera.localPosition += GetFootStepMotion(); }
-        
+        playerCamera.localPosition += GetFootStepMotion();
         ResetPosition();
         playerCamera.LookAt(FocusTarget());
     }
