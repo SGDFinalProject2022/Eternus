@@ -24,6 +24,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float crouchHeight = 1f; //base is 3.8
     [SerializeField] float crouchSpeed = 3f;
     [HideInInspector] public bool isCrouching;
+    bool isUnderSomething;
     float originalHeight;
 
     [Header("Sprint")]
@@ -105,12 +106,15 @@ public class PlayerMovement : MonoBehaviour
         float z = Input.GetAxis("Vertical");
 
         //preventing player from getting stuck when under objects while crouching
-        if (Physics.Raycast(transform.position, Vector3.up, out RaycastHit headHit, originalHeight / 1.5f))
+        if (Physics.Raycast(transform.position, Vector3.up, out RaycastHit headHit, originalHeight / 1.5f)
+            && isCrouching)
         {
             //Debug.DrawRay(transform.position, Vector3.up * originalHeight / 1.5f, Color.red);
             //print("Player is under something");
             y = 1f;
+            isUnderSomething = true;
         }
+        else { isUnderSomething = false; }
 
         JumpLandHandler();
         CrouchHandler(y);     
@@ -192,7 +196,7 @@ public class PlayerMovement : MonoBehaviour
             audioMan.Play("Crouch");
             audioMan.Play("Crouch Walk");
         }
-        if (Input.GetButtonUp("Crouch") && y > 0.5f)
+        if (Input.GetButtonUp("Crouch") && y > 0.5f && !isUnderSomething)
         {
             audioMan.Play("Stand");
             audioMan.Stop("Crouch Walk");
