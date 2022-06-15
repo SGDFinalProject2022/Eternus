@@ -104,6 +104,14 @@ public class PlayerMovement : MonoBehaviour
         float y = Input.GetAxis("Crouch");
         float z = Input.GetAxis("Vertical");
 
+        //preventing player from getting stuck when under objects while crouching
+        if (Physics.Raycast(transform.position, Vector3.up, out RaycastHit headHit, originalHeight / 1.5f))
+        {
+            //Debug.DrawRay(transform.position, Vector3.up * originalHeight / 1.5f, Color.red);
+            //print("Player is under something");
+            y = 1f;
+        }
+
         JumpLandHandler();
         CrouchHandler(y);     
         MovementHandler(x, y, z);
@@ -147,7 +155,7 @@ public class PlayerMovement : MonoBehaviour
     void CrouchHandler(float y)
     {
         //preventing crouch jumping
-        if (!isOnGround && !isCrouching) 
+        if (!isOnGround && !isCrouching)
         {
             controller.height = originalHeight;
             groundCheck.localPosition = new Vector3(0, -1.8f, 0);
