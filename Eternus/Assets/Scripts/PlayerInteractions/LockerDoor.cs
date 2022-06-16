@@ -2,65 +2,58 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Events;
 
 public class LockerDoor : MonoBehaviour
 {
-    [SerializeField] GameObject codePanel;
+    [SerializeField] string lockerText;
     [SerializeField] Text code;
     [SerializeField] int codeLength = 4;
+    [SerializeField] Text codePaperText;
+    [SerializeField] List<GameObject> panels = new List<GameObject>();
+    [SerializeField] UI ui;
+    public UnityEvent onUnlock;
 
     string finalCode;
 
     bool panelIsOpen;
     PlayerMovement mov;
-    UI ui;
 
     void Start()
     {
-        codePanel.SetActive(false);
+        foreach(GameObject obj in panels)
+        {
+            obj.SetActive(false);
+        }
         panelIsOpen = false;
         for(int i = 0; i < codeLength; i++)
         {
             int randomNumber = Random.Range(0, 10);
             finalCode += randomNumber.ToString();
         }
-        print(finalCode);
+        codePaperText.text = lockerText + ": " + finalCode; 
     }
 
     void Update()
     {
-        if(Input.GetKeyDown("escape") && panelIsOpen)
+        if(Input.GetKeyDown("escape"))
         {
-            CloseCodePanel();
-        }
-    }
-    
-    public void OpenCodePanel(UI uiRef)
-    {        
-        if(ui == null)
-        {
-            ui = uiRef;
-        }
-        if(!panelIsOpen)
-        {
-            Cursor.lockState = CursorLockMode.None;
-            ui.panelIsOpen = true;
-            ui.move.enabled = false;
-            ui.look.enabled = false;
-            panelIsOpen = true;
-            codePanel.SetActive(true);
+            ClosePanel();
         }
     }
 
-    public void CloseCodePanel()
+    public void ClosePanel()
     {
         if (panelIsOpen)
         {
             Cursor.lockState = CursorLockMode.Locked;
             panelIsOpen = false;
             ui.move.enabled = true;
-            ui.look.enabled = true;
-            codePanel.SetActive(false);
+            ui.look.enabled = true; 
+            foreach (GameObject obj in panels)
+            {
+                obj.SetActive(false);
+            }
             code.text = "";
             StartCoroutine("AllowPause");
         }
@@ -70,6 +63,19 @@ public class LockerDoor : MonoBehaviour
     {
         yield return new WaitForSeconds(.025f);
         ui.panelIsOpen = false;
+    }
+
+    public void OpenPanel(GameObject panel)
+    {
+        if (!panelIsOpen)
+        {
+            Cursor.lockState = CursorLockMode.None;
+            ui.panelIsOpen = true;
+            ui.move.enabled = false;
+            ui.look.enabled = false;
+            panelIsOpen = true;
+            panel.SetActive(true);
+        }        
     }
 
     public void InputKey(string key)
@@ -97,11 +103,11 @@ public class LockerDoor : MonoBehaviour
     {
         if(code.text == finalCode)
         {
-            print("You got it!");
+            ClosePanel();
+            onUnlock.Invoke();
         }
         else
         {
-            print("That was incorrect...");
             yield return new WaitForSeconds(1f);
             code.text = "";
         }
