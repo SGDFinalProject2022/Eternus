@@ -107,7 +107,7 @@ public class LockerDoor : MonoBehaviour
         {
             ClosePanel();
             onUnlock.Invoke();
-            this.enabled = false;
+            this.gameObject.layer = 0;
         }
         else
         {

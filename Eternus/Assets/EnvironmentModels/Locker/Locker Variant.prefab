@@ -45,7 +45,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2959def0e1208a94aa43d11d954351dd, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 75.76
+      value: 75.76001
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2959def0e1208a94aa43d11d954351dd, type: 3}
       propertyPath: m_LocalPosition.y
@@ -53,7 +53,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2959def0e1208a94aa43d11d954351dd, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 61.04
+      value: 61.039997
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2959def0e1208a94aa43d11d954351dd, type: 3}
       propertyPath: m_LocalRotation.w
@@ -61,15 +61,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2959def0e1208a94aa43d11d954351dd, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2959def0e1208a94aa43d11d954351dd, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2959def0e1208a94aa43d11d954351dd, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2959def0e1208a94aa43d11d954351dd, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -97,7 +97,7 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: e18148cbf5c22814fbb7e6b1938d4c0e, type: 2}
     - target: {fileID: 919132149155446097, guid: 2959def0e1208a94aa43d11d954351dd, type: 3}
       propertyPath: m_Name
-      value: Locker
+      value: Locker Variant
       objectReference: {fileID: 0}
     - target: {fileID: 3855611531174796436, guid: 2959def0e1208a94aa43d11d954351dd, type: 3}
       propertyPath: m_Materials.Array.data[0]
