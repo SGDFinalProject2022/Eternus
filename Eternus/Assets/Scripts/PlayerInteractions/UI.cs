@@ -21,7 +21,7 @@ public class UI : MonoBehaviour
     [Header("Pause")]
     [SerializeField] GameObject pauseMenuPanel;
     [HideInInspector] public bool isPaused;
-    HeadBobController headBobController;
+    [HideInInspector] public HeadBobController headBobController;
     [Header("Tutorial")]
     public GameObject tutorialPanel;
     [SerializeField] Image tutImage;
