@@ -9,11 +9,14 @@ using UnityEngine.UI;
 public class MouseLook : MonoBehaviour
 {
     [Header("Player Parameters")]
-    [SerializeField] float mouseSensitivity = 500f;
+    [Range(50f, 500f)] public float mouseSensitivity = 500f;
     [SerializeField] Transform playerBody;
     [Header("Interactions")]
     [SerializeField] LayerMask interactableLayerMask;
     [SerializeField] Image crosshair;
+    [SerializeField] Sprite defaultCrosshair;
+    [SerializeField] Sprite interactCrosshair;
+    [HideInInspector] public bool isInCutscene = false;
 
     UI uiController;
 
@@ -35,7 +38,7 @@ public class MouseLook : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (uiController.isPaused || playerMovement.isDead) { return; }
+        if (uiController.isPaused || playerMovement.isDead || isInCutscene) { return; }
         //mouse movement
         float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
         float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime;
@@ -61,9 +64,29 @@ public class MouseLook : MonoBehaviour
         PlayerInteractions();
     }
 
-    private void FixedUpdate()
+    public void StartIntroCutscene()
     {
-        
+        Debug.Log("Intro cutscene starting");
+        isInCutscene = true;
+        playerMovement.isHiding = true;
+        transform.parent.rotation =
+            new Quaternion(transform.parent.rotation.x, -transform.parent.rotation.y,
+            transform.parent.rotation.z, transform.parent.rotation.w);
+        Animator camHoldAnimator = GetComponent<Animator>();
+        camHoldAnimator.enabled = true;
+        camHoldAnimator.SetBool("isIntro", true);
+        crosshair.color = new Color(crosshair.color.r, crosshair.color.g, crosshair.color.b, 0f);
+    }
+    public void StopIntroCutscene()
+    {
+        Animator camHoldAnimator = GetComponent<Animator>();
+        camHoldAnimator.SetBool("isIntro", false);
+        camHoldAnimator.enabled = false;
+        transform.rotation =
+            new Quaternion(transform.parent.rotation.x, -transform.parent.rotation.y,
+            transform.parent.rotation.z, transform.parent.rotation.w);
+        playerMovement.isHiding = false;
+        isInCutscene = false;
     }
 
     void PlayerInteractions()
@@ -75,6 +98,9 @@ public class MouseLook : MonoBehaviour
 
             //makes the crosshair visible
             crosshair.color = new Color(crosshair.color.r, crosshair.color.g, crosshair.color.b, 0.5f);
+            crosshair.sprite = interactCrosshair;
+            crosshair.transform.localScale = new Vector3(5, 5, 5);
+
             if (hit.collider.GetComponent<Interactable>()) //interactables
             {
                 //making sure it only calls the selected interactable's event
@@ -82,7 +108,7 @@ public class MouseLook : MonoBehaviour
                 {
                     interactable = hit.collider.GetComponent<Interactable>();
                 }
-                uiController.interactText.text = interactable.interactText;
+                //uiController.interactText.text = interactable.interactText;
                 if (Input.GetButtonDown("Interact"))
                 {
                     interactable.onInteract.Invoke();
@@ -96,7 +122,7 @@ public class MouseLook : MonoBehaviour
                 {
                     doorController = hit.collider.GetComponent<DoorController>();
                 }
-                uiController.interactText.text = doorController.interactText;
+                //uiController.interactText.text = doorController.interactText;
                 if (Input.GetButtonDown("Interact"))
                 {
                     doorController.onInteract.Invoke();
@@ -107,7 +133,9 @@ public class MouseLook : MonoBehaviour
         {
             //makes the crosshair invisible
             crosshair.color = new Color(crosshair.color.r, crosshair.color.g, crosshair.color.b, 0.15f);
-            uiController.interactText.text = "";
+            crosshair.sprite = defaultCrosshair;
+            crosshair.transform.localScale = new Vector3(1, 1, 1);
+            //uiController.interactText.text = "";
         }
     }
 }

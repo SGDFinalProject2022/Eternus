@@ -3254,6 +3254,7 @@ GameObject:
   - component: {fileID: 2856946703335791451}
   - component: {fileID: 2856946703335791449}
   - component: {fileID: 4710051376123386672}
+  - component: {fileID: 4397701184105568517}
   m_Layer: 3
   m_Name: EnemyOBJ
   m_TagString: Enemy
@@ -3314,6 +3315,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6f294cbbdd4acb43a07713f1b018a1d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyName: Hag
   anim: {fileID: 949586508}
   nodeParent: {fileID: 2856946703828012286}
   randomPath: 0
@@ -3327,6 +3329,61 @@ MonoBehaviour:
   crouchRange: {fileID: 7536006493829617}
   attackRange: 4
   attackTime: 3
+  player: {fileID: 0}
+  healthController: {fileID: 0}
+--- !u!114 &4397701184105568517
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2856946703335791428}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c583a1393bd16674d9372aa50af36600, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mixerGroup: {fileID: 0}
+  sounds:
+  - name: Idle
+    type: 0
+    clip: {fileID: 8300000, guid: f66affc3762bd144fabe2e9852169eaa, type: 3}
+    volume: 1
+    volumeVariance: 0
+    originalVolume: 0
+    pitch: 1
+    pitchVariance: 0
+    spatialBlend: 1
+    loop: 1
+    playOnAwake: 1
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+  - name: Stop
+    type: 0
+    clip: {fileID: 0}
+    volume: 0.25
+    volumeVariance: 0
+    originalVolume: 0
+    pitch: 1
+    pitchVariance: 0
+    spatialBlend: 1
+    loop: 0
+    playOnAwake: 0
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+  - name: Fast
+    type: 0
+    clip: {fileID: 8300000, guid: 7c44cb5bfd7712c4f85ddd3886550829, type: 3}
+    volume: 0.75
+    volumeVariance: 0
+    originalVolume: 0
+    pitch: 1
+    pitchVariance: 0
+    spatialBlend: 0.8
+    loop: 1
+    playOnAwake: 0
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
 --- !u!1 &2856946703634404526
 GameObject:
   m_ObjectHideFlags: 0
