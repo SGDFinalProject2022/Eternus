@@ -23,6 +23,7 @@ public class AudioManager : MonoBehaviour
             s.source.clip = s.clip;
 			s.source.loop = s.loop;
 			s.source.playOnAwake = s.playOnAwake;
+            s.source.bypassReverbZones = s.bypassReverbZones;
 			s.source.spatialBlend = s.spatialBlend;
 
 			s.source.outputAudioMixerGroup = mixerGroup;
@@ -140,35 +141,27 @@ public class AudioManager : MonoBehaviour
 			sound.source.volume = newVol;
         }
     }
-	/// <summary>
-	/// Fades sound to destination over time
-	/// </summary>
-	/// <param name="sound"></param>
-	/// <param name="destination"></param>
-	/// <param name="time"></param>
-	public void VolumeFade(string sound, float destination, float time)
+
+    public void VolumeFadeOut(string sound, bool stopSound)
     {
 		Sound s = Array.Find(sounds, item => item.name == sound);
 		if (s == null)
 		{
 			Debug.LogWarning("Sound: " + sound + " not found!");
 			return;
-		}
-		StartCoroutine(VolumeFadeCoroutine(s, destination, time));
-	}
-	IEnumerator VolumeFadeCoroutine(Sound s, float destination, float time)
-	{
-		//float offset = time - s.source.volume;
-		float increment = time / 10;
-		if (destination < s.volume) //if the destination is quieter than source
-        {
-			increment = -increment;
         }
-		for (float vol = s.source.volume; vol >= destination; vol += increment)
+		StartCoroutine(VolumeFadeOutCoroutine(s, stopSound));
+    }
+    IEnumerator VolumeFadeOutCoroutine(Sound s, bool stopSound)
+    {
+		float increment = s.source.volume / 10f;
+
+        for (float vol = s.source.volume; vol >= 0; vol -= increment)
 		{ //fades volume to destination over increment
 			s.source.volume = vol;
-			yield return new WaitForSeconds(time / 10);
-		}		
+			yield return new WaitForSeconds(0.1f);
+		}
+        if (stopSound) { s.source.Stop(); }
 	}
 	/// <summary>
 	/// Replaces the current audio clip with a new one
