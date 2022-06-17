@@ -48,8 +48,26 @@ public class HideController : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    /*void Update()
     {
-        
-    }
+        if (exitTrigger.activeSelf)
+        { //exit trigger is only active if player is hiding inside
+            Collider[] hitColliders = Physics.OverlapSphere(transform.position, 0.5f);
+            for (int i = 0; i < hitColliders.Length; i++)
+            {
+                GameObject hitCollider = hitColliders[i].gameObject;
+                if (hitCollider.CompareTag("Enemy"))
+                {
+                    audioMan.StopAllCoroutines();
+                    audioMan.sounds[3].source.volume = 1f;
+                    audioMan.PlayForceEntirely("Tension");
+                    Debug.Log("Tension should be playing");
+                }
+                else
+                {
+                    audioMan.VolumeFadeOut("Tension", true);
+                }
+            }
+        }
+    }*/
 }
