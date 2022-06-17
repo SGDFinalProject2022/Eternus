@@ -2,6 +2,7 @@ using UnityEngine.Audio;
 using System;
 using System.Collections;
 using UnityEngine;
+using System.Collections.Generic;
 /// <summary>
 /// Manages audio either for a whole scene or just a GameObject, created by Josiah Holcom (with help from Brackys)
 /// </summary>
@@ -13,6 +14,10 @@ public class AudioManager : MonoBehaviour
 	public AudioMixerGroup mixerGroup;
 
 	public Sound[] sounds;
+
+	private List<Coroutine> activeCoroutines = new List<Coroutine>();
+
+	Coroutine forcePlay;
 
 	void Awake()
 	{
@@ -150,7 +155,7 @@ public class AudioManager : MonoBehaviour
 			Debug.LogWarning("Sound: " + sound + " not found!");
 			return;
         }
-		StartCoroutine(VolumeFadeOutCoroutine(s, stopSound));
+		SaveCoroutineToList(StartCoroutine(VolumeFadeOutCoroutine(s, stopSound)));
     }
     IEnumerator VolumeFadeOutCoroutine(Sound s, bool stopSound)
     {
@@ -195,7 +200,7 @@ public class AudioManager : MonoBehaviour
 			Debug.LogWarning("Sound: " + sound + " not found!");
 			return;
 		}
-		StartCoroutine(ForcePlayEntirelyCoroutine(s));
+		SaveCoroutineToList(StartCoroutine(ForcePlayEntirelyCoroutine(s)));
 	}
 	IEnumerator ForcePlayEntirelyCoroutine(Sound s)
     {
@@ -222,7 +227,7 @@ public class AudioManager : MonoBehaviour
 			Debug.LogWarning("Sound: " + sound + " not found!");
 			return;
 		}
-		StartCoroutine(ForcePlayEntirelyCoroutine(s, newAudioClip));
+		SaveCoroutineToList(StartCoroutine(ForcePlayEntirelyCoroutine(s, newAudioClip)));
 	}
 	IEnumerator ForcePlayEntirelyCoroutine(Sound s, AudioClip clip)
 	{
@@ -233,5 +238,35 @@ public class AudioManager : MonoBehaviour
 
         yield return new WaitForSeconds(clip.length);
 		isPlaying = false;
+	}
+	public void ManuallyStopCoroutines()
+    {
+		for(int i = 0; i < activeCoroutines.Count; i++)
+        {
+			if(activeCoroutines[i] != null)
+            {
+				StopCoroutine(activeCoroutines[i]);
+				activeCoroutines[i] = null;				
+            }
+        }
+		isPlaying = false;
+    }
+
+	void SaveCoroutineToList(Coroutine cor)
+    {
+		bool foundOpenCoroutine = false;
+		for(int i = 0; i < activeCoroutines.Count; i++)
+        {
+			if (activeCoroutines[i] != null)
+            {
+				activeCoroutines[i] = cor;
+				foundOpenCoroutine = true;
+				break;
+            }
+        }
+		if (!foundOpenCoroutine)
+		{
+			activeCoroutines.Add(cor);
+		}
 	}
 }

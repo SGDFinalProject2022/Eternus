@@ -74,11 +74,11 @@ public class HideController : MonoBehaviour
             {
                 isPlayingTension = true;
                 audioMan.sounds[3].source.volume = 1f;
-                //audioMan.StopAllCoroutines();
-                //audioMan.PlayForceEntirely("Tension");
+                audioMan.ManuallyStopCoroutines();
+                audioMan.PlayForceEntirely("Tension");
                 //If if can be avoided, don't use this line ^^^
                 //I don't know why, but it makes it so that tension will only play the first time the player is in the laundry bin. 
-                audioMan.Play("Tension");
+                //audioMan.Play("Tension");
             }
             else if (!enemyInRange && isPlayingTension)
             {
