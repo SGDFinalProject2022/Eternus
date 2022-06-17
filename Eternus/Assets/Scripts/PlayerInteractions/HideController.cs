@@ -22,6 +22,7 @@ public class HideController : MonoBehaviour
 
     public void Hide()
     {
+        isHiding = true;
         playerController.transform.parent = hiddenLocation;
         playerController.GetComponent<PlayerMovement>().isHiding = true;
         playerController.GetComponent<CharacterController>().enabled = false;
@@ -29,12 +30,14 @@ public class HideController : MonoBehaviour
         playerController.transform.localRotation = Quaternion.identity;
         audioMan.Play("Hide");
         audioMan.Play("Hidden");
+        StartCoroutine("CheckTension");
         enterTrigger.SetActive(false);
         exitTrigger.SetActive(true);
     }
 
     public void Exit()
     {
+        isHiding = false;
         playerController.transform.parent = exitLocation;
         playerController.transform.localPosition = Vector3.zero;
         playerController.transform.localRotation = Quaternion.identity;
@@ -45,6 +48,51 @@ public class HideController : MonoBehaviour
         audioMan.Play("Exit");
         enterTrigger.SetActive(true);
         exitTrigger.SetActive(false);
+    }
+
+    bool isHiding;
+    bool isPlayingTension;
+    bool enemyInRange;
+
+    Coroutine checkTension;
+    IEnumerator CheckTension()
+    {
+        while (isHiding)
+        {
+            Collider[] hit = Physics.OverlapSphere(transform.position, 10f);
+
+            enemyInRange = false;
+            foreach (Collider obj in hit)
+            {
+                if (obj.gameObject.tag == "Enemy")
+                {
+                    enemyInRange = true;
+                }
+            }
+
+            if (enemyInRange && !isPlayingTension)
+            {
+                isPlayingTension = true;
+                audioMan.sounds[3].source.volume = 1f;
+                //audioMan.StopAllCoroutines();
+                //audioMan.PlayForceEntirely("Tension");
+                //If if can be avoided, don't use this line ^^^
+                //I don't know why, but it makes it so that tension will only play the first time the player is in the laundry bin. 
+                audioMan.Play("Tension");
+            }
+            else if (!enemyInRange && isPlayingTension)
+            {
+                isPlayingTension = false;
+                //Play Ambient
+                audioMan.VolumeFadeOut("Tension", true);
+            }
+            yield return new WaitForSeconds(.025f);
+        }
+        if(isPlayingTension)
+        {
+            audioMan.VolumeFadeOut("Tension", true);
+            isPlayingTension = false;
+        }        
     }
 
     // Update is called once per frame
