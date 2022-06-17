@@ -9,6 +9,7 @@ public class HideController : MonoBehaviour
     [SerializeField] GameObject enterTrigger;
     [SerializeField] GameObject exitTrigger;
     [SerializeField] GameObject playerController;
+    [SerializeField] float tensionRange = 0.5f;
     AudioManager audioMan;
 
     // Start is called before the first frame update
@@ -59,12 +60,12 @@ public class HideController : MonoBehaviour
     {
         while (isHiding)
         {
-            Collider[] hit = Physics.OverlapSphere(transform.position, 10f);
+            Collider[] hit = Physics.OverlapSphere(transform.position, tensionRange);
 
             enemyInRange = false;
             foreach (Collider obj in hit)
             {
-                if (obj.gameObject.tag == "Enemy")
+                if (obj.gameObject.CompareTag("Enemy"))
                 {
                     enemyInRange = true;
                 }
@@ -76,15 +77,16 @@ public class HideController : MonoBehaviour
                 audioMan.sounds[3].source.volume = 1f;
                 audioMan.ManuallyStopCoroutines();
                 audioMan.PlayForceEntirely("Tension");
-                //If if can be avoided, don't use this line ^^^
-                //I don't know why, but it makes it so that tension will only play the first time the player is in the laundry bin. 
-                //audioMan.Play("Tension");
             }
             else if (!enemyInRange && isPlayingTension)
             {
-                isPlayingTension = false;
-                //Play Ambient
-                audioMan.VolumeFadeOut("Tension", true);
+                yield return new WaitForSeconds(3f);
+                if (!enemyInRange) //extra time to confirm that they're really gone
+                {
+                    isPlayingTension = false;
+                    //Play Ambient
+                    audioMan.VolumeFadeOut("Tension", true);
+                }                
             }
             yield return new WaitForSeconds(.025f);
         }

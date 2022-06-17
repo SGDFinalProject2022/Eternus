@@ -159,6 +159,7 @@ public class AudioManager : MonoBehaviour
     }
     IEnumerator VolumeFadeOutCoroutine(Sound s, bool stopSound)
     {
+		if (isPlaying) { isPlaying = false; }
 		float increment = s.source.volume / 10f;
 
         for (float vol = s.source.volume; vol >= 0; vol -= increment)
@@ -166,7 +167,7 @@ public class AudioManager : MonoBehaviour
 			s.source.volume = vol;
 			yield return new WaitForSeconds(0.1f);
 		}
-        if (stopSound) { s.source.Stop(); }
+        if (stopSound) { s.source.Stop(); }		
 	}
 	/// <summary>
 	/// Replaces the current audio clip with a new one
