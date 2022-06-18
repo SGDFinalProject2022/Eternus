@@ -31,7 +31,7 @@ public class LockerDoor : MonoBehaviour
             int randomNumber = Random.Range(0, 10);
             finalCode += randomNumber.ToString();
         }
-        codePaperText.text = lockerText + ": " + finalCode; 
+        codePaperText.text = lockerText + " " + finalCode; 
     }
 
     void Update()
@@ -46,6 +46,7 @@ public class LockerDoor : MonoBehaviour
     {
         if (panelIsOpen)
         {
+            ui.headBobController.enableHeadbob = true;
             Cursor.lockState = CursorLockMode.Locked;
             panelIsOpen = false;
             ui.move.enabled = true;
@@ -69,6 +70,7 @@ public class LockerDoor : MonoBehaviour
     {
         if (!panelIsOpen)
         {
+            ui.headBobController.enableHeadbob = false;
             Cursor.lockState = CursorLockMode.None;
             ui.panelIsOpen = true;
             ui.move.enabled = false;
@@ -105,6 +107,7 @@ public class LockerDoor : MonoBehaviour
         {
             ClosePanel();
             onUnlock.Invoke();
+            this.gameObject.layer = 0;
         }
         else
         {
