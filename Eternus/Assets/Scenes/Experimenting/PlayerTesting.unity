@@ -618,6 +618,7 @@ MonoBehaviour:
   - name: Locked
     type: 0
     clip: {fileID: 8300000, guid: 02a515af8177cca4f9f5aa7c327e0a7c, type: 3}
+    customAudioSource: {fileID: 0}
     volume: 0.25
     volumeVariance: 0.1
     originalVolume: 0
@@ -631,6 +632,7 @@ MonoBehaviour:
   - name: Open
     type: 0
     clip: {fileID: 8300000, guid: 1eeea9a45924dab41885fe9e67c1b5cc, type: 3}
+    customAudioSource: {fileID: 0}
     volume: 0.3
     volumeVariance: 0.1
     originalVolume: 0
@@ -644,6 +646,7 @@ MonoBehaviour:
   - name: Squeak
     type: 0
     clip: {fileID: 8300000, guid: 144ba7628383add4ebefac0dc664abf1, type: 3}
+    customAudioSource: {fileID: 0}
     volume: 0.3
     volumeVariance: 0.1
     originalVolume: 0
@@ -657,6 +660,7 @@ MonoBehaviour:
   - name: Close
     type: 0
     clip: {fileID: 8300000, guid: 52cd79d4403dd1a49b1bd8052229b512, type: 3}
+    customAudioSource: {fileID: 0}
     volume: 0.3
     volumeVariance: 0.1
     originalVolume: 0
@@ -974,6 +978,7 @@ Transform:
   - {fileID: 1071947763}
   - {fileID: 1619964962}
   - {fileID: 78066242}
+  - {fileID: 693944746}
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1450,6 +1455,7 @@ MonoBehaviour:
   - name: Ambience
     type: 1
     clip: {fileID: 8300000, guid: 9f5968e81c6bafb488486681ebbac027, type: 3}
+    customAudioSource: {fileID: 0}
     volume: 0.213
     volumeVariance: 0
     originalVolume: 0
@@ -1809,6 +1815,103 @@ MonoBehaviour:
   m_ShadowLayerMask: 1
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
+--- !u!1 &693944745
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 693944746}
+  - component: {fileID: 693944749}
+  - component: {fileID: 693944748}
+  - component: {fileID: 693944747}
+  m_Layer: 6
+  m_Name: Cube (3)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &693944746
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 693944745}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.68, y: 0.437, z: -0.323}
+  m_LocalScale: {x: 0.3274823, y: 0.16611, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 368852671}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &693944747
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 693944745}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!23 &693944748
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 693944745}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 1259ee89ec6d6c748befaf7f4de90fd6, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &693944749
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 693944745}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!114 &708942461 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 708942461, guid: c2baed0eff0758a44b2313f42af65068, type: 3}
@@ -2745,6 +2848,7 @@ MonoBehaviour:
   - name: Hide
     type: 0
     clip: {fileID: 8300000, guid: d949a90fb94cd8f4aa7e98c63ab1ca3a, type: 3}
+    customAudioSource: {fileID: 0}
     volume: 1
     volumeVariance: 0.2
     originalVolume: 0
@@ -2758,6 +2862,7 @@ MonoBehaviour:
   - name: Exit
     type: 0
     clip: {fileID: 8300000, guid: 799a4c15986856c4e88c0f3ce74f3338, type: 3}
+    customAudioSource: {fileID: 0}
     volume: 1
     volumeVariance: 0.2
     originalVolume: 0
@@ -2771,6 +2876,7 @@ MonoBehaviour:
   - name: Hidden
     type: 0
     clip: {fileID: 8300000, guid: 0d63a0a52e4b80244b9c5442a5a0bb61, type: 3}
+    customAudioSource: {fileID: 0}
     volume: 0.5
     volumeVariance: 0.2
     originalVolume: 0
@@ -2856,6 +2962,7 @@ MonoBehaviour:
   - name: Squeak
     type: 0
     clip: {fileID: 8300000, guid: 144ba7628383add4ebefac0dc664abf1, type: 3}
+    customAudioSource: {fileID: 0}
     volume: 0.3
     volumeVariance: 0.1
     originalVolume: 0
@@ -3392,6 +3499,7 @@ MonoBehaviour:
   - name: Locked
     type: 0
     clip: {fileID: 8300000, guid: 02a515af8177cca4f9f5aa7c327e0a7c, type: 3}
+    customAudioSource: {fileID: 0}
     volume: 0.25
     volumeVariance: 0.1
     originalVolume: 0
@@ -3405,6 +3513,7 @@ MonoBehaviour:
   - name: Open
     type: 0
     clip: {fileID: 8300000, guid: 1eeea9a45924dab41885fe9e67c1b5cc, type: 3}
+    customAudioSource: {fileID: 0}
     volume: 0.3
     volumeVariance: 0.1
     originalVolume: 0
@@ -3418,6 +3527,7 @@ MonoBehaviour:
   - name: Squeak
     type: 0
     clip: {fileID: 8300000, guid: 144ba7628383add4ebefac0dc664abf1, type: 3}
+    customAudioSource: {fileID: 0}
     volume: 0.3
     volumeVariance: 0.1
     originalVolume: 0
@@ -3431,6 +3541,7 @@ MonoBehaviour:
   - name: Close
     type: 0
     clip: {fileID: 8300000, guid: 52cd79d4403dd1a49b1bd8052229b512, type: 3}
+    customAudioSource: {fileID: 0}
     volume: 0.3
     volumeVariance: 0.1
     originalVolume: 0
@@ -3647,6 +3758,7 @@ MonoBehaviour:
   - name: Locked
     type: 0
     clip: {fileID: 8300000, guid: 02a515af8177cca4f9f5aa7c327e0a7c, type: 3}
+    customAudioSource: {fileID: 0}
     volume: 0.25
     volumeVariance: 0.1
     originalVolume: 0
@@ -3660,6 +3772,7 @@ MonoBehaviour:
   - name: Open
     type: 0
     clip: {fileID: 8300000, guid: 1eeea9a45924dab41885fe9e67c1b5cc, type: 3}
+    customAudioSource: {fileID: 0}
     volume: 0.3
     volumeVariance: 0.1
     originalVolume: 0
@@ -3673,6 +3786,7 @@ MonoBehaviour:
   - name: Close
     type: 0
     clip: {fileID: 8300000, guid: 52cd79d4403dd1a49b1bd8052229b512, type: 3}
+    customAudioSource: {fileID: 0}
     volume: 0.3
     volumeVariance: 0.1
     originalVolume: 0
