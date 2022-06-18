@@ -5,16 +5,16 @@ using UnityEngine;
 public class LightFade : MonoBehaviour
 {
     [SerializeField] float speed = 100;
-    Light light;
+    Light _light;
     float lightMax;
 
     void Start()
     {
 
-        light = GetComponent<Light>();
+        _light = GetComponent<Light>();
         StartCoroutine("Fade");
-        lightMax = light.intensity;
-        light.intensity = 0;
+        lightMax = _light.intensity;
+        _light.intensity = 0;
     }
 
     IEnumerator Fade()
@@ -24,9 +24,9 @@ public class LightFade : MonoBehaviour
         {
             while (fadeOut)
             {
-                light.intensity -= (lightMax/100);
+                _light.intensity -= (lightMax/100);
                 yield return new WaitForSeconds(1/speed);
-                if (light.intensity <= 0)
+                if (_light.intensity <= 0)
                 {
                     fadeOut = false;
                 }
@@ -34,9 +34,9 @@ public class LightFade : MonoBehaviour
 
             while(!fadeOut)
             {
-                light.intensity += (lightMax/100);
+                _light.intensity += (lightMax/100);
                 yield return new WaitForSeconds(1/speed);
-                if (light.intensity >= lightMax)
+                if (_light.intensity >= lightMax)
                 {
                     fadeOut = true;
                 }

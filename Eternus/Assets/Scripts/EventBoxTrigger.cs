@@ -8,12 +8,20 @@ using UnityEngine.Events;
 public class EventBoxTrigger : MonoBehaviour
 {
     public UnityEvent onTrigger;
+    public UnityEvent onExit;
 
     private void OnTriggerEnter(Collider other)
     {
         if(other.CompareTag("Player"))
         {
             onTrigger.Invoke();
+        }
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        if(other.CompareTag("Player"))
+        {
+            onExit.Invoke();
         }
     }
 

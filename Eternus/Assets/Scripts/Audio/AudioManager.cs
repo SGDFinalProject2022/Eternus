@@ -2,6 +2,7 @@ using UnityEngine.Audio;
 using System;
 using System.Collections;
 using UnityEngine;
+using System.Collections.Generic;
 /// <summary>
 /// Manages audio either for a whole scene or just a GameObject, created by Josiah Holcom (with help from Brackys)
 /// </summary>
@@ -14,6 +15,10 @@ public class AudioManager : MonoBehaviour
 
 	public Sound[] sounds;
 
+	private List<Coroutine> activeCoroutines = new List<Coroutine>();
+
+	Coroutine forcePlay;
+
 	void Awake()
 	{
 		foreach (Sound s in sounds)
@@ -23,6 +28,7 @@ public class AudioManager : MonoBehaviour
             s.source.clip = s.clip;
 			s.source.loop = s.loop;
 			s.source.playOnAwake = s.playOnAwake;
+            s.source.bypassReverbZones = s.bypassReverbZones;
 			s.source.spatialBlend = s.spatialBlend;
 
 			s.source.outputAudioMixerGroup = mixerGroup;
@@ -140,35 +146,28 @@ public class AudioManager : MonoBehaviour
 			sound.source.volume = newVol;
         }
     }
-	/// <summary>
-	/// Fades sound to destination over time
-	/// </summary>
-	/// <param name="sound"></param>
-	/// <param name="destination"></param>
-	/// <param name="time"></param>
-	public void VolumeFade(string sound, float destination, float time)
+
+    public void VolumeFadeOut(string sound, bool stopSound)
     {
 		Sound s = Array.Find(sounds, item => item.name == sound);
 		if (s == null)
 		{
 			Debug.LogWarning("Sound: " + sound + " not found!");
 			return;
-		}
-		StartCoroutine(VolumeFadeCoroutine(s, destination, time));
-	}
-	IEnumerator VolumeFadeCoroutine(Sound s, float destination, float time)
-	{
-		//float offset = time - s.source.volume;
-		float increment = time / 10;
-		if (destination < s.volume) //if the destination is quieter than source
-        {
-			increment = -increment;
         }
-		for (float vol = s.source.volume; vol >= destination; vol += increment)
+		SaveCoroutineToList(StartCoroutine(VolumeFadeOutCoroutine(s, stopSound)));
+    }
+    IEnumerator VolumeFadeOutCoroutine(Sound s, bool stopSound)
+    {
+		if (isPlaying) { isPlaying = false; }
+		float increment = s.source.volume / 10f;
+
+        for (float vol = s.source.volume; vol >= 0; vol -= increment)
 		{ //fades volume to destination over increment
 			s.source.volume = vol;
-			yield return new WaitForSeconds(time / 10);
-		}		
+			yield return new WaitForSeconds(0.1f);
+		}
+        if (stopSound) { s.source.Stop(); }		
 	}
 	/// <summary>
 	/// Replaces the current audio clip with a new one
@@ -202,7 +201,7 @@ public class AudioManager : MonoBehaviour
 			Debug.LogWarning("Sound: " + sound + " not found!");
 			return;
 		}
-		StartCoroutine(ForcePlayEntirelyCoroutine(s));
+		SaveCoroutineToList(StartCoroutine(ForcePlayEntirelyCoroutine(s)));
 	}
 	IEnumerator ForcePlayEntirelyCoroutine(Sound s)
     {
@@ -229,7 +228,7 @@ public class AudioManager : MonoBehaviour
 			Debug.LogWarning("Sound: " + sound + " not found!");
 			return;
 		}
-		StartCoroutine(ForcePlayEntirelyCoroutine(s, newAudioClip));
+		SaveCoroutineToList(StartCoroutine(ForcePlayEntirelyCoroutine(s, newAudioClip)));
 	}
 	IEnumerator ForcePlayEntirelyCoroutine(Sound s, AudioClip clip)
 	{
@@ -240,5 +239,35 @@ public class AudioManager : MonoBehaviour
 
         yield return new WaitForSeconds(clip.length);
 		isPlaying = false;
+	}
+	public void ManuallyStopCoroutines()
+    {
+		for(int i = 0; i < activeCoroutines.Count; i++)
+        {
+			if(activeCoroutines[i] != null)
+            {
+				StopCoroutine(activeCoroutines[i]);
+				activeCoroutines[i] = null;				
+            }
+        }
+		isPlaying = false;
+    }
+
+	void SaveCoroutineToList(Coroutine cor)
+    {
+		bool foundOpenCoroutine = false;
+		for(int i = 0; i < activeCoroutines.Count; i++)
+        {
+			if (activeCoroutines[i] != null)
+            {
+				activeCoroutines[i] = cor;
+				foundOpenCoroutine = true;
+				break;
+            }
+        }
+		if (!foundOpenCoroutine)
+		{
+			activeCoroutines.Add(cor);
+		}
 	}
 }
