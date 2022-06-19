@@ -14,6 +14,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float gravity = -9.81f;
     [SerializeField] float jumpHeight = 1f;    
     Vector3 velocity;
+    [HideInInspector] public float speed;
+    Vector3 lastPos;
     bool isOnGround;
     bool isJumping;
     public bool isDead = false;
@@ -22,6 +24,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float crouchHeight = 1f; //base is 3.8
     [SerializeField] float crouchSpeed = 3f;
     [HideInInspector] public bool isCrouching;
+    bool isUnderSomething;
     float originalHeight;
 
     [Header("Sprint")]
@@ -102,11 +105,25 @@ public class PlayerMovement : MonoBehaviour
         float y = Input.GetAxis("Crouch");
         float z = Input.GetAxis("Vertical");
 
+        //preventing player from getting stuck when under objects while crouching
+        if (Physics.Raycast(transform.position, Vector3.up, out RaycastHit headHit, originalHeight / 1.5f)
+            && isCrouching)
+        {
+            //Debug.DrawRay(transform.position, Vector3.up * originalHeight / 1.5f, Color.red);
+            //print("Player is under something");
+            y = 1f;
+            isUnderSomething = true;
+        }
+        else { isUnderSomething = false; }
+
         JumpLandHandler();
         CrouchHandler(y);     
         MovementHandler(x, y, z);
         GravityHandler();
         FootstepSoundHandler(x, z);
+
+        speed = Vector3.Distance(lastPos, transform.position) / Time.deltaTime;
+        lastPos = transform.position;
     }
 
     /// <summary>
@@ -142,7 +159,7 @@ public class PlayerMovement : MonoBehaviour
     void CrouchHandler(float y)
     {
         //preventing crouch jumping
-        if (!isOnGround && !isCrouching) 
+        if (!isOnGround && !isCrouching)
         {
             controller.height = originalHeight;
             groundCheck.localPosition = new Vector3(0, -1.8f, 0);
@@ -179,7 +196,7 @@ public class PlayerMovement : MonoBehaviour
             audioMan.Play("Crouch");
             audioMan.Play("Crouch Walk");
         }
-        if (Input.GetButtonUp("Crouch") && y > 0.5f)
+        if (Input.GetButtonUp("Crouch") && y > 0.5f && !isUnderSomething)
         {
             audioMan.Play("Stand");
             audioMan.Stop("Crouch Walk");

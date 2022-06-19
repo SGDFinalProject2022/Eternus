@@ -2846,6 +2846,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1821067593974947705}
     m_Modifications:
+    - target: {fileID: 123558861975975139, guid: c8beb5750e3f8094980a36ed9461e211, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 2472477722383951822, guid: c8beb5750e3f8094980a36ed9461e211, type: 3}
       propertyPath: isUnlocked
       value: 0
@@ -3059,6 +3063,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1821067593974947705}
     m_Modifications:
+    - target: {fileID: 123558861975975139, guid: c8beb5750e3f8094980a36ed9461e211, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 2472477722383951822, guid: c8beb5750e3f8094980a36ed9461e211, type: 3}
       propertyPath: isUnlocked
       value: 0
@@ -3150,6 +3158,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1821067593974947705}
     m_Modifications:
+    - target: {fileID: 123558861975975139, guid: c8beb5750e3f8094980a36ed9461e211, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 2472477722383951822, guid: c8beb5750e3f8094980a36ed9461e211, type: 3}
       propertyPath: isUnlocked
       value: 0
@@ -3241,6 +3253,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1821067593974947705}
     m_Modifications:
+    - target: {fileID: 123558861975975139, guid: c8beb5750e3f8094980a36ed9461e211, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 2472477722383951822, guid: c8beb5750e3f8094980a36ed9461e211, type: 3}
       propertyPath: isUnlocked
       value: 0
@@ -3708,6 +3724,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1821067593974947705}
     m_Modifications:
+    - target: {fileID: 123558861975975139, guid: c8beb5750e3f8094980a36ed9461e211, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 2472477722383951822, guid: c8beb5750e3f8094980a36ed9461e211, type: 3}
       propertyPath: isUnlocked
       value: 0
@@ -3865,6 +3885,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1821067593974947705}
     m_Modifications:
+    - target: {fileID: 123558861975975139, guid: c8beb5750e3f8094980a36ed9461e211, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2472477722383951809, guid: c8beb5750e3f8094980a36ed9461e211, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -3940,6 +3964,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1821067593974947705}
     m_Modifications:
+    - target: {fileID: 123558861975975139, guid: c8beb5750e3f8094980a36ed9461e211, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 2472477722383951822, guid: c8beb5750e3f8094980a36ed9461e211, type: 3}
       propertyPath: isUnlocked
       value: 0
@@ -4109,6 +4137,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1821067593974947705}
     m_Modifications:
+    - target: {fileID: 123558861975975139, guid: c8beb5750e3f8094980a36ed9461e211, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 2472477722383951822, guid: c8beb5750e3f8094980a36ed9461e211, type: 3}
       propertyPath: interactText
       value: open
@@ -4392,6 +4424,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1821067593974947705}
     m_Modifications:
+    - target: {fileID: 123558861975975139, guid: c8beb5750e3f8094980a36ed9461e211, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 2472477722383951822, guid: c8beb5750e3f8094980a36ed9461e211, type: 3}
       propertyPath: isUnlocked
       value: 0
@@ -4593,6 +4629,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1821067593974947705}
     m_Modifications:
+    - target: {fileID: 123558861975975139, guid: c8beb5750e3f8094980a36ed9461e211, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 2472477722383951822, guid: c8beb5750e3f8094980a36ed9461e211, type: 3}
       propertyPath: interactText
       value: open
@@ -4993,6 +5033,62 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1821067594058138563
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5519643739855637660}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c583a1393bd16674d9372aa50af36600, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mixerGroup: {fileID: 0}
+  sounds:
+  - name: Open
+    type: 0
+    clip: {fileID: 8300000, guid: 3596681aa037f9d4c8c92e38851bdeae, type: 3}
+    customAudioSource: {fileID: 0}
+    volume: 0.3
+    volumeVariance: 0
+    originalVolume: 0
+    pitch: 1
+    pitchVariance: 0
+    spatialBlend: 1
+    loop: 0
+    playOnAwake: 0
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+  - name: Squeak
+    type: 0
+    clip: {fileID: 8300000, guid: 144ba7628383add4ebefac0dc664abf1, type: 3}
+    customAudioSource: {fileID: 0}
+    volume: 0
+    volumeVariance: 0
+    originalVolume: 0
+    pitch: 0.1
+    pitchVariance: 0
+    spatialBlend: 0
+    loop: 0
+    playOnAwake: 0
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+  - name: Locked
+    type: 0
+    clip: {fileID: 8300000, guid: 144ba7628383add4ebefac0dc664abf1, type: 3}
+    customAudioSource: {fileID: 0}
+    volume: 0
+    volumeVariance: 0
+    originalVolume: 0
+    pitch: 0.1
+    pitchVariance: 0
+    spatialBlend: 0
+    loop: 0
+    playOnAwake: 0
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
 --- !u!114 &1821067594058138589
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5020,70 +5116,21 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  onUnlock:
+    m_PersistentCalls:
+      m_Calls: []
   ID: 0
-  interactText: 
   isUnlocked: 0
   canBeUnlocked: 1
   onlyOpenOnce: 1
+  handleAudioMan: {fileID: 1821067594058138563}
   jiggleSFX:
   - {fileID: 8300000, guid: 60f3d052c1beb794b99f8eacb5883c5a, type: 3}
   squeakSFX:
   - {fileID: 8300000, guid: 60f3d052c1beb794b99f8eacb5883c5a, type: 3}
   doorAnimator: {fileID: 1821067594058138562}
+  final: 0
   isOpen: 0
---- !u!114 &1821067594058138563
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5519643739855637660}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c583a1393bd16674d9372aa50af36600, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mixerGroup: {fileID: 0}
-  sounds:
-  - name: Open
-    type: 0
-    clip: {fileID: 8300000, guid: 3596681aa037f9d4c8c92e38851bdeae, type: 3}
-    volume: 0.3
-    volumeVariance: 0
-    originalVolume: 0
-    pitch: 1
-    pitchVariance: 0
-    spatialBlend: 1
-    loop: 0
-    playOnAwake: 0
-    mixerGroup: {fileID: 0}
-    source: {fileID: 0}
-  - name: Squeak
-    type: 0
-    clip: {fileID: 8300000, guid: 144ba7628383add4ebefac0dc664abf1, type: 3}
-    volume: 0
-    volumeVariance: 0
-    originalVolume: 0
-    pitch: 0.1
-    pitchVariance: 0
-    spatialBlend: 0
-    loop: 0
-    playOnAwake: 0
-    mixerGroup: {fileID: 0}
-    source: {fileID: 0}
-  - name: Locked
-    type: 0
-    clip: {fileID: 8300000, guid: 144ba7628383add4ebefac0dc664abf1, type: 3}
-    volume: 0
-    volumeVariance: 0
-    originalVolume: 0
-    pitch: 0.1
-    pitchVariance: 0
-    spatialBlend: 0
-    loop: 0
-    playOnAwake: 0
-    mixerGroup: {fileID: 0}
-    source: {fileID: 0}
 --- !u!4 &8959080115926651335 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7282514873888418391, guid: 89e9eb661cfc378419e9aa0db7bfc25a, type: 3}

@@ -14,7 +14,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: -5487077368411116049, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &8278736392922328348
 Transform:
@@ -49,7 +49,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 3936346786652291628, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &8278736393128303316
 Transform:
@@ -157,7 +157,6 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   ID: 0
-  interactText: Hide
 --- !u!1 &8278736394471966884
 GameObject:
   m_ObjectHideFlags: 0
@@ -176,7 +175,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &8278736394471966885
 Transform:
@@ -284,7 +283,6 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   ID: 0
-  interactText: Exit
 --- !u!1 &8278736394487720766
 GameObject:
   m_ObjectHideFlags: 0
@@ -305,7 +303,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &8278736394487720765
 Transform:
@@ -314,7 +312,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8278736394487720766}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 6.67, y: 1.647, z: 11.58}
   m_LocalScale: {x: 2.5, y: 2.5, z: 2.5}
   m_ConstrainProportionsScale: 0
@@ -354,9 +352,9 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2850208003977643989, guid: d625ee02cf1ad4f459330ad880f51977, type: 3}
-  - {fileID: 7588613323011362160, guid: d625ee02cf1ad4f459330ad880f51977, type: 3}
-  - {fileID: -2923315061631030944, guid: d625ee02cf1ad4f459330ad880f51977, type: 3}
+  - {fileID: 2100000, guid: e3c40f3be27dc894dbdf5522315e2354, type: 2}
+  - {fileID: 2100000, guid: ddf96a615c91d844c9974fc5ae53d501, type: 2}
+  - {fileID: 2100000, guid: 7cac30ad37c77db42b395f8dc980c91f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -407,6 +405,8 @@ MonoBehaviour:
   exitLocation: {fileID: 8278736392922328348}
   enterTrigger: {fileID: 8278736393128303319}
   exitTrigger: {fileID: 8278736394471966884}
+  playerController: {fileID: 0}
+  enemyAI: {fileID: 0}
 --- !u!114 &8278736394487720762
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -435,7 +435,6 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   ID: 0
-  interactText: Hide
 --- !u!114 &8278736394487720761
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -453,6 +452,7 @@ MonoBehaviour:
   - name: Hide
     type: 0
     clip: {fileID: 8300000, guid: d949a90fb94cd8f4aa7e98c63ab1ca3a, type: 3}
+    customAudioSource: {fileID: 0}
     volume: 1
     volumeVariance: 0.2
     originalVolume: 0
@@ -461,11 +461,13 @@ MonoBehaviour:
     spatialBlend: 0
     loop: 0
     playOnAwake: 0
+    bypassReverbZones: 0
     mixerGroup: {fileID: 0}
     source: {fileID: 0}
   - name: Exit
     type: 0
     clip: {fileID: 8300000, guid: 799a4c15986856c4e88c0f3ce74f3338, type: 3}
+    customAudioSource: {fileID: 0}
     volume: 1
     volumeVariance: 0.2
     originalVolume: 0
@@ -474,11 +476,13 @@ MonoBehaviour:
     spatialBlend: 0
     loop: 0
     playOnAwake: 0
+    bypassReverbZones: 0
     mixerGroup: {fileID: 0}
     source: {fileID: 0}
   - name: Hidden
     type: 0
     clip: {fileID: 8300000, guid: 0d63a0a52e4b80244b9c5442a5a0bb61, type: 3}
+    customAudioSource: {fileID: 0}
     volume: 0.2
     volumeVariance: 0.2
     originalVolume: 0
@@ -487,6 +491,22 @@ MonoBehaviour:
     spatialBlend: 0
     loop: 1
     playOnAwake: 0
+    bypassReverbZones: 0
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+  - name: Tension
+    type: 1
+    clip: {fileID: 8300000, guid: 7e72ba120e3d68d4d8774581093a073b, type: 3}
+    customAudioSource: {fileID: 0}
+    volume: 1
+    volumeVariance: 0
+    originalVolume: 0
+    pitch: 1
+    pitchVariance: 0
+    spatialBlend: 0
+    loop: 0
+    playOnAwake: 0
+    bypassReverbZones: 1
     mixerGroup: {fileID: 0}
     source: {fileID: 0}
 --- !u!1 &8278736394976210062
@@ -503,7 +523,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 4422084297763085224, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &8278736394976210063
 Transform:

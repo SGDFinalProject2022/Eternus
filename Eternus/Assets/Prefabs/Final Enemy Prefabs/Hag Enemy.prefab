@@ -3315,7 +3315,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6f294cbbdd4acb43a07713f1b018a1d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyName: 
+  enemyName: Hag
   anim: {fileID: 949586508}
   nodeParent: {fileID: 2856946703828012286}
   randomPath: 0
@@ -3348,7 +3348,8 @@ MonoBehaviour:
   - name: Idle
     type: 0
     clip: {fileID: 8300000, guid: f66affc3762bd144fabe2e9852169eaa, type: 3}
-    volume: 0.5
+    customAudioSource: {fileID: 0}
+    volume: 1
     volumeVariance: 0
     originalVolume: 0
     pitch: 1
@@ -3356,11 +3357,13 @@ MonoBehaviour:
     spatialBlend: 1
     loop: 1
     playOnAwake: 1
+    bypassReverbZones: 0
     mixerGroup: {fileID: 0}
     source: {fileID: 0}
   - name: Stop
     type: 0
     clip: {fileID: 0}
+    customAudioSource: {fileID: 0}
     volume: 0.25
     volumeVariance: 0
     originalVolume: 0
@@ -3369,19 +3372,67 @@ MonoBehaviour:
     spatialBlend: 1
     loop: 0
     playOnAwake: 0
+    bypassReverbZones: 0
     mixerGroup: {fileID: 0}
     source: {fileID: 0}
   - name: Fast
     type: 0
     clip: {fileID: 8300000, guid: 7c44cb5bfd7712c4f85ddd3886550829, type: 3}
+    customAudioSource: {fileID: 0}
     volume: 1
     volumeVariance: 0
     originalVolume: 0
     pitch: 1
     pitchVariance: 0
-    spatialBlend: 0.8
+    spatialBlend: 1
     loop: 1
     playOnAwake: 0
+    bypassReverbZones: 0
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+  - name: Startup
+    type: 0
+    clip: {fileID: 8300000, guid: 7be1574c437fbef4cb9a744201f29c66, type: 3}
+    customAudioSource: {fileID: 0}
+    volume: 1
+    volumeVariance: 0
+    originalVolume: 0
+    pitch: 1
+    pitchVariance: 0
+    spatialBlend: 1
+    loop: 0
+    playOnAwake: 1
+    bypassReverbZones: 0
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+  - name: Tension
+    type: 1
+    clip: {fileID: 8300000, guid: 7e72ba120e3d68d4d8774581093a073b, type: 3}
+    customAudioSource: {fileID: 0}
+    volume: 1
+    volumeVariance: 0
+    originalVolume: 0
+    pitch: 1
+    pitchVariance: 0
+    spatialBlend: 0
+    loop: 0
+    playOnAwake: 0
+    bypassReverbZones: 1
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+  - name: Chase
+    type: 1
+    clip: {fileID: 8300000, guid: a998c722b40e3014dbbacfd46bbd6f48, type: 3}
+    customAudioSource: {fileID: 0}
+    volume: 1
+    volumeVariance: 0
+    originalVolume: 0
+    pitch: 1
+    pitchVariance: 0
+    spatialBlend: 0
+    loop: 1
+    playOnAwake: 0
+    bypassReverbZones: 1
     mixerGroup: {fileID: 0}
     source: {fileID: 0}
 --- !u!1 &2856946703634404526

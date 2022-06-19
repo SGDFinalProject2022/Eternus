@@ -43,6 +43,8 @@ public class EnemyAI : MonoBehaviour
     [SerializeField] HealthController healthController;
 
     AudioManager audioMan;
+    AIFootsteps aiFootsteps;
+    bool isChasing = false;
 
     void Awake()
     {
@@ -59,6 +61,7 @@ public class EnemyAI : MonoBehaviour
         ai.speed = normalSpeed;
 
         audioMan = GetComponent<AudioManager>();
+        aiFootsteps = GetComponent<AIFootsteps>();
     }
 
     protected void Update()
@@ -88,11 +91,14 @@ public class EnemyAI : MonoBehaviour
             transform.LookAt(lookAtPos);
         }
 
-        if(audioMan != null)
+        if(audioMan != null && enemyName == "Hag")
         {
             audioMan.sounds[0].source.pitch = Mathf.Lerp(0, 1, ai.velocity.magnitude);
             audioMan.sounds[2].source.pitch = Mathf.Lerp(0, 1, ai.velocity.magnitude);
         }
+
+        if(aiFootsteps != null) 
+        { aiFootsteps.velocity = ai.velocity.magnitude; aiFootsteps.isAggrod = isAggrod; }        
     }
 
     void Animate(string animation)
@@ -192,8 +198,17 @@ public class EnemyAI : MonoBehaviour
         }    
     }
 
+    void FadeOutAudio(string audioName, bool stopSound)
+    {
+        if(audioMan != null)
+        {
+            audioMan.VolumeFadeOut(audioName, stopSound);
+        }
+    }
+
     IEnumerator BeginChase()
     {        
+        isChasing = true;
         ai.speed = 0;
         Animate("Transition");
         StopAudio("Idle");
@@ -209,7 +224,10 @@ public class EnemyAI : MonoBehaviour
     {
         isSoundAggrod = true;
         ai.destination = sound.position;
-        StartCoroutine("BeginChase");
+        if(!isChasing)
+        {
+            StartCoroutine("BeginChase");
+        }        
     }
 
     //Enemy arrives at sound aggro location
@@ -277,7 +295,7 @@ public class EnemyAI : MonoBehaviour
 
         //Check if the player is in sight range
         if (inRange)
-        {
+        {           
             if (enemyName != "Water Monster")
             {
                 //Check if player is hidden
@@ -285,7 +303,13 @@ public class EnemyAI : MonoBehaviour
                 {
                     playerInSight = true;
                     isAggrod = true;
-                    StartCoroutine("BeginChase");
+                    if (!isChasing)
+                    {
+                        audioMan.StopAllCoroutines();
+                        audioMan.sounds[5].volume = 1f;
+                        PlayAudio("Chase");
+                        StartCoroutine("BeginChase");
+                    }
                 }
             }
             else
@@ -294,7 +318,10 @@ public class EnemyAI : MonoBehaviour
                 {
                     playerInSight = true;
                     isAggrod = true;
-                    StartCoroutine("BeginChase");
+                    if (!isChasing)
+                    {                        
+                        StartCoroutine("BeginChase");
+                    }
                 }
             }
         }
@@ -390,10 +417,12 @@ public class EnemyAI : MonoBehaviour
             }
         }
         StopAudio("Fast");
+        FadeOutAudio("Chase", true);
         PlayAudio("Idle");
         Animate("Slow");
         print("lost aggro");
         idle = false;
         ai.speed = normalSpeed;
+        isChasing = false;
     }
 }
