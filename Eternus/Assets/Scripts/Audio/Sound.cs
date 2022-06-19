@@ -32,6 +32,7 @@ public class Sound {
 
 	public bool loop = false;
 	public bool playOnAwake = false;
+    public bool bypassReverbZones = false;
 
 	public AudioMixerGroup mixerGroup;
 

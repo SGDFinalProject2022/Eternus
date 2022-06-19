@@ -35,10 +35,10 @@ public class HealthController : MonoBehaviour
         if (uI.isPaused || isDead) { return; }
 
         //testing
-        if (Input.GetKeyDown(KeyCode.F))
+        /*if (Input.GetKeyDown(KeyCode.F))
         {
             HurtPlayer();
-        }
+        }*/
         if (vignette.intensity.value >= 0f) //health regen
         {
             vignette.intensity.value -= Time.deltaTime / 12;

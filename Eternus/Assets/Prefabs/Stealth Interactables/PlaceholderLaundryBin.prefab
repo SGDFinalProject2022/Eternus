@@ -406,6 +406,7 @@ MonoBehaviour:
   enterTrigger: {fileID: 8278736393128303319}
   exitTrigger: {fileID: 8278736394471966884}
   playerController: {fileID: 0}
+  enemyAI: {fileID: 0}
 --- !u!114 &8278736394487720762
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -451,6 +452,7 @@ MonoBehaviour:
   - name: Hide
     type: 0
     clip: {fileID: 8300000, guid: d949a90fb94cd8f4aa7e98c63ab1ca3a, type: 3}
+    customAudioSource: {fileID: 0}
     volume: 1
     volumeVariance: 0.2
     originalVolume: 0
@@ -459,11 +461,13 @@ MonoBehaviour:
     spatialBlend: 0
     loop: 0
     playOnAwake: 0
+    bypassReverbZones: 0
     mixerGroup: {fileID: 0}
     source: {fileID: 0}
   - name: Exit
     type: 0
     clip: {fileID: 8300000, guid: 799a4c15986856c4e88c0f3ce74f3338, type: 3}
+    customAudioSource: {fileID: 0}
     volume: 1
     volumeVariance: 0.2
     originalVolume: 0
@@ -472,11 +476,13 @@ MonoBehaviour:
     spatialBlend: 0
     loop: 0
     playOnAwake: 0
+    bypassReverbZones: 0
     mixerGroup: {fileID: 0}
     source: {fileID: 0}
   - name: Hidden
     type: 0
     clip: {fileID: 8300000, guid: 0d63a0a52e4b80244b9c5442a5a0bb61, type: 3}
+    customAudioSource: {fileID: 0}
     volume: 0.2
     volumeVariance: 0.2
     originalVolume: 0
@@ -485,6 +491,22 @@ MonoBehaviour:
     spatialBlend: 0
     loop: 1
     playOnAwake: 0
+    bypassReverbZones: 0
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+  - name: Tension
+    type: 1
+    clip: {fileID: 8300000, guid: 7e72ba120e3d68d4d8774581093a073b, type: 3}
+    customAudioSource: {fileID: 0}
+    volume: 1
+    volumeVariance: 0
+    originalVolume: 0
+    pitch: 1
+    pitchVariance: 0
+    spatialBlend: 0
+    loop: 0
+    playOnAwake: 0
+    bypassReverbZones: 1
     mixerGroup: {fileID: 0}
     source: {fileID: 0}
 --- !u!1 &8278736394976210062
