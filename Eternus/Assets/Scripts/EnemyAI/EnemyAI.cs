@@ -198,8 +198,16 @@ public class EnemyAI : MonoBehaviour
         }    
     }
 
-    IEnumerator BeginChase()
+    void FadeOutAudio(string audioName, bool stopSound)
     {
+        if(audioMan != null)
+        {
+            audioMan.VolumeFadeOut(audioName, stopSound);
+        }
+    }
+
+    IEnumerator BeginChase()
+    {        
         isChasing = true;
         ai.speed = 0;
         Animate("Transition");
@@ -287,7 +295,7 @@ public class EnemyAI : MonoBehaviour
 
         //Check if the player is in sight range
         if (inRange)
-        {
+        {           
             if (enemyName != "Water Monster")
             {
                 //Check if player is hidden
@@ -297,6 +305,9 @@ public class EnemyAI : MonoBehaviour
                     isAggrod = true;
                     if (!isChasing)
                     {
+                        audioMan.StopAllCoroutines();
+                        audioMan.sounds[5].volume = 1f;
+                        PlayAudio("Chase");
                         StartCoroutine("BeginChase");
                     }
                 }
@@ -308,7 +319,7 @@ public class EnemyAI : MonoBehaviour
                     playerInSight = true;
                     isAggrod = true;
                     if (!isChasing)
-                    {
+                    {                        
                         StartCoroutine("BeginChase");
                     }
                 }
@@ -406,6 +417,7 @@ public class EnemyAI : MonoBehaviour
             }
         }
         StopAudio("Fast");
+        FadeOutAudio("Chase", true);
         PlayAudio("Idle");
         Animate("Slow");
         print("lost aggro");
