@@ -74,6 +74,7 @@ public class NewEnemyAI : MonoBehaviour
             ArriveAtSoundAggro();
         }
         UpdateInSight();
+        ChangeRangeCheck();
 
         //Audio
         if (audioMan != null && enemyName == "Hag")
