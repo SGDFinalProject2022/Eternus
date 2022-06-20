@@ -345,7 +345,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3da9ea87668c4fe4fa4bfa20b6dedc8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ai: {fileID: 4710051376123386672}
+  ai: {fileID: 6555876627397313079}
 --- !u!65 &4381878094096908369
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -402,10 +402,10 @@ GameObject:
   m_Component:
   - component: {fileID: 2856946703335791451}
   - component: {fileID: 2856946703335791449}
-  - component: {fileID: 4710051376123386672}
   - component: {fileID: 4921742630455898934}
   - component: {fileID: 1823375271877248645}
   - component: {fileID: 3929279051187046993}
+  - component: {fileID: 6555876627397313079}
   m_Layer: 3
   m_Name: EnemyOBJ
   m_TagString: Enemy
@@ -454,34 +454,6 @@ NavMeshAgent:
   m_BaseOffset: 1
   m_WalkableMask: 1
   m_ObstacleAvoidanceType: 4
---- !u!114 &4710051376123386672
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2856946703335791428}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d6f294cbbdd4acb43a07713f1b018a1d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enemyName: Water Monster
-  anim: {fileID: 0}
-  nodeParent: {fileID: 2856946703828012286}
-  randomPath: 0
-  reversePath: 0
-  normalSpeed: 8
-  aggroSpeed: 13
-  deaggroTime: 5
-  yieldTime: 3
-  walkRange: {fileID: 6982107925054311289}
-  sprintRange: {fileID: 3001542567359411085}
-  crouchRange: {fileID: 7536006493829617}
-  attackRange: 4
-  attackTime: 3
-  player: {fileID: 0}
-  healthController: {fileID: 0}
 --- !u!114 &4921742630455898934
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -529,6 +501,7 @@ MonoBehaviour:
     spatialBlend: 1
     loop: 0
     playOnAwake: 0
+    bypassReverbZones: 0
     mixerGroup: {fileID: 0}
     source: {fileID: 0}
 --- !u!82 &3929279051187046993
@@ -663,6 +636,33 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &6555876627397313079
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2856946703335791428}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea0f99e1e2b331940b87f6161aa03e46, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyName: Water Monster
+  nodeParent: {fileID: 2856946703828012286}
+  reversePath: 0
+  randomPath: 0
+  normalSpeed: 6
+  deaggroTime: 8
+  deaggroDistance: 20
+  yieldTime: 2
+  aggroSpeed: 15
+  attackDistance: 5
+  player: {fileID: 0}
+  walkRange: {fileID: 6982107925054311289}
+  sprintRange: {fileID: 3001542567359411085}
+  crouchRange: {fileID: 7536006493829617}
+  anim: {fileID: 0}
 --- !u!1 &2856946703634404526
 GameObject:
   m_ObjectHideFlags: 0
@@ -831,7 +831,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3da9ea87668c4fe4fa4bfa20b6dedc8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ai: {fileID: 4710051376123386672}
+  ai: {fileID: 6555876627397313079}
 --- !u!65 &348295316484475262
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -942,7 +942,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3da9ea87668c4fe4fa4bfa20b6dedc8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ai: {fileID: 4710051376123386672}
+  ai: {fileID: 6555876627397313079}
 --- !u!65 &4647144609964027180
 BoxCollider:
   m_ObjectHideFlags: 0
