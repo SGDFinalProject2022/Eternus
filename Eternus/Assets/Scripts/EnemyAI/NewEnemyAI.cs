@@ -20,7 +20,7 @@ public class NewEnemyAI : MonoBehaviour
 
     [Header("Combat")]
     [SerializeField] float attackDistance = 5f;
-
+    [SerializeField] HealthController healthController;
     [SerializeField] Transform player;
 
     [SerializeField] GameObject walkRange;
@@ -160,7 +160,7 @@ public class NewEnemyAI : MonoBehaviour
             }
         }
 
-        if (enemyName != "WaterMonster") //any enemy but corduroy
+        if (enemyName != "Water Monster") //any enemy but corduroy
         {            
             if (inRange)
             {
@@ -231,10 +231,16 @@ public class NewEnemyAI : MonoBehaviour
 
         if(!inSight)
         {
-            StopCoroutine(aggroCor);
-            aggroCor = null;
-            StopCoroutine(attackCor);
-            attackCor = null;
+            if(aggroCor != null)
+            {
+                StopCoroutine(aggroCor);
+                aggroCor = null;
+            }
+            if(attackCor != null)
+            {
+                StopCoroutine(attackCor);
+                attackCor = null;
+            }
             aggrod = false;
             soundAggrod = false;
             ai.destination = nodes[currentNode].position;
@@ -304,6 +310,7 @@ public class NewEnemyAI : MonoBehaviour
     {
         ai.speed = 0;
         Animate("Attack");
+        healthController.HurtPlayer(0.6f);
         yield return new WaitForSeconds(yieldTime);
         Animate("Fast");
         ai.speed = aggroSpeed;
