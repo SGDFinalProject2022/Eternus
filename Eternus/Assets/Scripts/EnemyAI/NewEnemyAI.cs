@@ -67,6 +67,7 @@ public class NewEnemyAI : MonoBehaviour
             var lookAtPos = player.position;
             lookAtPos.y = transform.position.y; //set y pos to the same as mine, so I don't look up/down
             transform.LookAt(lookAtPos);
+            ai.destination = player.position;
             Chase();
         }
         else if (soundAggrod)
@@ -221,13 +222,17 @@ public class NewEnemyAI : MonoBehaviour
     }
     IEnumerator Deaggro()
     {
-        ai.speed = 0;
         //look around anim
         float seconds = 0f;
-        while(!inSight && seconds < deaggroTime)
+        while(seconds < deaggroTime)
         {
             seconds++;
             yield return new WaitForSeconds(1f);
+
+            if(inSight)
+            {
+                break;
+            }
         }
 
         if(!inSight)
@@ -288,7 +293,6 @@ public class NewEnemyAI : MonoBehaviour
     {        
         if(inSight)
         {
-            ai.destination = player.position;
             if (Vector3.Distance(transform.position, player.position) < attackDistance)
             {
                 StartAttack();
@@ -319,7 +323,7 @@ public class NewEnemyAI : MonoBehaviour
     }
     void UpdateInSight()
     {
-        if (enemyName != "WaterMonster") //any enemy but corduroy
+        if (enemyName != "Water Monster") //any enemy but corduroy
         {
             if(playerMov.isHiding || Vector3.Distance(transform.position, player.position) >= deaggroDistance)
             {

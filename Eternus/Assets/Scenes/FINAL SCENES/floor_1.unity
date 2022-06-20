@@ -657,6 +657,22 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 1585592198}
+    - target: {fileID: 6555876627397313079, guid: 42e444d0eb3646147bfbeebdc51f670e, type: 3}
+      propertyPath: aggroSpeed
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 6555876627397313079, guid: 42e444d0eb3646147bfbeebdc51f670e, type: 3}
+      propertyPath: normalSpeed
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6555876627397313079, guid: 42e444d0eb3646147bfbeebdc51f670e, type: 3}
+      propertyPath: attackDistance
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6555876627397313079, guid: 42e444d0eb3646147bfbeebdc51f670e, type: 3}
+      propertyPath: healthController
+      value: 
+      objectReference: {fileID: 674758145}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 42e444d0eb3646147bfbeebdc51f670e, type: 3}
 --- !u!1001 &13995344
