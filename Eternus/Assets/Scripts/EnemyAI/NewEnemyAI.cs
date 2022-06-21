@@ -100,11 +100,11 @@ public class NewEnemyAI : MonoBehaviour
     void MoveToNextNode()
     {
         //Check for random path parameter
-        if (Vector3.Distance(transform.position, nodes[currentNode].position) < 3f && randomPath)
+        if (Vector3.Distance(transform.position, nodes[currentNode].position) < 5f && randomPath)
         {
             currentNode = Random.Range(0, nodes.Count);
         }
-        else if (Vector3.Distance(transform.position, nodes[currentNode].position) < 3f)
+        else if (Vector3.Distance(transform.position, nodes[currentNode].position) < 5f)
         {
             //Check for reverse path parameter
             if (reversePath)
