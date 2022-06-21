@@ -100,11 +100,11 @@ public class NewEnemyAI : MonoBehaviour
     void MoveToNextNode()
     {
         //Check for random path parameter
-        if (Vector3.Distance(transform.position, nodes[currentNode].position) < 5f && randomPath)
+        if (Vector3.Distance(transform.position, nodes[currentNode].position) < 3f && randomPath)
         {
             currentNode = Random.Range(0, nodes.Count);
         }
-        else if (Vector3.Distance(transform.position, nodes[currentNode].position) < 5f)
+        else if (Vector3.Distance(transform.position, nodes[currentNode].position) < 3f)
         {
             //Check for reverse path parameter
             if (reversePath)
@@ -227,7 +227,12 @@ public class NewEnemyAI : MonoBehaviour
         float seconds = 0f;
         while(seconds < deaggroTime)
         {
-            if (!inSight && Vector3.Distance(transform.position, player.position) <= 4f)
+            if(!inSight && soundAggrod)
+            {
+                ai.speed = 0;
+                isSearching = true;
+            }
+            else if (!inSight && Vector3.Distance(transform.position, player.position) <= 4f)
             {
                 ai.speed = 0;
                 isSearching = true;
