@@ -31,6 +31,7 @@ public class NewEnemyAI : MonoBehaviour
     bool aggrod;
     bool soundAggrod;
     bool inSight;
+    bool isSearching;
 
     Coroutine aggroCor;
     Coroutine deaggroCor;
@@ -75,6 +76,7 @@ public class NewEnemyAI : MonoBehaviour
         }
         UpdateInSight();
         ChangeRangeCheck();
+        AnimateSearch();
 
         //Audio
         if (audioMan != null && enemyName == "Hag")
@@ -215,6 +217,7 @@ public class NewEnemyAI : MonoBehaviour
         StopAudio("Idle");
         PlayAudio("Stop");
         yield return new WaitForSeconds(yieldTime);
+        ResetAnimate("Transition");
         Animate("Fast");
         PlayAudio("Fast");
         ai.speed = aggroSpeed;
@@ -227,19 +230,18 @@ public class NewEnemyAI : MonoBehaviour
             if (!inSight && Vector3.Distance(transform.position, player.position) <= 4f)
             {
                 ai.speed = 0;
-                Animate("Search");
+                isSearching = true;
             }
             seconds++;
             yield return new WaitForSeconds(1f);
 
             if(inSight)
             {
-                ai.speed = aggroSpeed;
-                Animate("Fast");
                 break;
             }                      
         }
 
+        isSearching = false;
         if(!inSight)
         {
             ai.speed = 0;
@@ -256,13 +258,19 @@ public class NewEnemyAI : MonoBehaviour
             aggrod = false;
             soundAggrod = false;
             ai.destination = nodes[currentNode].position;
+            ResetAnimate("Fast");
             StopAudio("Fast");
             FadeOutAudio("Chase", true);
             PlayAudio("Idle");
             Animate("Slow");
             ai.speed = normalSpeed;
         }
-        Animate("Fast");
+        else
+        {
+            aggrod = true;
+            StartAggro();
+            ai.speed = aggroSpeed;
+        }
         deaggroCor = null;
     }
     void ChangeRangeCheck()
@@ -353,6 +361,21 @@ public class NewEnemyAI : MonoBehaviour
         {
             anim.SetTrigger(animation);
         }
+    }
+    void ResetAnimate(string animation)
+    {
+        if (anim != null)
+        {
+            anim.ResetTrigger(animation);
+        }
+    }
+
+    void AnimateSearch()
+    {
+        if(anim != null)
+        {
+            anim.SetBool("isSearching", isSearching);
+        }    
     }
 
     //Audio
