@@ -157,7 +157,6 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   ID: 0
-  interactText: Exit
 --- !u!1 &2654156026983143594
 GameObject:
   m_ObjectHideFlags: 0
@@ -337,6 +336,8 @@ MonoBehaviour:
   exitLocation: {fileID: 2654156026771355877}
   enterTrigger: {fileID: 2654156027638098555}
   exitTrigger: {fileID: 2654156026888274766}
+  playerController: {fileID: 0}
+  tensionRange: 2
 --- !u!114 &2654156027344817102
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -354,6 +355,7 @@ MonoBehaviour:
   - name: Hide
     type: 0
     clip: {fileID: 8300000, guid: 1dd6910777f445643a240002e2434b20, type: 3}
+    customAudioSource: {fileID: 0}
     volume: 1
     volumeVariance: 0.2
     originalVolume: 0
@@ -362,11 +364,13 @@ MonoBehaviour:
     spatialBlend: 0
     loop: 0
     playOnAwake: 0
+    bypassReverbZones: 0
     mixerGroup: {fileID: 0}
     source: {fileID: 0}
   - name: Exit
     type: 0
     clip: {fileID: 8300000, guid: f0a9f445b5e6ac341a58feb16b7cb578, type: 3}
+    customAudioSource: {fileID: 0}
     volume: 1
     volumeVariance: 0.2
     originalVolume: 0
@@ -375,11 +379,13 @@ MonoBehaviour:
     spatialBlend: 0
     loop: 0
     playOnAwake: 0
+    bypassReverbZones: 0
     mixerGroup: {fileID: 0}
     source: {fileID: 0}
   - name: Hidden
     type: 0
     clip: {fileID: 8300000, guid: 0d63a0a52e4b80244b9c5442a5a0bb61, type: 3}
+    customAudioSource: {fileID: 0}
     volume: 0.2
     volumeVariance: 0.2
     originalVolume: 0
@@ -388,6 +394,22 @@ MonoBehaviour:
     spatialBlend: 0
     loop: 1
     playOnAwake: 0
+    bypassReverbZones: 0
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+  - name: Tension
+    type: 1
+    clip: {fileID: 8300000, guid: 7e72ba120e3d68d4d8774581093a073b, type: 3}
+    customAudioSource: {fileID: 0}
+    volume: 1
+    volumeVariance: 0
+    originalVolume: 0
+    pitch: 1
+    pitchVariance: 0
+    spatialBlend: 0
+    loop: 0
+    playOnAwake: 0
+    bypassReverbZones: 1
     mixerGroup: {fileID: 0}
     source: {fileID: 0}
 --- !u!114 &866805454
@@ -533,4 +555,3 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   ID: 0
-  interactText: Hide

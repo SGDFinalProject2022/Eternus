@@ -345,7 +345,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3da9ea87668c4fe4fa4bfa20b6dedc8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ai: {fileID: 4710051376123386672}
+  ai: {fileID: 6555876627397313079}
 --- !u!65 &4381878094096908369
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -402,7 +402,10 @@ GameObject:
   m_Component:
   - component: {fileID: 2856946703335791451}
   - component: {fileID: 2856946703335791449}
-  - component: {fileID: 4710051376123386672}
+  - component: {fileID: 4921742630455898934}
+  - component: {fileID: 1823375271877248645}
+  - component: {fileID: 3929279051187046993}
+  - component: {fileID: 6555876627397313079}
   m_Layer: 3
   m_Name: EnemyOBJ
   m_TagString: Enemy
@@ -451,7 +454,7 @@ NavMeshAgent:
   m_BaseOffset: 1
   m_WalkableMask: 1
   m_ObstacleAvoidanceType: 4
---- !u!114 &4710051376123386672
+--- !u!114 &4921742630455898934
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -460,25 +463,206 @@ MonoBehaviour:
   m_GameObject: {fileID: 2856946703335791428}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d6f294cbbdd4acb43a07713f1b018a1d, type: 3}
+  m_Script: {fileID: 11500000, guid: 096e793db0d80b34faff868b0ff94198, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  footStepSFX:
+  - {fileID: 8300000, guid: 3c5b3abade7a85e4cb8cc86238bb3430, type: 3}
+  - {fileID: 8300000, guid: dde13de76a907bc42a690a1441c2f940, type: 3}
+  - {fileID: 8300000, guid: b7394e8d5a970954eac09e1fe6920c90, type: 3}
+  - {fileID: 8300000, guid: 0601c0881695a5942be27e741ddbc216, type: 3}
+  velocity: 0
+  isAggrod: 0
+  baseStepSpeed: 0.6
+  aggroStepMultiplier: 0.6
+--- !u!114 &1823375271877248645
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2856946703335791428}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c583a1393bd16674d9372aa50af36600, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mixerGroup: {fileID: 0}
+  sounds:
+  - name: Step
+    type: 0
+    clip: {fileID: 0}
+    customAudioSource: {fileID: 3929279051187046993}
+    volume: 0.2
+    volumeVariance: 0
+    originalVolume: 0
+    pitch: 1
+    pitchVariance: 0.3
+    spatialBlend: 1
+    loop: 0
+    playOnAwake: 0
+    bypassReverbZones: 0
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+--- !u!82 &3929279051187046993
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2856946703335791428}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 36b9e71da3e3ad8489f6ea70a02e6f20, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 0.2
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 3.02
+  MaxDistance: 50
+  Pan2D: 0
+  rolloffMode: 2
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0.060399998
+      value: 1
+      inSlope: -16.562912
+      outSlope: -16.562912
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.120799996
+      value: 0.5
+      inSlope: -4.140728
+      outSlope: -4.140728
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.24159999
+      value: 0.25
+      inSlope: -1.035182
+      outSlope: -1.035182
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.47753897
+      value: 0.125
+      inSlope: -0.458207
+      outSlope: -0.458207
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.63985133
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.71426374
+      value: 0.049987793
+      inSlope: -0.2768912
+      outSlope: -0.2768912
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.6514409
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: -0.060424022
+      outSlope: -0.060424022
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!114 &6555876627397313079
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2856946703335791428}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea0f99e1e2b331940b87f6161aa03e46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   enemyName: Water Monster
-  anim: {fileID: 0}
   nodeParent: {fileID: 2856946703828012286}
-  randomPath: 0
   reversePath: 0
-  normalSpeed: 8
-  aggroSpeed: 13
-  deaggroTime: 5
-  yieldTime: 3
+  randomPath: 0
+  normalSpeed: 6
+  deaggroTime: 8
+  deaggroDistance: 20
+  yieldTime: 2
+  aggroSpeed: 15
+  attackDistance: 5
+  player: {fileID: 0}
   walkRange: {fileID: 6982107925054311289}
   sprintRange: {fileID: 3001542567359411085}
   crouchRange: {fileID: 7536006493829617}
-  attackRange: 4
-  attackTime: 3
-  player: {fileID: 0}
-  healthController: {fileID: 0}
+  anim: {fileID: 0}
 --- !u!1 &2856946703634404526
 GameObject:
   m_ObjectHideFlags: 0
@@ -647,7 +831,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3da9ea87668c4fe4fa4bfa20b6dedc8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ai: {fileID: 4710051376123386672}
+  ai: {fileID: 6555876627397313079}
 --- !u!65 &348295316484475262
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -758,7 +942,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3da9ea87668c4fe4fa4bfa20b6dedc8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ai: {fileID: 4710051376123386672}
+  ai: {fileID: 6555876627397313079}
 --- !u!65 &4647144609964027180
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -798,7 +982,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8473358213414048681}
   m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -0.43, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

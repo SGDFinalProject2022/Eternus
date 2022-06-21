@@ -9,6 +9,7 @@ public class HideController : MonoBehaviour
     [SerializeField] GameObject enterTrigger;
     [SerializeField] GameObject exitTrigger;
     [SerializeField] GameObject playerController;
+    [SerializeField] float tensionRange = 0.5f;
     AudioManager audioMan;
 
     // Start is called before the first frame update
@@ -22,6 +23,7 @@ public class HideController : MonoBehaviour
 
     public void Hide()
     {
+        isHiding = true;
         playerController.transform.parent = hiddenLocation;
         playerController.GetComponent<PlayerMovement>().isHiding = true;
         playerController.GetComponent<CharacterController>().enabled = false;
@@ -29,12 +31,14 @@ public class HideController : MonoBehaviour
         playerController.transform.localRotation = Quaternion.identity;
         audioMan.Play("Hide");
         audioMan.Play("Hidden");
+        StartCoroutine("CheckTension");
         enterTrigger.SetActive(false);
         exitTrigger.SetActive(true);
     }
 
     public void Exit()
     {
+        isHiding = false;
         playerController.transform.parent = exitLocation;
         playerController.transform.localPosition = Vector3.zero;
         playerController.transform.localRotation = Quaternion.identity;
@@ -47,9 +51,73 @@ public class HideController : MonoBehaviour
         exitTrigger.SetActive(false);
     }
 
-    // Update is called once per frame
-    void Update()
+    bool isHiding;
+    bool isPlayingTension;
+    bool enemyInRange;
+
+    Coroutine checkTension;
+    IEnumerator CheckTension()
     {
-        
+        while (isHiding)
+        {
+            Collider[] hit = Physics.OverlapSphere(transform.position, tensionRange);
+
+            enemyInRange = false;
+            foreach (Collider obj in hit)
+            {
+                if (obj.gameObject.CompareTag("Enemy"))
+                {
+                    enemyInRange = true;
+                }
+            }
+
+            if (enemyInRange && !isPlayingTension)
+            {
+                isPlayingTension = true;
+                audioMan.sounds[3].source.volume = 1f;
+                audioMan.ManuallyStopCoroutines();
+                audioMan.PlayForceEntirely("Tension");
+            }
+            else if (!enemyInRange && isPlayingTension)
+            {
+                yield return new WaitForSeconds(3f);
+                if (!enemyInRange) //extra time to confirm that they're really gone
+                {
+                    isPlayingTension = false;
+                    //Play Ambient
+                    audioMan.VolumeFadeOut("Tension", true);
+                }                
+            }
+            yield return new WaitForSeconds(.025f);
+        }
+        if(isPlayingTension)
+        {
+            audioMan.VolumeFadeOut("Tension", true);
+            isPlayingTension = false;
+        }        
     }
+
+    // Update is called once per frame
+    /*void Update()
+    {
+        if (exitTrigger.activeSelf)
+        { //exit trigger is only active if player is hiding inside
+            Collider[] hitColliders = Physics.OverlapSphere(transform.position, 0.5f);
+            for (int i = 0; i < hitColliders.Length; i++)
+            {
+                GameObject hitCollider = hitColliders[i].gameObject;
+                if (hitCollider.CompareTag("Enemy"))
+                {
+                    audioMan.StopAllCoroutines();
+                    audioMan.sounds[3].source.volume = 1f;
+                    audioMan.PlayForceEntirely("Tension");
+                    Debug.Log("Tension should be playing");
+                }
+                else
+                {
+                    audioMan.VolumeFadeOut("Tension", true);
+                }
+            }
+        }
+    }*/
 }

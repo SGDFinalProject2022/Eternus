@@ -8,12 +8,20 @@ using UnityEngine.Events;
 public class EventBoxTrigger : MonoBehaviour
 {
     public UnityEvent onTrigger;
+    public UnityEvent onExit;
 
     private void OnTriggerEnter(Collider other)
     {
         if(other.CompareTag("Player"))
         {
             onTrigger.Invoke();
+        }
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        if(other.CompareTag("Player"))
+        {
+            onExit.Invoke();
         }
     }
 
@@ -24,7 +32,7 @@ public class EventBoxTrigger : MonoBehaviour
 
     public void AlertEnemy()
     {
-        EnemyAI enemyAI = FindObjectOfType<EnemyAI>();
+        NewEnemyAI enemyAI = FindObjectOfType<NewEnemyAI>();
         enemyAI.SoundAggro(transform);
     }
 }
