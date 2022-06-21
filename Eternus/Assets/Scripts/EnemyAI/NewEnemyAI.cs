@@ -31,11 +31,11 @@ public class NewEnemyAI : MonoBehaviour
     bool aggrod;
     bool soundAggrod;
     bool inSight;
+    bool isSearching;
 
     Coroutine aggroCor;
     Coroutine deaggroCor;
     Coroutine attackCor;
-
 
     int currentNode;
     List<Transform> nodes = new List<Transform>();
@@ -76,6 +76,7 @@ public class NewEnemyAI : MonoBehaviour
         }
         UpdateInSight();
         ChangeRangeCheck();
+        AnimateSearch();
 
         //Audio
         if (audioMan != null && enemyName == "Hag")
@@ -216,27 +217,39 @@ public class NewEnemyAI : MonoBehaviour
         StopAudio("Idle");
         PlayAudio("Stop");
         yield return new WaitForSeconds(yieldTime);
+        ResetAnimate("Transition");
         Animate("Fast");
         PlayAudio("Fast");
         ai.speed = aggroSpeed;
     }
     IEnumerator Deaggro()
     {
-        //look around anim
         float seconds = 0f;
         while(seconds < deaggroTime)
         {
+            if(!inSight && soundAggrod)
+            {
+                ai.speed = 0;
+                isSearching = true;
+            }
+            else if (!inSight && Vector3.Distance(transform.position, player.position) <= 4f)
+            {
+                ai.speed = 0;
+                isSearching = true;
+            }
             seconds++;
             yield return new WaitForSeconds(1f);
 
             if(inSight)
             {
                 break;
-            }
+            }                      
         }
 
+        isSearching = false;
         if(!inSight)
         {
+            ai.speed = 0;
             if(aggroCor != null)
             {
                 StopCoroutine(aggroCor);
@@ -250,11 +263,18 @@ public class NewEnemyAI : MonoBehaviour
             aggrod = false;
             soundAggrod = false;
             ai.destination = nodes[currentNode].position;
+            ResetAnimate("Fast");
             StopAudio("Fast");
             FadeOutAudio("Chase", true);
             PlayAudio("Idle");
             Animate("Slow");
             ai.speed = normalSpeed;
+        }
+        else
+        {
+            aggrod = true;
+            StartAggro();
+            ai.speed = aggroSpeed;
         }
         deaggroCor = null;
     }
@@ -346,6 +366,21 @@ public class NewEnemyAI : MonoBehaviour
         {
             anim.SetTrigger(animation);
         }
+    }
+    void ResetAnimate(string animation)
+    {
+        if (anim != null)
+        {
+            anim.ResetTrigger(animation);
+        }
+    }
+
+    void AnimateSearch()
+    {
+        if(anim != null)
+        {
+            anim.SetBool("isSearching", isSearching);
+        }    
     }
 
     //Audio

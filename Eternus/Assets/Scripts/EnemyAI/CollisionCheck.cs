@@ -12,4 +12,11 @@ public class CollisionCheck : MonoBehaviour
             ai.SightAggro();
         }
     }
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            ai.SightAggro();
+        }
+    }
 }
