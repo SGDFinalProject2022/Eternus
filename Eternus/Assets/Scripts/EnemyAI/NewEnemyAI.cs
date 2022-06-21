@@ -173,7 +173,7 @@ public class NewEnemyAI : MonoBehaviour
                     if (audioMan != null)
                     {
                         audioMan.StopAllCoroutines();
-                        audioMan.sounds[5].volume = 1f;
+                        //audioMan.sounds[5].volume = 1f;                        
                     }
                     PlayAudio("Chase");
                     inSight = true;
