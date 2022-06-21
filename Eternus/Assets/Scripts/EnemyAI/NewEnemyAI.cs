@@ -36,7 +36,6 @@ public class NewEnemyAI : MonoBehaviour
     Coroutine deaggroCor;
     Coroutine attackCor;
 
-
     int currentNode;
     List<Transform> nodes = new List<Transform>();
     bool inReverse;
@@ -222,21 +221,28 @@ public class NewEnemyAI : MonoBehaviour
     }
     IEnumerator Deaggro()
     {
-        //look around anim
         float seconds = 0f;
         while(seconds < deaggroTime)
         {
+            if (!inSight && Vector3.Distance(transform.position, player.position) <= 4f)
+            {
+                ai.speed = 0;
+                Animate("Search");
+            }
             seconds++;
             yield return new WaitForSeconds(1f);
 
             if(inSight)
             {
+                ai.speed = aggroSpeed;
+                Animate("Fast");
                 break;
-            }
+            }                      
         }
 
         if(!inSight)
         {
+            ai.speed = 0;
             if(aggroCor != null)
             {
                 StopCoroutine(aggroCor);
@@ -256,6 +262,7 @@ public class NewEnemyAI : MonoBehaviour
             Animate("Slow");
             ai.speed = normalSpeed;
         }
+        Animate("Fast");
         deaggroCor = null;
     }
     void ChangeRangeCheck()
