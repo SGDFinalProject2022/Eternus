@@ -15,7 +15,22 @@ ModelImporter:
   - first:
       74: 6720303635017113406
     second: Attack
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Eyes
+    second: {fileID: 2100000, guid: a13e4bf7dcdbc4f419055051fe8f996f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: PeachesClothes
+    second: {fileID: 2100000, guid: ae51e17d254000347b47df69c707ad4f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: PeachesSkin
+    second: {fileID: 2100000, guid: 1a5df4f42ae545e44997d09b86b57dab, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
