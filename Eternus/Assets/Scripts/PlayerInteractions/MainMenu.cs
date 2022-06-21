@@ -9,6 +9,7 @@ public class MainMenu : MonoBehaviour
     [SerializeField] GameObject settingsPanel;
     [SerializeField] GameObject playPanel;
     [SerializeField] Button continueButton;
+    [SerializeField] AudioManager audioMan;
 
     bool isSettingsToggled = false;
     //bool isPlayToggled = false;
@@ -31,27 +32,18 @@ public class MainMenu : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
-    public void PlayToggle()
-    { 
-
-    }
-
     public void OnContinue()
     {
         SaveData data = SaveLoad.Load();
         GlobalData.instance.LoadScene(data.scene);
+        audioMan.VolumeFadeOut("Title Music", true);
     }
 
 
     public void LoadLevel(string levelName)
     {
         GlobalData.instance.LoadScene(levelName);
+        audioMan.VolumeFadeOut("Title Music", true);
     }
 
     public void OnQuitButtonClick()
