@@ -15,12 +15,7 @@ ModelImporter:
   - first:
       74: 6720303635017113406
     second: Attack
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Clothing1
-    second: {fileID: 2100000, guid: 0695a7fa40feaa843a9330ca9f630838, type: 2}
+  externalObjects: {}
   materials:
     materialImportMode: 2
     materialName: 0

@@ -32,7 +32,7 @@ public class EventBoxTrigger : MonoBehaviour
 
     public void AlertEnemy()
     {
-        EnemyAI enemyAI = FindObjectOfType<EnemyAI>();
+        NewEnemyAI enemyAI = FindObjectOfType<NewEnemyAI>();
         enemyAI.SoundAggro(transform);
     }
 }

@@ -250,28 +250,17 @@ public class EnemyAI : MonoBehaviour
                 isAttacking = true;
                 StartCoroutine("Hit");
             }
-            else if (!playerInSight || Vector3.Distance(transform.position, player.position) > attackRange)
-            {
-                isAttacking = false;
-            }
         }
     }
     IEnumerator Hit()
     {
         ai.speed = 0;
-        while (true)
-        {
-            if (Vector3.Distance(transform.position, player.position) > attackRange || !playerInSight)
-            {
-                break;
-            }
-            print("Hit the player");
-            healthController.HurtPlayer(0.6f);
-            Animate("Attack");
-            yield return new WaitForSeconds(attackTime);
-            Animate("Attack");
-        }
+        print("Hit the player");
+        healthController.HurtPlayer(0.6f);
+        Animate("Attack");
+        yield return new WaitForSeconds(attackTime);
         Animate("Fast");
+        isAttacking = false;
         ai.speed = aggroSpeed;
     }
 
@@ -305,8 +294,11 @@ public class EnemyAI : MonoBehaviour
                     isAggrod = true;
                     if (!isChasing)
                     {
-                        audioMan.StopAllCoroutines();
-                        audioMan.sounds[5].volume = 1f;
+                        if(audioMan != null)
+                        {
+                            audioMan.StopAllCoroutines();
+                            audioMan.sounds[5].volume = 1f;
+                        }
                         PlayAudio("Chase");
                         StartCoroutine("BeginChase");
                     }
@@ -388,12 +380,10 @@ public class EnemyAI : MonoBehaviour
         {
             if (!idle && !playerInSight)
             {
+                ai.speed = 0;
                 print("Starting deaggro");
-                if (Vector3.Distance(transform.position, ai.destination) < 10f)
-                {
-                    idle = true;
-                    StartCoroutine("LoseAggro");
-                }
+                idle = true;
+                StartCoroutine("LoseAggro");
             }
         }        
     }
@@ -413,16 +403,21 @@ public class EnemyAI : MonoBehaviour
                 isAggrod = false;
                 isSoundAggrod = false;
                 ai.destination = nodes[currentNode].position;
+                StopAudio("Fast");
+                FadeOutAudio("Chase", true);
+                PlayAudio("Idle");
+                Animate("Slow");
+                print("lost aggro");
+                idle = false;
+                ai.speed = normalSpeed;
+                isChasing = false;
                 break;
             }
         }
-        StopAudio("Fast");
-        FadeOutAudio("Chase", true);
-        PlayAudio("Idle");
-        Animate("Slow");
-        print("lost aggro");
-        idle = false;
-        ai.speed = normalSpeed;
-        isChasing = false;
+        
     }
+
+
+
+   
 }
