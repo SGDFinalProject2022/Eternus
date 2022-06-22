@@ -3248,3 +3248,22 @@ MonoBehaviour:
   doorAnimator: {fileID: 0}
   final: 0
   isOpen: 0
+--- !u!1 &7438807030074104311 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5544216912077630266, guid: bd24fc4918d8e5a46b0a124e3bbf9802, type: 3}
+  m_PrefabInstance: {fileID: 3155598908154409677}
+  m_PrefabAsset: {fileID: 0}
+--- !u!64 &8679499081026426823
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7438807030074104311}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 3058937951619623739, guid: 2959def0e1208a94aa43d11d954351dd, type: 3}
