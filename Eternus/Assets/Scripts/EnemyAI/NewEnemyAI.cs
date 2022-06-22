@@ -43,14 +43,14 @@ public class NewEnemyAI : MonoBehaviour
     NavMeshAgent ai;
 
     AudioManager audioMan;
-    AIFootsteps aiFootsteps;
+    [SerializeField] AIFootsteps aiFootsteps;
 
     void Awake()
     {
         ai = GetComponent<NavMeshAgent>();
         playerMov = player.gameObject.GetComponent<PlayerMovement>();
         audioMan = GetComponent<AudioManager>();
-        aiFootsteps = GetComponent<AIFootsteps>();
+        //aiFootsteps = GetComponent<AIFootsteps>();
         SetUpNodes();
         transform.position = nodes[0].position;
         ai.speed = normalSpeed;
@@ -175,7 +175,7 @@ public class NewEnemyAI : MonoBehaviour
                         audioMan.StopAllCoroutines();
                         //audioMan.sounds[5].volume = 1f;                        
                     }
-                    PlayAudio("Chase");
+                    PlayAudioForceEntirely("Chase");
                     inSight = true;
                     aggrod = true;
                     StartAggro();
@@ -396,6 +396,13 @@ public class NewEnemyAI : MonoBehaviour
         if (audioMan != null)
         {
             audioMan.Stop(audioName);
+        }
+    }
+    void PlayAudioForceEntirely(string audioName)
+    {
+        if(audioMan != null)
+        {
+            audioMan.PlayForceEntirely(audioName);
         }
     }
     void FadeOutAudio(string audioName, bool stopSound)
