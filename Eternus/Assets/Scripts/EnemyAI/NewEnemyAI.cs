@@ -100,11 +100,11 @@ public class NewEnemyAI : MonoBehaviour
     void MoveToNextNode()
     {
         //Check for random path parameter
-        if (Vector3.Distance(transform.position, nodes[currentNode].position) < 5f && randomPath)
+        if (Vector3.Distance(transform.position, nodes[currentNode].position) < 3f && randomPath)
         {
             currentNode = Random.Range(0, nodes.Count);
         }
-        else if (Vector3.Distance(transform.position, nodes[currentNode].position) < 5f)
+        else if (Vector3.Distance(transform.position, nodes[currentNode].position) < 3f)
         {
             //Check for reverse path parameter
             if (reversePath)
@@ -173,7 +173,7 @@ public class NewEnemyAI : MonoBehaviour
                     if (audioMan != null)
                     {
                         audioMan.StopAllCoroutines();
-                        //audioMan.sounds[5].volume = 1f;                        
+                        audioMan.sounds[5].volume = 1f;
                     }
                     PlayAudio("Chase");
                     inSight = true;
