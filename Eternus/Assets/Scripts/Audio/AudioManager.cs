@@ -186,7 +186,7 @@ public class AudioManager : MonoBehaviour
 		s.source.clip = newAudioClip;
 	}
 
-	bool isPlaying = false;
+	[HideInInspector] public bool isPlaying = false;
 	/// <summary>
 	/// Like Play() but forces the sound to be played in it's entirety before calling again
 	/// </summary>
