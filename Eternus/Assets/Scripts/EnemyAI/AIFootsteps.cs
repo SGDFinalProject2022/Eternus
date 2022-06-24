@@ -6,6 +6,7 @@ using UnityEngine;
 /// </summary>
 public class AIFootsteps : MonoBehaviour
 {
+    [SerializeField] bool automaticFootsteps = true;
     AudioManager audioMan;
     [SerializeField] AudioClip[] footStepSFX;
 
@@ -30,6 +31,7 @@ public class AIFootsteps : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!automaticFootsteps) { return; }
         FootstepSoundHandler();
     }
 
