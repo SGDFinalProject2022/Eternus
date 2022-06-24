@@ -209,11 +209,33 @@ public class NewEnemyAI : MonoBehaviour
     {
         RaycastHit hit;
 
-        if (Physics.Linecast(transform.position, player.position, out hit, 3))
+        if (Physics.Linecast(transform.position, player.position, out hit, 3) && enemyName != "Water Monster")
         {
             if (hit.collider.gameObject.tag == "Player")
             {
                 if(soundAggroCor != null)
+                {
+                    StopCoroutine(soundAggroCor);
+                    soundAggroCor = null;
+                }
+
+                losAggrod = true;
+                if (!aggrod && aggroCor == null)
+                {
+                    aggroCor = StartCoroutine("StartAggro");
+                }
+                inLineOfSight = true;
+            }
+            else
+            {
+                inLineOfSight = false;
+            }
+        }
+        else if (Physics.Linecast(transform.position, player.position, out hit, 3) && playerMov.isInWater)
+        {
+            if (hit.collider.gameObject.tag == "Player")
+            {
+                if (soundAggroCor != null)
                 {
                     StopCoroutine(soundAggroCor);
                     soundAggroCor = null;
@@ -252,14 +274,14 @@ public class NewEnemyAI : MonoBehaviour
         if (losAggrod)
         {
             ai.destination = player.position;
-            if (!inLineOfSight || (inLineOfSight && playerMov.isHiding))
+            if (!inLineOfSight || (inLineOfSight && playerMov.isHiding) || (enemyName == "Water Monster" && !playerMov.isInWater))
             {
                 if (losCor == null)
                 {
                     losCor = StartCoroutine("LoseLineOfSight");
                 }
             }
-            else if (inLineOfSight)
+            else if (inLineOfSight || (enemyName == "Water Monster" && playerMov.isInWater))
             {
                 if (losCor != null)
                 {
@@ -271,12 +293,11 @@ public class NewEnemyAI : MonoBehaviour
     }
     IEnumerator LoseLineOfSight()
     {
-        print("Made it");
         soundAggrod = false;
         float seconds = 0;
-        while ((!inLineOfSight || (inLineOfSight && playerMov.isHiding)) && !soundAggrod)
+        while ((!inLineOfSight || (inLineOfSight && playerMov.isHiding) || (enemyName == "Water Monster" && !playerMov.isInWater) && !soundAggrod))
         {
-            if (inLineOfSight && playerMov.isHiding)
+            if (inLineOfSight && playerMov.isHiding || (enemyName == "Water Monster" && !playerMov.isInWater))
             {
                 isSearching = true;
                 AnimateSearch();
@@ -292,7 +313,7 @@ public class NewEnemyAI : MonoBehaviour
         isSearching = false;
         AnimateSearch();
 
-        if ((!inLineOfSight || (inLineOfSight && playerMov.isHiding)) && !soundAggrod)
+        if ((!inLineOfSight || (inLineOfSight && playerMov.isHiding)) || (enemyName == "Water Monster" && !playerMov.isInWater) && !soundAggrod)
         {
             ResetAnimate("Fast");
             ResetAnimate("Transition");
@@ -330,19 +351,24 @@ public class NewEnemyAI : MonoBehaviour
     }
     public void SoundAggro(Transform sound)
     {
-        if (!losAggrod)
+        if (state == AIState.Patrol)
         {
+            state = AIState.SoundAggro;
             soundAggro = sound;
-            if (!aggrod && soundAggroCor == null)
+            if (soundAggroCor == null)
             {
-                state = AIState.SoundAggro;
-                ai.destination = soundAggro.position;
                 soundAggroCor = StartCoroutine("ArriveAtSoundAggro");
             }
         }
     }
     IEnumerator ArriveAtSoundAggro()
     {
+        ai.speed = 0f;
+        ai.destination = soundAggro.position;
+        Animate("Transition");
+        yield return new WaitForSeconds(yieldTime);
+        Animate("Fast");
+        PlayAudio("Fast");
         ai.speed = aggroSpeed;
         while (Vector3.Distance(transform.position, soundAggro.position) > 5f)
         {
@@ -367,6 +393,7 @@ public class NewEnemyAI : MonoBehaviour
             ai.speed = normalSpeed;
             state = AIState.Patrol;
         }
+        soundAggroCor = null;
     }
 
 
