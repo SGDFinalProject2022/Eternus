@@ -291,7 +291,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 236663556197840265}
+      - m_Target: {fileID: 2744726412358913444}
         m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
         m_MethodName: Play
         m_Mode: 5
@@ -597,7 +597,7 @@ MonoBehaviour:
           m_StringArgument: floor_3
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 708942461}
+      - m_Target: {fileID: 2744726412358913444}
         m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
         m_MethodName: Play
         m_Mode: 5
@@ -1016,7 +1016,6 @@ GameObject:
   - component: {fileID: 978103541}
   - component: {fileID: 978103543}
   - component: {fileID: 978103542}
-  - component: {fileID: 236663556197840265}
   m_Layer: 0
   m_Name: PausePanel
   m_TagString: Untagged
@@ -1085,50 +1084,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &236663556197840265
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 978103540}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c583a1393bd16674d9372aa50af36600, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mixerGroup: {fileID: 0}
-  sounds:
-  - name: Click
-    type: 0
-    clip: {fileID: 8300000, guid: 128995488d7abbd48b8a0dc02d0abb4e, type: 3}
-    customAudioSource: {fileID: 0}
-    volume: 1
-    volumeVariance: 0
-    originalVolume: 0
-    pitch: 1
-    pitchVariance: 0.075
-    spatialBlend: 0
-    loop: 0
-    playOnAwake: 0
-    bypassReverbZones: 1
-    mixerGroup: {fileID: 0}
-    source: {fileID: 0}
-  - name: Back
-    type: 0
-    clip: {fileID: 8300000, guid: dcb7780abd739c349bf30a6ef3fcf887, type: 3}
-    customAudioSource: {fileID: 0}
-    volume: 1
-    volumeVariance: 0
-    originalVolume: 0
-    pitch: 1
-    pitchVariance: 0.05
-    spatialBlend: 0
-    loop: 0
-    playOnAwake: 0
-    bypassReverbZones: 1
-    mixerGroup: {fileID: 0}
-    source: {fileID: 0}
 --- !u!1 &994198675
 GameObject:
   m_ObjectHideFlags: 0
@@ -1363,7 +1318,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 236663556197840265}
+      - m_Target: {fileID: 2744726412358913444}
         m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
         m_MethodName: Play
         m_Mode: 5
@@ -1634,7 +1589,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 236663556197840265}
+      - m_Target: {fileID: 2744726412358913444}
         m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
         m_MethodName: Play
         m_Mode: 5
@@ -2330,7 +2285,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 236663556197840265}
+      - m_Target: {fileID: 2744726412358913444}
         m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
         m_MethodName: Play
         m_Mode: 5
@@ -3971,7 +3926,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 236663556197840265}
+      - m_Target: {fileID: 2744726412358913444}
         m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
         m_MethodName: Play
         m_Mode: 5
@@ -4678,6 +4633,7 @@ GameObject:
   - component: {fileID: 8457383100502241946}
   - component: {fileID: 1594374866}
   - component: {fileID: 1594374867}
+  - component: {fileID: 2744726412358913444}
   m_Layer: 0
   m_Name: Camera Holder
   m_TagString: Untagged
@@ -4765,6 +4721,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerVolume: {fileID: 1482285131}
   camHoldAnimator: {fileID: 1594374867}
+  audioMan: {fileID: 0}
 --- !u!95 &1594374867
 Animator:
   serializedVersion: 4
@@ -4785,6 +4742,80 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &2744726412358913444
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6132005458818927078}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c583a1393bd16674d9372aa50af36600, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mixerGroup: {fileID: 0}
+  sounds:
+  - name: Click
+    type: 0
+    clip: {fileID: 8300000, guid: 128995488d7abbd48b8a0dc02d0abb4e, type: 3}
+    customAudioSource: {fileID: 0}
+    volume: 1
+    volumeVariance: 0
+    originalVolume: 0
+    pitch: 1
+    pitchVariance: 0.075
+    spatialBlend: 0
+    loop: 0
+    playOnAwake: 0
+    bypassReverbZones: 1
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+  - name: Back
+    type: 0
+    clip: {fileID: 8300000, guid: dcb7780abd739c349bf30a6ef3fcf887, type: 3}
+    customAudioSource: {fileID: 0}
+    volume: 1
+    volumeVariance: 0
+    originalVolume: 0
+    pitch: 1
+    pitchVariance: 0.05
+    spatialBlend: 0
+    loop: 0
+    playOnAwake: 0
+    bypassReverbZones: 1
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+  - name: Hurt
+    type: 0
+    clip: {fileID: 8300000, guid: c95857996d16ff44a8293c8917c4d4d4, type: 3}
+    customAudioSource: {fileID: 0}
+    volume: 1
+    volumeVariance: 0
+    originalVolume: 0
+    pitch: 1
+    pitchVariance: 0.2
+    spatialBlend: 0
+    loop: 0
+    playOnAwake: 0
+    bypassReverbZones: 0
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+  - name: Heartbeat
+    type: 0
+    clip: {fileID: 8300000, guid: 3d4219499f583bf4da27ac72988caa53, type: 3}
+    customAudioSource: {fileID: 0}
+    volume: 1
+    volumeVariance: 0
+    originalVolume: 0
+    pitch: 1
+    pitchVariance: 0.05
+    spatialBlend: 0
+    loop: 1
+    playOnAwake: 1
+    bypassReverbZones: 0
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
 --- !u!1 &6420845347386534985
 GameObject:
   m_ObjectHideFlags: 0
@@ -5312,21 +5343,6 @@ MonoBehaviour:
     loop: 0
     playOnAwake: 0
     bypassReverbZones: 0
-    mixerGroup: {fileID: 0}
-    source: {fileID: 0}
-  - name: Click
-    type: 0
-    clip: {fileID: 8300000, guid: 128995488d7abbd48b8a0dc02d0abb4e, type: 3}
-    customAudioSource: {fileID: 0}
-    volume: 1
-    volumeVariance: 0
-    originalVolume: 0
-    pitch: 1
-    pitchVariance: 0.075
-    spatialBlend: 0
-    loop: 0
-    playOnAwake: 0
-    bypassReverbZones: 1
     mixerGroup: {fileID: 0}
     source: {fileID: 0}
   - name: Back
