@@ -43,13 +43,13 @@ public class NoteInteract : MonoBehaviour
                 obj.SetActive(false);
             }
             StartCoroutine("AllowPause");
-            if(audioMan != null) { audioMan.Play("Note Drop"); }
         }
     }
 
     IEnumerator AllowPause()
     {
         yield return new WaitForSeconds(.025f);
+        if (audioMan != null) { audioMan.Play("Note Drop"); }
         ui.panelIsOpen = false;
     }
 
