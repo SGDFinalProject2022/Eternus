@@ -4816,37 +4816,6 @@ MonoBehaviour:
     bypassReverbZones: 0
     mixerGroup: {fileID: 0}
     source: {fileID: 0}
-  - name: Note Pickup
-    type: 0
-    clip: {fileID: 8300000, guid: 763ae17e98e01ef4e965785b391bef88, type: 3}
-    customAudioSource: {fileID: 0}
-    volume: 1
-    volumeVariance: 0
-    originalVolume: 0
-    pitch: 1
-    pitchVariance: 0.05
-    spatialBlend: 0
-    loop: 1
-    playOnAwake: 1
-    bypassReverbZones: 0
-    mixerGroup: {fileID: 0}
-    source: {fileID: 0}
-  - name: Note Drop
-    type: 0
-    clip: {fileID: 8300000, guid: 444a33fc04c3fc0409e0fbafccb9d3fd, type: 3}
-    customAudioSource: {fileID: 0}
-    volume: 1
-    volumeVariance: 0
-    originalVolume: 0
-    pitch: 1
-    pitchVariance: 0.05
-    spatialBlend: 0
-    loop: 1
-    playOnAwake: 1
-    bypassReverbZones: 0
-    mixerGroup: {fileID: 0}
-    source: {fileID: 0}
-  isPlaying: 0
 --- !u!1 &6420845347386534985
 GameObject:
   m_ObjectHideFlags: 0
@@ -5391,7 +5360,6 @@ MonoBehaviour:
     bypassReverbZones: 1
     mixerGroup: {fileID: 0}
     source: {fileID: 0}
-  isPlaying: 0
 --- !u!114 &6650164697162761688
 MonoBehaviour:
   m_ObjectHideFlags: 0
