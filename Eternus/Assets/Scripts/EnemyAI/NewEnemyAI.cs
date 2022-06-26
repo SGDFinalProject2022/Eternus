@@ -28,6 +28,7 @@ public class NewEnemyAI : MonoBehaviour
     [SerializeField] GameObject sprintRange;
     [SerializeField] GameObject crouchRange;
     [SerializeField] Animator anim;
+    [SerializeField] ParticleSystem waterEffect;
     PlayerMovement playerMov;
     bool aggrod;
     bool soundAggrod;
@@ -84,7 +85,14 @@ public class NewEnemyAI : MonoBehaviour
                 FadeOutAudio("Chase", true);
                 audioMan.isPlaying = false;
                 isSearching = false;
-                AnimateSearch();
+                if (enemyName != "Water Monster")
+                {
+                    AnimateSearch();
+                }
+                else
+                {
+                    waterEffect.Pause();
+                }
             }
         }
 
@@ -256,13 +264,27 @@ public class NewEnemyAI : MonoBehaviour
     }
     IEnumerator StartAggro()
     {
-        ai.speed = 0;
-        Animate("Transition");
+        ai.speed = 0; 
+        if (enemyName != "Water Monster")
+        {
+            Animate("Transition");
+        }
+        else
+        {
+            waterEffect.Stop();
+        }
         StopAudio("Idle");
         PlayAudio("Stop");
         PlayAudioForceEntirely("Chase");
         yield return new WaitForSeconds(yieldTime);
-        Animate("Fast");
+        if (enemyName != "Water Monster")
+        {
+            Animate("Fase");
+        }
+        else
+        {
+            waterEffect.Play();
+        }
         PlayAudio("Fast");
         ai.speed = aggroSpeed;
         state = AIState.Chase;
@@ -299,8 +321,9 @@ public class NewEnemyAI : MonoBehaviour
         {
             if (inLineOfSight && playerMov.isHiding || (enemyName == "Water Monster" && !playerMov.isInWater))
             {
-                isSearching = true;
+                isSearching = true;                
                 AnimateSearch();
+                
             }
             if (seconds >= deaggroTime)
             {
@@ -365,9 +388,23 @@ public class NewEnemyAI : MonoBehaviour
     {
         ai.speed = 0f;
         ai.destination = soundAggro.position;
-        Animate("Transition");
+        if(enemyName != "Water Monster")
+        {
+            Animate("Transition");
+        }
+        else
+        {
+            waterEffect.Stop();
+        }
         yield return new WaitForSeconds(yieldTime);
-        Animate("Fast");
+        if (enemyName != "Water Monster")
+        {
+            Animate("Fast");
+        }
+        else
+        {
+            waterEffect.Play();
+        }
         PlayAudio("Fast");
         ai.speed = aggroSpeed;
         while (Vector3.Distance(transform.position, soundAggro.position) > 5f)
