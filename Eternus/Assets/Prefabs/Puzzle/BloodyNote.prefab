@@ -172,6 +172,7 @@ GameObject:
   - component: {fileID: 7312940223266978743}
   - component: {fileID: 4029494705896675242}
   - component: {fileID: 6136628367536543804}
+  - component: {fileID: 3137817675986941946}
   m_Layer: 7
   m_Name: BloodyNote
   m_TagString: Untagged
@@ -301,9 +302,55 @@ MonoBehaviour:
   panels:
   - {fileID: 8176510111774649553}
   ui: {fileID: 0}
+  audioMan: {fileID: 3137817675986941946}
   onUnlock:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &3137817675986941946
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4686949718894933088}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c583a1393bd16674d9372aa50af36600, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mixerGroup: {fileID: 0}
+  sounds:
+  - name: Note Pickup
+    type: 0
+    clip: {fileID: 8300000, guid: 763ae17e98e01ef4e965785b391bef88, type: 3}
+    customAudioSource: {fileID: 0}
+    volume: 1
+    volumeVariance: 0
+    originalVolume: 0
+    pitch: 1
+    pitchVariance: 0.3
+    spatialBlend: 0
+    loop: 0
+    playOnAwake: 0
+    bypassReverbZones: 0
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+  - name: Note Drop
+    type: 0
+    clip: {fileID: 8300000, guid: 444a33fc04c3fc0409e0fbafccb9d3fd, type: 3}
+    customAudioSource: {fileID: 0}
+    volume: 1
+    volumeVariance: 0
+    originalVolume: 0
+    pitch: 1
+    pitchVariance: 0.3
+    spatialBlend: 0
+    loop: 0
+    playOnAwake: 0
+    bypassReverbZones: 0
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+  isPlaying: 0
 --- !u!1 &6385334010056423084
 GameObject:
   m_ObjectHideFlags: 0
