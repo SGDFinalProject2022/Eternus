@@ -13,8 +13,11 @@ public class HealthController : MonoBehaviour
     DepthOfField dof;
     [Header("Animator")]
     [SerializeField] Animator camHoldAnimator;
+    [Header("Audio")]
+    [SerializeField] AudioManager audioMan;
 
     bool isDead = false;
+    bool playingHeartbeat = false;
     UI uI;
 
     // Start is called before the first frame update
@@ -27,6 +30,7 @@ public class HealthController : MonoBehaviour
         playerVolume.profile.TryGet(out dof);
 
         camHoldAnimator.enabled = false;
+        if (audioMan == null) { audioMan = GetComponent<AudioManager>(); }
     }
 
     // Update is called once per frame
@@ -43,6 +47,10 @@ public class HealthController : MonoBehaviour
         {
             vignette.intensity.value -= Time.deltaTime / 12;
         }
+        //Debug.Log("Health: " + (1f - vignette.intensity.value)); //helps to visualize
+        audioMan.ChangeVolume("Heartbeat", vignette.intensity.value * 4);
+        audioMan.ChangePitch("Heartbeat", 1f + (vignette.intensity.value / 2));
+        //Debug.Log(1f + (vignette.intensity.value / 2));
 
         //adjusting depth of field
         dof.focusDistance.value = Mathf.Lerp(6f, 0.1f, vignette.intensity.value * 1.5f);
@@ -50,6 +58,7 @@ public class HealthController : MonoBehaviour
     
     public void HurtPlayer()
     {
+        audioMan.Play("Hurt");
         vignette.intensity.value += 0.33f;
         if (vignette.intensity.value >= 0.95f)
         {
@@ -63,6 +72,7 @@ public class HealthController : MonoBehaviour
     }
     public void HurtPlayer(float damage)
     {
+        audioMan.Play("Hurt");
         vignette.intensity.value += damage;
         if (vignette.intensity.value >= 0.95f)
         {
