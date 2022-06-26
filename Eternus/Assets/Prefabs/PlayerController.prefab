@@ -416,9 +416,9 @@ RectTransform:
   m_Father: {fileID: 1622803720}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 858, y: -375.3}
+  m_AnchorMin: {x: 1, y: 0}
+  m_AnchorMax: {x: 1, y: 0}
+  m_AnchoredPosition: {x: -106, y: 208}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &665269087
@@ -1117,10 +1117,10 @@ RectTransform:
   m_Father: {fileID: 1622803720}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 858, y: -449}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchorMin: {x: 1, y: 0}
+  m_AnchorMax: {x: 1, y: 0}
+  m_AnchoredPosition: {x: -106, y: 113}
+  m_SizeDelta: {x: 160, y: 160}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &994198678
 CanvasRenderer:
@@ -4816,6 +4816,7 @@ MonoBehaviour:
     bypassReverbZones: 0
     mixerGroup: {fileID: 0}
     source: {fileID: 0}
+  isPlaying: 0
 --- !u!1 &6420845347386534985
 GameObject:
   m_ObjectHideFlags: 0
@@ -5360,6 +5361,7 @@ MonoBehaviour:
     bypassReverbZones: 1
     mixerGroup: {fileID: 0}
     source: {fileID: 0}
+  isPlaying: 0
 --- !u!114 &6650164697162761688
 MonoBehaviour:
   m_ObjectHideFlags: 0
