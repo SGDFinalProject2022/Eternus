@@ -7,6 +7,7 @@ public class NoteInteract : MonoBehaviour
 {
     [SerializeField] List<GameObject> panels = new List<GameObject>();
     [SerializeField] UI ui;
+    [SerializeField] AudioManager audioMan;
     public UnityEvent onUnlock;
     bool panelIsOpen;
     PlayerMovement mov;
@@ -22,7 +23,7 @@ public class NoteInteract : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown("escape"))
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
             ClosePanel();
         }
@@ -42,6 +43,7 @@ public class NoteInteract : MonoBehaviour
                 obj.SetActive(false);
             }
             StartCoroutine("AllowPause");
+            if(audioMan != null) { audioMan.Play("Note Drop"); }
         }
     }
 
@@ -62,6 +64,7 @@ public class NoteInteract : MonoBehaviour
             ui.look.enabled = false;
             panelIsOpen = true;
             panel.SetActive(true);
+            if (audioMan != null) { audioMan.Play("Note Pickup"); }
         }
     }
 }
