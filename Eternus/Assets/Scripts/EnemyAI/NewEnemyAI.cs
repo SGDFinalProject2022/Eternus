@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
+public enum AIState { Patrol, Yield, Chase, SoundAggro};
 public class NewEnemyAI : MonoBehaviour
 {
     [SerializeField] string enemyName;
@@ -33,9 +34,16 @@ public class NewEnemyAI : MonoBehaviour
     bool inSight;
     bool isSearching;
 
+    AIState state = AIState.Patrol;
+
+    bool inLineOfSight;
+    bool losAggrod;
+
     Coroutine aggroCor;
     Coroutine deaggroCor;
     Coroutine attackCor;
+    Coroutine losCor;
+    Coroutine soundAggroCor;
 
     int currentNode;
     List<Transform> nodes = new List<Transform>();
@@ -43,42 +51,43 @@ public class NewEnemyAI : MonoBehaviour
     NavMeshAgent ai;
 
     AudioManager audioMan;
-    AIFootsteps aiFootsteps;
+    [SerializeField] AIFootsteps aiFootsteps;
+
+    Transform soundAggro;
 
     void Awake()
     {
         ai = GetComponent<NavMeshAgent>();
         playerMov = player.gameObject.GetComponent<PlayerMovement>();
         audioMan = GetComponent<AudioManager>();
-        aiFootsteps = GetComponent<AIFootsteps>();
+        //aiFootsteps = GetComponent<AIFootsteps>();
         SetUpNodes();
         transform.position = nodes[0].position;
         ai.speed = normalSpeed;
     }
-
     void Update()
     {
-        if (!aggrod && !soundAggrod)
+        ChangeRangeCheck();
+        if(state == AIState.Patrol)
         {
             MoveToNextNode();
         }
-        else if (aggrod)
+        else if (state == AIState.Chase)
         {
             var lookAtPos = player.position;
             lookAtPos.y = transform.position.y; //set y pos to the same as mine, so I don't look up/down
             transform.LookAt(lookAtPos);
-            ai.destination = player.position;
-            Chase();
+            LineOfSight();
+            AttackPlayer();
+            if (playerMov.isHiding)
+            {
+                FadeOutAudio("Chase", true);
+                audioMan.isPlaying = false;
+                isSearching = false;
+                AnimateSearch();
+            }
         }
-        else if (soundAggrod)
-        {
-            ArriveAtSoundAggro();
-        }
-        UpdateInSight();
-        ChangeRangeCheck();
-        AnimateSearch();
 
-        //Audio
         if (audioMan != null && enemyName == "Hag")
         {
             audioMan.sounds[0].source.pitch = Mathf.Lerp(0, 1, ai.velocity.magnitude);
@@ -86,6 +95,61 @@ public class NewEnemyAI : MonoBehaviour
         }
         if (aiFootsteps != null)
         { aiFootsteps.velocity = ai.velocity.magnitude; aiFootsteps.isAggrod = aggrod; }
+
+    }
+
+
+    //Animation
+    void Animate(string animation)
+    {
+        if (anim != null)
+        {
+            anim.SetTrigger(animation);
+        }
+    }
+    void ResetAnimate(string animation)
+    {
+        if (anim != null)
+        {
+            anim.ResetTrigger(animation);
+        }
+    }
+    void AnimateSearch()
+    {
+        if (anim != null)
+        {
+            anim.SetBool("isSearching", isSearching);
+        }
+    }
+
+    //Audio
+    void PlayAudio(string audioName)
+    {
+        if (audioMan != null)
+        {
+            audioMan.Play(audioName);
+        }
+    }
+    void StopAudio(string audioName)
+    {
+        if (audioMan != null)
+        {
+            audioMan.Stop(audioName);
+        }
+    }
+    void PlayAudioForceEntirely(string audioName)
+    {
+        if (audioMan != null)
+        {
+            audioMan.PlayForceEntirely(audioName);
+        }
+    }
+    void FadeOutAudio(string audioName, bool stopSound)
+    {
+        if (audioMan != null)
+        {
+            audioMan.VolumeFadeOut(audioName, stopSound);
+        }
     }
 
     //Patrol
@@ -141,16 +205,282 @@ public class NewEnemyAI : MonoBehaviour
     }
 
     //Aggro
-    public void SoundAggro(Transform sound)
+    public void SightAggro()
     {
-        if (!aggrod)
+        RaycastHit hit;
+
+        if (Physics.Linecast(transform.position, player.position, out hit, 3) && enemyName != "Water Monster")
         {
-            soundAggrod = true;
-            ai.destination = sound.position;
-            StartCoroutine("Aggro");
+            if (hit.collider.gameObject.tag == "Player")
+            {
+                if(soundAggroCor != null)
+                {
+                    StopCoroutine(soundAggroCor);
+                    soundAggroCor = null;
+                }
+
+                losAggrod = true;
+                if (!aggrod && aggroCor == null)
+                {
+                    aggroCor = StartCoroutine("StartAggro");
+                }
+                inLineOfSight = true;
+            }
+            else
+            {
+                inLineOfSight = false;
+            }
+        }
+        else if (Physics.Linecast(transform.position, player.position, out hit, 3) && playerMov.isInWater)
+        {
+            if (hit.collider.gameObject.tag == "Player")
+            {
+                if (soundAggroCor != null)
+                {
+                    StopCoroutine(soundAggroCor);
+                    soundAggroCor = null;
+                }
+
+                losAggrod = true;
+                if (!aggrod && aggroCor == null)
+                {
+                    aggroCor = StartCoroutine("StartAggro");
+                }
+                inLineOfSight = true;
+            }
+            else
+            {
+                inLineOfSight = false;
+            }
         }
     }
-    public void SightAggro()
+    IEnumerator StartAggro()
+    {
+        ai.speed = 0;
+        Animate("Transition");
+        StopAudio("Idle");
+        PlayAudio("Stop");
+        PlayAudioForceEntirely("Chase");
+        yield return new WaitForSeconds(yieldTime);
+        Animate("Fast");
+        PlayAudio("Fast");
+        ai.speed = aggroSpeed;
+        state = AIState.Chase;
+        aggrod = true;
+        aggroCor = null;
+    }
+    void LineOfSight()
+    {
+        if (losAggrod)
+        {
+            ai.destination = player.position;
+            if (!inLineOfSight || (inLineOfSight && playerMov.isHiding) || (enemyName == "Water Monster" && !playerMov.isInWater))
+            {
+                if (losCor == null)
+                {
+                    losCor = StartCoroutine("LoseLineOfSight");
+                }
+            }
+            else if (inLineOfSight || (enemyName == "Water Monster" && playerMov.isInWater))
+            {
+                if (losCor != null)
+                {
+                    StopCoroutine(losCor);
+                    losCor = null;
+                }
+            }
+        }
+    }
+    IEnumerator LoseLineOfSight()
+    {
+        soundAggrod = false;
+        float seconds = 0;
+        while ((!inLineOfSight || (inLineOfSight && playerMov.isHiding) || (enemyName == "Water Monster" && !playerMov.isInWater) && !soundAggrod))
+        {
+            if (inLineOfSight && playerMov.isHiding || (enemyName == "Water Monster" && !playerMov.isInWater))
+            {
+                isSearching = true;
+                AnimateSearch();
+            }
+            if (seconds >= deaggroTime)
+            {
+                break;
+            }
+
+            yield return new WaitForSeconds(1f);
+            seconds++;
+        }
+        isSearching = false;
+        AnimateSearch();
+
+        if ((!inLineOfSight || (inLineOfSight && playerMov.isHiding)) || (enemyName == "Water Monster" && !playerMov.isInWater) && !soundAggrod)
+        {
+            ResetAnimate("Fast");
+            ResetAnimate("Transition");
+            Animate("Slow");
+            StopAudio("Fast");
+            PlayAudio("Idle");
+            losAggrod = false;
+            soundAggro = null;
+            aggrod = false;
+            ai.speed = normalSpeed;
+            state = AIState.Patrol;
+        }
+        losCor = null;
+    }
+    void ChangeRangeCheck()
+    {
+        if (playerMov.isSprinting)
+        {
+            sprintRange.SetActive(true);
+            crouchRange.SetActive(false);
+            walkRange.SetActive(false);
+        }
+        else if (playerMov.isCrouching)
+        {
+            sprintRange.SetActive(false);
+            crouchRange.SetActive(true);
+            walkRange.SetActive(false);
+        }
+        else
+        {
+            sprintRange.SetActive(false);
+            crouchRange.SetActive(false);
+            walkRange.SetActive(true);
+        }
+    }
+    public void SoundAggro(Transform sound)
+    {
+        if (state == AIState.Patrol)
+        {
+            state = AIState.SoundAggro;
+            soundAggro = sound;
+            if (soundAggroCor == null)
+            {
+                soundAggroCor = StartCoroutine("ArriveAtSoundAggro");
+            }
+        }
+    }
+    IEnumerator ArriveAtSoundAggro()
+    {
+        ai.speed = 0f;
+        ai.destination = soundAggro.position;
+        Animate("Transition");
+        yield return new WaitForSeconds(yieldTime);
+        Animate("Fast");
+        PlayAudio("Fast");
+        ai.speed = aggroSpeed;
+        while (Vector3.Distance(transform.position, soundAggro.position) > 5f)
+        {
+            yield return new WaitForSeconds(.25f);
+        }
+
+        float seconds = 0f;
+        while(seconds < yieldTime)
+        {
+            ai.speed = 0f;
+            yield return new WaitForSeconds(1f);
+            seconds++;
+            if(inLineOfSight && !playerMov.isHiding)
+            {
+                break;
+            }
+        }
+
+        if (!inLineOfSight || (inLineOfSight && playerMov.isHiding))
+        {
+            print("Did not find player");
+            ai.speed = normalSpeed;
+            state = AIState.Patrol;
+        }
+        soundAggroCor = null;
+    }
+
+
+    //Combat
+    void AttackPlayer()
+    {
+        if (Vector3.Distance(transform.position, player.position) <= attackDistance)
+        {
+            if (inLineOfSight && !playerMov.isHiding)
+            {
+                if (attackCor == null)
+                {
+                    attackCor = StartCoroutine("Attack");
+                }
+            }
+        }
+    }
+    IEnumerator Attack()
+    {
+        ai.speed = 0;
+        healthController.HurtPlayer(0.6f);
+        Animate("Attack");
+        yield return new WaitForSeconds(1f);
+        ResetAnimate("Attack");
+        Animate("Fast");
+        ai.speed = aggroSpeed;
+        attackCor = null;
+    }
+
+
+    /// <summary>
+    /// OLD CODE
+    /// </summary>
+
+    /*
+        void Update()
+        {
+            if (!losAggrod && !soundAggrod)
+            {
+                MoveToNextNode();
+            }
+            else if(soundAggrod)
+            {
+                ArriveAtSoundAggro(soundAggro);
+            }
+            else
+            {
+                LineOfSight();
+            }
+
+            *//*if (!aggrod && !soundAggrod)
+            {
+                MoveToNextNode();
+            }
+            */
+
+
+    /*
+    else if (aggrod)
+    {
+        var lookAtPos = player.position;
+        lookAtPos.y = transform.position.y; //set y pos to the same as mine, so I don't look up/down
+        transform.LookAt(lookAtPos);
+        ai.destination = player.position;
+        Chase();
+    }
+    else if (soundAggrod)
+    {
+        ArriveAtSoundAggro();
+    }
+    UpdateInSight();
+    ChangeRangeCheck();
+    AnimateSearch();
+
+    //Audio
+    if (audioMan != null && enemyName == "Hag")
+    {
+        audioMan.sounds[0].source.pitch = Mathf.Lerp(0, 1, ai.velocity.magnitude);
+        audioMan.sounds[2].source.pitch = Mathf.Lerp(0, 1, ai.velocity.magnitude);
+    }
+    if (aiFootsteps != null)
+    { aiFootsteps.velocity = ai.velocity.magnitude; aiFootsteps.isAggrod = aggrod; }*//*
+}*/
+
+
+
+    /*public void SightAggro()
     {
         bool inRange = false;
         RaycastHit hit;
@@ -173,9 +503,9 @@ public class NewEnemyAI : MonoBehaviour
                     if (audioMan != null)
                     {
                         audioMan.StopAllCoroutines();
-                        //audioMan.sounds[5].volume = 1f;                        
+                        audioMan.sounds[5].volume = 1f;
                     }
-                    PlayAudio("Chase");
+                    PlayAudioForceEntirely("Chase");
                     inSight = true;
                     aggrod = true;
                     StartAggro();
@@ -195,7 +525,7 @@ public class NewEnemyAI : MonoBehaviour
                 }
             }
         }
-    }
+    }*//*
     void StartAggro()
     {
         if(aggroCor == null)
@@ -278,27 +608,7 @@ public class NewEnemyAI : MonoBehaviour
         }
         deaggroCor = null;
     }
-    void ChangeRangeCheck()
-    {
-        if (playerMov.isSprinting)
-        {
-            sprintRange.SetActive(true);
-            crouchRange.SetActive(false);
-            walkRange.SetActive(false);
-        }
-        else if (playerMov.isCrouching)
-        {
-            sprintRange.SetActive(false);
-            crouchRange.SetActive(true);
-            walkRange.SetActive(false);
-        }
-        else
-        {
-            sprintRange.SetActive(false);
-            crouchRange.SetActive(false);
-            walkRange.SetActive(true);
-        }
-    }
+    
     void ArriveAtSoundAggro()
     {
         if (Vector3.Distance(transform.position, ai.destination) < attackDistance)
@@ -398,12 +708,19 @@ public class NewEnemyAI : MonoBehaviour
             audioMan.Stop(audioName);
         }
     }
+    void PlayAudioForceEntirely(string audioName)
+    {
+        if(audioMan != null)
+        {
+            audioMan.PlayForceEntirely(audioName);
+        }
+    }
     void FadeOutAudio(string audioName, bool stopSound)
     {
         if (audioMan != null)
         {
             audioMan.VolumeFadeOut(audioName, stopSound);
         }
-    }
+    }*/
 
 }

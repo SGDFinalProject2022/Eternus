@@ -5,11 +5,13 @@ using UnityEngine;
 public class CollisionCheck : MonoBehaviour
 {
     [SerializeField] NewEnemyAI ai;
+
+
     void OnTriggerStay(Collider other)
     {
         if(other.CompareTag("Player"))
         {
-            ai.SightAggro();
+            ai.SightAggro();   
         }
     }
     void OnTriggerEnter(Collider other)

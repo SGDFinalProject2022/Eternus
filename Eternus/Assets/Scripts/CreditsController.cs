@@ -10,6 +10,7 @@ public class CreditsController : MonoBehaviour
     void Awake()
     {
         skipPanel.SetActive(false);
+        Cursor.lockState = CursorLockMode.None;
     }
 
     void Update()
