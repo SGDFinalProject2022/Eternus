@@ -4880,7 +4880,7 @@ MonoBehaviour:
   defaultItemImage: {fileID: 21300000, guid: 7d1643a065bfea843936b2aabaed2d59, type: 3}
   pauseMenuPanel: {fileID: 978103540}
   isPaused: 0
-  headBobController: {fileID: 0}
+  headBobController: {fileID: 117197481222689525}
   tutorialPanel: {fileID: 1653343252}
   tutImage: {fileID: 1653343254}
   tutorialText: {fileID: 1810350315}
@@ -5389,6 +5389,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 043a15b585f75a54ba4d4b0762f1714b, type: 3}
   - {fileID: 8300000, guid: d86cfd799e58ebf4fb1cf4529218b1c2, type: 3}
   - {fileID: 8300000, guid: cb7022394b7f6194da8ac22771f59b44, type: 3}
+  uiController: {fileID: 8457383100502241946}
   footstepBaseVolume: 0.25
 --- !u!114 &117197481222689525
 MonoBehaviour:

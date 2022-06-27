@@ -26,6 +26,7 @@ public class PlayerMovement : MonoBehaviour
     [HideInInspector] public bool isCrouching;
     bool isUnderSomething;
     float originalHeight;
+    bool crouchSticky; //toggles on when window unfocuses
 
     [Header("Sprint")]
     [SerializeField] float sprintSpeed = 12f;
@@ -69,22 +70,29 @@ public class PlayerMovement : MonoBehaviour
         : isSprinting ? baseStepSpeed * sprintStepMultiplier 
         : baseStepSpeed;
 
+    [SerializeField] UI uiController;
+
     //multiply everything that changes volume based on this value
     [HideInInspector] public float footstepBaseVolume = 0.25f;
 
-    UI uiController;
+    
 
     // Start is called before the first frame update
     void Start()
     {
         originalHeight = controller.height;
         audioMan = GetComponent<AudioManager>();
-        uiController = FindObjectOfType<UI>();
+        //uiController = FindObjectOfType<UI>();
+    }
+
+    private void OnApplicationFocus(bool focus)
+    {
+        if (!focus) { crouchSticky = true; }
     }
 
     // Update is called once per frame
     void Update()
-    {
+    {      
         //forces everthing to a halt while the player is hiding or paused
         if (isHiding || uiController.isPaused || isDead)
         {
@@ -105,6 +113,12 @@ public class PlayerMovement : MonoBehaviour
         float y = Input.GetAxis("Crouch");
         float z = Input.GetAxis("Vertical");
 
+        if (crouchSticky)
+        {
+            if (Input.GetAxis("Crouch") > 0) { crouchSticky = false; return; }
+            y = 1f;
+        }
+
         //preventing player from getting stuck when under objects while crouching
         if (Physics.Raycast(transform.position, Vector3.up, out RaycastHit headHit, originalHeight / 1.5f)
             && isCrouching)
@@ -123,7 +137,7 @@ public class PlayerMovement : MonoBehaviour
         FootstepSoundHandler(x, z);
 
         speed = Vector3.Distance(lastPos, transform.position) / Time.deltaTime;
-        lastPos = transform.position;
+        lastPos = transform.position;       
     }
 
     /// <summary>
@@ -157,7 +171,7 @@ public class PlayerMovement : MonoBehaviour
     /// </summary>
     /// <param name="y"></param>
     void CrouchHandler(float y)
-    {
+    {        
         //preventing crouch jumping
         if (!isOnGround && !isCrouching)
         {
