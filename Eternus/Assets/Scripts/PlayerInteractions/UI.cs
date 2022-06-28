@@ -59,7 +59,6 @@ public class UI : MonoBehaviour
 
     void PauseGame(bool pause)
     {
-        Debug.Log(pause);
         headBobController.enableHeadbob = !pause;
         Cursor.lockState = pause ? CursorLockMode.None : CursorLockMode.Locked;
         Time.timeScale = pause ? 0.001f : 1;
