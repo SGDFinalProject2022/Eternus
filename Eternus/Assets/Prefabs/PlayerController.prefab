@@ -169,6 +169,7 @@ GameObject:
   - component: {fileID: 485292466}
   - component: {fileID: 485292465}
   - component: {fileID: 485292464}
+  - component: {fileID: 8155075156063463197}
   m_Layer: 5
   m_Name: MainMenuButton
   m_TagString: Untagged
@@ -303,6 +304,35 @@ MonoBehaviour:
           m_StringArgument: Click
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &8155075156063463197
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 485292462}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 2744726412358913444}
+          m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
+          m_MethodName: Play
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: Hover
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &488671836
 GameObject:
   m_ObjectHideFlags: 0
@@ -416,9 +446,9 @@ RectTransform:
   m_Father: {fileID: 1622803720}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 858, y: -375.3}
+  m_AnchorMin: {x: 1, y: 0}
+  m_AnchorMax: {x: 1, y: 0}
+  m_AnchoredPosition: {x: -106, y: 208}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &665269087
@@ -475,6 +505,7 @@ GameObject:
   - component: {fileID: 715915136}
   - component: {fileID: 715915135}
   - component: {fileID: 715915134}
+  - component: {fileID: 5545469447663311846}
   m_Layer: 5
   m_Name: ResumeButton
   m_TagString: Untagged
@@ -609,6 +640,35 @@ MonoBehaviour:
           m_StringArgument: Back
           m_BoolArgument: 1
         m_CallState: 2
+--- !u!114 &5545469447663311846
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 715915132}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 2744726412358913444}
+          m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
+          m_MethodName: Play
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: Hover
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &767141612
 GameObject:
   m_ObjectHideFlags: 0
@@ -1117,10 +1177,10 @@ RectTransform:
   m_Father: {fileID: 1622803720}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 858, y: -449}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchorMin: {x: 1, y: 0}
+  m_AnchorMax: {x: 1, y: 0}
+  m_AnchoredPosition: {x: -106, y: 113}
+  m_SizeDelta: {x: 160, y: 160}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &994198678
 CanvasRenderer:
@@ -1172,6 +1232,7 @@ GameObject:
   - component: {fileID: 1449335680}
   - component: {fileID: 1449335679}
   - component: {fileID: 1449335678}
+  - component: {fileID: 188304340746416435}
   m_Layer: 5
   m_Name: SettingsButton
   m_TagString: Untagged
@@ -1330,6 +1391,35 @@ MonoBehaviour:
           m_StringArgument: Click
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &188304340746416435
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1449335676}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 2744726412358913444}
+          m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
+          m_MethodName: Play
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: Hover
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &1460088207
 GameObject:
   m_ObjectHideFlags: 0
@@ -1455,6 +1545,7 @@ GameObject:
   - component: {fileID: 1473145197}
   - component: {fileID: 1473145196}
   - component: {fileID: 1473145195}
+  - component: {fileID: 3528688650864828505}
   m_Layer: 5
   m_Name: BackButton
   m_TagString: Untagged
@@ -1601,6 +1692,35 @@ MonoBehaviour:
           m_StringArgument: Back
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &3528688650864828505
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1473145193}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 2744726412358913444}
+          m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
+          m_MethodName: Play
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: Hover
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &1482285129
 GameObject:
   m_ObjectHideFlags: 0
@@ -2163,6 +2283,7 @@ GameObject:
   - component: {fileID: 1854546448}
   - component: {fileID: 1854546447}
   - component: {fileID: 1854546446}
+  - component: {fileID: 1162498658922625441}
   m_Layer: 5
   m_Name: Setting5Button
   m_TagString: Untagged
@@ -2297,6 +2418,35 @@ MonoBehaviour:
           m_StringArgument: Click
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &1162498658922625441
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1854546444}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 2744726412358913444}
+          m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
+          m_MethodName: Play
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: Hover
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &2002855915
 GameObject:
   m_ObjectHideFlags: 0
@@ -3804,6 +3954,7 @@ GameObject:
   - component: {fileID: 8051719766758181774}
   - component: {fileID: 6283917629413057170}
   - component: {fileID: 6260067762137615263}
+  - component: {fileID: 2659518603635491817}
   m_Layer: 5
   m_Name: Setting6Button
   m_TagString: Untagged
@@ -3938,6 +4089,35 @@ MonoBehaviour:
           m_StringArgument: Click
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &2659518603635491817
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4001229542986034354}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 2744726412358913444}
+          m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
+          m_MethodName: Play
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: Hover
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &4733684080001200155
 GameObject:
   m_ObjectHideFlags: 0
@@ -4700,7 +4880,7 @@ MonoBehaviour:
   defaultItemImage: {fileID: 21300000, guid: 7d1643a065bfea843936b2aabaed2d59, type: 3}
   pauseMenuPanel: {fileID: 978103540}
   isPaused: 0
-  headBobController: {fileID: 0}
+  headBobController: {fileID: 117197481222689525}
   tutorialPanel: {fileID: 1653343252}
   tutImage: {fileID: 1653343254}
   tutorialText: {fileID: 1810350315}
@@ -4816,6 +4996,22 @@ MonoBehaviour:
     bypassReverbZones: 0
     mixerGroup: {fileID: 0}
     source: {fileID: 0}
+  - name: Hover
+    type: 0
+    clip: {fileID: 8300000, guid: d5e3bd928474b8448b04d67e3e2a1d85, type: 3}
+    customAudioSource: {fileID: 0}
+    volume: 0.5
+    volumeVariance: 0
+    originalVolume: 0
+    pitch: 1
+    pitchVariance: 0.075
+    spatialBlend: 0
+    loop: 0
+    playOnAwake: 0
+    bypassReverbZones: 1
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+  isPlaying: 0
 --- !u!1 &6420845347386534985
 GameObject:
   m_ObjectHideFlags: 0
@@ -5193,6 +5389,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 043a15b585f75a54ba4d4b0762f1714b, type: 3}
   - {fileID: 8300000, guid: d86cfd799e58ebf4fb1cf4529218b1c2, type: 3}
   - {fileID: 8300000, guid: cb7022394b7f6194da8ac22771f59b44, type: 3}
+  uiController: {fileID: 8457383100502241946}
   footstepBaseVolume: 0.25
 --- !u!114 &117197481222689525
 MonoBehaviour:
@@ -5360,6 +5557,7 @@ MonoBehaviour:
     bypassReverbZones: 1
     mixerGroup: {fileID: 0}
     source: {fileID: 0}
+  isPlaying: 0
 --- !u!114 &6650164697162761688
 MonoBehaviour:
   m_ObjectHideFlags: 0

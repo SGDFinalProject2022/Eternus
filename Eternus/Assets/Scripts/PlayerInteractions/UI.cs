@@ -21,7 +21,7 @@ public class UI : MonoBehaviour
     [Header("Pause")]
     [SerializeField] GameObject pauseMenuPanel;
     [HideInInspector] public bool isPaused;
-    [HideInInspector] public HeadBobController headBobController;
+    public HeadBobController headBobController;
     [Header("Tutorial")]
     public GameObject tutorialPanel;
     [SerializeField] Image tutImage;
@@ -41,36 +41,29 @@ public class UI : MonoBehaviour
         itemText.color = new Color(objectiveText.color.r, objectiveText.color.g, objectiveText.color.b, 0f);
         pauseMenuPanel.SetActive(false);
         tutorialPanel.SetActive(false);
-        headBobController = GetComponentInParent<HeadBobController>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (!panelIsOpen)
+        if (!panelIsOpen && Input.GetButtonDown("Pause"))
         {
-            if (Input.GetButtonDown("Pause"))
-            {
-                if (!isPaused)
-                {
-                    headBobController.enableHeadbob = false;
-                    Cursor.lockState = CursorLockMode.None;
-                    pauseMenuPanel.SetActive(true);
-                    Time.timeScale = 0.001f;
-                    isPaused = true;
-                }
-                else if (isPaused)
-                {
-                    Cursor.lockState = CursorLockMode.Locked;
-                    pauseMenuPanel.SetActive(false);
-                    Time.timeScale = 1;
-                    headBobController.enableHeadbob = true;
-                    isPaused = false;
-                }
-            }
+            PauseGame(!isPaused);
         }
+    }
 
-        
+    private void OnApplicationFocus(bool focus)
+    {
+        if (!focus && Input.GetAxis("Crouch") > 0) { PauseGame(true); }
+    }
+
+    void PauseGame(bool pause)
+    {
+        headBobController.enableHeadbob = !pause;
+        Cursor.lockState = pause ? CursorLockMode.None : CursorLockMode.Locked;
+        Time.timeScale = pause ? 0.001f : 1;
+        pauseMenuPanel.SetActive(pause);
+        isPaused = pause;
     }
 
     public void ShowObjective(string objective)
@@ -159,21 +152,6 @@ public class UI : MonoBehaviour
         tutorialPanel.SetActive(false);
     }
 
-    //Pasue Menu
-    public void Resume()
-    {
-        isPaused = false;
-        Cursor.lockState = CursorLockMode.Locked;
-        Time.timeScale = 1;
-        pauseMenuPanel.SetActive(false);
-        GetComponentInParent<HeadBobController>().enableHeadbob = true;
-    }
-    public void Settings()
-    {
-
-    }
-    public void Return()
-    {
-        GlobalData.instance.LoadScene("MainMenu");
-    }
+    public void Resume() => PauseGame(false);
+    public void Return() => GlobalData.instance.LoadScene("MainMenu");
 }
