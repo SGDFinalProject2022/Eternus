@@ -9,12 +9,11 @@ public class LockerDoor : MonoBehaviour
     [SerializeField] string lockerText;
     [SerializeField] Text code;
     [SerializeField] int codeLength = 4;
-    [SerializeField] Text codePaperText;
     [SerializeField] List<GameObject> panels = new List<GameObject>();
     [SerializeField] UI ui;
     public UnityEvent onUnlock;
 
-    string finalCode;
+    string finalCode = "2607";
 
     bool panelIsOpen;
     PlayerMovement mov;
@@ -26,12 +25,6 @@ public class LockerDoor : MonoBehaviour
             obj.SetActive(false);
         }
         panelIsOpen = false;
-        for(int i = 0; i < codeLength; i++)
-        {
-            int randomNumber = Random.Range(0, 10);
-            finalCode += randomNumber.ToString();
-        }
-        codePaperText.text = lockerText + " " + finalCode; 
     }
 
     void Update()
