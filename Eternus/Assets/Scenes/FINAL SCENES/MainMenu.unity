@@ -3824,7 +3824,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 249302496}
   m_OnClick:
     m_PersistentCalls:
@@ -10832,6 +10832,7 @@ MonoBehaviour:
     bypassReverbZones: 1
     mixerGroup: {fileID: 0}
     source: {fileID: 0}
+    isPlaying: 0
   - name: Back
     type: 0
     clip: {fileID: 8300000, guid: dcb7780abd739c349bf30a6ef3fcf887, type: 3}
@@ -10847,6 +10848,7 @@ MonoBehaviour:
     bypassReverbZones: 1
     mixerGroup: {fileID: 0}
     source: {fileID: 0}
+    isPlaying: 0
   - name: Begin
     type: 0
     clip: {fileID: 8300000, guid: 86be6c68375ca034586135bfdb6995a3, type: 3}
@@ -10862,6 +10864,7 @@ MonoBehaviour:
     bypassReverbZones: 1
     mixerGroup: {fileID: 0}
     source: {fileID: 0}
+    isPlaying: 0
   - name: Hover
     type: 0
     clip: {fileID: 8300000, guid: d5e3bd928474b8448b04d67e3e2a1d85, type: 3}
@@ -10877,7 +10880,7 @@ MonoBehaviour:
     bypassReverbZones: 1
     mixerGroup: {fileID: 0}
     source: {fileID: 0}
-  isPlaying: 0
+    isPlaying: 0
 --- !u!1001 &807912737
 PrefabInstance:
   m_ObjectHideFlags: 0
