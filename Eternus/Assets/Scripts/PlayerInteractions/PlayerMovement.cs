@@ -87,7 +87,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnApplicationFocus(bool focus)
     {
-        if (!focus) { crouchSticky = true; }
+        if (!focus && isCrouching) { crouchSticky = true; }
     }
 
     // Update is called once per frame
