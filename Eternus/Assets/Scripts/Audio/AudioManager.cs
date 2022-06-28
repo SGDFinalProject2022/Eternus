@@ -149,17 +149,18 @@ public class AudioManager : MonoBehaviour
 
     public void VolumeFadeOut(string sound, bool stopSound)
     {
-		Sound s = Array.Find(sounds, item => item.name == sound);
-		if (s == null)
+        Sound s = Array.Find(sounds, item => item.name == sound);
+        if (s == null)
 		{
 			Debug.LogWarning("Sound: " + sound + " not found!");
 			return;
         }
+        //Debug.LogWarning(s.name + ".isPlaying is " + s.isPlaying);
+        if (s.isPlaying) { /*StopCoroutine(ForcePlayEntirelyCoroutine(s));*/ s.isPlaying = false; }
 		SaveCoroutineToList(StartCoroutine(VolumeFadeOutCoroutine(s, stopSound)));
     }
     IEnumerator VolumeFadeOutCoroutine(Sound s, bool stopSound)
-    {
-		if (isPlaying) { isPlaying = false; }
+    {      
 		float increment = s.source.volume / 10f;
 
         for (float vol = s.source.volume; vol >= 0; vol -= increment)
@@ -169,12 +170,12 @@ public class AudioManager : MonoBehaviour
 		}
         if (stopSound) { s.source.Stop(); }		
 	}
-	/// <summary>
-	/// Replaces the current audio clip with a new one
-	/// </summary>
-	/// <param name="sound"></param>
-	/// <param name="newAudioClip"></param>
-	public void ReplaceClip(string sound, AudioClip newAudioClip)
+    /// <summary>
+    /// Replaces the current audio clip with a new one
+    /// </summary>
+    /// <param name="sound"></param>
+    /// <param name="newAudioClip"></param>
+    public void ReplaceClip(string sound, AudioClip newAudioClip)
     {
 		Sound s = Array.Find(sounds, item => item.name == sound);
 		if (s == null)
@@ -185,33 +186,30 @@ public class AudioManager : MonoBehaviour
 
 		s.source.clip = newAudioClip;
 	}
-
-	[HideInInspector] public bool isPlaying = false;
-	/// <summary>
-	/// Like Play() but forces the sound to be played in it's entirety before calling again
-	/// </summary>
-	/// <param name="sound"></param>
-	public void PlayForceEntirely(string sound)
-    {
-        if (isPlaying) { return; }
-
+    /// <summary>
+    /// Like Play() but forces the sound to be played in it's entirety before calling again
+    /// </summary>
+    /// <param name="sound"></param>
+    public void PlayForceEntirely(string sound)
+    {       
 		Sound s = Array.Find(sounds, item => item.name == sound);
 		if (s == null)
 		{
 			Debug.LogWarning("Sound: " + sound + " not found!");
 			return;
 		}
+		if (s.isPlaying) { return; }
+        s.isPlaying = true;
 		SaveCoroutineToList(StartCoroutine(ForcePlayEntirelyCoroutine(s)));
 	}
 	IEnumerator ForcePlayEntirelyCoroutine(Sound s)
-    {
-		isPlaying = true;
+    {		
 		s.source.volume = s.volume * (1f + UnityEngine.Random.Range(-s.volumeVariance / 2f, s.volumeVariance / 2f));
 		s.source.pitch = s.pitch * (1f + UnityEngine.Random.Range(-s.pitchVariance / 2f, s.pitchVariance / 2f));
 		s.source.Play();
 
 		yield return new WaitForSeconds(s.clip.length);
-		isPlaying = false;
+		s.isPlaying = false;
 	}
 	/// <summary>
 	/// Forces the sound to play newAudioClip in it's entirety before calling again
@@ -219,26 +217,25 @@ public class AudioManager : MonoBehaviour
 	/// <param name="sound"></param>
 	/// <param name="newAudioClip"></param>
 	public void PlayForceEntirely(string sound, AudioClip newAudioClip)
-	{
-		if (isPlaying) { return; }
-
+	{		
 		Sound s = Array.Find(sounds, item => item.name == sound);
 		if (s == null)
 		{
 			Debug.LogWarning("Sound: " + sound + " not found!");
 			return;
 		}
+        if (s.isPlaying) { return; }
 		SaveCoroutineToList(StartCoroutine(ForcePlayEntirelyCoroutine(s, newAudioClip)));
 	}
 	IEnumerator ForcePlayEntirelyCoroutine(Sound s, AudioClip clip)
 	{
-		isPlaying = true;
+		s.isPlaying = true;
 		s.source.volume = s.volume * (1f + UnityEngine.Random.Range(-s.volumeVariance / 2f, s.volumeVariance / 2f));
 		s.source.pitch = s.pitch * (1f + UnityEngine.Random.Range(-s.pitchVariance / 2f, s.pitchVariance / 2f));
 		s.source.PlayOneShot(clip);
 
         yield return new WaitForSeconds(clip.length);
-		isPlaying = false;
+		s.isPlaying = false;
 	}
 	public void ManuallyStopCoroutines()
     {
@@ -250,10 +247,10 @@ public class AudioManager : MonoBehaviour
 				activeCoroutines[i] = null;				
             }
         }
-		isPlaying = false;
+		//isPlaying = false;
     }
 
-	void SaveCoroutineToList(Coroutine cor)
+    void SaveCoroutineToList(Coroutine cor)
     {
 		bool foundOpenCoroutine = false;
 		for(int i = 0; i < activeCoroutines.Count; i++)
@@ -269,5 +266,20 @@ public class AudioManager : MonoBehaviour
 		{
 			activeCoroutines.Add(cor);
 		}
+	}
+    /// <summary>
+    /// Checks to see if sound is currently playing from PlayForceEntirely()
+    /// </summary>
+    /// <param name="sound"></param>
+    /// <returns></returns>
+    public bool CheckIsPlaying(string sound)
+    {
+		Sound s = Array.Find(sounds, item => item.name == sound);
+		if (s == null)
+		{
+			Debug.LogWarning("Sound: " + sound + " not found!");
+            return false;
+		}
+        return s.isPlaying;
 	}
 }

@@ -131,7 +131,7 @@ public class PlayerMovement : MonoBehaviour
         else { isUnderSomething = false; }
 
         JumpLandHandler();
-        CrouchHandler(y);     
+        CrouchHandler(y);
         MovementHandler(x, y, z);
         GravityHandler();
         FootstepSoundHandler(x, z);

@@ -82,8 +82,8 @@ public class NewEnemyAI : MonoBehaviour
             AttackPlayer();
             if (playerMov.isHiding)
             {
-                FadeOutAudio("Chase", true);
-                audioMan.isPlaying = false;
+                if (audioMan.CheckIsPlaying("Chase")) { FadeOutAudio("Chase", true); }
+                //audioMan.isPlaying = false;
                 isSearching = false;
                 if (enemyName != "Water Monster")
                 {
@@ -279,7 +279,7 @@ public class NewEnemyAI : MonoBehaviour
         yield return new WaitForSeconds(yieldTime);
         if (enemyName != "Water Monster")
         {
-            Animate("Fase");
+            Animate("Fast");
         }
         else
         {
@@ -342,6 +342,7 @@ public class NewEnemyAI : MonoBehaviour
             ResetAnimate("Transition");
             Animate("Slow");
             StopAudio("Fast");
+            if (audioMan.CheckIsPlaying("Chase")) { FadeOutAudio("Chase", true); }
             PlayAudio("Idle");
             losAggrod = false;
             soundAggro = null;
