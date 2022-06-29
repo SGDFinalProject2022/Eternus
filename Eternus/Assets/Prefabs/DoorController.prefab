@@ -47,7 +47,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2472477722383951818}
-  m_Mesh: {fileID: -8584785457454933786, guid: 84d81b65c76bfb247953e99aa701d2f2, type: 3}
+  m_Mesh: {fileID: 3315456169415829531, guid: e8ac45040403aa4499b9e70194ef29aa, type: 3}
 --- !u!23 &2472477722383951808
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -68,7 +68,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 0cd49480406899345be1e084bf9897a0, type: 2}
+  - {fileID: 2100000, guid: c450fc47dbe885e4d9d774145b01f531, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -179,6 +179,7 @@ MonoBehaviour:
     bypassReverbZones: 0
     mixerGroup: {fileID: 0}
     source: {fileID: 0}
+    isPlaying: 0
 --- !u!95 &2472477722383951820
 Animator:
   serializedVersion: 4
@@ -322,6 +323,7 @@ MonoBehaviour:
     bypassReverbZones: 0
     mixerGroup: {fileID: 0}
     source: {fileID: 0}
+    isPlaying: 0
   - name: Open
     type: 0
     clip: {fileID: 8300000, guid: 1eeea9a45924dab41885fe9e67c1b5cc, type: 3}
@@ -337,6 +339,7 @@ MonoBehaviour:
     bypassReverbZones: 0
     mixerGroup: {fileID: 0}
     source: {fileID: 0}
+    isPlaying: 0
   - name: Close
     type: 0
     clip: {fileID: 8300000, guid: 52cd79d4403dd1a49b1bd8052229b512, type: 3}
@@ -352,6 +355,7 @@ MonoBehaviour:
     bypassReverbZones: 0
     mixerGroup: {fileID: 0}
     source: {fileID: 0}
+    isPlaying: 0
 --- !u!1 &7426334429393374203
 GameObject:
   m_ObjectHideFlags: 0
