@@ -37,6 +37,7 @@ public class Sound {
 	public AudioMixerGroup mixerGroup;
 
 	[HideInInspector]
-	public AudioSource source;
-
+    public AudioSource source;
+	[HideInInspector]
+    public bool isPlaying;
 }
