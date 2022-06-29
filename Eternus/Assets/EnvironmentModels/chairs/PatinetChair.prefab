@@ -12,9 +12,10 @@ GameObject:
   - component: {fileID: 749598295455005177}
   - component: {fileID: 3279725419645209907}
   - component: {fileID: 1560124029991004095}
-  m_Layer: 0
+  - component: {fileID: 8029727897871006389}
+  m_Layer: 6
   m_Name: PatinetChair
-  m_TagString: Untagged
+  m_TagString: Footsteps/Custom
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -98,3 +99,18 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 157455710165130587, guid: d69768f4a2418044b97bdbc661bf4e80, type: 3}
+--- !u!114 &8029727897871006389
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3928001528919108838}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ca4ad0c6cc6b484281b74d246e1943c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  footsteps:
+  - {fileID: 8300000, guid: 1e5dee05b593b02428a17c9f8782fe6c, type: 3}
+  - {fileID: 8300000, guid: d1ee629a5575d064a81adca2f2e14c0c, type: 3}

@@ -12,9 +12,10 @@ GameObject:
   - component: {fileID: 5429935896937474585}
   - component: {fileID: 7836253061017853651}
   - component: {fileID: 6096386026109334623}
-  m_Layer: 0
+  - component: {fileID: 4037764760099698224}
+  m_Layer: 6
   m_Name: SetoMainDesk
-  m_TagString: Untagged
+  m_TagString: Footsteps/Custom
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -98,3 +99,21 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -3309841590469957364, guid: 60f26310f0ac60646b7bd3e197d6ecdf, type: 3}
+--- !u!114 &4037764760099698224
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8628627317765635846}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ca4ad0c6cc6b484281b74d246e1943c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  footsteps:
+  - {fileID: 8300000, guid: 660d9af9033265e43984c6e38f6846e4, type: 3}
+  - {fileID: 8300000, guid: 0ca821cdccda1244388b7c40f8d9c649, type: 3}
+  - {fileID: 8300000, guid: e49cb62e2f1211f4cb15a7ceaee52266, type: 3}
+  - {fileID: 8300000, guid: 8f00753de74e89c46bd6d8d21297a950, type: 3}
+  - {fileID: 8300000, guid: 2c8397d187eb988449db5ec8695e276b, type: 3}

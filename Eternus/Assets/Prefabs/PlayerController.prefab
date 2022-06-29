@@ -4951,6 +4951,7 @@ MonoBehaviour:
     bypassReverbZones: 1
     mixerGroup: {fileID: 0}
     source: {fileID: 0}
+    isPlaying: 0
   - name: Back
     type: 0
     clip: {fileID: 8300000, guid: dcb7780abd739c349bf30a6ef3fcf887, type: 3}
@@ -4966,6 +4967,7 @@ MonoBehaviour:
     bypassReverbZones: 1
     mixerGroup: {fileID: 0}
     source: {fileID: 0}
+    isPlaying: 0
   - name: Hurt
     type: 0
     clip: {fileID: 8300000, guid: c95857996d16ff44a8293c8917c4d4d4, type: 3}
@@ -4981,6 +4983,7 @@ MonoBehaviour:
     bypassReverbZones: 0
     mixerGroup: {fileID: 0}
     source: {fileID: 0}
+    isPlaying: 0
   - name: Heartbeat
     type: 0
     clip: {fileID: 8300000, guid: 3d4219499f583bf4da27ac72988caa53, type: 3}
@@ -4996,6 +4999,7 @@ MonoBehaviour:
     bypassReverbZones: 0
     mixerGroup: {fileID: 0}
     source: {fileID: 0}
+    isPlaying: 0
   - name: Hover
     type: 0
     clip: {fileID: 8300000, guid: d5e3bd928474b8448b04d67e3e2a1d85, type: 3}
@@ -5011,7 +5015,23 @@ MonoBehaviour:
     bypassReverbZones: 1
     mixerGroup: {fileID: 0}
     source: {fileID: 0}
-  isPlaying: 0
+    isPlaying: 0
+  - name: Take
+    type: 0
+    clip: {fileID: 8300000, guid: 56478b5a9c6821a49a58e2d3e2f9f14b, type: 3}
+    customAudioSource: {fileID: 0}
+    volume: 1
+    volumeVariance: 0
+    originalVolume: 0
+    pitch: 1
+    pitchVariance: 0.2
+    spatialBlend: 0
+    loop: 0
+    playOnAwake: 0
+    bypassReverbZones: 0
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+    isPlaying: 0
 --- !u!1 &6420845347386534985
 GameObject:
   m_ObjectHideFlags: 0
@@ -5437,6 +5457,7 @@ MonoBehaviour:
     bypassReverbZones: 0
     mixerGroup: {fileID: 0}
     source: {fileID: 0}
+    isPlaying: 0
   - name: Crouch
     type: 0
     clip: {fileID: 8300000, guid: e91fffee1a394104cb7c8f3c722730f9, type: 3}
@@ -5452,6 +5473,7 @@ MonoBehaviour:
     bypassReverbZones: 0
     mixerGroup: {fileID: 0}
     source: {fileID: 0}
+    isPlaying: 0
   - name: Stand
     type: 0
     clip: {fileID: 8300000, guid: cbe256f168b5d6149a0b3e284f1e6124, type: 3}
@@ -5467,6 +5489,7 @@ MonoBehaviour:
     bypassReverbZones: 0
     mixerGroup: {fileID: 0}
     source: {fileID: 0}
+    isPlaying: 0
   - name: Crouch Walk
     type: 0
     clip: {fileID: 8300000, guid: 52722bdb0a8f5a94c85ce100cffb409f, type: 3}
@@ -5482,6 +5505,7 @@ MonoBehaviour:
     bypassReverbZones: 0
     mixerGroup: {fileID: 0}
     source: {fileID: 0}
+    isPlaying: 0
   - name: Pickup
     type: 0
     clip: {fileID: 8300000, guid: 56478b5a9c6821a49a58e2d3e2f9f14b, type: 3}
@@ -5497,6 +5521,7 @@ MonoBehaviour:
     bypassReverbZones: 0
     mixerGroup: {fileID: 0}
     source: {fileID: 0}
+    isPlaying: 0
   - name: Pickup Key
     type: 0
     clip: {fileID: 8300000, guid: 2eb083c131543b04abdd2fb5c10f6fac, type: 3}
@@ -5512,6 +5537,7 @@ MonoBehaviour:
     bypassReverbZones: 0
     mixerGroup: {fileID: 0}
     source: {fileID: 0}
+    isPlaying: 0
   - name: Jump
     type: 0
     clip: {fileID: 8300000, guid: eb3b4bf0d29f26449b6a5d62287e1da6, type: 3}
@@ -5527,6 +5553,7 @@ MonoBehaviour:
     bypassReverbZones: 0
     mixerGroup: {fileID: 0}
     source: {fileID: 0}
+    isPlaying: 0
   - name: Land
     type: 0
     clip: {fileID: 8300000, guid: f96f398c2715cab49897f40991a3f472, type: 3}
@@ -5542,6 +5569,7 @@ MonoBehaviour:
     bypassReverbZones: 0
     mixerGroup: {fileID: 0}
     source: {fileID: 0}
+    isPlaying: 0
   - name: Back
     type: 0
     clip: {fileID: 8300000, guid: dcb7780abd739c349bf30a6ef3fcf887, type: 3}
@@ -5557,7 +5585,7 @@ MonoBehaviour:
     bypassReverbZones: 1
     mixerGroup: {fileID: 0}
     source: {fileID: 0}
-  isPlaying: 0
+    isPlaying: 0
 --- !u!114 &6650164697162761688
 MonoBehaviour:
   m_ObjectHideFlags: 0
