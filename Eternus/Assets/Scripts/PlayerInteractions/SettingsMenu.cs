@@ -70,7 +70,7 @@ public class SettingsMenu : MonoBehaviour
     {
         if (mouseLook != null)
         {
-            mouseLook.mouseSensitivity = Mathf.Lerp(50f, 500f, sensitivitySlider.value);
+            mouseLook.mouseSensitivity = Mathf.Lerp(5f, 500f, sensitivitySlider.value);
         }
         PlayerPrefs.SetFloat("MouseSensitivity", sensitivitySlider.value);
     }
