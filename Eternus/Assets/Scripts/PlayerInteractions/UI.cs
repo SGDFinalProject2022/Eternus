@@ -20,6 +20,7 @@ public class UI : MonoBehaviour
     public Sprite defaultItemImage;
     [Header("Pause")]
     [SerializeField] GameObject pauseMenuPanel;
+    [SerializeField] GameObject brightnessPanel;
     [HideInInspector] public bool isPaused;
     public HeadBobController headBobController;
     [Header("Tutorial")]
@@ -64,6 +65,7 @@ public class UI : MonoBehaviour
         Time.timeScale = pause ? 0.001f : 1;
         pauseMenuPanel.SetActive(pause);
         isPaused = pause;
+        if (brightnessPanel.activeSelf && !pause) brightnessPanel.SetActive(false);
     }
 
     public void ShowObjective(string objective)

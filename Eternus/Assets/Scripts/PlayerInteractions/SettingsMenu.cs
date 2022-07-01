@@ -2,12 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
 /// <summary>
 /// Manages changing the settings, saving/loading settings
 /// </summary>
 public class SettingsMenu : MonoBehaviour
 {
     [SerializeField] bool isMainMenu = false;
+    [SerializeField] GameObject settingsPanel;
+    [SerializeField] GameObject brightnessPanel;
     [Header("Audio")]
     [SerializeField] AudioListener audioListener;
     AudioManager[] audioMen;
@@ -16,23 +20,26 @@ public class SettingsMenu : MonoBehaviour
     [SerializeField] Slider sfxVolumeSlider;
     [SerializeField] Slider musicVolumeSlider;
     [SerializeField] Slider sensitivitySlider;
+    [SerializeField] Slider gammaSlider;
     [Header("Fullscreen")]
     [SerializeField] Text fullscreenText;
     [SerializeField] string checkmark; //cheating hehe
     [Header("Misc.")]   
     [SerializeField] MouseLook mouseLook;
     [SerializeField] PlayerMovement playerMovement;
+    [SerializeField] Volume playerVolume;
 
     bool isFullscreen = false;
+    LiftGammaGain liftGammaGain;
 
 
     // Start is called before the first frame update
     void Start()
     {
+        _ = playerVolume.profile.TryGet(out liftGammaGain); //this spews out an error, i have no idea why
         LoadSettings();
-        /*AudioManager[] audioManagers = FindObjectsOfType<AudioManager>();
-        audioMen = audioManagers;*/
-        gameObject.SetActive(false);
+        settingsPanel.SetActive(false);
+        brightnessPanel.SetActive(false);
     }
 
     public void OnOverallVolumeChange()
@@ -48,7 +55,7 @@ public class SettingsMenu : MonoBehaviour
         {
             audioMan.ChangeVolumeOfType(soundType.SFX, sfxVolumeSlider.value);
         }
-        if(!isMainMenu)
+        if (!isMainMenu)
         {
             playerMovement.footstepBaseVolume =
             Mathf.Lerp(0, 0.25f, sfxVolumeSlider.value); //hhhhhhh
@@ -74,6 +81,13 @@ public class SettingsMenu : MonoBehaviour
         }
         PlayerPrefs.SetFloat("MouseSensitivity", sensitivitySlider.value);
     }
+    public void OnGammaChange()
+    {
+        if (liftGammaGain == null) return;
+        liftGammaGain.gamma.Override(new Vector4(1f, 1f, 1f, gammaSlider.value));
+        PlayerPrefs.SetFloat("Gamma", gammaSlider.value);
+        //Debug.LogWarning(gammaSlider.value);
+    }
 
     /*public void LoadSettings()
     {
@@ -88,6 +102,7 @@ public class SettingsMenu : MonoBehaviour
 
     void LoadSettings()
     {
+        Debug.Log("Loading Settings...");
         if (PlayerPrefs.HasKey("MainVolume") == false)
         { /*SaveSettings();*/ Debug.Log("player doesn't have playerprefs"); }
         overallVolumeSlider.value = PlayerPrefs.GetFloat("MainVolume");
@@ -123,17 +138,21 @@ public class SettingsMenu : MonoBehaviour
         {
             case 0:
                 Screen.fullScreen = false;
-                Debug.Log("fullscreen off");
-                fullscreenText.text = "X";
+                //Debug.Log("fullscreen off");
+                if (fullscreenText != null) fullscreenText.text = "X";
                 isFullscreen = false; break;
             case 1: 
                 Screen.fullScreen = true;
-                Debug.Log("fullscreen on");
-                fullscreenText.text = checkmark;
+                //Debug.Log("fullscreen on");
+                if (fullscreenText != null) fullscreenText.text = checkmark;
                 isFullscreen = true; break;
             default: Debug.LogError("PlayerPrefs ''Fullscreen'' is nonbinary"); break;
         }
         //do something similar with content toggle
+
+        //Brightness Slider
+        liftGammaGain.gamma.Override(new Vector4(1f, 1f, 1f, PlayerPrefs.GetFloat("Gamma")));
+        gammaSlider.value = PlayerPrefs.GetFloat("Gamma");
     }
     void SaveSettings()
     {
@@ -141,6 +160,7 @@ public class SettingsMenu : MonoBehaviour
         PlayerPrefs.SetFloat("SFXVolume", sfxVolumeSlider.value);
         PlayerPrefs.SetFloat("MusicVolume", musicVolumeSlider.value);
         PlayerPrefs.SetFloat("MouseSensitivity", sensitivitySlider.value);
+        PlayerPrefs.SetFloat("Gamma", gammaSlider.value);
     }
 
     public void FullscreenToggle()
