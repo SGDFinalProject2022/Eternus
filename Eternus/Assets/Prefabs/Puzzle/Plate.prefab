@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 2098237337321897539}
   - component: {fileID: 4194229243378906641}
   - component: {fileID: 3470685349009310671}
+  - component: {fileID: 2281067375351933733}
   m_Layer: 7
   m_Name: Plate
   m_TagString: Untagged
@@ -147,4 +148,58 @@ MonoBehaviour:
           m_StringArgument: PlateMove
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 2281067375351933733}
+        m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
+        m_MethodName: Play
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Slide
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 3470685349009310671}
+        m_TargetAssemblyTypeName: Interactable, Assembly-CSharp
+        m_MethodName: SetInteractable
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   ID: 0
+--- !u!114 &2281067375351933733
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 373402523149065557}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c583a1393bd16674d9372aa50af36600, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mixerGroup: {fileID: 0}
+  sounds:
+  - name: Slide
+    type: 0
+    clip: {fileID: 8300000, guid: 72fc4e4ddf8736f4d9579d14566984fe, type: 3}
+    customAudioSource: {fileID: 0}
+    volume: 0.2
+    volumeVariance: 0
+    originalVolume: 0
+    pitch: 1
+    pitchVariance: 0.3
+    spatialBlend: 1
+    loop: 0
+    playOnAwake: 0
+    bypassReverbZones: 0
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+    isPlaying: 0
