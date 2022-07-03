@@ -36,7 +36,7 @@ public class SettingsMenu : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        _ = playerVolume.profile.TryGet(out liftGammaGain); //this spews out an error, i have no idea why
+        _ = playerVolume.profile.TryGet(out liftGammaGain);
         LoadSettings();
         settingsPanel.SetActive(false);
         brightnessPanel.SetActive(false);
@@ -104,11 +104,15 @@ public class SettingsMenu : MonoBehaviour
     {
         Debug.Log("Loading Settings...");
         if (PlayerPrefs.HasKey("MainVolume") == false)
-        { /*SaveSettings();*/ Debug.Log("player doesn't have playerprefs"); }
-        overallVolumeSlider.value = PlayerPrefs.GetFloat("MainVolume");
-        sfxVolumeSlider.value = PlayerPrefs.GetFloat("SFXVolume");
-        musicVolumeSlider.value = PlayerPrefs.GetFloat("MusicVolume");
-        sensitivitySlider.value = PlayerPrefs.GetFloat("MouseSensitivity");
+        { ResetSettings(); Debug.LogWarning("player doesn't have playerprefs, resetting..."); }
+        else
+        {
+            overallVolumeSlider.value = PlayerPrefs.GetFloat("MainVolume");
+            sfxVolumeSlider.value = PlayerPrefs.GetFloat("SFXVolume");
+            musicVolumeSlider.value = PlayerPrefs.GetFloat("MusicVolume");
+            sensitivitySlider.value = PlayerPrefs.GetFloat("MouseSensitivity");
+        }
+        
 
         //Main Volume
         AudioListener.volume = PlayerPrefs.GetFloat("MainVolume");
@@ -148,14 +152,19 @@ public class SettingsMenu : MonoBehaviour
                 isFullscreen = true; break;
             default: Debug.LogError("PlayerPrefs ''Fullscreen'' is nonbinary"); break;
         }
-        //do something similar with content toggle
+        //do something similar with content toggle?
 
         //Brightness Slider
         liftGammaGain.gamma.Override(new Vector4(1f, 1f, 1f, PlayerPrefs.GetFloat("Gamma")));
         gammaSlider.value = PlayerPrefs.GetFloat("Gamma");
     }
-    void SaveSettings()
+    public void ResetSettings()
     {
+        overallVolumeSlider.value = 1f;
+        sfxVolumeSlider.value = 1f;
+        musicVolumeSlider.value = 1f;
+        sensitivitySlider.value = 0.75f;
+        gammaSlider.value = 0f;
         PlayerPrefs.SetFloat("MainVolume", overallVolumeSlider.value);
         PlayerPrefs.SetFloat("SFXVolume", sfxVolumeSlider.value);
         PlayerPrefs.SetFloat("MusicVolume", musicVolumeSlider.value);
