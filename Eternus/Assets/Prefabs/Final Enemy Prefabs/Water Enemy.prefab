@@ -726,6 +726,7 @@ MonoBehaviour:
   sprintRange: {fileID: 3001542567359411085}
   crouchRange: {fileID: 7536006493829617}
   anim: {fileID: 0}
+  waterEffect: {fileID: 4678419841782457888}
   aiFootsteps: {fileID: 0}
 --- !u!1 &2856946703634404526
 GameObject:
@@ -1046,7 +1047,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8473358213414048681}
   m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: -0.43, z: 0}
+  m_LocalPosition: {x: 0, y: -1.06, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1887,7 +1888,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 50
+      scalar: 250
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -2325,8 +2326,8 @@ ParticleSystem:
       maxColor: {r: 1, g: 1, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
-        key0: {r: 0.25872195, g: 0.28032202, b: 0.3207547, a: 1}
-        key1: {r: 0.81501424, g: 0.9339623, b: 0.89070845, a: 0}
+        key0: {r: 0.04672482, g: 0.073396906, b: 0.13207549, a: 1}
+        key1: {r: 0.38679248, g: 0.38679248, b: 0.38679248, a: 0.03529412}
         key2: {r: 0, g: 0, b: 0, a: 0}
         key3: {r: 0, g: 0, b: 0, a: 0}
         key4: {r: 0, g: 0, b: 0, a: 0}
@@ -2342,7 +2343,7 @@ ParticleSystem:
         ctime6: 0
         ctime7: 0
         atime0: 0
-        atime1: 64186
+        atime1: 65535
         atime2: 0
         atime3: 0
         atime4: 0

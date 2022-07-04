@@ -59,6 +59,37 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ai: {fileID: 384119386708665296}
+--- !u!1 &656697247109300106
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6248300923588641526}
+  m_Layer: 0
+  m_Name: Node (3)
+  m_TagString: Untagged
+  m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6248300923588641526
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 656697247109300106}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4000616014692720676}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1169289966011618603
 GameObject:
   m_ObjectHideFlags: 0
@@ -414,6 +445,7 @@ MonoBehaviour:
   sprintRange: {fileID: 4145420510553972567}
   crouchRange: {fileID: 1169289966011618603}
   anim: {fileID: 7066624731795835392}
+  waterEffect: {fileID: 0}
   aiFootsteps: {fileID: 6381634854445465788}
 --- !u!114 &3137419460453584360
 MonoBehaviour:
@@ -444,6 +476,7 @@ MonoBehaviour:
     bypassReverbZones: 1
     mixerGroup: {fileID: 0}
     source: {fileID: 0}
+  isPlaying: 0
 --- !u!1 &4000616014541179703
 GameObject:
   m_ObjectHideFlags: 0
@@ -503,13 +536,14 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 4000616014814509175}
+  - {fileID: 6248300923588641526}
   - {fileID: 4000616014541179702}
   - {fileID: 3225300876593471684}
   - {fileID: 3225300877699759181}
   - {fileID: 3225300878123338614}
   - {fileID: 3225300878066499982}
   - {fileID: 3225300877530372321}
+  - {fileID: 4000616014814509175}
   m_Father: {fileID: 4000616015175334171}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -542,7 +576,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4000616014692720676}
-  m_RootOrder: 0
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4000616015175334168
 GameObject:
@@ -5894,6 +5928,7 @@ MonoBehaviour:
     bypassReverbZones: 0
     mixerGroup: {fileID: 0}
     source: {fileID: 0}
+  isPlaying: 0
 --- !u!82 &556920154264284902
 AudioSource:
   m_ObjectHideFlags: 0
