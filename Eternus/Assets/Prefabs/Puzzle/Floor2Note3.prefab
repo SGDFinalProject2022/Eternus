@@ -254,6 +254,7 @@ MonoBehaviour:
     bypassReverbZones: 0
     mixerGroup: {fileID: 0}
     source: {fileID: 0}
+    isPlaying: 0
   - name: Note Drop
     type: 0
     clip: {fileID: 8300000, guid: 444a33fc04c3fc0409e0fbafccb9d3fd, type: 3}
@@ -269,7 +270,7 @@ MonoBehaviour:
     bypassReverbZones: 0
     mixerGroup: {fileID: 0}
     source: {fileID: 0}
-  isPlaying: 0
+    isPlaying: 0
 --- !u!1 &6385334010056423084
 GameObject:
   m_ObjectHideFlags: 0
@@ -349,8 +350,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: i always find the elevator key in the cafeteria. whoever's in charge of
-    it always leaves it under their plate. i can't blame them, though. the meal of
+  m_Text: I always find the elevator key in the cafeteria. Whoever's in charge of
+    it always leaves it under their plate. I can't blame them, though. The meal of
     the day was always pretty good... when it was fresh, at least.
 --- !u!1 &8165550166888780795
 GameObject:

@@ -254,6 +254,7 @@ MonoBehaviour:
     bypassReverbZones: 0
     mixerGroup: {fileID: 0}
     source: {fileID: 0}
+    isPlaying: 0
   - name: Note Drop
     type: 0
     clip: {fileID: 8300000, guid: 444a33fc04c3fc0409e0fbafccb9d3fd, type: 3}
@@ -269,7 +270,7 @@ MonoBehaviour:
     bypassReverbZones: 0
     mixerGroup: {fileID: 0}
     source: {fileID: 0}
-  isPlaying: 0
+    isPlaying: 0
 --- !u!1 &6385334010056423084
 GameObject:
   m_ObjectHideFlags: 0
@@ -349,8 +350,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: it used to be so cramped fitting down that laundry shoot. it's gotten easier
-    over the years, though. maybe i've lost some weight...?
+  m_Text: It used to be so cramped fitting down that laundry chute. It's gotten easier
+    over the years, though. Maybe I've lost some weight...?
 --- !u!1 &8165550166888780795
 GameObject:
   m_ObjectHideFlags: 0

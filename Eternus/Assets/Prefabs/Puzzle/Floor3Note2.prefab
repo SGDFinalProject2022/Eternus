@@ -254,6 +254,7 @@ MonoBehaviour:
     bypassReverbZones: 0
     mixerGroup: {fileID: 0}
     source: {fileID: 0}
+    isPlaying: 0
   - name: Note Drop
     type: 0
     clip: {fileID: 8300000, guid: 444a33fc04c3fc0409e0fbafccb9d3fd, type: 3}
@@ -269,7 +270,7 @@ MonoBehaviour:
     bypassReverbZones: 0
     mixerGroup: {fileID: 0}
     source: {fileID: 0}
-  isPlaying: 0
+    isPlaying: 0
 --- !u!1 &6385334010056423084
 GameObject:
   m_ObjectHideFlags: 0
@@ -349,8 +350,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'just like the last time, the key to the laundry shoot will be in the storage
-    locker. just like last time, the code will be 2607. for wanting to keep me trapped
+  m_Text: 'Just like the last time, the key to the laundry shoot will be in the storage
+    locker. Just like last time, the code will be 2607. For wanting to keep me trapped
     here, they never put much effort into stopping my escape... it''s like they''re
     taunting me.
 

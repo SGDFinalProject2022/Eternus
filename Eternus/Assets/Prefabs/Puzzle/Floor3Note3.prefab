@@ -254,6 +254,7 @@ MonoBehaviour:
     bypassReverbZones: 0
     mixerGroup: {fileID: 0}
     source: {fileID: 0}
+    isPlaying: 0
   - name: Note Drop
     type: 0
     clip: {fileID: 8300000, guid: 444a33fc04c3fc0409e0fbafccb9d3fd, type: 3}
@@ -269,7 +270,7 @@ MonoBehaviour:
     bypassReverbZones: 0
     mixerGroup: {fileID: 0}
     source: {fileID: 0}
-  isPlaying: 0
+    isPlaying: 0
 --- !u!1 &6385334010056423084
 GameObject:
   m_ObjectHideFlags: 0
@@ -349,8 +350,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: at one time, there were actual staff here. patients, too, but i never spoke
-    to them much. this place has become vacant over the years, though. i'd rather
+  m_Text: At one time, there were actual staff here. Patients, too, but I never spoke
+    to them much. This place has become vacant over the years, though. I'd rather
     not come into contact with anything that might still be wandering these halls.
 --- !u!1 &8165550166888780795
 GameObject:
