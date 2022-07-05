@@ -138,6 +138,7 @@ GameObject:
   - component: {fileID: 4029494705896675242}
   - component: {fileID: 6136628367536543804}
   - component: {fileID: 3137817675986941946}
+  - component: {fileID: -4315668764668089050}
   m_Layer: 7
   m_Name: Floor1Note3
   m_TagString: Untagged
@@ -268,9 +269,6 @@ MonoBehaviour:
   - {fileID: 8176510111774649553}
   ui: {fileID: 0}
   audioMan: {fileID: 3137817675986941946}
-  onUnlock:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!114 &3137817675986941946
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -317,6 +315,21 @@ MonoBehaviour:
     mixerGroup: {fileID: 0}
     source: {fileID: 0}
     isPlaying: 0
+--- !u!114 &-4315668764668089050
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4686949718894933088}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3faba0f5f0ee3a498218004fe4fd862, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMaterial: {fileID: 2100000, guid: 1e7acf5058fd0254da1b630850dde403, type: 2}
+  outlineScaleFactor: -1.1
+  outlineColor: {r: 1, g: 1, b: 1, a: 0}
 --- !u!1 &6385334010056423084
 GameObject:
   m_ObjectHideFlags: 0
