@@ -7,7 +7,7 @@ public class LogoFade : MonoBehaviour
     [SerializeField] float timer = 5f;
     void Start()
     {
-        //StartCoroutine("Countdown");
+        StartCoroutine("Countdown");
     }
 
     IEnumerator Countdown()

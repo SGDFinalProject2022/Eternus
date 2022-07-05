@@ -23,7 +23,6 @@ public class GlobalData : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        anim.SetTrigger("FadeIn");
     }
     //Saves player data passed in through player GO
     public void SaveData(PlayerData data)
@@ -56,7 +55,7 @@ public class GlobalData : MonoBehaviour
     {
         anim.SetTrigger("FadeOut");
         Time.timeScale = 1f;
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(2f);
         AsyncOperation asyncLoadLevel = SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Single);
         while (!asyncLoadLevel.isDone)
         {
