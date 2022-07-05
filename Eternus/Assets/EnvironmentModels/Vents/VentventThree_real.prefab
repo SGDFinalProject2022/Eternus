@@ -12,9 +12,10 @@ GameObject:
   - component: {fileID: 5972787945673833301}
   - component: {fileID: 8432829447783010207}
   - component: {fileID: 5558055305618711827}
-  m_Layer: 0
+  - component: {fileID: 4784752425142820637}
+  m_Layer: 6
   m_Name: VentventThree_real
-  m_TagString: Untagged
+  m_TagString: Footsteps/Custom
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -98,3 +99,20 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 5980049267096280661, guid: 7687287fa1a402a488bcef4628d5615a, type: 3}
+--- !u!114 &4784752425142820637
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7928465940279258698}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ca4ad0c6cc6b484281b74d246e1943c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  footsteps:
+  - {fileID: 8300000, guid: a20b17bb4cdbf1f489e914dc40482682, type: 3}
+  - {fileID: 8300000, guid: 56527c74bf4b44c458ffbaffb47d6492, type: 3}
+  - {fileID: 8300000, guid: 5adad9ff52be5c24e847d45e550082bd, type: 3}
+  - {fileID: 8300000, guid: 4a528cfb07529474ab8aebc7f6effcc6, type: 3}

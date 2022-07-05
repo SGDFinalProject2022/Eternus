@@ -89,6 +89,19 @@ public class MouseLook : MonoBehaviour
         isInCutscene = false;
     }
 
+    public void StartCutscene(float time) => StartCoroutine(StartCutsceneCoroutine(time));
+    IEnumerator StartCutsceneCoroutine(float time) //time in secs
+    {
+        Debug.Log("Pausing player for cutscene, length: " + time);
+        isInCutscene = true;
+        playerMovement.isHiding = true;
+        crosshair.color = new Color(crosshair.color.r, crosshair.color.g, crosshair.color.b, 0f);
+        yield return new WaitForSeconds(time);
+        Debug.Log("Cutscene ended");
+        isInCutscene = false;
+        playerMovement.isHiding = false;
+    }
+
     void PlayerInteractions()
     {
         RaycastHit hit;

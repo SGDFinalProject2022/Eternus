@@ -34,4 +34,8 @@ public class Interactable : MonoBehaviour
             GlobalData.instance.LoadScene(sceneName);
         }       
     }
+    public void SetInteractable(bool isInteractable)
+    {
+        gameObject.layer = isInteractable ? LayerMask.NameToLayer("Interactable") : 0;
+    }
 }

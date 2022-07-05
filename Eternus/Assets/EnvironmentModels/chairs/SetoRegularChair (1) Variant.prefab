@@ -69,7 +69,15 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 5d3d8462515fd884ab94136c4afd804d, type: 2}
     - target: {fileID: 919132149155446097, guid: 82af6bd035397b74fa147fae0eb8ea1d, type: 3}
       propertyPath: m_Name
-      value: SetoRegularChair (1)
+      value: SetoRegularChair (1) Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 82af6bd035397b74fa147fae0eb8ea1d, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 82af6bd035397b74fa147fae0eb8ea1d, type: 3}
+      propertyPath: m_TagString
+      value: Footsteps/Custom
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 82af6bd035397b74fa147fae0eb8ea1d, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -77,3 +85,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 82af6bd035397b74fa147fae0eb8ea1d, type: 3}
+--- !u!1 &1820062958208554577 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 82af6bd035397b74fa147fae0eb8ea1d, type: 3}
+  m_PrefabInstance: {fileID: 1550153408698329856}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &7688795288252744391
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1820062958208554577}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ca4ad0c6cc6b484281b74d246e1943c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  footsteps:
+  - {fileID: 8300000, guid: 0ca821cdccda1244388b7c40f8d9c649, type: 3}
+  - {fileID: 8300000, guid: e49cb62e2f1211f4cb15a7ceaee52266, type: 3}

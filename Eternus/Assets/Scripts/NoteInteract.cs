@@ -8,9 +8,9 @@ public class NoteInteract : MonoBehaviour
     [SerializeField] List<GameObject> panels = new List<GameObject>();
     [SerializeField] UI ui;
     [SerializeField] AudioManager audioMan;
-    public UnityEvent onUnlock;
     bool panelIsOpen;
     PlayerMovement mov;
+    bool isHovering;
 
     void Start()
     {
@@ -19,13 +19,24 @@ public class NoteInteract : MonoBehaviour
             obj.SetActive(false);
         }
         panelIsOpen = false;
+        isHovering = false;
     }
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if(panelIsOpen)
         {
-            ClosePanel();
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                ClosePanel();
+            }
+            if (Input.GetMouseButtonDown(0))
+            {
+                if (!isHovering)
+                {
+                    ClosePanel();
+                }
+            }
         }
     }
 
@@ -66,5 +77,11 @@ public class NoteInteract : MonoBehaviour
             panel.SetActive(true);
             if (audioMan != null) { audioMan.Play("Note Pickup"); }
         }
+    }
+
+    public void UpdateHover(bool isHover)
+    {
+        print("Hover is " + isHover);
+        isHovering = isHover;
     }
 }

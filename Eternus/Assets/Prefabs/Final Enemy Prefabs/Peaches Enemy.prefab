@@ -774,6 +774,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -8394496717847773549, guid: 59f45ca1d774c2b43819fef76384c947, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: ae51e17d254000347b47df69c707ad4f, type: 2}
+    - target: {fileID: -386753200140050744, guid: 59f45ca1d774c2b43819fef76384c947, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a13e4bf7dcdbc4f419055051fe8f996f, type: 2}
     - target: {fileID: 919132149155446097, guid: 59f45ca1d774c2b43819fef76384c947, type: 3}
       propertyPath: m_Name
       value: PeachesNew
@@ -782,6 +790,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4102361803851839562, guid: 59f45ca1d774c2b43819fef76384c947, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 1a5df4f42ae545e44997d09b86b57dab, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 59f45ca1d774c2b43819fef76384c947, type: 3}
 --- !u!1 &2524117370706790140 stripped
