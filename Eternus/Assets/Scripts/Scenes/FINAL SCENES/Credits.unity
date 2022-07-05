@@ -876,70 +876,24 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: 'Credits
-
-
-
-    Exit Light Studios:
-
-
-    Art
-
-
-    Character Art: Gilberto
-    Arguelles-Estrada
-
-    Level Design: Logan Pomper
-
-    Environment Art: Carly
-    Seto
-
-
-
-    Programming
-
-
-    Player Interaction & UI: Josiah Holcom
-
-    Enemy
-    AI and Save System: Ven Lewis
-
-
-
-    Audio
-
-
-    Sound Effects: Carly Seto &
-    Josiah Holcom
-
-    Music: Carly Seto
-
-
-
-    Freesound Credits:
-
-
-
-
-
-
-
-
-
-
-
-
-
-    Font
-    Credits:
-
-
-    Wojciech Kalinowski - Classica Font Family
-
-    merrijart - Peaches
-    For Breakfast Font
-
-    Vic Fieger - Edo SZ Font'
+  m_Text: "Credits\n\n\nExit Light Studios:\n\nArt Department\n\n Production Designer                                                                             
+    Carly Seto\nLead Level Designer                                                                       
+    Logan Pomper\nLead Environmental Artist                                                                   
+    Carly Seto\nLead Character Artist                                               
+    Gilberto Arguelles-Estrada\nLighting                                                                        
+    Carly Seto\n                                                                                    
+    Ven Lewis\n\n\nProgramming\n\nLead Programmer                                                                          
+    Josiah Holcom\nPlayer Interaction & UI                                                                  
+    Josiah Holcom\nEnemy AI and Save System                                                                  
+    Ven Lewis\n\n\nQuality Assurance Department\n\nLead QA                                                                                             
+    Logan Pomper\n\n\n\n\nSound Design\n\nSound Effects                                                                                          
+    Carly Seto\n                                                                                                             
+    Josiah Holcom\nSoundtrack                                                                                              
+    Carly Seto\n\n\nFreesound Credits\n\n\n\n\n\n\n\n\n\n\n\n\nFont Credits\n\nClassica
+    Font Family                                                            Wojciech
+    Kalinowski \n Peaches For Breakfast Font                                                                    
+    merrijart\nEdo SZ Font                                                                                               
+    Vic Fieger "
 --- !u!222 &1153719798
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1042,8 +996,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: "wlabarron \r\nsophiehall3535 \r\nnoctored \r\nAkc1231 \r\nconleec \r\nSomeoneCool15
-    \r\nCloverCutieASMR\r\nsagamusix \r\nBrokenphono"
+  m_Text: "\n\n\n\n\n\n\n\n\n\n\n\nwlabarron \r\nsophiehall3535 \r\nnoctored \r\nAkc1231
+    \r\nconleec \r\nSomeoneCool15 \r\nCloverCutieASMR\r\nsagamusix \r\nBrokenphono"
 --- !u!222 &1268630382
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1827,6 +1781,7 @@ MonoBehaviour:
     bypassReverbZones: 1
     mixerGroup: {fileID: 0}
     source: {fileID: 0}
+    isPlaying: 0
   - name: Back
     type: 0
     clip: {fileID: 8300000, guid: dcb7780abd739c349bf30a6ef3fcf887, type: 3}
@@ -1842,7 +1797,7 @@ MonoBehaviour:
     bypassReverbZones: 1
     mixerGroup: {fileID: 0}
     source: {fileID: 0}
-  isPlaying: 0
+    isPlaying: 0
 --- !u!1 &2128252168
 GameObject:
   m_ObjectHideFlags: 0
@@ -1914,8 +1869,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: "leonelmail\r\nYuval\r\nftpalad\r\nbruno.auzet \r\nccrev \r\namholma\r\nSheyvan
-    \r\nMootMcnoodles \r\ngyzhor"
+  m_Text: "\n\n\n\n\n\n\n\n\n\n\n\nleonelmail\r\nYuval\r\nftpalad\r\nbruno.auzet
+    \r\nccrev \r\namholma\r\nSheyvan \r\nMootMcnoodles \r\ngyzhor"
 --- !u!222 &2128252171
 CanvasRenderer:
   m_ObjectHideFlags: 0
