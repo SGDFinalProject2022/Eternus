@@ -10,6 +10,7 @@ public class GlobalData : MonoBehaviour
     [HideInInspector] public bool loadSaveData;
     [HideInInspector] public PlayerData player;
     [SerializeField] Animator anim;
+    [SerializeField] CanvasGroup canvasGroupOBJ;
 
     void Awake()
     {
@@ -21,19 +22,9 @@ public class GlobalData : MonoBehaviour
         else
         {
             Destroy(gameObject);
-        }        
-        
-    }
-
-    void Update()
-    {
-        //FOR TESTING PURPOSED ONLY. DELETE LATER
-        if (Input.GetKeyDown("u"))
-        {
-            LoadScene("floor_3");
         }
+        anim.SetTrigger("FadeIn");
     }
-
     //Saves player data passed in through player GO
     public void SaveData(PlayerData data)
     {
