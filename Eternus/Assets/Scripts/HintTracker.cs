@@ -25,10 +25,10 @@ public class HintTracker : MonoBehaviour
         }
     }
 
-    public void UpdateHint()
+    public void UpdateHint(int count)
     {
         StopCoroutine(countdown);
-        hintCount++;
+        hintCount = count;
         countdown = StartCoroutine("Countdown");
     }
 }
