@@ -55,7 +55,7 @@ public class DoorController : MonoBehaviour
             {
                 if (final)
                 {
-                    GlobalData.instance.LoadScene("final_cutscene");
+                    GlobalData.instance.LoadScene("NEW_final_cutscene");
                 }
                 else
                 {
