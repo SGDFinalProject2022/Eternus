@@ -5347,7 +5347,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: dde13de76a907bc42a690a1441c2f940, type: 3}
   - {fileID: 8300000, guid: b7394e8d5a970954eac09e1fe6920c90, type: 3}
   - {fileID: 8300000, guid: 0601c0881695a5942be27e741ddbc216, type: 3}
-  velocity: 0
+  velocity: 3
   isAggrod: 0
   baseStepSpeed: 0.6
   aggroStepMultiplier: 0.6
@@ -5542,7 +5542,7 @@ MonoBehaviour:
   crouchRange: {fileID: 7536006493829617}
   anim: {fileID: 0}
   waterEffect: {fileID: 4678419841782457888}
-  aiFootsteps: {fileID: 0}
+  aiFootsteps: {fileID: 4921742630455898934}
 --- !u!1 &2856946703634404526
 GameObject:
   m_ObjectHideFlags: 0
