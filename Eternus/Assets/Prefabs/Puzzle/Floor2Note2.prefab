@@ -139,6 +139,7 @@ GameObject:
   - component: {fileID: 6136628367536543804}
   - component: {fileID: 3137817675986941946}
   - component: {fileID: -5313358505721103374}
+  - component: {fileID: 4157541477012224544}
   m_Layer: 7
   m_Name: Floor2Note2
   m_TagString: Untagged
@@ -330,6 +331,21 @@ MonoBehaviour:
   outlineMaterial: {fileID: 2100000, guid: 1e7acf5058fd0254da1b630850dde403, type: 2}
   outlineScaleFactor: -1.1
   outlineColor: {r: 1, g: 1, b: 1, a: 0}
+--- !u!114 &4157541477012224544
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4686949718894933088}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aad5050c3b5d9f54491a6fc64f8a7f78, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactableShader: {fileID: 0}
+  distance: 8
+  player: {fileID: 0}
 --- !u!1 &6385334010056423084
 GameObject:
   m_ObjectHideFlags: 0

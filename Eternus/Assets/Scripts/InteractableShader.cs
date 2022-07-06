@@ -14,6 +14,7 @@ public class InteractableShader : MonoBehaviour
         outlineRenderer = CreateOutline(outlineMaterial, outlineScaleFactor, outlineColor);
         outlineRenderer.enabled = true;
         outlineRenderer.gameObject.transform.localScale = Vector3.one;
+        GetComponent<InteractableShaderOverDistance>().interactableShader = outlineRenderer.gameObject;
     }
 
     Renderer CreateOutline(Material outlineMat, float scaleFactor, Color color)
