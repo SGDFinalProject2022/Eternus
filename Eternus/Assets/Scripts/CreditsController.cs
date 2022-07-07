@@ -32,6 +32,7 @@ public class CreditsController : MonoBehaviour
 
     public void OnSkip()
     {
+        GetComponent<AudioManager>().VolumeFadeOut("Title", true);
         skipPanel.SetActive(false);
         panelOpen = false;
         GlobalData.instance.LoadScene("MainMenu");
