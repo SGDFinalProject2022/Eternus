@@ -7,21 +7,24 @@ public class ScrollingText : MonoBehaviour
     [SerializeField] GameObject textBox;
     [SerializeField] float scrollSpeed = 3f;
     [SerializeField] float creditsTimer = 20f;
+    bool showingLogo = false;
 
     void Start()
     {
         textBox.transform.position = new Vector2(Screen.width/2, -75);
-        StartCoroutine("Countdown");
+        StartCoroutine(Countdown());
     }
 
     void Update()
     {
-        textBox.transform.Translate(Vector3.up * Time.deltaTime * scrollSpeed, Space.World);
+        if (!showingLogo) textBox.transform.Translate(Vector3.up * Time.deltaTime * scrollSpeed, Space.World);
     }
 
     IEnumerator Countdown()
     {
         yield return new WaitForSeconds(creditsTimer);
+        showingLogo = true;
+        yield return new WaitForSeconds(5f);
         GlobalData.instance.LoadScene("MainMenu");
     }
 }
