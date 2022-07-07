@@ -346,6 +346,7 @@ MonoBehaviour:
   textBox: {fileID: 1153719796}
   scrollSpeed: 60
   creditsTimer: 78
+  audioMan: {fileID: 2048241146}
 --- !u!4 &137763749
 Transform:
   m_ObjectHideFlags: 0

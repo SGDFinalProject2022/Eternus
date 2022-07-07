@@ -7,6 +7,7 @@ public class ScrollingText : MonoBehaviour
     [SerializeField] GameObject textBox;
     [SerializeField] float scrollSpeed = 3f;
     [SerializeField] float creditsTimer = 20f;
+    [SerializeField] AudioManager audioMan;
     bool showingLogo = false;
 
     void Start()
@@ -25,6 +26,7 @@ public class ScrollingText : MonoBehaviour
         yield return new WaitForSeconds(creditsTimer);
         showingLogo = true;
         yield return new WaitForSeconds(5f);
+        audioMan.VolumeFadeOut("Title", true);
         GlobalData.instance.LoadScene("MainMenu");
     }
 }
