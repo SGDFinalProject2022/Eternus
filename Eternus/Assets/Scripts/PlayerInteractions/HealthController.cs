@@ -17,7 +17,6 @@ public class HealthController : MonoBehaviour
     [SerializeField] AudioManager audioMan;
 
     bool isDead = false;
-    bool playingHeartbeat = false;
     UI uI;
 
     // Start is called before the first frame update
