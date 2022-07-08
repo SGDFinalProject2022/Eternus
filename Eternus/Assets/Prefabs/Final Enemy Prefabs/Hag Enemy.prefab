@@ -3402,7 +3402,7 @@ MonoBehaviour:
     type: 1
     clip: {fileID: 8300000, guid: a998c722b40e3014dbbacfd46bbd6f48, type: 3}
     customAudioSource: {fileID: 0}
-    volume: 1
+    volume: 0
     volumeVariance: 0
     originalVolume: 0
     pitch: 1
