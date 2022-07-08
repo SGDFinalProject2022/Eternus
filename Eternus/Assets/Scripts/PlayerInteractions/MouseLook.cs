@@ -112,7 +112,7 @@ public class MouseLook : MonoBehaviour
             //makes the crosshair visible
             crosshair.color = new Color(crosshair.color.r, crosshair.color.g, crosshair.color.b, 0.5f);
             crosshair.sprite = interactCrosshair;
-            crosshair.transform.localScale = new Vector3(5, 5, 5);
+            crosshair.transform.localScale = new Vector3(7, 7, 7);
 
             if (hit.collider.GetComponent<Interactable>()) //interactables
             {
