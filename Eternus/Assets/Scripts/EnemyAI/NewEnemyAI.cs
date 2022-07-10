@@ -137,6 +137,11 @@ public class NewEnemyAI : MonoBehaviour
         {
             anim.SetBool("isSearching", isSearching);
         }
+        if(enemyName == "Hag")
+        {
+            anim.SetTrigger("Slow");
+            hagHair.SetTrigger("Slow");
+        }
     }
 
     //Audio
