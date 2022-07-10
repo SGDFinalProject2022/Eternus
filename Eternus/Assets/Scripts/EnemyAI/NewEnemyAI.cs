@@ -51,7 +51,7 @@ public class NewEnemyAI : MonoBehaviour
     bool inReverse;
     NavMeshAgent ai;
 
-    AudioManager audioMan;
+    [SerializeField] AudioManager audioMan;
     [SerializeField] AIFootsteps aiFootsteps;
 
     Transform soundAggro;
@@ -60,7 +60,7 @@ public class NewEnemyAI : MonoBehaviour
     {
         ai = GetComponent<NavMeshAgent>();
         playerMov = player.gameObject.GetComponent<PlayerMovement>();
-        audioMan = GetComponent<AudioManager>();
+        if (audioMan == null) { audioMan = GetComponent<AudioManager>(); }
         //aiFootsteps = GetComponent<AIFootsteps>();
         SetUpNodes();
         transform.position = nodes[0].position;
