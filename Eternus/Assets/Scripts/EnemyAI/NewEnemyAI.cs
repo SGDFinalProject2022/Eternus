@@ -107,6 +107,24 @@ public class NewEnemyAI : MonoBehaviour
 
     }
 
+    public void ForceDeaggro()
+    {
+        isSearching = false;
+        AnimateSearch();
+        ResetAnimate("Fast");
+        ResetAnimate("Transition");
+        Animate("Slow");
+        StopAudio("Fast");
+        if (audioMan.CheckIsPlaying("Chase")) { FadeOutAudio("Chase", true); }
+        PlayAudio("Idle");
+        losAggrod = false;
+        soundAggro = null;
+        aggrod = false;
+        ai.speed = normalSpeed;
+        state = AIState.Patrol;
+        losCor = null;
+    }
+
 
     //Animation
     void Animate(string animation)
