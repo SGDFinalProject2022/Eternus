@@ -127,6 +127,7 @@ public class PlayerMovement : MonoBehaviour
             //print("Player is under something");
             y = 1f;
             isUnderSomething = true;
+            audioMan.Stop("Crouch Walk");
         }
         else { isUnderSomething = false; }
 
@@ -137,7 +138,7 @@ public class PlayerMovement : MonoBehaviour
         FootstepSoundHandler(x, z);
 
         speed = Vector3.Distance(lastPos, transform.position) / Time.deltaTime;
-        lastPos = transform.position;       
+        lastPos = transform.position;
     }
 
     /// <summary>
@@ -284,7 +285,8 @@ public class PlayerMovement : MonoBehaviour
     /// <param name="z"></param>
     void FootstepSoundHandler(float x, float z)
     {
-        if (isOnGround && (x != 0 || z != 0))
+        //if the player is on the ground, pressing a movement key, and is moving faster than 1 (crouch is 2)
+        if (isOnGround && (x != 0 || z != 0) && speed > 1f)
         {
             footstepTimer -= Time.deltaTime;
 
