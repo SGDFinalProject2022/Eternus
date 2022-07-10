@@ -10,7 +10,6 @@ public class GlobalData : MonoBehaviour
     [HideInInspector] public bool loadSaveData;
     [HideInInspector] public PlayerData player;
     [SerializeField] Animator anim;
-    [SerializeField] CanvasGroup canvasGroupOBJ;
 
     void Awake()
     {
