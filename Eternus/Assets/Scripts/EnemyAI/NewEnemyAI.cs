@@ -28,6 +28,7 @@ public class NewEnemyAI : MonoBehaviour
     [SerializeField] GameObject sprintRange;
     [SerializeField] GameObject crouchRange;
     [SerializeField] Animator anim;
+    [SerializeField] Animator hagHair;
     [SerializeField] ParticleSystem waterEffect;
     PlayerMovement playerMov;
     bool aggrod;
@@ -114,12 +115,20 @@ public class NewEnemyAI : MonoBehaviour
         {
             anim.SetTrigger(animation);
         }
+        if(hagHair != null)
+        {
+            hagHair.SetTrigger(animation);
+        }
     }
     void ResetAnimate(string animation)
     {
         if (anim != null)
         {
             anim.ResetTrigger(animation);
+        }
+        if (hagHair != null)
+        {
+            hagHair.ResetTrigger(animation);
         }
     }
     void AnimateSearch()
