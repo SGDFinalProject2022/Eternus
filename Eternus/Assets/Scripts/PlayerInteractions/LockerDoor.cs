@@ -11,6 +11,7 @@ public class LockerDoor : MonoBehaviour
     [SerializeField] int codeLength = 4;
     [SerializeField] List<GameObject> panels = new List<GameObject>();
     [SerializeField] UI ui;
+    PlayerMovement player;
     public UnityEvent onUnlock;
 
     string finalCode = "2607";
@@ -20,6 +21,7 @@ public class LockerDoor : MonoBehaviour
 
     void Start()
     {
+        player = ui.transform.parent.gameObject.GetComponent<PlayerMovement>();
         foreach(GameObject obj in panels)
         {
             obj.SetActive(false);
@@ -61,7 +63,7 @@ public class LockerDoor : MonoBehaviour
 
     public void OpenPanel(GameObject panel)
     {
-        if (!panelIsOpen)
+        if (!panelIsOpen && !player.isCrouching)
         {
             ui.headBobController.enableHeadbob = false;
             Cursor.lockState = CursorLockMode.None;

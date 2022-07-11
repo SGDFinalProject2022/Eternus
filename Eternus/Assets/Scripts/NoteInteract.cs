@@ -9,11 +9,12 @@ public class NoteInteract : MonoBehaviour
     [SerializeField] UI ui;
     [SerializeField] AudioManager audioMan;
     bool panelIsOpen;
-    PlayerMovement mov;
+    PlayerMovement player;
     bool isHovering;
 
     void Start()
     {
+        player = ui.transform.parent.gameObject.GetComponent<PlayerMovement>();
         foreach (GameObject obj in panels)
         {
             obj.SetActive(false);
@@ -66,7 +67,7 @@ public class NoteInteract : MonoBehaviour
 
     public void OpenPanel(GameObject panel)
     {
-        if (!panelIsOpen)
+        if (!panelIsOpen && !player.isCrouching)
         {
             ui.headBobController.enableHeadbob = false;
             Cursor.lockState = CursorLockMode.None;
