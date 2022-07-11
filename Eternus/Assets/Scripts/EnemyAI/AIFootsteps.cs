@@ -9,9 +9,11 @@ public class AIFootsteps : MonoBehaviour
     [SerializeField] bool automaticFootsteps = true;
     AudioManager audioMan;
     [SerializeField] AudioClip[] footStepSFX;
+    [SerializeField] ParticleSystem[] footstepParticles;
 
     public float velocity;
     public bool isAggrod;
+    bool isPlayingParticle;
 
     float footstepTimer = 0f;
     [SerializeField] float baseStepSpeed = 0.6f;
@@ -22,10 +24,7 @@ public class AIFootsteps : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (GetComponent<AudioManager>()) 
-        { 
-            audioMan = GetComponent<AudioManager>();
-        }
+        if (GetComponent<AudioManager>()) audioMan = GetComponent<AudioManager>();
     }
 
     // Update is called once per frame
@@ -44,7 +43,7 @@ public class AIFootsteps : MonoBehaviour
             if (footstepTimer <= 0)
             {
                 PlayFootstep();
-
+                PlayFootstepPFX();
                 footstepTimer = getCurrentOffset;
             }
         }
@@ -72,5 +71,25 @@ public class AIFootsteps : MonoBehaviour
                     break;
             }
         }
+    }
+
+    void PlayFootstepPFX()
+    {
+        if (isPlayingParticle) return;
+        StartCoroutine(PlayFootstepPFXCoroutine());
+    }
+    IEnumerator PlayFootstepPFXCoroutine()
+    {      
+        isPlayingParticle = true;
+        foreach (ParticleSystem particle in footstepParticles)
+        {
+            particle.Play();
+        }      
+        yield return new WaitForSeconds(getCurrentOffset * 0.5f);
+        foreach (ParticleSystem particle in footstepParticles)
+        {
+            particle.Stop(true, ParticleSystemStopBehavior.StopEmitting);
+        }
+        isPlayingParticle = false;
     }
 }
