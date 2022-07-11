@@ -19,6 +19,7 @@ public class PlayerMovement : MonoBehaviour
     bool isOnGround;
     bool isJumping;
     public bool isDead = false;
+    float finalSpeed;
 
     [Header("Crouching")]
     [SerializeField] float crouchHeight = 1f; //base is 3.8
@@ -123,8 +124,6 @@ public class PlayerMovement : MonoBehaviour
         if (Physics.Raycast(transform.position, Vector3.up, out RaycastHit headHit, originalHeight / 1.5f)
             && isCrouching)
         {
-            //Debug.DrawRay(transform.position, Vector3.up * originalHeight / 1.5f, Color.red);
-            //print("Player is under something");
             y = 1f;
             isUnderSomething = true;
             audioMan.Stop("Crouch Walk");
@@ -229,7 +228,7 @@ public class PlayerMovement : MonoBehaviour
         //setting footstep volume to default
         audioMan.ChangeVolume("Step", footstepBaseVolume);
         float sprint = Input.GetAxis("Sprint");
-        float finalSpeed = walkingSpeed;
+        finalSpeed = walkingSpeed;
         if (isCrouching && !isInWater)
         {
             finalSpeed = Mathf.Lerp(walkingSpeed, crouchSpeed, y);
@@ -285,11 +284,11 @@ public class PlayerMovement : MonoBehaviour
     /// <param name="z"></param>
     void FootstepSoundHandler(float x, float z)
     {
-        //if the player is on the ground, pressing a movement key, and is moving faster than 1 (crouch is 2)
-        if (isOnGround && (x != 0 || z != 0) && speed > 1f)
+        //if the player is on the ground, pressing a movement key
+        if (isOnGround && (x != 0 || z != 0))
         {
-            footstepTimer -= Time.deltaTime;
-
+            //helps when player is running into a wall
+            footstepTimer -= Time.deltaTime * (speed / finalSpeed);
             if (footstepTimer <= 0)
             {
                 PlayFootstep();
