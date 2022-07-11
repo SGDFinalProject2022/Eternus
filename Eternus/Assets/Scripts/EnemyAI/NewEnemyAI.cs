@@ -85,15 +85,6 @@ public class NewEnemyAI : MonoBehaviour
             {
                 if (audioMan.CheckIsPlaying("Chase")) { FadeOutAudio("Chase", true); }
                 //audioMan.isPlaying = false;
-                isSearching = false;
-                if (enemyName != "Water Monster")
-                {
-                    AnimateSearch();
-                }
-                else
-                {
-                    waterEffect.Pause();
-                }
             }
         }
 
