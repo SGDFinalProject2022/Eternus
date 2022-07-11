@@ -3892,7 +3892,7 @@ PrefabInstance:
     - target: {fileID: 2472477722383951809, guid: c8beb5750e3f8094980a36ed9461e211, type: 3}
       propertyPath: m_Mesh
       value: 
-      objectReference: {fileID: -6618319995254790257, guid: a8114a9d9bdf2db46a1054ab88cce28a, type: 3}
+      objectReference: {fileID: -5828438840205257463, guid: f2152a50f2ec93549b75ab70783b55da, type: 3}
     - target: {fileID: 2472477722383951822, guid: c8beb5750e3f8094980a36ed9461e211, type: 3}
       propertyPath: interactText
       value: open
@@ -5059,8 +5059,10 @@ MonoBehaviour:
     spatialBlend: 1
     loop: 0
     playOnAwake: 0
+    bypassReverbZones: 0
     mixerGroup: {fileID: 0}
     source: {fileID: 0}
+    isPlaying: 0
   - name: Squeak
     type: 0
     clip: {fileID: 8300000, guid: 144ba7628383add4ebefac0dc664abf1, type: 3}
@@ -5073,8 +5075,10 @@ MonoBehaviour:
     spatialBlend: 0
     loop: 0
     playOnAwake: 0
+    bypassReverbZones: 0
     mixerGroup: {fileID: 0}
     source: {fileID: 0}
+    isPlaying: 0
   - name: Locked
     type: 0
     clip: {fileID: 8300000, guid: 144ba7628383add4ebefac0dc664abf1, type: 3}
@@ -5087,8 +5091,10 @@ MonoBehaviour:
     spatialBlend: 0
     loop: 0
     playOnAwake: 0
+    bypassReverbZones: 0
     mixerGroup: {fileID: 0}
     source: {fileID: 0}
+    isPlaying: 0
 --- !u!114 &1821067594058138589
 MonoBehaviour:
   m_ObjectHideFlags: 0
