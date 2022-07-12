@@ -429,6 +429,7 @@ public class NewEnemyAI : MonoBehaviour
         {
             waterEffect.Play();
         }
+        StopAudio("Idle");
         PlayAudio("Fast");
         ai.speed = aggroSpeed;
         while (Vector3.Distance(transform.position, soundAggro.position) > 5f)
@@ -450,6 +451,8 @@ public class NewEnemyAI : MonoBehaviour
 
         if (!inLineOfSight || (inLineOfSight && playerMov.isHiding))
         {
+            PlayAudio("Idle");
+            StopAudio("Fast");
             print("Did not find player");
             ai.speed = normalSpeed;
             state = AIState.Patrol;
