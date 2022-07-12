@@ -342,7 +342,7 @@ public class NewEnemyAI : MonoBehaviour
         float seconds = 0;
         while ((!inLineOfSight || (inLineOfSight && playerMov.isHiding) || (enemyName == "Water Monster" && !playerMov.isInWater) && !soundAggrod))
         {
-            if (inLineOfSight && playerMov.isHiding || (enemyName == "Water Monster" && !playerMov.isInWater))
+            if (((Vector3.Distance(transform.position, player.position) <= 3f) && !inLineOfSight) || (Vector3.Distance(transform.position, player.position) <= 3f) && inLineOfSight && playerMov.isHiding || (enemyName == "Water Monster" && !playerMov.isInWater))
             {
                 isSearching = true;                
                 AnimateSearch();
