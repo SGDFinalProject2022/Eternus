@@ -292,8 +292,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8278736394487720765}
-  - component: {fileID: 8278736394487720764}
-  - component: {fileID: 8278736394487720767}
   - component: {fileID: 8278736394487720760}
   - component: {fileID: 8278736394487720763}
   - component: {fileID: 8278736394487720762}
@@ -324,58 +322,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &8278736394487720764
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8278736394487720766}
-  m_Mesh: {fileID: -8442323073390163606, guid: d625ee02cf1ad4f459330ad880f51977, type: 3}
---- !u!23 &8278736394487720767
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8278736394487720766}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 2100000, guid: e3c40f3be27dc894dbdf5522315e2354, type: 2}
-  - {fileID: 2100000, guid: ddf96a615c91d844c9974fc5ae53d501, type: 2}
-  - {fileID: 2100000, guid: 7cac30ad37c77db42b395f8dc980c91f, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!65 &8278736394487720760
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -406,7 +352,7 @@ MonoBehaviour:
   enterTrigger: {fileID: 8278736393128303319}
   exitTrigger: {fileID: 8278736394471966884}
   playerController: {fileID: 0}
-  enemyAI: {fileID: 0}
+  tensionRange: 0.5
 --- !u!114 &8278736394487720762
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -464,6 +410,7 @@ MonoBehaviour:
     bypassReverbZones: 0
     mixerGroup: {fileID: 0}
     source: {fileID: 0}
+    isPlaying: 0
   - name: Exit
     type: 0
     clip: {fileID: 8300000, guid: 799a4c15986856c4e88c0f3ce74f3338, type: 3}
@@ -479,6 +426,7 @@ MonoBehaviour:
     bypassReverbZones: 0
     mixerGroup: {fileID: 0}
     source: {fileID: 0}
+    isPlaying: 0
   - name: Hidden
     type: 0
     clip: {fileID: 8300000, guid: 0d63a0a52e4b80244b9c5442a5a0bb61, type: 3}
@@ -494,6 +442,7 @@ MonoBehaviour:
     bypassReverbZones: 0
     mixerGroup: {fileID: 0}
     source: {fileID: 0}
+    isPlaying: 0
   - name: Tension
     type: 1
     clip: {fileID: 8300000, guid: 7e72ba120e3d68d4d8774581093a073b, type: 3}
@@ -509,6 +458,7 @@ MonoBehaviour:
     bypassReverbZones: 1
     mixerGroup: {fileID: 0}
     source: {fileID: 0}
+    isPlaying: 0
 --- !u!1 &8278736394976210062
 GameObject:
   m_ObjectHideFlags: 0

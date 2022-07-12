@@ -298,7 +298,9 @@ MonoBehaviour:
   sprintRange: {fileID: 1532895073152395577}
   crouchRange: {fileID: 4393460484050576197}
   anim: {fileID: 2554564492527707623}
+  hagHair: {fileID: 0}
   waterEffect: {fileID: 0}
+  audioMan: {fileID: 0}
   aiFootsteps: {fileID: 4493347226876027602}
 --- !u!1 &1965708120428793718
 GameObject:
@@ -1031,6 +1033,22 @@ MonoBehaviour:
     loop: 0
     playOnAwake: 0
     bypassReverbZones: 0
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+    isPlaying: 0
+  - name: Chase
+    type: 1
+    clip: {fileID: 8300000, guid: a998c722b40e3014dbbacfd46bbd6f48, type: 3}
+    customAudioSource: {fileID: 0}
+    volume: 1
+    volumeVariance: 0
+    originalVolume: 0
+    pitch: 1
+    pitchVariance: 0
+    spatialBlend: 0
+    loop: 1
+    playOnAwake: 0
+    bypassReverbZones: 1
     mixerGroup: {fileID: 0}
     source: {fileID: 0}
     isPlaying: 0

@@ -10,7 +10,7 @@ public class GlobalData : MonoBehaviour
     [HideInInspector] public bool loadSaveData;
     [HideInInspector] public PlayerData player;
     [SerializeField] Animator anim;
-    [SerializeField] CanvasGroup canvasGroupOBJ;
+    Coroutine loadCor = null;
 
     void Awake()
     {
@@ -48,11 +48,15 @@ public class GlobalData : MonoBehaviour
 
     public void LoadScene(string sceneName)
     {
-        StartCoroutine(SceneChange(sceneName));
+        if(loadCor == null)
+        {
+            loadCor = StartCoroutine(SceneChange(sceneName));
+        }
     }
 
     IEnumerator SceneChange(string sceneName)
     {
+        print("Called");
         anim.SetTrigger("FadeOut");
         Time.timeScale = 1f;
         yield return new WaitForSeconds(2f);
@@ -63,5 +67,6 @@ public class GlobalData : MonoBehaviour
         }
         yield return new WaitForSeconds(1f);
         anim.SetTrigger("FadeIn");
+        loadCor = null;
     }
 }

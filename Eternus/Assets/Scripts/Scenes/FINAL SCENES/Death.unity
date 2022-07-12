@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.30692244, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -153,9 +153,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sentences:
-  - Git gud, scrub.
-  - Lol that was sad
-  - Graphic design is my passion.
+  - You died so young, what a shame.
+  - Death is inevitable.
+  - None can ever hide from the grasp of death's hand.
   crypticText: {fileID: 1425434367}
   highlightColor: {r: 0.48235294, g: 0.2, b: 0.16862746, a: 1}
   dehighlightColor: {r: 0.32156864, g: 0.11372549, b: 0.11372549, a: 1}
@@ -1154,7 +1154,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: Git gud, scrub.
+  m_Text: What a shame, to die so young.
 --- !u!222 &1425434368
 CanvasRenderer:
   m_ObjectHideFlags: 0

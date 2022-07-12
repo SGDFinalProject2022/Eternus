@@ -28,6 +28,7 @@ public class NewEnemyAI : MonoBehaviour
     [SerializeField] GameObject sprintRange;
     [SerializeField] GameObject crouchRange;
     [SerializeField] Animator anim;
+    [SerializeField] Animator hagHair;
     [SerializeField] ParticleSystem waterEffect;
     PlayerMovement playerMov;
     bool aggrod;
@@ -51,7 +52,7 @@ public class NewEnemyAI : MonoBehaviour
     bool inReverse;
     NavMeshAgent ai;
 
-    AudioManager audioMan;
+    [SerializeField] AudioManager audioMan;
     [SerializeField] AIFootsteps aiFootsteps;
 
     Transform soundAggro;
@@ -60,7 +61,7 @@ public class NewEnemyAI : MonoBehaviour
     {
         ai = GetComponent<NavMeshAgent>();
         playerMov = player.gameObject.GetComponent<PlayerMovement>();
-        audioMan = GetComponent<AudioManager>();
+        if (audioMan == null) { audioMan = GetComponent<AudioManager>(); }
         //aiFootsteps = GetComponent<AIFootsteps>();
         SetUpNodes();
         transform.position = nodes[0].position;
@@ -84,15 +85,6 @@ public class NewEnemyAI : MonoBehaviour
             {
                 if (audioMan.CheckIsPlaying("Chase")) { FadeOutAudio("Chase", true); }
                 //audioMan.isPlaying = false;
-                isSearching = false;
-                if (enemyName != "Water Monster")
-                {
-                    AnimateSearch();
-                }
-                else
-                {
-                    waterEffect.Pause();
-                }
             }
         }
 
@@ -106,6 +98,24 @@ public class NewEnemyAI : MonoBehaviour
 
     }
 
+    public void ForceDeaggro()
+    {
+        isSearching = false;
+        AnimateSearch();
+        ResetAnimate("Fast");
+        ResetAnimate("Transition");
+        Animate("Slow");
+        StopAudio("Fast");
+        if (audioMan.CheckIsPlaying("Chase")) { FadeOutAudio("Chase", true); }
+        PlayAudio("Idle");
+        losAggrod = false;
+        soundAggro = null;
+        aggrod = false;
+        ai.speed = normalSpeed;
+        state = AIState.Patrol;
+        losCor = null;
+    }
+
 
     //Animation
     void Animate(string animation)
@@ -114,6 +124,10 @@ public class NewEnemyAI : MonoBehaviour
         {
             anim.SetTrigger(animation);
         }
+        if(hagHair != null)
+        {
+            hagHair.SetTrigger(animation);
+        }
     }
     void ResetAnimate(string animation)
     {
@@ -121,12 +135,21 @@ public class NewEnemyAI : MonoBehaviour
         {
             anim.ResetTrigger(animation);
         }
+        if (hagHair != null)
+        {
+            hagHair.ResetTrigger(animation);
+        }
     }
     void AnimateSearch()
     {
         if (anim != null)
         {
             anim.SetBool("isSearching", isSearching);
+        }
+        if(enemyName == "Hag")
+        {
+            anim.SetTrigger("Slow");
+            hagHair.SetTrigger("Slow");
         }
     }
 
@@ -319,7 +342,7 @@ public class NewEnemyAI : MonoBehaviour
         float seconds = 0;
         while ((!inLineOfSight || (inLineOfSight && playerMov.isHiding) || (enemyName == "Water Monster" && !playerMov.isInWater) && !soundAggrod))
         {
-            if (inLineOfSight && playerMov.isHiding || (enemyName == "Water Monster" && !playerMov.isInWater))
+            if (((Vector3.Distance(transform.position, player.position) <= 3f) && !inLineOfSight) || (Vector3.Distance(transform.position, player.position) <= 3f) && inLineOfSight && playerMov.isHiding || (enemyName == "Water Monster" && !playerMov.isInWater))
             {
                 isSearching = true;                
                 AnimateSearch();
@@ -406,6 +429,7 @@ public class NewEnemyAI : MonoBehaviour
         {
             waterEffect.Play();
         }
+        StopAudio("Idle");
         PlayAudio("Fast");
         ai.speed = aggroSpeed;
         while (Vector3.Distance(transform.position, soundAggro.position) > 5f)
@@ -427,6 +451,8 @@ public class NewEnemyAI : MonoBehaviour
 
         if (!inLineOfSight || (inLineOfSight && playerMov.isHiding))
         {
+            PlayAudio("Idle");
+            StopAudio("Fast");
             print("Did not find player");
             ai.speed = normalSpeed;
             state = AIState.Patrol;
