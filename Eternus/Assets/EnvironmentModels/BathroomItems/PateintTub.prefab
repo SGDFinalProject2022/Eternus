@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3386546290620651206}
   - component: {fileID: 656288188902187532}
   - component: {fileID: 3548514139311900800}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: PateintTub
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3735822825525625821}
   - component: {fileID: 1458243071237994263}
   - component: {fileID: 3177843925092081051}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: PateintTubwithCloth
   m_TagString: Untagged
   m_Icon: {fileID: 0}
