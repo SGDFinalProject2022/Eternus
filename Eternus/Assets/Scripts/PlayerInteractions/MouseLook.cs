@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.InputSystem;
 
 /// <summary>
 /// Rotates the player camera according to mouse input
@@ -19,6 +20,8 @@ public class MouseLook : MonoBehaviour
     [HideInInspector] public bool isInCutscene = false;
 
     UI uiController;
+    PlayerControls controls;
+    Vector2 look;
 
     float xRotation = 0f;
     float yRotation = 0f;
@@ -26,7 +29,26 @@ public class MouseLook : MonoBehaviour
     DoorController doorController;
     PlayerMovement playerMovement;
 
+    void Awake()
+    {
+        controls = new PlayerControls();
+        controls.Gameplay.Interact.performed += ctx => PlayerInteractions();
 
+        controls.Gameplay.LookVertical.performed += ctx => look.y = ctx.ReadValue<float>();
+        controls.Gameplay.LookVertical.canceled += ctx => look.y = 0f;
+
+        controls.Gameplay.LookHorizontal.performed += ctx => look.x = ctx.ReadValue<float>();
+        controls.Gameplay.LookHorizontal.canceled += ctx => look.x = 0f;
+    }
+    void OnEnable()
+    {
+        controls.Gameplay.Enable();
+    }
+    void OnDisable()
+    {
+        controls.Gameplay.Disable();
+    }
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -39,16 +61,37 @@ public class MouseLook : MonoBehaviour
     void Update()
     {
         if (uiController.isPaused || playerMovement.isDead || isInCutscene) { return; }
+
+        float x;
+        if(Input.GetAxis("Mouse X") != 0)
+        {
+            x = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
+        }
+        else
+        {
+            x = look.x * (mouseSensitivity / 2.5f) * Time.deltaTime;
+        }
+
+        float y;
+        if(Input.GetAxis("Mouse Y") != 0)
+        {
+            y = Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime;
+        }
+        else
+        {
+            y = look.y * (mouseSensitivity / 3f) * Time.deltaTime;
+        }
+
         //mouse movement
-        float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
-        float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime;
-        xRotation -= mouseY;
-        yRotation += mouseX;
+        //float x = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
+        //float y = Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime;
+        xRotation -= y;
+        yRotation += x;
 
         if (!playerMovement.isHiding) //Normal
         {           
             xRotation = Mathf.Clamp(xRotation, -70, 70);
-            playerBody.Rotate(Vector3.up * mouseX);
+            playerBody.Rotate(Vector3.up * x);
         }
         else //Hiding
         {
@@ -61,7 +104,7 @@ public class MouseLook : MonoBehaviour
         //playerBody.Rotate(Vector3.up * yRotation);
 
         //interactions
-        PlayerInteractions();
+        UpdateCrosshair();
     }
 
     public void StartIntroCutscene()
@@ -102,7 +145,7 @@ public class MouseLook : MonoBehaviour
         playerMovement.isHiding = false;
     }
 
-    void PlayerInteractions()
+    void UpdateCrosshair()
     {
         RaycastHit hit;
         if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, 4, interactableLayerMask))
@@ -113,7 +156,21 @@ public class MouseLook : MonoBehaviour
             crosshair.color = new Color(crosshair.color.r, crosshair.color.g, crosshair.color.b, 0.5f);
             crosshair.sprite = interactCrosshair;
             crosshair.transform.localScale = new Vector3(7, 7, 7);
-
+        }
+        else
+        {
+            //makes the crosshair invisible
+            crosshair.color = new Color(crosshair.color.r, crosshair.color.g, crosshair.color.b, 0.15f);
+            crosshair.sprite = defaultCrosshair;
+            crosshair.transform.localScale = new Vector3(1, 1, 1);
+            //uiController.interactText.text = "";
+        }
+    }
+    void PlayerInteractions()
+    {
+        RaycastHit hit;
+        if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, 4, interactableLayerMask))
+        {
             if (hit.collider.GetComponent<Interactable>()) //interactables
             {
                 //making sure it only calls the selected interactable's event
@@ -121,11 +178,7 @@ public class MouseLook : MonoBehaviour
                 {
                     interactable = hit.collider.GetComponent<Interactable>();
                 }
-                //uiController.interactText.text = interactable.interactText;
-                if (Input.GetButtonDown("Interact"))
-                {
-                    interactable.onInteract.Invoke();
-                }
+                interactable.onInteract.Invoke();
             }
 
             if (hit.collider.GetComponent<DoorController>()) //doors
@@ -135,20 +188,12 @@ public class MouseLook : MonoBehaviour
                 {
                     doorController = hit.collider.GetComponent<DoorController>();
                 }
-                //uiController.interactText.text = doorController.interactText;
-                if (Input.GetButtonDown("Interact"))
+                /*if (Input.GetButtonDown("Interact"))
                 {
                     doorController.onInteract.Invoke();
-                }
+                }*/
+                doorController.onInteract.Invoke();
             }
-        }
-        else
-        {
-            //makes the crosshair invisible
-            crosshair.color = new Color(crosshair.color.r, crosshair.color.g, crosshair.color.b, 0.15f);
-            crosshair.sprite = defaultCrosshair;
-            crosshair.transform.localScale = new Vector3(1, 1, 1);
-            //uiController.interactText.text = "";
         }
     }
 }
