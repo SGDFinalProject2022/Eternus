@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
 /// <summary>
 /// Main player movement
 /// </summary>
@@ -9,7 +8,6 @@ public class PlayerMovement : MonoBehaviour
 {
     [Header("Character Controller")]
     [SerializeField] CharacterController controller;
-    PlayerControls controls;
 
     [Header("Player Parameters")]
     [SerializeField] float walkingSpeed = 8f;
@@ -17,8 +15,6 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float jumpHeight = 1f;    
     Vector3 velocity;
     [HideInInspector] public float speed;
-    //InputSystem for player movement
-    Vector2 move;
     Vector3 lastPos;
     bool isOnGround;
     bool isJumping;
@@ -32,12 +28,10 @@ public class PlayerMovement : MonoBehaviour
     bool isUnderSomething;
     float originalHeight;
     bool crouchSticky; //toggles on when window unfocuses
-    float _crouch;
 
     [Header("Sprint")]
     [SerializeField] float sprintSpeed = 12f;
     [HideInInspector] public bool isSprinting;
-    float _sprint;
 
     [Header("Water")]
     [SerializeField] float waterSpeed = 3f;
@@ -82,31 +76,7 @@ public class PlayerMovement : MonoBehaviour
     //multiply everything that changes volume based on this value
     [HideInInspector] public float footstepBaseVolume = 0.25f;
 
-    void Awake()
-    {
-        controls = new PlayerControls();
-        controls.Gameplay.Jump.performed += ctx => Jump();
-
-        controls.Gameplay.MoveVertical.performed += ctx => move.y = ctx.ReadValue<float>();
-        controls.Gameplay.MoveVertical.canceled += ctx => move.y = 0f;
-
-        controls.Gameplay.MoveHorizontal.performed += ctx => move.x = ctx.ReadValue<float>();
-        controls.Gameplay.MoveHorizontal.canceled += ctx => move.x = 0f;
-
-        controls.Gameplay.Sprint.performed += ctx => _sprint = ctx.ReadValue<float>();
-        controls.Gameplay.Sprint.canceled += ctx => _sprint = 0f;
-
-        controls.Gameplay.Crouch.performed += ctx => _crouch = ctx.ReadValue<float>();
-        controls.Gameplay.Crouch.canceled += ctx => _crouch = 0f;
-    }
-    void OnEnable()
-    {
-        controls.Gameplay.Enable();
-    }
-    void OnDisable()
-    {
-        controls.Gameplay.Disable();
-    }
+    
 
     // Start is called before the first frame update
     void Start()
@@ -140,36 +110,9 @@ public class PlayerMovement : MonoBehaviour
             isInWater = hit.collider.CompareTag("Footsteps/Water");
         }
 
-        float x;
-        if(Input.GetAxis("Horizontal") != 0)
-        {
-            x = Input.GetAxis("Horizontal");
-        }
-        else
-        {
-            x = move.x;
-        }
-        
-        float z;
-        if(Input.GetAxis("Vertical") != 0)
-        {
-            z = Input.GetAxis("Vertical");
-        }
-        else
-        {
-            z = move.y;
-        }
-        
-        float y;
-        if(Input.GetAxis("Crouch") != 0)
-        {
-            y = Input.GetAxis("Crouch");
-        }
-        else
-        {
-            y = _crouch;
-        }
-        
+        float x = Input.GetAxis("Horizontal");
+        float y = Input.GetAxis("Crouch");
+        float z = Input.GetAxis("Vertical");
 
         if (crouchSticky)
         {
@@ -177,8 +120,7 @@ public class PlayerMovement : MonoBehaviour
             y = 1f;
         }
 
-        //preventing player from getting stuck when under objects while crouching 
-        //TODO: Fix jankyness
+        //preventing player from getting stuck when under objects while crouching
         if (Physics.Raycast(transform.position, Vector3.up, out RaycastHit headHit, originalHeight / 1.5f)
             && isCrouching)
         {
@@ -188,7 +130,7 @@ public class PlayerMovement : MonoBehaviour
         }
         else { isUnderSomething = false; }
 
-        LandHandler();
+        JumpLandHandler();
         CrouchHandler(y);
         MovementHandler(x, y, z);
         GravityHandler();
@@ -199,9 +141,9 @@ public class PlayerMovement : MonoBehaviour
     }
 
     /// <summary>
-    /// Handles Landing
+    /// Handles Jumping and Landing
     /// </summary>
-    void LandHandler()
+    void JumpLandHandler()
     {
         //landing
         if (isOnGround && velocity.y < 0)
@@ -213,13 +155,9 @@ public class PlayerMovement : MonoBehaviour
                 isJumping = false;
             }
         }
-    }
-    /// <summary>
-    /// Handles Jumping
-    /// </summary>
-    void Jump()
-    {
-        if (isOnGround && !isSprinting && !isCrouching)
+
+        //jumping
+        if (Input.GetButtonDown("Jump") && isOnGround && !isSprinting && !isCrouching)
         {
             velocity.y = Mathf.Sqrt(jumpHeight * -2 * gravity);
             if (!isInWater) { audioMan.Play("Jump"); }
@@ -266,7 +204,7 @@ public class PlayerMovement : MonoBehaviour
             isCrouching = false;
         }
 
-        //sfx 
+        //sfx
         if (Input.GetButtonDown("Crouch") && y < 0.5)
         {
             audioMan.Play("Crouch");
@@ -289,10 +227,7 @@ public class PlayerMovement : MonoBehaviour
     {
         //setting footstep volume to default
         audioMan.ChangeVolume("Step", footstepBaseVolume);
-        float sprint;
-        if(_sprint > 0) sprint = _sprint;
-        else sprint = Input.GetAxis("Sprint");
-        
+        float sprint = Input.GetAxis("Sprint");
         finalSpeed = walkingSpeed;
         if (isCrouching && !isInWater)
         {
@@ -301,7 +236,7 @@ public class PlayerMovement : MonoBehaviour
             audioMan.ChangeVolume("Step", footstepBaseVolume * 0.4f);
         }
         //can only sprint forward
-        if (!isCrouching && sprint > 0 && z > 0 && x < 0.75f && !isInWater) //Sprinting
+        if (!isCrouching && sprint > 0 && z > 0 && x == 0 && !isInWater) //Sprinting
         {
             finalSpeed = Mathf.Lerp(walkingSpeed, sprintSpeed, sprint);
             headBobController.amplitude = Mathf.Lerp(normalHeadBobAmplitude, sprintHeadBobAmplitude, sprint);
